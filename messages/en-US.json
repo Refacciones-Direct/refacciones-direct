@@ -1,0 +1,19 @@
+{
+  "common": {
+    "appName": "RefaccionesDirect",
+    "loading": "Loading...",
+    "error": "An error occurred"
+  },
+  "home": {
+    "title": "Automotive parts from Mexican manufacturers",
+    "subtitle": "Buy direct from the manufacturer"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "comingSoon": "Coming soon..."
+  },
+  "admin": {
+    "title": "Administration",
+    "comingSoon": "Coming soon..."
+  }
+}

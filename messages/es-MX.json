@@ -1,0 +1,19 @@
+{
+  "common": {
+    "appName": "RefaccionesDirect",
+    "loading": "Cargando...",
+    "error": "Ocurrió un error"
+  },
+  "home": {
+    "title": "Refacciones automotrices de fabricantes mexicanos",
+    "subtitle": "Compra directo del fabricante"
+  },
+  "dashboard": {
+    "title": "Panel de control",
+    "comingSoon": "Próximamente..."
+  },
+  "admin": {
+    "title": "Administración",
+    "comingSoon": "Próximamente..."
+  }
+}
