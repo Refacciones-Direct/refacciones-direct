@@ -52,3 +52,7 @@ supabase/.branches/
 .idea/
 *.swp
 *.swo
+
+# Claude Code
+.claude/settings.local.json
+.claude/skills
