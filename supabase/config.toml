@@ -1,14 +1,45 @@
-[project]
-id = "refaccionesdirect"
+project_id = "refaccionesdirect"
 
 [api]
 enabled = true
-port = 54321
-schemas = ["public"]
+# Offset by +10 from defaults to avoid conflicts with ACR-Automotive Supabase
+port = 54331
+schemas = ["public", "storage"]
+extra_search_path = ["public"]
 
 [db]
-port = 54322
+port = 54332
+shadow_port = 54330
+
+[db.pooler]
+enabled = false
+port = 54339
 
 [studio]
 enabled = true
-port = 54323
+port = 54333
+
+[inbucket]
+enabled = true
+port = 54334
+smtp_port = 54335
+pop3_port = 54336
+
+[analytics]
+port = 54337
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+# We use WorkOS AuthKit for auth, not Supabase Auth.
+# Supabase Auth is kept enabled (required for storage RLS)
+# but we don't use its email/password or OAuth flows.
+enable_signup = false
+
+[auth.email]
+enable_signup = false
+enable_confirmations = false
+
+[storage]
+enabled = true
+file_size_limit = "10MB"
