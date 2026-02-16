@@ -39,6 +39,13 @@
 - **Database types:** `src/types/database.ts`
 - **Translations:** `messages/es-MX.json`, `messages/en-US.json`
 
+## CI/CD
+
+- **CI** (`.github/workflows/ci.yml`): Runs on every PR and push to `main` — typecheck, lint, format, test, build, schema validation
+- **Staging migrations** (`.github/workflows/deploy-staging.yml`): Auto-deploys on merge to `main` when `supabase/migrations/` changes
+- **Production migrations** (`.github/workflows/deploy-production.yml`): Manual `workflow_dispatch` with GitHub Environment approval gate
+- **Dependabot** (`.github/dependabot.yml`): Weekly npm + GitHub Actions dependency PRs (Mondays)
+
 ## Key Patterns
 
 - Server components by default, client components when needed
