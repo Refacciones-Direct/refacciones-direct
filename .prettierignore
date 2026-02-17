@@ -1,7 +1,8 @@
-node_modules
-.next
-out
-coverage
-supabase/.temp
-pnpm-lock.yaml
+# Auto-generated files (must match CI output exactly)
+src/types/database.ts
+
+# Package manager
 package-lock.json
+
+# Beads internal files
+.beads/
