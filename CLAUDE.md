@@ -67,6 +67,7 @@ bd close <id> --reason="done"             # Complete task
 ```
 
 **Plan Traceability:** When creating tasks from a plan file, add the plan reference:
+
 ```bash
 bd update <id> --notes="Plan: ~/.claude/plans/<plan-file>.md"
 ```
@@ -74,6 +75,7 @@ bd update <id> --notes="Plan: ~/.claude/plans/<plan-file>.md"
 ## Code Quality
 
 Use these skills when relevant:
+
 - `vercel-react-best-practices` — React/Next.js patterns
 - `supabase-postgres-best-practices` — Database queries/schema
 - `workos-authkit-nextjs` — Auth integration
@@ -87,7 +89,7 @@ Use these skills when relevant:
   2. Show the user: what broke, the root cause, and which production file(s) would need to change
   3. Wait for explicit approval before touching any production file
   4. If the user says "file it for later", create a beads issue and move on
-  This rule applies even when the fix seems obvious. No exceptions.
+     This rule applies even when the fix seems obvious. No exceptions.
 - **Do not modify existing test files** unless the user has approved the change.
 
 ## Landing the Plane (Session Completion)
@@ -99,6 +101,7 @@ Work is NOT complete until a successful PR has passed CI and has been MERGED int
 ### 0. Code review (before committing)
 
 Use `superpowers:requesting-code-review` to launch a review subagent. The review must check:
+
 - Do the changes match the stated plan/requirements?
 - Was anything added that wasn't in scope?
 - Are production changes minimal?
@@ -106,21 +109,23 @@ Use `superpowers:requesting-code-review` to launch a review subagent. The review
 
 **Skill-based audits** — for non-trivial work touching a core dependency, invoke the relevant skill during review to catch gaps missed during development:
 
-| Area changed | Audit skill |
-|---|---|
-| React components, UI | `vercel-react-best-practices` |
-| Next.js (server components, API routes, SSR/SSG, proxy) | `vercel-react-best-practices` |
-| Database (migrations, queries, schema, RLS) | `supabase-postgres-best-practices` |
-| Authentication (WorkOS, sessions, callbacks) | `workos-authkit-nextjs` |
-| i18n (routing, translations, locale handling) | `next-intl-app-router` |
-| Background jobs (event-driven workflows) | `inngest` |
+| Area changed                                            | Audit skill                        |
+| ------------------------------------------------------- | ---------------------------------- |
+| React components, UI                                    | `vercel-react-best-practices`      |
+| Next.js (server components, API routes, SSR/SSG, proxy) | `vercel-react-best-practices`      |
+| Database (migrations, queries, schema, RLS)             | `supabase-postgres-best-practices` |
+| Authentication (WorkOS, sessions, callbacks)            | `workos-authkit-nextjs`            |
+| i18n (routing, translations, locale handling)           | `next-intl-app-router`             |
+| Background jobs (event-driven workflows)                | `inngest`                          |
 
 ### 1. File issues for remaining work
+
 ```bash
 bd create --title="Follow-up: ..." --type=task --priority=2
 ```
 
 ### 2. Run quality gates (if code changed)
+
 ```bash
 ./node_modules/.bin/tsc.cmd --noEmit  # Type check
 npm.cmd run build                     # Build
@@ -128,12 +133,14 @@ npm.cmd run test:run                  # Unit tests
 ```
 
 ### 3. Update beads
+
 ```bash
 bd close <id1> <id2> ... --reason="done"   # Close finished work
 bd sync                                     # Flush to .beads/issues.jsonl
 ```
 
 ### 4. Commit, push, and open PR
+
 ```bash
 git add <files>                  # Stage changes (including .beads/issues.jsonl)
 git commit -m "..."              # Commit
@@ -143,7 +150,9 @@ gh pr create --title "..." --body "..."  # Open PR against target branch
 ```
 
 ### 5. Monitor PR until merged
+
 The session is NOT over after pushing. You must:
+
 1. Report to the user that the PR is open and CI is running.
 2. Wait 5–7 minutes for CI to complete, then check status:
    ```bash
@@ -154,6 +163,7 @@ The session is NOT over after pushing. You must:
 5. Once the PR is merged, confirm with `gh pr view <pr-number>` and report completion.
 
 **Critical rules:**
+
 - NEVER stop before the PR is merged — that leaves work in limbo
 - NEVER say "ready to push when you are" — YOU must push and open the PR
 - If CI fails, resolve and retry until it passes

@@ -40,6 +40,7 @@ related_documents:
 ---
 
 # RefaccionesDirect
+
 ## Data Architecture Specification
 
 **Version 4.0** | January 2026  
@@ -49,13 +50,13 @@ related_documents:
 
 ## Document History
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0 | Jan 2026 | Initial specification |
-| 2.0 | Jan 2026 | Consolidated pipeline spec; added VCdb strategy |
-| 2.5 | Jan 2026 | Search Architecture: decided Postgres for MVP |
-| 3.0 | Jan 2026 | Stakeholder validation; confirmed facts integrated |
-| 3.1 | Jan 2026 | Removed duplicates with Technical Architecture; added frontmatter |
+| Version | Date         | Changes                                                                                                                                                                                                  |
+| ------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.0     | Jan 2026     | Initial specification                                                                                                                                                                                    |
+| 2.0     | Jan 2026     | Consolidated pipeline spec; added VCdb strategy                                                                                                                                                          |
+| 2.5     | Jan 2026     | Search Architecture: decided Postgres for MVP                                                                                                                                                            |
+| 3.0     | Jan 2026     | Stakeholder validation; confirmed facts integrated                                                                                                                                                       |
+| 3.1     | Jan 2026     | Removed duplicates with Technical Architecture; added frontmatter                                                                                                                                        |
 | **4.0** | **Jan 2026** | **ðŸ†• Major update: Integrated ML deep dive research; defined three-layer validation system; documented explicit action model for catalog updates; resolved pending questions 1.4, 3.2, 3.4, 3.5, 6.1** |
 
 ---
@@ -89,7 +90,7 @@ CREATE TABLE manufacturers (
   user_id UUID REFERENCES auth.users(id),
   company_name VARCHAR(255) NOT NULL,      -- Legal name (internal)
   brand_name VARCHAR(100) NOT NULL,         -- Public brand name
-  display_mode VARCHAR(20) DEFAULT 'brand_only'  
+  display_mode VARCHAR(20) DEFAULT 'brand_only'
     CHECK (display_mode IN ('brand_only', 'company_name')),
   rfc VARCHAR(13),                          -- Mexican tax ID
   created_at TIMESTAMPTZ DEFAULT NOW(),
@@ -106,7 +107,7 @@ CREATE TABLE vehicles (
   engine VARCHAR(50),
   submodel VARCHAR(100),
   created_at TIMESTAMPTZ DEFAULT NOW(),
-  
+
   UNIQUE(make, model, year_start, year_end, engine, submodel)
 );
 
@@ -132,7 +133,7 @@ CREATE TABLE parts (
   is_active BOOLEAN DEFAULT true,           -- Computed from status + quantity
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW(),
-  
+
   UNIQUE(manufacturer_id, sku)
 );
 
@@ -143,7 +144,7 @@ CREATE TABLE fitments (
   vehicle_id UUID NOT NULL REFERENCES vehicles(id),
   qualifiers JSONB DEFAULT '{}',  -- {"position": "Front", "driveType": "4WD", "withABS": true}
   created_at TIMESTAMPTZ DEFAULT NOW(),
-  
+
   UNIQUE(part_id, vehicle_id, qualifiers)
 );
 
@@ -155,7 +156,7 @@ CREATE TABLE oe_crossrefs (
   oe_number_normalized VARCHAR(50) NOT NULL, -- Searchable: "04E129620D"
   oe_brand VARCHAR(100),                    -- VW, Toyota, Ford, etc.
   created_at TIMESTAMPTZ DEFAULT NOW(),
-  
+
   UNIQUE(part_id, oe_number)
 );
 
@@ -484,24 +485,23 @@ These normalizations are applied automatically (Layer 2) and logged:
 ```typescript
 // Normalization functions applied during import
 const normalizations = {
-  
   // MAKE: Title case, trim whitespace
   make: (value: string): string => {
     const trimmed = value.trim();
     // Map known variations
     const makeMap: Record<string, string> = {
-      'CHEVROLET': 'Chevrolet',
-      'chevrolet': 'Chevrolet',
-      'CHEVY': 'Chevrolet',
-      'FORD': 'Ford',
-      'ford': 'Ford',
-      'NISSAN': 'Nissan',
-      'nissan': 'Nissan',
-      'TOYOTA': 'Toyota',
-      'toyota': 'Toyota',
-      'VOLKSWAGEN': 'Volkswagen',
-      'VW': 'Volkswagen',
-      'vw': 'Volkswagen',
+      CHEVROLET: 'Chevrolet',
+      chevrolet: 'Chevrolet',
+      CHEVY: 'Chevrolet',
+      FORD: 'Ford',
+      ford: 'Ford',
+      NISSAN: 'Nissan',
+      nissan: 'Nissan',
+      TOYOTA: 'Toyota',
+      toyota: 'Toyota',
+      VOLKSWAGEN: 'Volkswagen',
+      VW: 'Volkswagen',
+      vw: 'Volkswagen',
       // ... add more as discovered
     };
     return makeMap[trimmed] || titleCase(trimmed);
@@ -516,33 +516,33 @@ const normalizations = {
   position: (value: string): string => {
     const positionMap: Record<string, string> = {
       // English variations
-      'FRONT': 'Front',
-      'front': 'Front',
-      'Front': 'Front',
-      'REAR': 'Rear',
-      'rear': 'Rear',
-      'Rear': 'Rear',
+      FRONT: 'Front',
+      front: 'Front',
+      Front: 'Front',
+      REAR: 'Rear',
+      rear: 'Rear',
+      Rear: 'Rear',
       'FRONT LEFT': 'Front Left',
-      'FL': 'Front Left',
+      FL: 'Front Left',
       'FRONT RIGHT': 'Front Right',
-      'FR': 'Front Right',
+      FR: 'Front Right',
       'REAR LEFT': 'Rear Left',
-      'RL': 'Rear Left',
+      RL: 'Rear Left',
       'REAR RIGHT': 'Rear Right',
-      'RR': 'Rear Right',
-      'LEFT': 'Left',
-      'RIGHT': 'Right',
+      RR: 'Rear Right',
+      LEFT: 'Left',
+      RIGHT: 'Right',
       // Spanish variations
-      'Delantera': 'Front',
-      'DELANTERA': 'Front',
-      'Trasera': 'Rear',
-      'TRASERA': 'Rear',
+      Delantera: 'Front',
+      DELANTERA: 'Front',
+      Trasera: 'Rear',
+      TRASERA: 'Rear',
       'Delantera Izquierda': 'Front Left',
       'Delantera Derecha': 'Front Right',
       'Trasera Izquierda': 'Rear Left',
       'Trasera Derecha': 'Rear Right',
-      'Izquierda': 'Left',
-      'Derecha': 'Right',
+      Izquierda: 'Left',
+      Derecha: 'Right',
     };
     const trimmed = value.trim();
     return positionMap[trimmed] || trimmed;
@@ -555,13 +555,13 @@ const normalizations = {
       '4X4': '4WD',
       '4 X 4': '4WD',
       '4x4': '4WD',
-      'AWD': 'AWD',
+      AWD: 'AWD',
       'All Wheel': 'AWD',
       'ALL WHEEL': 'AWD',
-      'FWD': 'FWD',
+      FWD: 'FWD',
       'Front Wheel': 'FWD',
       'FRONT WHEEL': 'FWD',
-      'RWD': 'RWD',
+      RWD: 'RWD',
       'Rear Wheel': 'RWD',
       'REAR WHEEL': 'RWD',
       '2WD': '2WD',
@@ -575,8 +575,8 @@ const normalizations = {
   // GENERAL: Apply to all text fields
   general: (value: string): string => {
     return value
-      .trim()                    // Remove leading/trailing whitespace
-      .replace(/\s+/g, ' ')      // Collapse multiple spaces
+      .trim() // Remove leading/trailing whitespace
+      .replace(/\s+/g, ' ') // Collapse multiple spaces
       .replace(/[\u200B-\u200D\uFEFF]/g, ''); // Remove zero-width chars
   },
 
@@ -592,7 +592,8 @@ const normalizations = {
   // PRICE: Parse number, ensure positive
   price: (value: string | number): number | null => {
     const num = typeof value === 'number' ? value : parseFloat(value);
-    if (isNaN(num) || num < 35) { // Min $35 MXN
+    if (isNaN(num) || num < 35) {
+      // Min $35 MXN
       return null;
     }
     return Math.round(num * 100) / 100; // 2 decimal places
@@ -612,16 +613,16 @@ const normalizations = {
 
 Standard error types returned in error files:
 
-| Error Type | Message Template | Example |
-|------------|------------------|---------|
-| `missing_required` | "Required field '{field}' is empty" | "Required field 'SKU' is empty" |
-| `invalid_format` | "Field '{field}' has invalid format: {reason}" | "Field 'UPC' has invalid format: must be 8-14 digits" |
-| `invalid_value` | "Field '{field}' has invalid value: '{value}'" | "Field 'Currency' has invalid value: 'EUR'" |
-| `duplicate_sku` | "SKU '{sku}' already exists in this upload" | "SKU 'ACR-123' already exists in this upload" |
-| `sku_not_found` | "SKU '{sku}' not found (quick update requires existing SKU)" | "SKU 'ACR-999' not found" |
-| `invalid_year_range` | "Year end ({end}) must be >= year start ({start})" | "Year end (2005) must be >= year start (2010)" |
-| `price_too_low` | "Price {price} is below minimum ($35 MXN)" | "Price $20 is below minimum ($35 MXN)" |
-| `invalid_image_url` | "Image URL is not accessible: {url}" | "Image URL is not accessible: http://..." |
+| Error Type           | Message Template                                             | Example                                               |
+| -------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
+| `missing_required`   | "Required field '{field}' is empty"                          | "Required field 'SKU' is empty"                       |
+| `invalid_format`     | "Field '{field}' has invalid format: {reason}"               | "Field 'UPC' has invalid format: must be 8-14 digits" |
+| `invalid_value`      | "Field '{field}' has invalid value: '{value}'"               | "Field 'Currency' has invalid value: 'EUR'"           |
+| `duplicate_sku`      | "SKU '{sku}' already exists in this upload"                  | "SKU 'ACR-123' already exists in this upload"         |
+| `sku_not_found`      | "SKU '{sku}' not found (quick update requires existing SKU)" | "SKU 'ACR-999' not found"                             |
+| `invalid_year_range` | "Year end ({end}) must be >= year start ({start})"           | "Year end (2005) must be >= year start (2010)"        |
+| `price_too_low`      | "Price {price} is below minimum ($35 MXN)"                   | "Price $20 is below minimum ($35 MXN)"                |
+| `invalid_image_url`  | "Image URL is not accessible: {url}"                         | "Image URL is not accessible: http://..."             |
 
 ---
 
@@ -635,13 +636,13 @@ Manufacturers fill out templates from **Tech Alliance / Tech Doc** containing al
 
 ### 3.2 Template Structure
 
-| Sheet | Purpose |
-|-------|---------|
-| **Ayuda (Help)** | Instructions, links to image uploader, expiration date |
-| **Datos (Data Entry)** | Main data entry sheet with validation |
-| **Resumen de Errores** | ðŸ†• Error summary column (auto-calculated) |
-| **Opciones (Hidden)** | Dropdown validation lists |
-| **Metadata (Hidden)** | ðŸ†• Manufacturer ID, template version, expiration |
+| Sheet                  | Purpose                                                |
+| ---------------------- | ------------------------------------------------------ |
+| **Ayuda (Help)**       | Instructions, links to image uploader, expiration date |
+| **Datos (Data Entry)** | Main data entry sheet with validation                  |
+| **Resumen de Errores** | ðŸ†• Error summary column (auto-calculated)            |
+| **Opciones (Hidden)**  | Dropdown validation lists                              |
+| **Metadata (Hidden)**  | ðŸ†• Manufacturer ID, template version, expiration     |
 
 ### 3.3 Field Specification
 
@@ -649,62 +650,62 @@ Manufacturers fill out templates from **Tech Alliance / Tech Doc** containing al
 
 ML puts vehicle info in the title only. We need **structured fields** for proper search:
 
-| Field | Spanish | Required | Type | Notes |
-|-------|---------|----------|------|-------|
-| Make | Marca del VehÃ­culo | ðŸ”´ YES | Dropdown | e.g., Chevrolet, Ford, Nissan |
-| Model | Modelo del VehÃ­culo | ðŸ”´ YES | Text | e.g., Suburban, Civic, Tsuru |
-| Year Start | AÃ±o Inicio | ðŸ”´ YES | Number | e.g., 2007 |
-| Year End | AÃ±o Fin | ðŸ”´ YES | Number | e.g., 2014 |
-| Engine | Motor | No | Text | e.g., 2.4L, 5.7L V8 |
-| Submodel | Submodelo | No | Text | e.g., LT, Sport, SE |
+| Field      | Spanish              | Required | Type     | Notes                         |
+| ---------- | -------------------- | -------- | -------- | ----------------------------- |
+| Make       | Marca del VehÃ­culo  | ðŸ”´ YES | Dropdown | e.g., Chevrolet, Ford, Nissan |
+| Model      | Modelo del VehÃ­culo | ðŸ”´ YES | Text     | e.g., Suburban, Civic, Tsuru  |
+| Year Start | AÃ±o Inicio          | ðŸ”´ YES | Number   | e.g., 2007                    |
+| Year End   | AÃ±o Fin             | ðŸ”´ YES | Number   | e.g., 2014                    |
+| Engine     | Motor                | No       | Text     | e.g., 2.4L, 5.7L V8           |
+| Submodel   | Submodelo            | No       | Text     | e.g., LT, Sport, SE           |
 
 #### Section B: Part Information
 
-| Field | Spanish | Required | Type | Notes |
-|-------|---------|----------|------|-------|
-| Brand | Marca | ðŸ”´ YES | Text | e.g., ACR, Bosch |
-| SKU | SKU | ðŸ”´ YES | Text | Customer-facing part number |
-| Factory Part # | NÃºmero de FÃ¡brica | No | Text | Internal code (not displayed) |
-| UPC/Barcode | CÃ³digo de Barras | No | Text | 8-14 digit GTIN |
-| Product Category | CategorÃ­a | ðŸ”´ YES | Dropdown | e.g., Mazas de Ruedas |
-| Product Name | Nombre del Producto | ðŸ”´ YES | Text | e.g., Wheel Bearing Assembly |
-| Description | DescripciÃ³n | No | Text | Product description |
+| Field            | Spanish             | Required | Type     | Notes                         |
+| ---------------- | ------------------- | -------- | -------- | ----------------------------- |
+| Brand            | Marca               | ðŸ”´ YES | Text     | e.g., ACR, Bosch              |
+| SKU              | SKU                 | ðŸ”´ YES | Text     | Customer-facing part number   |
+| Factory Part #   | NÃºmero de FÃ¡brica | No       | Text     | Internal code (not displayed) |
+| UPC/Barcode      | CÃ³digo de Barras   | No       | Text     | 8-14 digit GTIN               |
+| Product Category | CategorÃ­a          | ðŸ”´ YES | Dropdown | e.g., Mazas de Ruedas         |
+| Product Name     | Nombre del Producto | ðŸ”´ YES | Text     | e.g., Wheel Bearing Assembly  |
+| Description      | DescripciÃ³n        | No       | Text     | Product description           |
 
 #### Section C: Attributes (Category-Specific)
 
-| Field | Spanish | Required | Type | Notes |
-|-------|---------|----------|------|-------|
-| Position | PosiciÃ³n | No | Dropdown | Front, Rear, Front Left, etc. |
-| DriveType | Tipo de TracciÃ³n | No | Dropdown | FWD, RWD, 4WD, AWD |
-| With ABS | Con ABS | No | Dropdown | SÃ­, No |
-| Bolt Count | Cantidad de Barrenos | No | Number | For wheel hubs |
+| Field      | Spanish              | Required | Type     | Notes                         |
+| ---------- | -------------------- | -------- | -------- | ----------------------------- |
+| Position   | PosiciÃ³n            | No       | Dropdown | Front, Rear, Front Left, etc. |
+| DriveType  | Tipo de TracciÃ³n    | No       | Dropdown | FWD, RWD, 4WD, AWD            |
+| With ABS   | Con ABS              | No       | Dropdown | SÃ­, No                       |
+| Bolt Count | Cantidad de Barrenos | No       | Number   | For wheel hubs                |
 
 #### Section D: Pricing & Inventory
 
-| Field | Spanish | Required | Type | Notes |
-|-------|---------|----------|------|-------|
-| Price | Precio | ðŸ”´ YES | Number | Min $35 MXN |
-| Currency | Moneda | ðŸ”´ YES | Dropdown | $ (MXN), US$ |
-| Stock | Stock | ðŸ”´ YES | Number | Current quantity |
-| Condition | CondiciÃ³n | ðŸ”´ YES | Dropdown | Nuevo, Usado |
-| Status | Estado | No | Dropdown | ðŸ†• Activo, Pausado, Descontinuado |
+| Field     | Spanish    | Required | Type     | Notes                               |
+| --------- | ---------- | -------- | -------- | ----------------------------------- |
+| Price     | Precio     | ðŸ”´ YES | Number   | Min $35 MXN                         |
+| Currency  | Moneda     | ðŸ”´ YES | Dropdown | $ (MXN), US$                        |
+| Stock     | Stock      | ðŸ”´ YES | Number   | Current quantity                    |
+| Condition | CondiciÃ³n | ðŸ”´ YES | Dropdown | Nuevo, Usado                        |
+| Status    | Estado     | No       | Dropdown | ðŸ†• Activo, Pausado, Descontinuado |
 
 #### Section E: Images
 
-| Field | Spanish | Required | Type | Notes |
-|-------|---------|----------|------|-------|
-| Image URLs | Fotos | ðŸ”´ YES | Text | URLs from image uploader (comma-separated) |
+| Field      | Spanish | Required | Type | Notes                                      |
+| ---------- | ------- | -------- | ---- | ------------------------------------------ |
+| Image URLs | Fotos   | ðŸ”´ YES | Text | URLs from image uploader (comma-separated) |
 
 #### Section F: OE Cross-Reference
 
-| Field | Spanish | Required | Type | Notes |
-|-------|---------|----------|------|-------|
-| OE Part # 1-4 | NÃºmero OE 1-4 | No | Text | Original equipment numbers |
+| Field         | Spanish        | Required | Type | Notes                      |
+| ------------- | -------------- | -------- | ---- | -------------------------- |
+| OE Part # 1-4 | NÃºmero OE 1-4 | No       | Text | Original equipment numbers |
 
 #### Section G: Validation (Auto-Calculated) ðŸ†•
 
-| Field | Spanish | Purpose |
-|-------|---------|---------|
+| Field         | Spanish            | Purpose                                 |
+| ------------- | ------------------ | --------------------------------------- |
 | Error Summary | Resumen de Errores | Excel formula showing validation errors |
 
 ### 3.4 Template Validation Formulas ðŸ†•
@@ -736,6 +737,7 @@ These Excel formulas go in the "Resumen de Errores" column:
 ```
 
 **Visual indication:**
+
 - Cell shows "âœ“ OK" in green when valid
 - Cell shows "âš ï¸ [error]" in red when invalid
 - Conditional formatting highlights the row
@@ -747,26 +749,26 @@ Auto-detect common header variations during import:
 ```javascript
 const columnMappings = {
   // Vehicle fields
-  vehicleMake: ["Marca del VehÃ­culo", "Make", "Marca Auto", "MAKE"],
-  vehicleModel: ["Modelo del VehÃ­culo", "Model", "Modelo Auto", "MODEL"],
-  yearStart: ["AÃ±o Inicio", "Year Start", "AÃ±o Desde", "FROM_YEAR"],
-  yearEnd: ["AÃ±o Fin", "Year End", "AÃ±o Hasta", "TO_YEAR"],
-  
+  vehicleMake: ['Marca del VehÃ­culo', 'Make', 'Marca Auto', 'MAKE'],
+  vehicleModel: ['Modelo del VehÃ­culo', 'Model', 'Modelo Auto', 'MODEL'],
+  yearStart: ['AÃ±o Inicio', 'Year Start', 'AÃ±o Desde', 'FROM_YEAR'],
+  yearEnd: ['AÃ±o Fin', 'Year End', 'AÃ±o Hasta', 'TO_YEAR'],
+
   // Part fields
-  sku: ["SKU", "NÃºmero de Parte", "Part Number", "PART_NO"],
-  brand: ["Marca", "Brand", "Fabricante", "BRAND"],
-  upc: ["CÃ³digo de Barras", "UPC", "EAN", "GTIN", "BARCODE"],
-  
+  sku: ['SKU', 'NÃºmero de Parte', 'Part Number', 'PART_NO'],
+  brand: ['Marca', 'Brand', 'Fabricante', 'BRAND'],
+  upc: ['CÃ³digo de Barras', 'UPC', 'EAN', 'GTIN', 'BARCODE'],
+
   // Inventory fields
-  quantity: ["Stock", "Cantidad", "Qty", "Inventario", "QTY"],
-  price: ["Precio", "Price", "Costo", "PRICE"],
-  
+  quantity: ['Stock', 'Cantidad', 'Qty', 'Inventario', 'QTY'],
+  price: ['Precio', 'Price', 'Costo', 'PRICE'],
+
   // Attributes
-  position: ["PosiciÃ³n", "Position", "PosiciÃ³n del Eje", "POS"],
-  driveType: ["Tipo de TracciÃ³n", "DriveType", "TracciÃ³n", "DRIVE"],
-  
+  position: ['PosiciÃ³n', 'Position', 'PosiciÃ³n del Eje', 'POS'],
+  driveType: ['Tipo de TracciÃ³n', 'DriveType', 'TracciÃ³n', 'DRIVE'],
+
   // Status (new)
-  status: ["Estado", "Status", "ESTATUS"],
+  status: ['Estado', 'Status', 'ESTATUS'],
 };
 ```
 
@@ -774,12 +776,12 @@ const columnMappings = {
 
 Analysis of Humberto's file (29,505 fitments, 1,071 parts) revealed:
 
-| Issue | Examples | Frequency |
-|-------|----------|-----------|
-| Case inconsistency | "Chevrolet" vs "CHEVROLET" | 39 of 66 makes |
-| Trailing spaces | "NISSAN ", "REAR " | Common |
-| Position variations | "Front" vs "FRONT" vs "FL" | 6 of 8 positions |
-| DriveType variations | "4WD" vs "4 X 4" | Multiple |
+| Issue                | Examples                   | Frequency        |
+| -------------------- | -------------------------- | ---------------- |
+| Case inconsistency   | "Chevrolet" vs "CHEVROLET" | 39 of 66 makes   |
+| Trailing spaces      | "NISSAN ", "REAR "         | Common           |
+| Position variations  | "Front" vs "FRONT" vs "FL" | 6 of 8 positions |
+| DriveType variations | "4WD" vs "4 X 4"           | Multiple         |
 
 **Our import MUST normalize**â€”we cannot assume clean data.
 
@@ -789,11 +791,11 @@ Analysis of Humberto's file (29,505 fitments, 1,071 parts) revealed:
 
 ### 4.1 Three Types of Part Numbers
 
-| Type | What It Is | Example | Visibility |
-|------|------------|---------|------------|
-| **OEM Number** | Assigned by **vehicle manufacturer** (VW, Toyota, Ford) | 04465-02220 | Customer search |
-| **Factory Part #** | Manufacturer's **internal production code** | C 84020014 | Internal only |
-| **Brand SKU** | **Customer-facing** orderable number | ACRTM-510090 | Customers |
+| Type               | What It Is                                              | Example      | Visibility      |
+| ------------------ | ------------------------------------------------------- | ------------ | --------------- |
+| **OEM Number**     | Assigned by **vehicle manufacturer** (VW, Toyota, Ford) | 04465-02220  | Customer search |
+| **Factory Part #** | Manufacturer's **internal production code**             | C 84020014   | Internal only   |
+| **Brand SKU**      | **Customer-facing** orderable number                    | ACRTM-510090 | Customers       |
 
 ### 4.2 Key Industry Insight
 
@@ -824,6 +826,7 @@ Nissan Tsuru Wheel Bearings:
 Professionals search by OEM number to compare all aftermarket brands. Humberto demonstrated **Oscaro** as the gold standard.
 
 **Flow:**
+
 1. User enters OEM number: `04E 129 620 D`
 2. System shows ALL aftermarket brands making that part
 3. Customer compares: ACR $850, Bosch $920, SKF $1,100
@@ -843,6 +846,7 @@ function normalizeOE(oe) {
 ### 5.3 OE Number Variations
 
 Same part can have multiple OEM numbers (color changes, minor revisions):
+
 - `04E 129 620 B` (original)
 - `04E 129 620 D` (revision)
 - `04E 129 620 H` (improvement)
@@ -859,10 +863,10 @@ Store all variationsâ€”any search should find the part.
 
 Manufacturers provide Make/Model/Year directly in Excel templates. We don't need VCdb to translate BaseVehicle IDs.
 
-| Previous Assumption | Reality |
-|---------------------|---------|
+| Previous Assumption          | Reality                                    |
+| ---------------------------- | ------------------------------------------ |
 | Need VCdb for vehicle lookup | Manufacturers provide human-readable names |
-| $2,500/year required | $0 - data comes from manufacturers |
+| $2,500/year required         | $0 - data comes from manufacturers         |
 
 ### 6.2 How Vehicle Data Grows
 
@@ -885,13 +889,13 @@ Manufacturers provide Make/Model/Year directly in Excel templates. We don't need
 
 ### 7.1 Search Methods (Priority Order)
 
-| Priority | Method | Example | Implementation |
-|----------|--------|---------|----------------|
-| ðŸ¥‡ PRIMARY | Vehicle Lookup | Year > Make > Model | Cascading dropdowns |
-| ðŸ¥ˆ SECONDARY | OEM Number | "04E 129 620 D" | `oe_crossrefs` lookup |
-| ðŸ¥‰ SECONDARY | Brand SKU | "ACRTM-510090" | `parts.sku` match |
-| 4th | Keyword | "ceramic brake pads" | Postgres FTS |
-| 5th | Category | Brakes > Pads | Hierarchical nav |
+| Priority       | Method         | Example              | Implementation        |
+| -------------- | -------------- | -------------------- | --------------------- |
+| ðŸ¥‡ PRIMARY   | Vehicle Lookup | Year > Make > Model  | Cascading dropdowns   |
+| ðŸ¥ˆ SECONDARY | OEM Number     | "04E 129 620 D"      | `oe_crossrefs` lookup |
+| ðŸ¥‰ SECONDARY | Brand SKU      | "ACRTM-510090"       | `parts.sku` match     |
+| 4th            | Keyword        | "ceramic brake pads" | Postgres FTS          |
+| 5th            | Category       | Brakes > Pads        | Hierarchical nav      |
 
 ### 7.2 Vehicle Lookup Query
 
@@ -904,7 +908,7 @@ SELECT DISTINCT model FROM vehicles WHERE make = $1 ORDER BY model;
 
 -- Get years for make/model
 SELECT DISTINCT generate_series(year_start, year_end) as year
-FROM vehicles 
+FROM vehicles
 WHERE make = $1 AND model = $2
 ORDER BY year DESC;
 
@@ -914,8 +918,8 @@ FROM parts p
 JOIN fitments f ON p.id = f.part_id
 JOIN vehicles v ON f.vehicle_id = v.id
 JOIN manufacturers m ON p.manufacturer_id = m.id
-WHERE v.make = $1 
-  AND v.model = $2 
+WHERE v.make = $1
+  AND v.model = $2
   AND $3 BETWEEN v.year_start AND v.year_end
   AND p.status = 'active'
   AND p.quantity > 0
@@ -952,10 +956,12 @@ WHERE (f.qualifiers->>'withABS')::boolean = true
 ### 7.5 When to Upgrade Search
 
 **Stay with Postgres if:**
+
 - Catalog under 100,000 parts
 - Primary search is vehicle lookup (not keyword)
 
 **Consider Algolia/Typesense if:**
+
 - Catalog grows to 100,000+ parts
 - Analytics show heavy keyword search usage
 - Need typo tolerance, synonyms, faceting
@@ -975,14 +981,15 @@ display_mode VARCHAR(20) DEFAULT 'brand_only'
   CHECK (display_mode IN ('brand_only', 'company_name'))
 ```
 
-| Mode | Customer Sees | Use Case |
-|------|--------------|----------|
-| `brand_only` | "Sold by ACR" | Hide company identity |
-| `company_name` | "Sold by Refacciones ACR S.A. de C.V." | Full transparency |
+| Mode           | Customer Sees                          | Use Case              |
+| -------------- | -------------------------------------- | --------------------- |
+| `brand_only`   | "Sold by ACR"                          | Hide company identity |
+| `company_name` | "Sold by Refacciones ACR S.A. de C.V." | Full transparency     |
 
 ### 8.3 Shipping Label Note
 
 Even with `brand_only`, shipping labels show return address. Options:
+
 - **MVP:** Accept it (most customers don't notice)
 - **Future:** Fulfillment center or P.O. Box
 
@@ -1002,21 +1009,21 @@ Single checkout (like Amazon), even when buying from multiple manufacturers:
 
 ### 9.2 Money Flow Example
 
-| Component | Amount | Recipient |
-|-----------|--------|-----------|
-| Product (Mfr A) | $500 | Mfr A gets $455 (after 9% fee) |
-| Product (Mfr B) | $150 | Mfr B gets $136.50 (after 9% fee) |
-| Platform fee | $58.50 | RefaccionesDirect |
-| Shipping | $140 | Carriers (via Skydropx) |
-| **Customer pays** | **$790** | |
+| Component         | Amount   | Recipient                         |
+| ----------------- | -------- | --------------------------------- |
+| Product (Mfr A)   | $500     | Mfr A gets $455 (after 9% fee)    |
+| Product (Mfr B)   | $150     | Mfr B gets $136.50 (after 9% fee) |
+| Platform fee      | $58.50   | RefaccionesDirect                 |
+| Shipping          | $140     | Carriers (via Skydropx)           |
+| **Customer pays** | **$790** |                                   |
 
 ### 9.3 Platform Fee Strategy
 
-| Platform | Fee | Notes |
-|----------|-----|-------|
-| Mercado Libre ClÃ¡sica | 14% | Lower visibility |
-| Mercado Libre Premium | 36-40% | Higher visibility |
-| **RefaccionesDirect** | **9-10%** | Flat rate, manufacturer-exclusive |
+| Platform               | Fee       | Notes                             |
+| ---------------------- | --------- | --------------------------------- |
+| Mercado Libre ClÃ¡sica | 14%       | Lower visibility                  |
+| Mercado Libre Premium  | 36-40%    | Higher visibility                 |
+| **RefaccionesDirect**  | **9-10%** | Flat rate, manufacturer-exclusive |
 
 ---
 
@@ -1065,14 +1072,14 @@ status VARCHAR(20) DEFAULT 'active'       -- Explicit status
 
 ```sql
 -- On order placement
-UPDATE parts 
+UPDATE parts
 SET quantity = quantity - $1,
-    status = CASE 
-      WHEN quantity - $1 <= 0 THEN 'paused' 
-      ELSE status 
+    status = CASE
+      WHEN quantity - $1 <= 0 THEN 'paused'
+      ELSE status
     END,
     updated_at = NOW()
-WHERE id = $2 
+WHERE id = $2
   AND quantity >= $1
   AND status = 'active'
 RETURNING *;
@@ -1088,22 +1095,22 @@ RETURNING *;
 
 ### 12.1 Proposed Scenarios
 
-| Scenario | Return Shipping | Restocking Fee |
-|----------|----------------|----------------|
-| Changed mind | Customer pays | 15% |
-| Defective | Manufacturer pays | None |
-| Wrong item shipped | Manufacturer pays | None |
-| Damaged in transit | Carrier claim | None |
+| Scenario           | Return Shipping   | Restocking Fee |
+| ------------------ | ----------------- | -------------- |
+| Changed mind       | Customer pays     | 15%            |
+| Defective          | Manufacturer pays | None           |
+| Wrong item shipped | Manufacturer pays | None           |
+| Damaged in transit | Carrier claim     | None           |
 
 ### 12.2 Proposed Defaults
 
-| Policy | Default | Rationale |
-|--------|---------|-----------|
-| Return window | 30 days | Industry standard |
-| Restocking fee | 15% | Protects manufacturers |
-| Non-returnable | Electrical, installed | Prevents abuse |
-| Platform fee | Keep on returns | We facilitated transaction |
-| Defective process | Photo required | Prevents fraud |
+| Policy            | Default               | Rationale                  |
+| ----------------- | --------------------- | -------------------------- |
+| Return window     | 30 days               | Industry standard          |
+| Restocking fee    | 15%                   | Protects manufacturers     |
+| Non-returnable    | Electrical, installed | Prevents abuse             |
+| Platform fee      | Keep on returns       | We facilitated transaction |
+| Defective process | Photo required        | Prevents fraud             |
 
 **See Questions_Pending.md for open items.**
 
@@ -1113,21 +1120,21 @@ RETURNING *;
 
 ### 13.1 Launch Categories (4 Committed Manufacturers)
 
-| Category | Spanish | Manufacturer |
-|----------|---------|--------------|
-| Wheel Bearings/Hubs | Masas de Ruedas | Humberto (ACR) |
+| Category               | Spanish                | Manufacturer   |
+| ---------------------- | ---------------------- | -------------- |
+| Wheel Bearings/Hubs    | Masas de Ruedas        | Humberto (ACR) |
 | Starters & Alternators | Marchas y Alternadores | Humberto's Mom |
-| Engine Mounts | Soportes de Motor | Mom's Friend |
-| Cables | Chicotes | Mom's Friend |
+| Engine Mounts          | Soportes de Motor      | Mom's Friend   |
+| Cables                 | Chicotes               | Mom's Friend   |
 
 ### 13.2 Category-Specific Attributes
 
-| Category | Qualifiers |
-|----------|------------|
-| Wheel Bearings | Position, Bolt Count, ABS Sensor, Bearing Included |
-| Starters/Alternators | Voltage, Amperage, Rotation, Teeth Count |
-| Engine Mounts | Position, Material (Rubber/Hydraulic) |
-| Cables | Length, End Fittings, Application Type |
+| Category             | Qualifiers                                         |
+| -------------------- | -------------------------------------------------- |
+| Wheel Bearings       | Position, Bolt Count, ABS Sensor, Bearing Included |
+| Starters/Alternators | Voltage, Amperage, Rotation, Teeth Count           |
+| Engine Mounts        | Position, Material (Rubber/Hydraulic)              |
+| Cables               | Length, End Fittings, Application Type             |
 
 ---
 
@@ -1145,14 +1152,14 @@ RETURNING *;
 
 ### 14.2 Our Differentiation
 
-| RefaccionesDirect | Mercado Libre |
-|-------------------|---------------|
-| Manufacturer-only (invite) | Anyone can sell |
-| 9-10% flat fee | 14-40% fees |
-| Price control | Price chaos |
-| No counterfeits | Counterfeit problem |
-| Optional anonymity | Company exposed |
-| Auto parts only | Everything |
+| RefaccionesDirect          | Mercado Libre       |
+| -------------------------- | ------------------- |
+| Manufacturer-only (invite) | Anyone can sell     |
+| 9-10% flat fee             | 14-40% fees         |
+| Price control              | Price chaos         |
+| No counterfeits            | Counterfeit problem |
+| Optional anonymity         | Company exposed     |
+| Auto parts only            | Everything          |
 
 ---
 
@@ -1179,13 +1186,13 @@ RETURNING *;
 
 The following questions have been resolved based on ML research:
 
-| Question | Resolution |
-|----------|------------|
-| **1.4** Auto-fix vs reject errors | Three-layer validation: Excel formulas + server normalization + partial success with error file |
-| **3.2** Full replacement vs incremental | Explicit action model - separate "Create New" and "Update Existing" workflows |
-| **3.4** Discontinued part handling | Explicit "Status" column - parts marked 'discontinued' or 'paused' |
-| **3.5** Missing = discontinued? | NO - missing means "not in this update", items are NEVER auto-deleted |
-| **6.1** Quick price/inventory update | YES - build download-modify-upload workflow for price/stock/status only |
+| Question                                | Resolution                                                                                      |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| **1.4** Auto-fix vs reject errors       | Three-layer validation: Excel formulas + server normalization + partial success with error file |
+| **3.2** Full replacement vs incremental | Explicit action model - separate "Create New" and "Update Existing" workflows                   |
+| **3.4** Discontinued part handling      | Explicit "Status" column - parts marked 'discontinued' or 'paused'                              |
+| **3.5** Missing = discontinued?         | NO - missing means "not in this update", items are NEVER auto-deleted                           |
+| **6.1** Quick price/inventory update    | YES - build download-modify-upload workflow for price/stock/status only                         |
 
 ---
 
