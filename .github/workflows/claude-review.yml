@@ -1,0 +1,32 @@
+name: Claude Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+  id-token: write
+
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    name: Claude Code Review
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: '--model claude-sonnet-4-5-20250929'
+          prompt: |
+            Review this PR for code quality, security, and adherence to
+            the project's CLAUDE.md conventions. Focus on:
+            - TypeScript strict mode compliance
+            - Supabase RLS and security patterns
+            - Next.js App Router best practices
+            - Potential bugs or regressions
+            Be concise. Only flag issues that matter.

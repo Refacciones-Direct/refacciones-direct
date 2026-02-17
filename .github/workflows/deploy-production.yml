@@ -1,0 +1,36 @@
+name: Deploy Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type 'deploy' to confirm production migration"
+        required: true
+        type: string
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    name: Migrate Production
+    runs-on: ubuntu-latest
+    if: inputs.confirm == 'deploy'
+    environment: production
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.PRODUCTION_DB_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.76.8
+      - name: Link to production project
+        run: supabase link --project-ref ${{ secrets.PRODUCTION_PROJECT_ID }}
+      - name: Dry run (preview what will be applied)
+        run: supabase db push --dry-run
+      - name: Push migrations
+        run: supabase db push
+      - name: Verify migration status
+        run: supabase migration list

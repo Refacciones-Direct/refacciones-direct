@@ -15,9 +15,7 @@ export default async function SignupPage() {
     <div className="flex min-h-screen items-center justify-center">
       <div className="w-full max-w-sm space-y-6 text-center">
         <h1 className="text-2xl font-bold">Sign Up</h1>
-        <p className="text-sm text-gray-600">
-          Create your RefaccionesDirect account
-        </p>
+        <p className="text-sm text-gray-600">Create your RefaccionesDirect account</p>
         <a
           href={signUpUrl}
           className="inline-block w-full rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"

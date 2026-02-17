@@ -15,9 +15,7 @@ export default async function LoginPage() {
     <div className="flex min-h-screen items-center justify-center">
       <div className="w-full max-w-sm space-y-6 text-center">
         <h1 className="text-2xl font-bold">Sign In</h1>
-        <p className="text-sm text-gray-600">
-          Sign in to your RefaccionesDirect account
-        </p>
+        <p className="text-sm text-gray-600">Sign in to your RefaccionesDirect account</p>
         <a
           href={signInUrl}
           className="inline-block w-full rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
