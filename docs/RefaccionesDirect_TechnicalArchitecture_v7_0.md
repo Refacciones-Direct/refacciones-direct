@@ -429,7 +429,7 @@ refaccionesdirect/
 │   ├── migrations/                   # Database migrations
 │   ├── seed.sql                      # 🆕 Seed data for local dev
 │   └── config.toml                   # Supabase CLI config
-├── middleware.ts                      # WorkOS authkitMiddleware + next-intl
+├── proxy.ts                          # WorkOS authkit + next-intl (Next.js 16 proxy convention)
 ├── hooks/
 │   └── use-current-user.ts
 ├── types/
