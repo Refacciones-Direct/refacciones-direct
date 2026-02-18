@@ -1,6 +1,11 @@
-import { authkit } from '@workos-inc/authkit-nextjs';
-import createIntlMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
+import {
+  authkit,
+  handleAuthkitHeaders,
+  partitionAuthkitHeaders,
+  applyResponseHeaders,
+} from '@workos-inc/authkit-nextjs';
+import createIntlMiddleware from 'next-intl/middleware';
 import { routing } from '@/i18n/routing';
 
 const intlMiddleware = createIntlMiddleware(routing);
@@ -16,37 +21,43 @@ const unauthenticatedPaths = [
 ];
 
 function isUnauthenticatedPath(pathname: string): boolean {
-  return unauthenticatedPaths.some((pattern) =>
-    typeof pattern === 'string' ? pathname === pattern : pattern.test(pathname),
+  return unauthenticatedPaths.some((p) =>
+    typeof p === 'string' ? pathname === p : p.test(pathname),
   );
 }
 
 export default async function proxy(request: NextRequest) {
-  // Run next-intl middleware first (handles locale routing)
+  // 1. Run intl middleware for locale routing
   const intlResponse = intlMiddleware(request);
 
-  // If intl middleware issued a redirect (e.g., / → /es-MX), return it immediately
+  // 2. If intl issued a redirect (e.g., / → /es-MX), return immediately
   if (intlResponse && intlResponse.status >= 300 && intlResponse.status < 400) {
     return intlResponse;
   }
 
-  // Run WorkOS auth (handles session refresh + sets headers)
-  const { session, headers: authHeaders } = await authkit(request);
+  // 3. Run authkit — get session + headers
+  const { session, headers: authkitHeaders, authorizationUrl } = await authkit(request);
 
-  // If user is not authenticated and path requires auth, redirect to login
-  if (!session.user && !isUnauthenticatedPath(request.nextUrl.pathname)) {
-    const locale = request.nextUrl.pathname.split('/')[1] || 'es-MX';
-    const loginUrl = new URL(`/${locale}/login`, request.url);
-    return NextResponse.redirect(loginUrl);
+  // 4. Protect authenticated routes
+  if (!session.user && !isUnauthenticatedPath(request.nextUrl.pathname) && authorizationUrl) {
+    return handleAuthkitHeaders(request, authkitHeaders, { redirect: authorizationUrl });
   }
 
-  // Merge WorkOS auth headers into the intl response
-  const response = intlResponse || NextResponse.next();
-  authHeaders.forEach((value, key) => {
-    response.headers.set(key, value);
-  });
+  // 5. Partition authkit headers: request headers (for withAuth) vs response headers (for browser)
+  const { requestHeaders, responseHeaders } = partitionAuthkitHeaders(request, authkitHeaders);
 
-  return response;
+  // 6. Create response with request headers forwarded to server components
+  const response = NextResponse.next({ request: { headers: requestHeaders } });
+
+  // 7. Merge intl middleware headers (NEXT_LOCALE cookie, x-middleware-rewrite, etc.)
+  if (intlResponse) {
+    intlResponse.headers.forEach((value, key) => {
+      response.headers.set(key, value);
+    });
+  }
+
+  // 8. Apply authkit response headers (Set-Cookie, Cache-Control, Vary) — must be LAST
+  return applyResponseHeaders(response, responseHeaders);
 }
 
 export const config = {
