@@ -21,7 +21,7 @@ function isUnauthenticatedPath(pathname: string): boolean {
   );
 }
 
-export default async function middleware(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   // 1. Run intl middleware for locale routing
   const intlResponse = intlMiddleware(request);
 
@@ -30,20 +30,28 @@ export default async function middleware(request: NextRequest) {
     return intlResponse;
   }
 
-  // 3. Run authkit — get session + headers
+  // 3. Forward intl locale to server components (handleAuthkitHeaders builds its
+  //    own NextResponse.next() which drops intl's x-middleware-override-headers)
+  const pathLocale = request.nextUrl.pathname.split('/')[1];
+  const locale = (routing.locales as readonly string[]).includes(pathLocale)
+    ? pathLocale
+    : routing.defaultLocale;
+  request.headers.set('x-next-intl-locale', locale);
+
+  // 4. Run authkit — get session + headers
   const { session, headers: authkitHeaders, authorizationUrl } = await authkit(request);
 
-  // 4. Protect authenticated routes
+  // 5. Protect authenticated routes
   if (!session.user && !isUnauthenticatedPath(request.nextUrl.pathname) && authorizationUrl) {
     return handleAuthkitHeaders(request, authkitHeaders, { redirect: authorizationUrl });
   }
 
-  // 5. Return via handleAuthkitHeaders — properly partitions internal request
+  // 6. Return via handleAuthkitHeaders — properly partitions internal request
   //    headers (x-workos-middleware, x-workos-session) from browser-safe response
   //    headers (Set-Cookie, Cache-Control, Vary)
   const response = handleAuthkitHeaders(request, authkitHeaders);
 
-  // 6. Selectively append intl cookies (NEXT_LOCALE) without overwriting auth cookies
+  // 7. Selectively append intl cookies (NEXT_LOCALE) without overwriting auth cookies
   for (const cookie of intlResponse.headers.getSetCookie()) {
     response.headers.append('set-cookie', cookie);
   }

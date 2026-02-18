@@ -3,6 +3,7 @@ import { AuthKitProvider } from '@workos-inc/authkit-nextjs/components';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { getLocale } from 'next-intl/server';
 import './globals.css';
 
 const geistSans = Geist({
@@ -20,13 +21,14 @@ export const metadata: Metadata = {
   description: 'Refacciones automotrices de fabricantes mexicanos',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
   return (
-    <html lang="es-MX">
+    <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AuthKitProvider>
           {children}
