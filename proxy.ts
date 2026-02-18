@@ -25,6 +25,11 @@ export default async function proxy(request: NextRequest) {
   // Run next-intl middleware first (handles locale routing)
   const intlResponse = intlMiddleware(request);
 
+  // If intl middleware issued a redirect (e.g., / → /es-MX), return it immediately
+  if (intlResponse && intlResponse.status >= 300 && intlResponse.status < 400) {
+    return intlResponse;
+  }
+
   // Run WorkOS auth (handles session refresh + sets headers)
   const { session, headers: authHeaders } = await authkit(request);
 
