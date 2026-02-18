@@ -1,10 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
-import {
-  authkit,
-  handleAuthkitHeaders,
-  partitionAuthkitHeaders,
-  applyResponseHeaders,
-} from '@workos-inc/authkit-nextjs';
+import { NextRequest } from 'next/server';
+import { authkit, handleAuthkitHeaders } from '@workos-inc/authkit-nextjs';
 import createIntlMiddleware from 'next-intl/middleware';
 import { routing } from '@/i18n/routing';
 
@@ -26,12 +21,12 @@ function isUnauthenticatedPath(pathname: string): boolean {
   );
 }
 
-export default async function proxy(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
   // 1. Run intl middleware for locale routing
   const intlResponse = intlMiddleware(request);
 
-  // 2. If intl issued a redirect (e.g., / → /es-MX), return immediately
-  if (intlResponse && intlResponse.status >= 300 && intlResponse.status < 400) {
+  // 2. If intl issued a redirect, return immediately
+  if (intlResponse.status >= 300 && intlResponse.status < 400) {
     return intlResponse;
   }
 
@@ -43,21 +38,17 @@ export default async function proxy(request: NextRequest) {
     return handleAuthkitHeaders(request, authkitHeaders, { redirect: authorizationUrl });
   }
 
-  // 5. Partition authkit headers: request headers (for withAuth) vs response headers (for browser)
-  const { requestHeaders, responseHeaders } = partitionAuthkitHeaders(request, authkitHeaders);
+  // 5. Return via handleAuthkitHeaders — properly partitions internal request
+  //    headers (x-workos-middleware, x-workos-session) from browser-safe response
+  //    headers (Set-Cookie, Cache-Control, Vary)
+  const response = handleAuthkitHeaders(request, authkitHeaders);
 
-  // 6. Create response with request headers forwarded to server components
-  const response = NextResponse.next({ request: { headers: requestHeaders } });
-
-  // 7. Merge intl middleware headers (NEXT_LOCALE cookie, x-middleware-rewrite, etc.)
-  if (intlResponse) {
-    intlResponse.headers.forEach((value, key) => {
-      response.headers.set(key, value);
-    });
+  // 6. Selectively append intl cookies (NEXT_LOCALE) without overwriting auth cookies
+  for (const cookie of intlResponse.headers.getSetCookie()) {
+    response.headers.append('set-cookie', cookie);
   }
 
-  // 8. Apply authkit response headers (Set-Cookie, Cache-Control, Vary) — must be LAST
-  return applyResponseHeaders(response, responseHeaders);
+  return response;
 }
 
 export const config = {
