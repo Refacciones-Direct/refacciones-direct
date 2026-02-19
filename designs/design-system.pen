@@ -3219,6 +3219,7 @@
           "ref": "ovuDP",
           "x": 2100,
           "y": 1580,
+          "name": "Checkbox/Unchecked",
           "descendants": {
             "kfU2y": {
               "stroke": {
@@ -4444,6 +4445,215 @@
               "y": 332
             }
           ]
+        },
+        {
+          "id": "5Ght9",
+          "type": "ref",
+          "ref": "VSnC2",
+          "name": "Button/Default/Disabled",
+          "fill": "#e8e8e8",
+          "x": 640,
+          "y": 1656,
+          "descendants": {
+            "8tnXG": {
+              "fill": "#a3a3a3"
+            }
+          }
+        },
+        {
+          "id": "K7tCa",
+          "type": "ref",
+          "ref": "e8v1X",
+          "name": "Button/Secondary/Disabled",
+          "fill": "#ebebeb",
+          "x": 640,
+          "y": 1732,
+          "descendants": {
+            "Tr3Fv": {
+              "fill": "#c4c4c4"
+            }
+          }
+        },
+        {
+          "id": "4laWn",
+          "type": "ref",
+          "ref": "YKnjc",
+          "name": "Button/Destructive/Disabled",
+          "fill": "#e8e8e8",
+          "x": 640,
+          "y": 1808,
+          "descendants": {
+            "NDadS": {
+              "fill": "#a3a3a3"
+            }
+          }
+        },
+        {
+          "id": "fYrGM",
+          "type": "ref",
+          "ref": "C10zH",
+          "name": "Button/Outline/Disabled",
+          "fill": "#fafafa",
+          "effect": [],
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#ebebeb"
+          },
+          "x": 640,
+          "y": 1884,
+          "descendants": {
+            "poRwU": {
+              "fill": "#c4c4c4"
+            }
+          }
+        },
+        {
+          "id": "570ih",
+          "type": "ref",
+          "ref": "3f2VW",
+          "name": "Button/Ghost/Disabled",
+          "x": 640,
+          "y": 1960,
+          "descendants": {
+            "UZfKV": {
+              "fill": "#c4c4c4"
+            }
+          }
+        },
+        {
+          "id": "MHxVY",
+          "type": "ref",
+          "ref": "fEUdI",
+          "name": "Input/Focus",
+          "x": 2400,
+          "y": 1912,
+          "descendants": {
+            "QRy7x": {
+              "enabled": false
+            },
+            "i0Z3E": {
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#001166"
+              }
+            }
+          }
+        },
+        {
+          "id": "5tv9d",
+          "type": "ref",
+          "ref": "fEUdI",
+          "name": "Input/Disabled",
+          "x": 2400,
+          "y": 1992,
+          "descendants": {
+            "QRy7x": {
+              "enabled": false
+            },
+            "i0Z3E": {
+              "fill": "#f5f5f5",
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#ebebeb"
+              }
+            },
+            "SDRKn": {
+              "fill": "#a3a3a3"
+            }
+          }
+        },
+        {
+          "id": "7jX2j",
+          "type": "ref",
+          "ref": "w5c1O",
+          "name": "Select Group/Focus",
+          "x": 2400,
+          "y": 2132,
+          "descendants": {
+            "Ch62V": {
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#001166"
+              }
+            }
+          }
+        },
+        {
+          "id": "LL2q0",
+          "type": "ref",
+          "ref": "w5c1O",
+          "name": "Select Group/Disabled",
+          "x": 2400,
+          "y": 2239,
+          "descendants": {
+            "Ch62V": {
+              "fill": "#f5f5f5",
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#ebebeb"
+              }
+            },
+            "V1STL": {
+              "fill": "#a3a3a3"
+            }
+          }
+        },
+        {
+          "id": "9IHZM",
+          "type": "ref",
+          "ref": "ovuDP",
+          "name": "Checkbox/Disabled/Checked",
+          "x": 2400,
+          "y": 1520,
+          "descendants": {
+            "kfU2y": {
+              "fill": "#b3b3b3",
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#b3b3b3"
+              }
+            }
+          }
+        },
+        {
+          "id": "OE4lE",
+          "type": "ref",
+          "ref": "J7Uph",
+          "name": "Checkbox/Disabled/Unchecked",
+          "x": 2400,
+          "y": 1580,
+          "descendants": {
+            "kfU2y": {
+              "fill": "#f5f5f5",
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#d4d4d4"
+              }
+            },
+            "5n2yq": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "id": "NmcUB",
+          "type": "ref",
+          "ref": "QY0Ka",
+          "name": "Tab Item/Disabled",
+          "x": 340,
+          "y": 2456,
+          "descendants": {
+            "qYQHc": {
+              "fill": "#c4c4c4"
+            }
+          }
         }
       ]
     },
