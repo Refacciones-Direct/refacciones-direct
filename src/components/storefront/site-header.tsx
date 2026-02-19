@@ -12,13 +12,7 @@ export async function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center gap-6 px-8 py-6">
         {/* Logo */}
         <Link href="/" className="shrink-0">
-          <Image
-            src="/logo.svg"
-            alt={t('header.logoText')}
-            width={220}
-            height={64}
-            priority
-          />
+          <Image src="/logo.svg" alt={t('header.logoText')} width={220} height={64} priority />
         </Link>
 
         {/* Search */}
