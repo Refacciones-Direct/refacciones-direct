@@ -1,4 +1,5 @@
-import { Car, Headset, Search, ShoppingCart, User } from 'lucide-react';
+import { Headset, Search, ShoppingCart, User } from 'lucide-react';
+import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
@@ -8,11 +9,16 @@ export async function SiteHeader() {
 
   return (
     <header data-slot="site-header" className={cn('border-b border-border')}>
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-4">
+      <div className="mx-auto flex max-w-7xl items-center gap-6 px-8 py-6">
         {/* Logo */}
-        <Link href="/" className="flex w-60 shrink-0 items-center gap-2">
-          <Car className="size-7 text-brand-navy" />
-          <span className="text-lg font-extrabold text-brand-navy">{t('header.logoText')}</span>
+        <Link href="/" className="shrink-0">
+          <Image
+            src="/logo.svg"
+            alt={t('header.logoText')}
+            width={220}
+            height={64}
+            priority
+          />
         </Link>
 
         {/* Search */}
@@ -25,7 +31,7 @@ export async function SiteHeader() {
         </Link>
 
         {/* Right icons */}
-        <div className="flex items-center gap-4">
+        <div className="ml-auto flex items-center gap-4">
           <Link
             href="/"
             className="flex items-center gap-1.5 text-[13px] font-medium text-brand-navy hover:text-brand-blue"

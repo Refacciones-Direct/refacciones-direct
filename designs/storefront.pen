@@ -3528,7 +3528,7 @@
                   "type": "ref",
                   "ref": "C3KOZ",
                   "x": 24,
-                  "y": 24.019943701668048,
+                  "y": 24.01994370166805,
                   "width": "fill_container",
                   "descendants": {
                     "NEMHS": {
@@ -4778,7 +4778,6 @@
       "name": "Site Header",
       "reusable": true,
       "width": 1440,
-      "height": 64,
       "fill": "$--background",
       "stroke": {
         "align": "inside",
@@ -4789,7 +4788,7 @@
       },
       "gap": 24,
       "padding": [
-        0,
+        24,
         32
       ],
       "justifyContent": "space_between",
@@ -4799,30 +4798,24 @@
           "type": "frame",
           "id": "LxhFg",
           "name": "logoArea",
-          "width": 240,
-          "gap": 8,
-          "alignItems": "center",
+          "width": 220,
+          "height": 64,
+          "layout": "none",
           "children": [
             {
-              "type": "icon_font",
-              "id": "LHqXn",
-              "name": "logoIcon",
-              "width": 28,
-              "height": 28,
-              "iconFontName": "car",
-              "iconFontFamily": "lucide",
-              "fill": "$--brand-navy"
-            },
-            {
-              "type": "text",
-              "id": "0YlzN",
-              "name": "logoText",
-              "fill": "$--brand-navy",
-              "content": "REFACCIONES DIRECT",
-              "lineHeight": 1.4,
-              "fontFamily": "Inter",
-              "fontSize": 18,
-              "fontWeight": "800"
+              "type": "frame",
+              "id": "yfcYu",
+              "x": 0,
+              "y": 0,
+              "name": "logoSvg",
+              "width": 220,
+              "height": 64,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./logo-light-bg-cropped.png",
+                "mode": "fit"
+              }
             }
           ]
         },
