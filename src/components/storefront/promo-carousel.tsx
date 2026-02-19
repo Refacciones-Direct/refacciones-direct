@@ -46,12 +46,7 @@ export function PromoCarousel() {
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.titleKey}>
-            <div
-              className={cn(
-                'flex h-full flex-col justify-center gap-4 p-8',
-                slide.bg,
-              )}
-            >
+            <div className={cn('flex h-full flex-col justify-center gap-4 p-8', slide.bg)}>
               <p className="whitespace-pre-line text-4xl font-extrabold leading-tight text-white">
                 {t(slide.titleKey)}
               </p>

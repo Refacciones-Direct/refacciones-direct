@@ -13,10 +13,7 @@ export async function RecentlyViewed() {
   const t = await getTranslations('storefront');
 
   return (
-    <section
-      data-slot="recently-viewed"
-      className={cn('py-6')}
-    >
+    <section data-slot="recently-viewed" className={cn('py-6')}>
       <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4">
         <h2 className="text-lg font-semibold">{t('recentlyViewed.title')}</h2>
 

@@ -11,7 +11,10 @@ interface CategoryListCardProps {
 
 export function CategoryListCard({ title, icon, links, viewMoreText }: CategoryListCardProps) {
   return (
-    <div data-slot="category-list-card" className={cn('rounded-lg border border-border bg-card p-6')}>
+    <div
+      data-slot="category-list-card"
+      className={cn('rounded-lg border border-border bg-card p-6')}
+    >
       {/* Header */}
       <div className="flex items-start justify-between">
         <h3 className="text-base font-semibold">{title}</h3>

@@ -1,11 +1,4 @@
-import {
-  ArrowUpDown,
-  BatteryCharging,
-  Cog,
-  Disc,
-  Filter,
-  Lightbulb,
-} from 'lucide-react';
+import { ArrowUpDown, BatteryCharging, Cog, Disc, Filter, Lightbulb } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/utils';
 import { CategoryListCard } from './category-list-card';

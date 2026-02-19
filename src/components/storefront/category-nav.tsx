@@ -3,22 +3,13 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 
-const CATEGORY_KEYS = [
-  'refacciones',
-  'aceite',
-  'llantas',
-  'accesorios',
-  'herramientas',
-] as const;
+const CATEGORY_KEYS = ['refacciones', 'aceite', 'llantas', 'accesorios', 'herramientas'] as const;
 
 export async function CategoryNav() {
   const t = await getTranslations('storefront');
 
   return (
-    <nav
-      data-slot="category-nav"
-      className={cn('bg-brand-navy text-sm font-medium text-white')}
-    >
+    <nav data-slot="category-nav" className={cn('bg-brand-navy text-sm font-medium text-white')}>
       <div className="mx-auto flex h-11 max-w-7xl items-center justify-between px-4">
         <div className="flex items-center gap-1">
           {CATEGORY_KEYS.map((key) => (
@@ -33,10 +24,7 @@ export async function CategoryNav() {
           ))}
         </div>
 
-        <Link
-          href="/"
-          className="flex items-center gap-1.5 text-yellow-400 hover:text-yellow-300"
-        >
+        <Link href="/" className="flex items-center gap-1.5 text-yellow-400 hover:text-yellow-300">
           <Tag className="size-4" />
           <span>{t('categoryNav.ofertas')}</span>
         </Link>

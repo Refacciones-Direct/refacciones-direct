@@ -8,11 +8,7 @@ export async function BrandLogos() {
   const t = await getTranslations('storefront');
 
   return (
-    <section
-      data-slot="brand-logos"
-      className={cn('bg-card')}
-      aria-label={t('brands.title')}
-    >
+    <section data-slot="brand-logos" className={cn('bg-card')} aria-label={t('brands.title')}>
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-center gap-8 px-4">
         <button
           type="button"

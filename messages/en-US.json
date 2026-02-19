@@ -116,33 +116,15 @@
       },
       "cat4": {
         "title": "Starting & charging",
-        "links": [
-          "Battery",
-          "Alternator",
-          "Starter motor",
-          "Battery cable",
-          "Glow plugs"
-        ]
+        "links": ["Battery", "Alternator", "Starter motor", "Battery cable", "Glow plugs"]
       },
       "cat5": {
         "title": "Lights / Headlights",
-        "links": [
-          "Front headlight",
-          "Rear light",
-          "Bulbs",
-          "Turn signals",
-          "Fog lights"
-        ]
+        "links": ["Front headlight", "Rear light", "Bulbs", "Turn signals", "Fog lights"]
       },
       "cat6": {
         "title": "Braking",
-        "links": [
-          "Brake pads",
-          "Brake discs",
-          "Brake calipers",
-          "Brake fluid",
-          "Brake drums"
-        ]
+        "links": ["Brake pads", "Brake discs", "Brake calipers", "Brake fluid", "Brake drums"]
       }
     },
     "footer": {

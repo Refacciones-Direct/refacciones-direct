@@ -13,10 +13,7 @@ export async function ValueProps() {
   const t = await getTranslations('storefront');
 
   return (
-    <section
-      data-slot="value-props"
-      className={cn('h-20 bg-bg-section')}
-    >
+    <section data-slot="value-props" className={cn('h-20 bg-bg-section')}>
       <div className="mx-auto flex h-full max-w-7xl items-center justify-around px-4">
         {VALUE_PROPS.map(({ icon: Icon, titleKey, subKey }) => (
           <div key={titleKey} className="flex items-center gap-3">

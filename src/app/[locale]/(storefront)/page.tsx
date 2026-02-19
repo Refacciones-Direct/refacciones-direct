@@ -12,11 +12,7 @@ import { SectionDivider } from '@/components/storefront/section-divider';
 import { CategoryGrid } from '@/components/storefront/category-grid';
 import { SiteFooter } from '@/components/storefront/site-footer';
 
-export default async function HomePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
 

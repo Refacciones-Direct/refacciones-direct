@@ -41,14 +41,24 @@ export async function SiteFooter() {
           {/* Column 2 - Information (no heading per Pencil design) */}
           <div className="flex flex-col gap-3">
             {col2Links.map((link) => (
-              <span key={link} className="cursor-pointer text-[13px] text-white hover:text-white/80">{link}</span>
+              <span
+                key={link}
+                className="cursor-pointer text-[13px] text-white hover:text-white/80"
+              >
+                {link}
+              </span>
             ))}
           </div>
 
           {/* Column 3 - Legal (no heading per Pencil design) */}
           <div className="flex flex-col gap-3">
             {col3Links.map((link) => (
-              <span key={link} className="cursor-pointer text-[13px] text-white hover:text-white/80">{link}</span>
+              <span
+                key={link}
+                className="cursor-pointer text-[13px] text-white hover:text-white/80"
+              >
+                {link}
+              </span>
             ))}
           </div>
 
