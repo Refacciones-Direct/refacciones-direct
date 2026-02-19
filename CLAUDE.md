@@ -66,6 +66,13 @@ bd update <id> --status=in_progress       # Start working
 bd close <id> --reason="done"             # Complete task
 ```
 
+**Issue Quality:** Every beads issue MUST have a meaningful description at creation time. A bare title is not acceptable. Include:
+- **What** needs to be done (acceptance criteria or deliverables)
+- **Why** it matters (context, motivation, or link to parent epic/plan)
+- **Technical notes** if relevant (constraints, affected files, dependencies)
+
+Use `--description="..."` on `bd create`, or `bd update <id> --description="..."` immediately after.
+
 **Plan Traceability:** When creating tasks from a plan file, add the plan reference:
 
 ```bash
