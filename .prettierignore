@@ -6,3 +6,6 @@ package-lock.json
 
 # Beads internal files
 .beads/
+
+# Reference assets (third-party, not our code)
+public/oscaro.es/
