@@ -67,6 +67,7 @@ bd close <id> --reason="done"             # Complete task
 ```
 
 **Issue Quality:** Every beads issue MUST have a meaningful description at creation time. A bare title is not acceptable. Include:
+
 - **What** needs to be done (acceptance criteria or deliverables)
 - **Why** it matters (context, motivation, or link to parent epic/plan)
 - **Technical notes** if relevant (constraints, affected files, dependencies)
