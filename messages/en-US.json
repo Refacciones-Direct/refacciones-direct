@@ -15,5 +15,155 @@
   "admin": {
     "title": "Administration",
     "comingSoon": "Coming soon..."
+  },
+  "storefront": {
+    "promoBanner": {
+      "text": "FREE SHIPPING ON ORDERS OVER $1,199!",
+      "link": "See conditions"
+    },
+    "header": {
+      "logoText": "REFACCIONES DIRECT",
+      "searchPlaceholder": "Search part, brand, reference...",
+      "help": "Help & contact",
+      "ariaUser": "My account",
+      "ariaCart": "Cart"
+    },
+    "categoryNav": {
+      "refacciones": "Parts",
+      "aceite": "Motor Oil",
+      "llantas": "Tires",
+      "accesorios": "Accessories & Cleaning",
+      "herramientas": "Tools",
+      "ofertas": "Clearance Parts"
+    },
+    "vehicleSelector": {
+      "title": "Identify your vehicle",
+      "tabPlaca": "Plate",
+      "tabModelo": "Model",
+      "placaPlaceholder": "Enter your plate",
+      "yearPlaceholder": "Year",
+      "garageLabel": "Save to my garage",
+      "garageInfo": "Store your vehicles for future searches",
+      "registeredVehicle": "Select a registered vehicle",
+      "search": "Search",
+      "searchByModel": "Search by model",
+      "or": "OR",
+      "vinPlaceholder": "VF1JM0U0634537488"
+    },
+    "promoCarousel": {
+      "slide1Title": "SNOW\nCHAINS",
+      "slide1Discount": "-10%",
+      "slide1Cta": "Shop now",
+      "slide2Title": "MOTOR\nOILS",
+      "slide2Discount": "-15%",
+      "slide2Cta": "See offers",
+      "slide3Title": "BRAKE\nPADS",
+      "slide3Discount": "-20%",
+      "slide3Cta": "Buy now"
+    },
+    "valueProps": {
+      "vp1Title": "NEW & ORIGINAL PARTS",
+      "vp1Sub": "AT THE BEST PRICE",
+      "vp2Title": "MECHANICS EXPERTS",
+      "vp2Sub": "AT YOUR SERVICE",
+      "vp3Title": "THE LARGEST CATALOG",
+      "vp3Sub": "IN MEXICO",
+      "vp4Title": "DELIVERY",
+      "vp4Sub": "ADAPTED TO YOUR NEEDS"
+    },
+    "brands": {
+      "title": "Featured brands",
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "recentlyViewed": {
+      "title": "Recently viewed products"
+    },
+    "sectionDivider": {
+      "text": "All auto parts"
+    },
+    "categories": {
+      "viewMore": "View more",
+      "cat1": {
+        "title": "Engine parts",
+        "links": [
+          "Belts",
+          "Engine cooling",
+          "Injection & carburetion",
+          "Sensors & engine cables",
+          "Engine & cylinder head"
+        ]
+      },
+      "cat2": {
+        "title": "Filters & oil",
+        "links": [
+          "Filter",
+          "Oil / purge accessories",
+          "Oil change tools",
+          "Other filtration parts",
+          "Motor oil"
+        ]
+      },
+      "cat3": {
+        "title": "Steering - Suspension",
+        "links": [
+          "Shock absorbers",
+          "Axle suspension",
+          "Steering",
+          "Transmission",
+          "Hubs & bearings"
+        ]
+      },
+      "cat4": {
+        "title": "Starting & charging",
+        "links": [
+          "Battery",
+          "Alternator",
+          "Starter motor",
+          "Battery cable",
+          "Glow plugs"
+        ]
+      },
+      "cat5": {
+        "title": "Lights / Headlights",
+        "links": [
+          "Front headlight",
+          "Rear light",
+          "Bulbs",
+          "Turn signals",
+          "Fog lights"
+        ]
+      },
+      "cat6": {
+        "title": "Braking",
+        "links": [
+          "Brake pads",
+          "Brake discs",
+          "Brake calipers",
+          "Brake fluid",
+          "Brake drums"
+        ]
+      }
+    },
+    "footer": {
+      "helpTitle": "Help & contact",
+      "returnLink": "Return a part",
+      "col2Links": [
+        "Promo codes",
+        "About us",
+        "Mechanic tips",
+        "Car brands",
+        "RefaccionesDirect APP"
+      ],
+      "col3Links": [
+        "Privacy policy",
+        "Cookie policy",
+        "General terms of sale",
+        "Terms of use",
+        "Legal notices"
+      ],
+      "followTitle": "Follow us:",
+      "copyright": "Copyright 2011-2026 — RefaccionesDirect MX — All rights reserved"
+    }
   }
 }

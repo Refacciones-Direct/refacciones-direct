@@ -15,5 +15,155 @@
   "admin": {
     "title": "Administración",
     "comingSoon": "Próximamente..."
+  },
+  "storefront": {
+    "promoBanner": {
+      "text": "¡ENVÍO GRATIS EN PEDIDOS DESDE $1,199!",
+      "link": "Ver condiciones"
+    },
+    "header": {
+      "logoText": "REFACCIONES DIRECT",
+      "searchPlaceholder": "Buscar pieza, marca, referencia...",
+      "help": "Ayuda y contacto",
+      "ariaUser": "Mi cuenta",
+      "ariaCart": "Carrito"
+    },
+    "categoryNav": {
+      "refacciones": "Refacciones",
+      "aceite": "Aceite de Motor",
+      "llantas": "Llantas",
+      "accesorios": "Accesorios y Limpieza",
+      "herramientas": "Herramientas",
+      "ofertas": "Piezas de ocasión"
+    },
+    "vehicleSelector": {
+      "title": "Identifica tu vehículo",
+      "tabPlaca": "Placa",
+      "tabModelo": "Modelo",
+      "placaPlaceholder": "Ingresa tu placa",
+      "yearPlaceholder": "Año",
+      "garageLabel": "Registrar en mi garaje",
+      "garageInfo": "Almacena tus vehículos para futuras búsquedas",
+      "registeredVehicle": "Selecciona un vehículo registrado",
+      "search": "Buscar",
+      "searchByModel": "Buscar por modelo",
+      "or": "O",
+      "vinPlaceholder": "VF1JM0U0634537488"
+    },
+    "promoCarousel": {
+      "slide1Title": "CADENAS\nDE NIEVE",
+      "slide1Discount": "-10%",
+      "slide1Cta": "Aprovecha ya",
+      "slide2Title": "ACEITES\nDE MOTOR",
+      "slide2Discount": "-15%",
+      "slide2Cta": "Ver ofertas",
+      "slide3Title": "PASTILLAS\nDE FRENO",
+      "slide3Discount": "-20%",
+      "slide3Cta": "Comprar ahora"
+    },
+    "valueProps": {
+      "vp1Title": "PIEZAS NUEVAS Y ORIGINALES",
+      "vp1Sub": "AL MEJOR PRECIO",
+      "vp2Title": "EXPERTOS EN MECÁNICA",
+      "vp2Sub": "A TU DISPOSICIÓN",
+      "vp3Title": "EL MAYOR CATÁLOGO",
+      "vp3Sub": "DE MÉXICO",
+      "vp4Title": "ENTREGA",
+      "vp4Sub": "ADAPTADA A TUS NECESIDADES"
+    },
+    "brands": {
+      "title": "Marcas destacadas",
+      "previous": "Anterior",
+      "next": "Siguiente"
+    },
+    "recentlyViewed": {
+      "title": "Últimos productos consultados"
+    },
+    "sectionDivider": {
+      "text": "Todas las refacciones"
+    },
+    "categories": {
+      "viewMore": "Ver más",
+      "cat1": {
+        "title": "Piezas de motor",
+        "links": [
+          "Correas",
+          "Refrigeración de motor",
+          "Inyección y carburación",
+          "Captores y cables motor",
+          "Motor y culata"
+        ]
+      },
+      "cat2": {
+        "title": "Filtros y aceite",
+        "links": [
+          "Filtro",
+          "Aceite / accesorios purga",
+          "Herramientas cambio de aceite",
+          "Otras piezas de filtración",
+          "Aceite de motor"
+        ]
+      },
+      "cat3": {
+        "title": "Dirección - Suspensión",
+        "links": [
+          "Amortiguadores",
+          "Suspensión de ejes",
+          "Dirección",
+          "Transmisión",
+          "Cubos y rodamientos"
+        ]
+      },
+      "cat4": {
+        "title": "Arranque y carga",
+        "links": [
+          "Batería",
+          "Alternador",
+          "Motor de arranque",
+          "Cable de batería",
+          "Bujías de precalentamiento"
+        ]
+      },
+      "cat5": {
+        "title": "Ópticas / Faros",
+        "links": [
+          "Faro delantero",
+          "Faro trasero",
+          "Bombillas",
+          "Intermitentes",
+          "Luces antiniebla"
+        ]
+      },
+      "cat6": {
+        "title": "Frenado",
+        "links": [
+          "Pastillas de freno",
+          "Discos de freno",
+          "Pinzas de freno",
+          "Líquido de frenos",
+          "Tambores de freno"
+        ]
+      }
+    },
+    "footer": {
+      "helpTitle": "Ayuda y contacto",
+      "returnLink": "Devolución de una pieza",
+      "col2Links": [
+        "Códigos promocionales",
+        "¿Quiénes somos?",
+        "Consejos mecánicos",
+        "Marcas de coche",
+        "RefaccionesDirect APP"
+      ],
+      "col3Links": [
+        "Política de privacidad",
+        "Política de cookies",
+        "Condiciones generales de venta",
+        "Condiciones de utilización",
+        "Menciones legales"
+      ],
+      "followTitle": "Síguenos:",
+      "copyright": "Copyright 2011-2026 — RefaccionesDirect MX — Todos los derechos reservados"
+    }
   }
 }

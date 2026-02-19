@@ -1,3 +1,7 @@
-export default function StorefrontLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+export default function StorefrontLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <div className="flex min-h-screen flex-col">{children}</div>;
 }
