@@ -7,6 +7,19 @@
     "vercel": {
       "type": "http",
       "url": "https://mcp.vercel.com"
+    },
+    "sentry": {
+      "type": "http",
+      "url": "https://mcp.sentry.dev/mcp"
+    },
+    "playwright": {
+      "command": "npx.cmd",
+      "args": [
+        "@playwright/mcp@latest",
+        "--headless",
+        "--viewport-size=1440x900",
+        "--caps=core,vision"
+      ]
     }
   }
 }
