@@ -49,14 +49,15 @@
     "react-dom": "19.2.3",
     "resend": "^6.9.2",
     "stripe": "^20.3.1",
+    "swiper": "^12.1.2",
     "tailwind-merge": "^3.4.0",
-    "zod": "^4.3.6"
+    "zod": "^4.3.6",
+    "@sentry/nextjs": "^10.38.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.4.1",
     "@commitlint/config-conventional": "^20.4.1",
     "@playwright/test": "^1.58.2",
-    "@sentry/nextjs": "^10.38.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",

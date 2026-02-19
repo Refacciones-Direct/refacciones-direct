@@ -51,6 +51,9 @@ jobs:
       WORKOS_CLIENT_ID: 'client_dummy'
       WORKOS_COOKIE_PASSWORD: 'a-32-character-or-longer-password-for-ci-build'
       NEXT_PUBLIC_WORKOS_REDIRECT_URI: 'http://localhost:3000/api/auth/callback'
+      # Sentry - skip source map upload in CI
+      NEXT_PUBLIC_SENTRY_DSN: ''
+      SENTRY_AUTH_TOKEN: ''
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
