@@ -80,6 +80,7 @@ Use these skills when relevant:
 - `supabase-postgres-best-practices` — Database queries/schema
 - `workos-authkit-nextjs` — Auth integration
 - `next-intl-app-router` — i18n routing/translations
+- `pen-design-system` — Design system workflow (Pencil .pen files)
 
 ## Testing Rules
 

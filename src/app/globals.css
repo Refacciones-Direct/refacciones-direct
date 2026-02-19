@@ -2,8 +2,6 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -103,52 +101,6 @@
   --color-success: #008a00;
   --color-error: #c22026;
   --color-alert: #f5a623;
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: #fafafa;
-  --card: oklch(0.205 0 0);
-  --card-foreground: #fafafa;
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: #fafafa;
-  --primary: #4d5894;
-  --primary-foreground: #ffffff;
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: #a3a3a3;
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: #ef5350;
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: #4d5894;
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: #4d5894;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: #4d5894;
-  /* Brand tokens */
-  --brand-navy: #4d5894;
-  --brand-navy-dark: #001166;
-  --brand-red: #fb8e82;
-  --brand-red-hover: #f95e4c;
-  --brand-blue: #70a7ff;
-  --brand-blue-bg: #0d1b3e;
-  --bg-light: #1a1a1a;
-  --bg-section: #1a1a2e;
-  --color-success: #4caf50;
-  --color-error: #ef5350;
-  --color-alert: #ffb74d;
 }
 
 @layer base {
