@@ -12,13 +12,7 @@ export async function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8 lg:px-20">
         {/* Logo */}
         <Link href="/" className="shrink-0">
-          <Image
-            src="/logo.svg"
-            alt={t('header.logoText')}
-            width={160}
-            height={46}
-            priority
-          />
+          <Image src="/logo.svg" alt={t('header.logoText')} width={160} height={46} priority />
         </Link>
 
         {/* Search */}
@@ -33,9 +27,7 @@ export async function SiteHeader() {
             <span className="flex size-9 items-center justify-center rounded-full border-[1.5px] border-current">
               <Headset className="size-5" />
             </span>
-            <span className="text-[11px] font-medium leading-tight">
-              {t('header.help')}
-            </span>
+            <span className="text-[11px] font-medium leading-tight">{t('header.help')}</span>
           </Link>
 
           <Link
@@ -45,9 +37,7 @@ export async function SiteHeader() {
             <span className="flex size-9 items-center justify-center rounded-full border-[1.5px] border-current">
               <User className="size-5" />
             </span>
-            <span className="text-[11px] font-medium leading-tight">
-              {t('header.account')}
-            </span>
+            <span className="text-[11px] font-medium leading-tight">{t('header.account')}</span>
           </Link>
 
           <Link
@@ -60,9 +50,7 @@ export async function SiteHeader() {
                 0
               </span>
             </span>
-            <span className="text-[11px] font-medium leading-tight">
-              {t('header.cart')}
-            </span>
+            <span className="text-[11px] font-medium leading-tight">{t('header.cart')}</span>
           </Link>
         </nav>
       </div>
