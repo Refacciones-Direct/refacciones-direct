@@ -46,7 +46,10 @@ export function VehicleSelector() {
         <TabsContent value="placa" className="min-h-45 space-y-4">
           {/* Input row */}
           <div className="flex items-center gap-3">
-            <Input placeholder={t('vehicleSelector.placaPlaceholder')} className="flex-1 text-base" />
+            <Input
+              placeholder={t('vehicleSelector.placaPlaceholder')}
+              className="flex-1 text-base"
+            />
             <button
               type="button"
               aria-label={t('vehicleSelector.search')}

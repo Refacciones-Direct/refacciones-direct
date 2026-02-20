@@ -26,9 +26,7 @@ export function CategoryListCard({ title, icon, links, viewMoreText }: CategoryL
         {links.map((link) => (
           <li key={link} className="flex items-center gap-1.5">
             <ChevronRight className="size-3.5 shrink-0 text-brand-blue" />
-            <span className="cursor-pointer text-base text-brand-blue hover:underline">
-              {link}
-            </span>
+            <span className="cursor-pointer text-base text-brand-blue hover:underline">{link}</span>
           </li>
         ))}
       </ul>
