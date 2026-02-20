@@ -2686,12 +2686,13 @@
           ],
           "clip": true,
           "width": 80,
-          "height": 40,
-          "fill": "#f5f5f5",
-          "cornerRadius": 20,
+          "height": 36,
+          "fill": "$--secondary-hover",
+          "cornerRadius": 8,
           "stroke": {
             "align": "inside",
-            "thickness": 1
+            "thickness": 1,
+            "fill": "$--input"
           },
           "gap": 8,
           "padding": 4,
@@ -2710,7 +2711,7 @@
               "type": "ref",
               "ref": "coMmv",
               "x": 4,
-              "y": 4,
+              "y": 2,
               "descendants": {
                 "qYQHc": {
                   "content": "Integrations"
@@ -2722,7 +2723,7 @@
               "type": "ref",
               "ref": "QY0Ka",
               "x": 119,
-              "y": 4,
+              "y": 2,
               "descendants": {
                 "qYQHc": {
                   "content": "Billing"
@@ -2734,7 +2735,7 @@
               "type": "ref",
               "ref": "QY0Ka",
               "x": 193,
-              "y": 4,
+              "y": 2,
               "descendants": {
                 "qYQHc": {
                   "content": "Profile"
@@ -2746,7 +2747,7 @@
               "type": "ref",
               "ref": "QY0Ka",
               "x": 270,
-              "y": 4,
+              "y": 2,
               "descendants": {
                 "qYQHc": {
                   "content": "Advanced"
@@ -4988,8 +4989,8 @@
                   "type": "frame",
                   "id": "LxhFg",
                   "name": "logoArea",
-                  "width": 220,
-                  "height": 64,
+                  "width": 160,
+                  "height": 46,
                   "layout": "none",
                   "children": [
                     {
@@ -4998,8 +4999,8 @@
                       "x": 0,
                       "y": 0,
                       "name": "logoSvg",
-                      "width": 220,
-                      "height": 64,
+                      "width": 160,
+                      "height": 46,
                       "fill": {
                         "type": "image",
                         "enabled": true,
@@ -5010,140 +5011,198 @@
                   ]
                 },
                 {
-                  "type": "frame",
-                  "id": "4I2Fx",
-                  "name": "searchArea",
-                  "width": 480,
-                  "height": 40,
-                  "fill": "#fafafa",
-                  "cornerRadius": 6,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#e8e8e8"
-                  },
-                  "gap": 8,
-                  "padding": [
-                    0,
-                    12
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "KJawK",
-                      "name": "searchIcon",
-                      "width": 18,
-                      "height": 18,
-                      "iconFontName": "search",
-                      "iconFontFamily": "lucide",
-                      "fill": "#636363"
-                    },
-                    {
-                      "type": "text",
-                      "id": "872jn",
-                      "name": "searchText",
-                      "fill": "#636363",
-                      "content": "Buscar pieza, marca, referencia...",
-                      "lineHeight": 1.4,
-                      "fontFamily": "Inter",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    }
-                  ]
+                  "id": "I5Zy1",
+                  "type": "ref",
+                  "ref": "Bks7T",
+                  "name": "searchBar",
+                  "width": 420
                 },
                 {
                   "type": "frame",
                   "id": "mzWTd",
                   "name": "rightIcons",
-                  "gap": 16,
+                  "gap": 20,
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "frame",
-                      "id": "ocQmF",
+                      "id": "0VpvB",
                       "name": "helpLink",
-                      "gap": 6,
+                      "layout": "vertical",
+                      "gap": 4,
                       "alignItems": "center",
                       "children": [
                         {
-                          "type": "icon_font",
-                          "id": "NGNAU",
-                          "name": "helpIcon",
-                          "width": 18,
-                          "height": 18,
-                          "iconFontName": "headphones",
-                          "iconFontFamily": "lucide",
-                          "fill": "#001166"
+                          "type": "frame",
+                          "id": "jaQLG",
+                          "name": "helpCircle",
+                          "width": 36,
+                          "height": 36,
+                          "cornerRadius": 18,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1.5,
+                            "fill": "$--brand-navy"
+                          },
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "LyEOC",
+                              "name": "helpIcon",
+                              "width": 20,
+                              "height": 20,
+                              "iconFontName": "headphones",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--brand-navy"
+                            }
+                          ]
                         },
                         {
                           "type": "text",
-                          "id": "XAVGh",
-                          "name": "helpText",
-                          "fill": "#001166",
+                          "id": "L1qFp",
+                          "name": "helpLabel",
+                          "fill": "$--brand-navy",
                           "content": "Ayuda y contacto",
-                          "lineHeight": 1.4,
+                          "lineHeight": 1.2,
                           "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontSize": 11,
                           "fontWeight": "500"
                         }
                       ]
                     },
                     {
-                      "type": "icon_font",
-                      "id": "nLode",
-                      "name": "userIcon",
-                      "width": 22,
-                      "height": 22,
-                      "iconFontName": "user",
-                      "iconFontFamily": "lucide",
-                      "fill": "#001166"
-                    },
-                    {
                       "type": "frame",
-                      "id": "qZw1d",
-                      "name": "cartWrap",
-                      "width": 28,
-                      "height": 28,
-                      "layout": "none",
+                      "id": "t62sN",
+                      "name": "accountLink",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "alignItems": "center",
                       "children": [
                         {
-                          "type": "icon_font",
-                          "id": "JgUPw",
-                          "x": 0,
-                          "y": 3,
-                          "name": "cartIcon",
-                          "width": 22,
-                          "height": 22,
-                          "iconFontName": "shopping-cart",
-                          "iconFontFamily": "lucide",
-                          "fill": "#001166"
-                        },
-                        {
                           "type": "frame",
-                          "id": "vvyN1",
-                          "x": 14,
-                          "y": 0,
-                          "name": "cartBadge",
-                          "width": 16,
-                          "height": 16,
-                          "fill": "#f95e4c",
-                          "cornerRadius": 8,
+                          "id": "x0lxT",
+                          "name": "accountCircle",
+                          "width": 36,
+                          "height": 36,
+                          "cornerRadius": 18,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1.5,
+                            "fill": "$--brand-navy"
+                          },
                           "justifyContent": "center",
                           "alignItems": "center",
                           "children": [
                             {
-                              "type": "text",
-                              "id": "EKrjz",
-                              "name": "cartCount",
-                              "fill": "#ffffffff",
-                              "content": "0",
-                              "lineHeight": 1,
-                              "fontFamily": "Inter",
-                              "fontSize": 10,
-                              "fontWeight": "600"
+                              "type": "icon_font",
+                              "id": "5RQp8",
+                              "name": "acctIcon",
+                              "width": 20,
+                              "height": 20,
+                              "iconFontName": "user",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--brand-navy"
                             }
                           ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "xm1M7",
+                          "name": "accountLabel",
+                          "fill": "$--brand-navy",
+                          "content": "Mi cuenta",
+                          "lineHeight": 1.2,
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "MJHig",
+                      "name": "cartLink",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "m8RIH",
+                          "name": "cartCircleWrap",
+                          "width": 36,
+                          "height": 36,
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "vpnBY",
+                              "x": 0,
+                              "y": 0,
+                              "name": "cartCircle",
+                              "width": 36,
+                              "height": 36,
+                              "cornerRadius": 18,
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 1.5,
+                                "fill": "$--brand-navy"
+                              },
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon_font",
+                                  "id": "uAbrT",
+                                  "name": "cartIcon",
+                                  "width": 20,
+                                  "height": 20,
+                                  "iconFontName": "shopping-cart",
+                                  "iconFontFamily": "lucide",
+                                  "fill": "$--brand-navy"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "kP2ox",
+                              "x": 24,
+                              "y": 0,
+                              "name": "cartBadge",
+                              "width": 16,
+                              "height": 16,
+                              "fill": "$--brand-red",
+                              "cornerRadius": 8,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "PGdfp",
+                                  "name": "cartCount",
+                                  "fill": "$--white",
+                                  "content": "0",
+                                  "lineHeight": 1,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 10,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "ShBUi",
+                          "name": "cartLabel",
+                          "fill": "$--brand-navy",
+                          "content": "Mi cesta",
+                          "lineHeight": 1.2,
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "500"
                         }
                       ]
                     }
@@ -6359,6 +6418,86 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "frame",
+              "id": "Bks7T",
+              "name": "Search Bar",
+              "reusable": true,
+              "width": 600,
+              "height": 48,
+              "fill": "$--white",
+              "cornerRadius": 24,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1.5,
+                "fill": "$--border"
+              },
+              "gap": 8,
+              "padding": [
+                0,
+                4,
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "wQ8lS",
+                  "name": "searchLeft",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "bqQva",
+                      "name": "sIcon",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "search",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--muted-foreground"
+                    },
+                    {
+                      "type": "text",
+                      "id": "3NkWG",
+                      "name": "searchText",
+                      "fill": "$--muted-foreground",
+                      "content": "Buscar pieza, marca, referencia...",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tCj7t",
+                  "name": "searchButton",
+                  "width": 100,
+                  "height": 40,
+                  "fill": "$--brand-navy",
+                  "cornerRadius": 20,
+                  "gap": 6,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "SDJ7v",
+                      "name": "btnLabel",
+                      "fill": "$--white",
+                      "content": "Buscar",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -6762,9 +6901,14 @@
                   "name": "vsTabs",
                   "clip": true,
                   "width": "fill_container",
-                  "height": 40,
-                  "fill": "#f5f5f5",
-                  "cornerRadius": 20,
+                  "height": 36,
+                  "fill": "$--secondary-hover",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$--input"
+                  },
                   "gap": 8,
                   "padding": 4,
                   "alignItems": "center",
@@ -7304,7 +7448,7 @@
               "width": "fill_container",
               "name": "siteHeader",
               "padding": [
-                0,
+                16,
                 80
               ],
               "descendants": {
@@ -12620,7 +12764,7 @@
                               "width": "fill_container",
                               "height": "fill_container",
                               "fill": "#001166",
-                              "cornerRadius": 20,
+                              "cornerRadius": 6,
                               "stroke": {
                                 "align": "inside",
                                 "thickness": 1
@@ -12630,6 +12774,8 @@
                                 6,
                                 12
                               ],
+                              "justifyContent": "center",
+                              "alignItems": "center",
                               "children": [
                                 {
                                   "type": "text",
@@ -12651,7 +12797,7 @@
                               "reusable": true,
                               "width": "fill_container",
                               "height": "fill_container",
-                              "cornerRadius": 20,
+                              "cornerRadius": 6,
                               "stroke": {
                                 "align": "inside",
                                 "thickness": 1
@@ -12661,12 +12807,14 @@
                                 6,
                                 12
                               ],
+                              "justifyContent": "center",
+                              "alignItems": "center",
                               "children": [
                                 {
                                   "type": "text",
                                   "id": "uaFCg",
                                   "name": "Label Selected",
-                                  "fill": "#636363",
+                                  "fill": "$--foreground",
                                   "content": "Tab Two",
                                   "lineHeight": 1.4285714285714286,
                                   "fontFamily": "Inter",

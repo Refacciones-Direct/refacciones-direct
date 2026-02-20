@@ -27,16 +27,16 @@ export function VehicleSelector() {
       <h2 className="text-center text-lg font-semibold">{t('vehicleSelector.title')}</h2>
 
       <Tabs defaultValue="placa" className="mt-5 gap-5">
-        <TabsList className="h-10 w-full rounded-full p-1">
+        <TabsList className="h-9! w-full rounded-lg border border-input bg-secondary-hover p-1!">
           <TabsTrigger
             value="placa"
-            className="flex-1 rounded-full font-bold data-[state=active]:bg-brand-navy data-[state=active]:text-white data-[state=active]:shadow-none"
+            className="flex-1 cursor-pointer rounded-md font-bold text-foreground hover:bg-border data-[state=active]:bg-brand-navy data-[state=active]:text-white data-[state=active]:shadow-none"
           >
             {t('vehicleSelector.tabPlaca')}
           </TabsTrigger>
           <TabsTrigger
             value="modelo"
-            className="flex-1 rounded-full font-bold data-[state=active]:bg-brand-navy data-[state=active]:text-white data-[state=active]:shadow-none"
+            className="flex-1 cursor-pointer rounded-md font-bold text-foreground hover:bg-border data-[state=active]:bg-brand-navy data-[state=active]:text-white data-[state=active]:shadow-none"
           >
             {t('vehicleSelector.tabModelo')}
           </TabsTrigger>
@@ -50,7 +50,7 @@ export function VehicleSelector() {
             <button
               type="button"
               aria-label={t('vehicleSelector.search')}
-              className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-red text-white hover:bg-brand-red-hover"
+              className="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-brand-red text-white hover:bg-brand-red-hover"
             >
               <ArrowRight className="size-5" />
             </button>
@@ -95,7 +95,7 @@ export function VehicleSelector() {
             <button
               type="button"
               aria-label={t('vehicleSelector.search')}
-              className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-red text-white hover:bg-brand-red-hover"
+              className="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-brand-red text-white hover:bg-brand-red-hover"
             >
               <ArrowRight className="size-5" />
             </button>
