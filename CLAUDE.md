@@ -39,10 +39,23 @@
 - **Database types:** `src/types/database.ts`
 - **Translations:** `messages/es-MX.json`, `messages/en-US.json`
 
+## Branching Strategy
+
+```
+feature/xyz ──PR──> dev ──PR──> main
+                     │            │
+                  staging      production
+```
+
+- **`dev`** — integration branch. All feature PRs target `dev`.
+- **`main`** — production branch. Only `dev` → `main` promotion PRs.
+- Both branches are protected: require PR, CI status checks, no direct push, no deletion, no force push.
+- **Default PR target is `dev`**, not `main`.
+
 ## CI/CD
 
-- **CI** (`.github/workflows/ci.yml`): Runs on every PR and push to `main` — typecheck, lint, format, test, build, schema validation
-- **Staging migrations** (`.github/workflows/deploy-staging.yml`): Auto-deploys on merge to `main` when `supabase/migrations/` changes
+- **CI** (`.github/workflows/ci.yml`): Runs on every PR and push to `main`/`dev` — typecheck, lint, format, test, build, schema validation
+- **Staging migrations** (`.github/workflows/deploy-staging.yml`): Auto-deploys on merge to `dev` when `supabase/migrations/` changes
 - **Production migrations** (`.github/workflows/deploy-production.yml`): Manual `workflow_dispatch` with GitHub Environment approval gate
 - **Dependabot** (`.github/dependabot.yml`): Weekly npm + GitHub Actions dependency PRs (Mondays)
 
