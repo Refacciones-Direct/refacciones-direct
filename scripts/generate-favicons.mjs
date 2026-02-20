@@ -20,10 +20,7 @@ const sizes = [
 // Generate all PNGs
 const pngBuffers = {};
 for (const { name, size, dest } of sizes) {
-  const buf = await sharp(srcBuffer)
-    .resize(size, size)
-    .png()
-    .toBuffer();
+  const buf = await sharp(srcBuffer).resize(size, size).png().toBuffer();
   pngBuffers[name] = buf;
   if (dest) {
     const outPath = resolve(root, dest, name);
