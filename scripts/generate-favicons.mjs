@@ -1,13 +1,13 @@
 import sharp from 'sharp';
 import pngToIco from 'png-to-ico';
-import { readFileSync, writeFileSync, copyFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
-const svgPath = resolve(__dirname, 'swoosh-icon.svg');
-const svgBuffer = readFileSync(svgPath);
+const srcPath = resolve(__dirname, 'monogram-512.png');
+const srcBuffer = readFileSync(srcPath);
 
 const sizes = [
   { name: 'favicon-16.png', size: 16 },
@@ -20,7 +20,7 @@ const sizes = [
 // Generate all PNGs
 const pngBuffers = {};
 for (const { name, size, dest } of sizes) {
-  const buf = await sharp(svgBuffer)
+  const buf = await sharp(srcBuffer)
     .resize(size, size)
     .png()
     .toBuffer();
@@ -36,9 +36,5 @@ for (const { name, size, dest } of sizes) {
 const icoBuffer = await pngToIco([pngBuffers['favicon-16.png'], pngBuffers['favicon-32.png']]);
 writeFileSync(resolve(root, 'src/app/favicon.ico'), icoBuffer);
 console.log('  wrote src/app/favicon.ico (16+32)');
-
-// Copy SVG to src/app/icon.svg
-copyFileSync(svgPath, resolve(root, 'src/app/icon.svg'));
-console.log('  wrote src/app/icon.svg');
 
 console.log('\nDone! All favicon assets generated.');
