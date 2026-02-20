@@ -46,10 +46,10 @@ export function PromoCarousel() {
         speed={700}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
       >
-        {banners.map((banner) => (
+        {banners.map((banner, index) => (
           <SwiperSlide key={banner.src}>
             <div className="relative h-full">
-              <Image src={banner.src} alt={banner.alt} fill className="object-cover" priority />
+              <Image src={banner.src} alt={banner.alt} fill className="object-cover" priority={index === 0} />
               {/* Bottom gradient so dots/controls stay visible on any image */}
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
