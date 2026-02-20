@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 import { AuthKitProvider } from '@workos-inc/authkit-nextjs/components';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Outfit, Geist_Mono } from 'next/font/google';
 import { getLocale } from 'next-intl/server';
 import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const outfit = Outfit({
+  variable: '--font-outfit',
   subsets: ['latin'],
 });
 
@@ -28,8 +28,8 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   return (
-    <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang={locale} className={`${outfit.variable} ${geistMono.variable}`}>
+      <body className="antialiased">
         <AuthKitProvider>
           {children}
           <SpeedInsights />

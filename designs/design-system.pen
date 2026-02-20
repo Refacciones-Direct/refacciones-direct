@@ -3617,7 +3617,7 @@
                   "type": "ref",
                   "ref": "C3KOZ",
                   "x": 24,
-                  "y": 24.01994370166805,
+                  "y": 24.019943701668048,
                   "width": "fill_container",
                   "descendants": {
                     "NEMHS": {
@@ -4928,8 +4928,8 @@
                   "fill": "#ffffffff",
                   "content": "¡ENVÍO GRATIS EN PEDIDOS DESDE $1,199!",
                   "lineHeight": 1.4,
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
+                  "fontFamily": "Outfit",
+                  "fontSize": 16,
                   "fontWeight": "600"
                 },
                 {
@@ -4955,7 +4955,7 @@
                       "id": "XO0fp",
                       "fill": "#ffffffff",
                       "content": "Ver condiciones",
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 12,
                       "fontWeight": "500"
                     }
@@ -5066,8 +5066,8 @@
                           "fill": "$--brand-navy",
                           "content": "Ayuda y contacto",
                           "lineHeight": 1.2,
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "500"
                         }
                       ]
@@ -5114,8 +5114,8 @@
                           "fill": "$--brand-navy",
                           "content": "Mi cuenta",
                           "lineHeight": 1.2,
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "500"
                         }
                       ]
@@ -5185,8 +5185,8 @@
                                   "fill": "$--white",
                                   "content": "0",
                                   "lineHeight": 1,
-                                  "fontFamily": "Inter",
-                                  "fontSize": 10,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 12,
                                   "fontWeight": "600"
                                 }
                               ]
@@ -5200,8 +5200,8 @@
                           "fill": "$--brand-navy",
                           "content": "Mi cesta",
                           "lineHeight": 1.2,
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "500"
                         }
                       ]
@@ -5251,7 +5251,7 @@
                           "fill": "#ffffffff",
                           "content": "Refacciones",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
+                          "fontFamily": "Outfit",
                           "fontSize": 14,
                           "fontWeight": "500"
                         },
@@ -5286,7 +5286,7 @@
                           "fill": "#ffffffff",
                           "content": "Aceite de Motor",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
+                          "fontFamily": "Outfit",
                           "fontSize": 14,
                           "fontWeight": "500"
                         },
@@ -5321,7 +5321,7 @@
                           "fill": "#ffffffff",
                           "content": "Llantas",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
+                          "fontFamily": "Outfit",
                           "fontSize": 14,
                           "fontWeight": "500"
                         },
@@ -5356,7 +5356,7 @@
                           "fill": "#ffffffff",
                           "content": "Accesorios y Limpieza",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
+                          "fontFamily": "Outfit",
                           "fontSize": 14,
                           "fontWeight": "500"
                         },
@@ -5391,7 +5391,7 @@
                           "fill": "#ffffffff",
                           "content": "Herramientas",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
+                          "fontFamily": "Outfit",
                           "fontSize": 14,
                           "fontWeight": "500"
                         },
@@ -5437,7 +5437,7 @@
                       "fill": "#ffcc00",
                       "content": "Piezas de ocasión",
                       "lineHeight": 1.4,
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 14,
                       "fontWeight": "600"
                     }
@@ -5492,8 +5492,8 @@
                           "fill": "#0f6bff",
                           "content": "PIEZAS NUEVAS Y ORIGINALES",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "700",
                           "fontStyle": "italic"
                         },
@@ -5504,8 +5504,8 @@
                           "fill": "#0f6bff",
                           "content": "AL MEJOR PRECIO",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         }
                       ]
@@ -5544,8 +5544,8 @@
                           "fill": "#0f6bff",
                           "content": "EXPERTOS EN MECÁNICA",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "700",
                           "fontStyle": "italic"
                         },
@@ -5556,8 +5556,8 @@
                           "fill": "#0f6bff",
                           "content": "A TU DISPOSICIÓN",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         }
                       ]
@@ -5596,8 +5596,8 @@
                           "fill": "#0f6bff",
                           "content": "EL MAYOR CATÁLOGO",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "700",
                           "fontStyle": "italic"
                         },
@@ -5608,8 +5608,8 @@
                           "fill": "#0f6bff",
                           "content": "DE MÉXICO",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         }
                       ]
@@ -5648,8 +5648,8 @@
                           "fill": "#0f6bff",
                           "content": "ENTREGA",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "700",
                           "fontStyle": "italic"
                         },
@@ -5660,8 +5660,8 @@
                           "fill": "#0f6bff",
                           "content": "ADAPTADA A TUS NECESIDADES",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         }
                       ]
@@ -5689,7 +5689,7 @@
                   "content": "Todas las refacciones",
                   "lineHeight": 1.5,
                   "textAlign": "center",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 16,
                   "fontWeight": "700"
                 }
@@ -5755,7 +5755,7 @@
                       "name": "logo1text",
                       "fill": "#3a3b3f",
                       "content": "BOSCH",
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 16,
                       "fontWeight": "700"
                     }
@@ -5778,7 +5778,7 @@
                       "name": "logo2text",
                       "fill": "#3a3b3f",
                       "content": "brembo",
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 16,
                       "fontWeight": "700"
                     }
@@ -5801,7 +5801,7 @@
                       "name": "logo3text",
                       "fill": "#3a3b3f",
                       "content": "MANN",
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 16,
                       "fontWeight": "700"
                     }
@@ -5824,7 +5824,7 @@
                       "name": "logo4text",
                       "fill": "#3a3b3f",
                       "content": "Valeo",
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 16,
                       "fontWeight": "700"
                     }
@@ -5847,7 +5847,7 @@
                       "name": "logo5text",
                       "fill": "#3a3b3f",
                       "content": "Continental",
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 14,
                       "fontWeight": "700"
                     }
@@ -5870,7 +5870,7 @@
                       "name": "logo6text",
                       "fill": "#3a3b3f",
                       "content": "Castrol",
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 16,
                       "fontWeight": "700"
                     }
@@ -5929,7 +5929,7 @@
                   "content": "Suscríbete a nuestro Newsletter",
                   "lineHeight": 1.4,
                   "textAlign": "center",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 24,
                   "fontWeight": "700"
                 },
@@ -5941,7 +5941,7 @@
                   "content": "Y no te pierdas ninguna de nuestras ofertas excepcionales",
                   "lineHeight": 1.4,
                   "textAlign": "center",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 14,
                   "fontWeight": "normal"
                 },
@@ -5984,7 +5984,7 @@
                           "name": "nlInputText",
                           "fill": "#636363",
                           "content": "Tu email",
-                          "fontFamily": "Inter",
+                          "fontFamily": "Outfit",
                           "fontSize": 14,
                           "fontWeight": "normal"
                         },
@@ -6027,8 +6027,8 @@
                   "content": "Al registrar tu correo electrónico, estás aceptando recibir ofertas\nespeciales y comunicaciones de RefaccionesDirect por correo electrónico.",
                   "lineHeight": 1.5,
                   "textAlign": "center",
-                  "fontFamily": "Inter",
-                  "fontSize": 11,
+                  "fontFamily": "Outfit",
+                  "fontSize": 14,
                   "fontWeight": "normal"
                 }
               ]
@@ -6069,8 +6069,8 @@
                           "fill": "#ffffffff",
                           "content": "Ayuda y contacto",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 14,
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
                           "fontWeight": "600"
                         },
                         {
@@ -6080,8 +6080,8 @@
                           "fill": "#ffffffff",
                           "content": "Devolución de una pieza",
                           "lineHeight": 1.6,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         },
                         {
@@ -6113,8 +6113,8 @@
                                   "name": "pay1t",
                                   "fill": "#001166",
                                   "content": "VISA",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 8,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 12,
                                   "fontWeight": "700"
                                 }
                               ]
@@ -6136,8 +6136,8 @@
                                   "name": "pay2t",
                                   "fill": "#001166",
                                   "content": "MC",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 8,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 12,
                                   "fontWeight": "700"
                                 }
                               ]
@@ -6159,8 +6159,8 @@
                                   "name": "pay3t",
                                   "fill": "#001166",
                                   "content": "AMEX",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 7,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 12,
                                   "fontWeight": "700"
                                 }
                               ]
@@ -6182,8 +6182,8 @@
                                   "name": "pay4t",
                                   "fill": "#001166",
                                   "content": "OXXO",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 7,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 12,
                                   "fontWeight": "700"
                                 }
                               ]
@@ -6207,8 +6207,8 @@
                           "fill": "#ffffffff",
                           "content": "Códigos promocionales",
                           "lineHeight": 1.6,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         },
                         {
@@ -6218,8 +6218,8 @@
                           "fill": "#ffffffff",
                           "content": "¿Quiénes somos?",
                           "lineHeight": 1.6,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         },
                         {
@@ -6229,8 +6229,8 @@
                           "fill": "#ffffffff",
                           "content": "Consejos mecánicos",
                           "lineHeight": 1.6,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         },
                         {
@@ -6240,8 +6240,8 @@
                           "fill": "#ffffffff",
                           "content": "Marcas de coche",
                           "lineHeight": 1.6,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         },
                         {
@@ -6251,8 +6251,8 @@
                           "fill": "#ffffffff",
                           "content": "RefaccionesDirect APP",
                           "lineHeight": 1.6,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         }
                       ]
@@ -6272,8 +6272,8 @@
                           "fill": "#ffffffff",
                           "content": "Política de privacidad",
                           "lineHeight": 1.6,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         },
                         {
@@ -6283,8 +6283,8 @@
                           "fill": "#ffffffff",
                           "content": "Política de cookies",
                           "lineHeight": 1.6,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         },
                         {
@@ -6294,8 +6294,8 @@
                           "fill": "#ffffffff",
                           "content": "Condiciones generales de venta",
                           "lineHeight": 1.6,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         },
                         {
@@ -6305,8 +6305,8 @@
                           "fill": "#ffffffff",
                           "content": "Condiciones de utilización",
                           "lineHeight": 1.6,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         },
                         {
@@ -6316,8 +6316,8 @@
                           "fill": "#ffffffff",
                           "content": "Menciones legales",
                           "lineHeight": 1.6,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         }
                       ]
@@ -6337,8 +6337,8 @@
                           "fill": "#ffffffff",
                           "content": "Síguenos:",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 14,
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
                           "fontWeight": "600"
                         },
                         {
@@ -6411,7 +6411,7 @@
                       "content": "Copyright 2011-2026 — RefaccionesDirect MX — Todos los derechos reservados",
                       "lineHeight": 1.4,
                       "textAlign": "center",
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 12,
                       "fontWeight": "normal"
                     }
@@ -6467,8 +6467,8 @@
                       "fill": "$--muted-foreground",
                       "content": "Buscar pieza, marca, referencia...",
                       "lineHeight": 1.4,
-                      "fontFamily": "Inter",
-                      "fontSize": 14,
+                      "fontFamily": "Outfit",
+                      "fontSize": 16,
                       "fontWeight": "normal"
                     }
                   ]
@@ -6491,8 +6491,8 @@
                       "name": "btnLabel",
                       "fill": "$--white",
                       "content": "Buscar",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
+                      "fontFamily": "Outfit",
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -6595,7 +6595,7 @@
                       "width": "fill_container",
                       "content": "Filtro de aceite",
                       "lineHeight": 1.4,
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 14,
                       "fontWeight": "500"
                     },
@@ -6608,7 +6608,7 @@
                       "width": "fill_container",
                       "content": "MANN-FILTER - W 712/95",
                       "lineHeight": 1.4,
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 12,
                       "fontWeight": "normal"
                     }
@@ -6648,7 +6648,7 @@
                       "fill": "#0a0a0a",
                       "content": "Piezas de motor",
                       "lineHeight": 1.5,
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 16,
                       "fontWeight": "600"
                     },
@@ -6685,8 +6685,8 @@
                           "name": "link1arrow",
                           "fill": "#0f6bff",
                           "content": ">",
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         },
                         {
@@ -6696,8 +6696,8 @@
                           "fill": "#0f6bff",
                           "content": "Correas",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -6715,8 +6715,8 @@
                           "name": "link2arrow",
                           "fill": "#0f6bff",
                           "content": ">",
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         },
                         {
@@ -6726,8 +6726,8 @@
                           "fill": "#0f6bff",
                           "content": "Refrigeración de motor",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -6745,8 +6745,8 @@
                           "name": "link3arrow",
                           "fill": "#0f6bff",
                           "content": ">",
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         },
                         {
@@ -6756,8 +6756,8 @@
                           "fill": "#0f6bff",
                           "content": "Inyección y carburación",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -6775,8 +6775,8 @@
                           "name": "link4arrow",
                           "fill": "#0f6bff",
                           "content": ">",
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         },
                         {
@@ -6786,8 +6786,8 @@
                           "fill": "#0f6bff",
                           "content": "Captores y cables motor",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -6805,8 +6805,8 @@
                           "name": "link5arrow",
                           "fill": "#0f6bff",
                           "content": ">",
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         },
                         {
@@ -6816,8 +6816,8 @@
                           "fill": "#0f6bff",
                           "content": "Motor y culata",
                           "lineHeight": 1.4,
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -6837,8 +6837,8 @@
                       "name": "verMasArrow",
                       "fill": "#001166",
                       "content": ">",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
+                      "fontFamily": "Outfit",
+                      "fontSize": 16,
                       "fontWeight": "700"
                     },
                     {
@@ -6848,8 +6848,8 @@
                       "fill": "#001166",
                       "content": "Ver más",
                       "lineHeight": 1.4,
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
+                      "fontFamily": "Outfit",
+                      "fontSize": 16,
                       "fontWeight": "700"
                     }
                   ]
@@ -6891,7 +6891,7 @@
                   "content": "Identifica tu vehículo",
                   "lineHeight": 1.4,
                   "textAlign": "center",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 18,
                   "fontWeight": "600"
                 },
@@ -7001,7 +7001,7 @@
                           "descendants": {
                             "YmYzm": {
                               "content": "Registrar en mi garaje",
-                              "fontSize": 13
+                              "fontSize": 14
                             }
                           }
                         },
@@ -7041,8 +7041,8 @@
                           "name": "orText",
                           "fill": "#636363",
                           "content": "O",
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
                           "fontWeight": "500"
                         },
                         {
@@ -7123,7 +7123,7 @@
                       "fill": "#ffffff",
                       "content": "CADENAS\nDE NIEVE",
                       "lineHeight": 1.1,
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 36,
                       "fontWeight": "800"
                     },
@@ -7133,7 +7133,7 @@
                       "name": "slideDiscount",
                       "fill": "#ffffff",
                       "content": "-10%",
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 48,
                       "fontWeight": "800"
                     },
@@ -7157,7 +7157,7 @@
                           "name": "ctaLabel",
                           "fill": "#001166",
                           "content": "Aprovecha ya",
-                          "fontFamily": "Inter",
+                          "fontFamily": "Outfit",
                           "fontSize": 14,
                           "fontWeight": "600"
                         }
@@ -7406,8 +7406,8 @@
                   "fill": "#ffffffff",
                   "content": "¡ENVÍO GRATIS EN PEDIDOS DESDE $1,199!",
                   "lineHeight": 1.4,
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
+                  "fontFamily": "Outfit",
+                  "fontSize": 14,
                   "fontWeight": "600"
                 },
                 {
@@ -7433,7 +7433,7 @@
                       "id": "sst0S",
                       "fill": "#ffffffff",
                       "content": "Ver condiciones",
-                      "fontFamily": "Inter",
+                      "fontFamily": "Outfit",
                       "fontSize": 12,
                       "fontWeight": "500"
                     }
@@ -7459,6 +7459,9 @@
                     "url": "./logos/logo-light-bg-cropped.png",
                     "mode": "fit"
                   }
+                },
+                "I5Zy1/3NkWG": {
+                  "fontSize": 16
                 }
               }
             },
@@ -7508,7 +7511,21 @@
               "padding": [
                 0,
                 80
-              ]
+              ],
+              "descendants": {
+                "H6uDL": {
+                  "fontSize": 14
+                },
+                "rtcch": {
+                  "fontSize": 14
+                },
+                "DAHLP": {
+                  "fontSize": 14
+                },
+                "RiGyE": {
+                  "fontSize": 14
+                }
+              }
             },
             {
               "id": "2T8kE",
@@ -7540,7 +7557,7 @@
                   "fill": "#3a3b3f",
                   "content": "Últimos productos consultados",
                   "lineHeight": 1.4,
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 18,
                   "fontWeight": "600"
                 },
@@ -7835,7 +7852,12 @@
               "ref": "alQzo",
               "width": "fill_container",
               "name": "nlSection",
-              "enabled": false
+              "enabled": false,
+              "descendants": {
+                "6244n": {
+                  "fontSize": 16
+                }
+              }
             },
             {
               "id": "F5Kye",
@@ -7902,7 +7924,7 @@
                   "name": "hdrName",
                   "fill": "#3a3b3f",
                   "content": "Button",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 18,
                   "fontWeight": "700"
                 },
@@ -7923,8 +7945,8 @@
                       "name": "hdrTagTxt",
                       "fill": "#636363",
                       "content": "Action",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
+                      "fontFamily": "Outfit",
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -7937,7 +7959,7 @@
               "name": "btn_desc",
               "fill": "#636363",
               "content": "Triggers an action or event. Primary CTA uses navy fill.",
-              "fontFamily": "Inter",
+              "fontFamily": "Outfit",
               "fontSize": 14,
               "fontWeight": "normal"
             },
@@ -7947,8 +7969,8 @@
               "name": "var_lbl",
               "fill": "#636363",
               "content": "Variants",
-              "fontFamily": "Inter",
-              "fontSize": 13,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "600"
             },
             {
@@ -7965,7 +7987,7 @@
                   "name": "vl1",
                   "fill": "#3a3b3f",
                   "content": "Default",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -8044,7 +8066,7 @@
                               "lineHeight": 1.4285714285714286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -8056,8 +8078,8 @@
                           "name": "l1a",
                           "fill": "#a3a3a3",
                           "content": "Default",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -8130,7 +8152,7 @@
                               "lineHeight": 1.4285714285714286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -8142,8 +8164,8 @@
                           "name": "l1b",
                           "fill": "#a3a3a3",
                           "content": "Hover",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -8206,7 +8228,7 @@
                               "lineHeight": 1.4285714285714286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -8218,8 +8240,8 @@
                           "name": "l1d",
                           "fill": "#a3a3a3",
                           "content": "Disabled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -8242,7 +8264,7 @@
                   "name": "vl2",
                   "fill": "#3a3b3f",
                   "content": "Secondary",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -8326,7 +8348,7 @@
                               "lineHeight": 1.4285714285714286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -8338,8 +8360,8 @@
                           "name": "sc",
                           "fill": "#a3a3a3",
                           "content": "Default",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -8417,7 +8439,7 @@
                               "lineHeight": 1.4285714285714286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -8429,8 +8451,8 @@
                           "name": "sf",
                           "fill": "#a3a3a3",
                           "content": "Hover",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -8498,7 +8520,7 @@
                               "lineHeight": 1.4285714285714286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -8510,8 +8532,8 @@
                           "name": "sl",
                           "fill": "#a3a3a3",
                           "content": "Disabled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -8534,7 +8556,7 @@
                   "name": "vl3",
                   "fill": "#3a3b3f",
                   "content": "Destructive",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -8613,7 +8635,7 @@
                               "lineHeight": 1.4286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -8625,8 +8647,8 @@
                           "name": "dc",
                           "fill": "#a3a3a3",
                           "content": "Default",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -8699,7 +8721,7 @@
                               "lineHeight": 1.4286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -8711,8 +8733,8 @@
                           "name": "df",
                           "fill": "#a3a3a3",
                           "content": "Hover",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -8775,7 +8797,7 @@
                               "lineHeight": 1.4286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -8787,8 +8809,8 @@
                           "name": "dl",
                           "fill": "#a3a3a3",
                           "content": "Disabled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -8811,7 +8833,7 @@
                   "name": "vl4",
                   "fill": "#3a3b3f",
                   "content": "Outline",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -8895,7 +8917,7 @@
                               "lineHeight": 1.4286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -8907,8 +8929,8 @@
                           "name": "oc",
                           "fill": "#a3a3a3",
                           "content": "Default",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -8986,7 +9008,7 @@
                               "lineHeight": 1.4286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -8998,8 +9020,8 @@
                           "name": "of",
                           "fill": "#a3a3a3",
                           "content": "Hover",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -9067,7 +9089,7 @@
                               "lineHeight": 1.4286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -9079,8 +9101,8 @@
                           "name": "ol",
                           "fill": "#a3a3a3",
                           "content": "Disabled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -9103,7 +9125,7 @@
                   "name": "vl5",
                   "fill": "#3a3b3f",
                   "content": "Ghost",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -9175,7 +9197,7 @@
                               "lineHeight": 1.4286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -9187,8 +9209,8 @@
                           "name": "gc",
                           "fill": "#a3a3a3",
                           "content": "Default",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -9255,7 +9277,7 @@
                               "lineHeight": 1.4286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -9267,8 +9289,8 @@
                           "name": "gf",
                           "fill": "#a3a3a3",
                           "content": "Hover",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -9335,7 +9357,7 @@
                               "lineHeight": 1.4286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -9347,8 +9369,8 @@
                           "name": "gl",
                           "fill": "#a3a3a3",
                           "content": "Disabled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -9371,7 +9393,7 @@
                   "name": "vl6",
                   "fill": "#3a3b3f",
                   "content": "Icon Button",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -9449,7 +9471,7 @@
                               "lineHeight": 1.4285714285714286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -9461,8 +9483,8 @@
                           "name": "ic",
                           "fill": "#a3a3a3",
                           "content": "Default",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -9534,7 +9556,7 @@
                               "lineHeight": 1.4285714285714286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -9546,8 +9568,8 @@
                           "name": "ig",
                           "fill": "#a3a3a3",
                           "content": "Hover",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -9609,7 +9631,7 @@
                               "lineHeight": 1.4285714285714286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -9621,8 +9643,8 @@
                           "name": "im",
                           "fill": "#a3a3a3",
                           "content": "Disabled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -9645,7 +9667,7 @@
                   "name": "vl7",
                   "fill": "#3a3b3f",
                   "content": "Icon Pill",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -9721,7 +9743,7 @@
                               "lineHeight": 1.4285714285714286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -9733,8 +9755,8 @@
                           "name": "pc",
                           "fill": "#a3a3a3",
                           "content": "Default",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -9804,7 +9826,7 @@
                               "lineHeight": 1.4285714285714286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -9816,8 +9838,8 @@
                           "name": "pf",
                           "fill": "#a3a3a3",
                           "content": "Hover",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -9887,7 +9909,7 @@
                               "lineHeight": 1.4285714285714286,
                               "textAlign": "center",
                               "textAlignVertical": "middle",
-                              "fontFamily": "Inter",
+                              "fontFamily": "Outfit",
                               "fontSize": 14,
                               "fontWeight": "500"
                             }
@@ -9899,8 +9921,8 @@
                           "name": "pl",
                           "fill": "#a3a3a3",
                           "content": "Disabled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -9915,8 +9937,8 @@
               "name": "fnote",
               "fill": "#a3a3a3",
               "content": "Focus: uses shadcn default ring styles (focus-visible:ring-ring)",
-              "fontFamily": "Inter",
-              "fontSize": 11,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "normal",
               "fontStyle": "italic"
             },
@@ -9926,8 +9948,8 @@
               "name": "Sizes Label",
               "fill": "#636363",
               "content": "Sizes",
-              "fontFamily": "Inter",
-              "fontSize": 13,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "600"
             },
             {
@@ -10005,7 +10027,7 @@
                           "lineHeight": 1.4285714285714286,
                           "textAlign": "center",
                           "textAlignVertical": "middle",
-                          "fontFamily": "Inter",
+                          "fontFamily": "Outfit",
                           "fontSize": 12,
                           "fontWeight": "500"
                         }
@@ -10017,8 +10039,8 @@
                       "name": "sl",
                       "fill": "#a3a3a3",
                       "content": "Small",
-                      "fontFamily": "Inter",
-                      "fontSize": 10,
+                      "fontFamily": "Outfit",
+                      "fontSize": 12,
                       "fontWeight": "normal"
                     }
                   ]
@@ -10091,7 +10113,7 @@
                           "lineHeight": 1.4285714285714286,
                           "textAlign": "center",
                           "textAlignVertical": "middle",
-                          "fontFamily": "Inter",
+                          "fontFamily": "Outfit",
                           "fontSize": 14,
                           "fontWeight": "500"
                         }
@@ -10103,8 +10125,8 @@
                       "name": "dl",
                       "fill": "#a3a3a3",
                       "content": "Default",
-                      "fontFamily": "Inter",
-                      "fontSize": 10,
+                      "fontFamily": "Outfit",
+                      "fontSize": 12,
                       "fontWeight": "normal"
                     }
                   ]
@@ -10177,7 +10199,7 @@
                           "lineHeight": 1.4286,
                           "textAlign": "center",
                           "textAlignVertical": "middle",
-                          "fontFamily": "Inter",
+                          "fontFamily": "Outfit",
                           "fontSize": 14,
                           "fontWeight": "500"
                         }
@@ -10189,8 +10211,8 @@
                       "name": "ll",
                       "fill": "#a3a3a3",
                       "content": "Large",
-                      "fontFamily": "Inter",
-                      "fontSize": 10,
+                      "fontFamily": "Outfit",
+                      "fontSize": 12,
                       "fontWeight": "normal"
                     }
                   ]
@@ -10229,7 +10251,7 @@
                   "name": "iname",
                   "fill": "#3a3b3f",
                   "content": "Input",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 18,
                   "fontWeight": "600"
                 },
@@ -10250,8 +10272,8 @@
                       "name": "itagtxt",
                       "fill": "#636363",
                       "content": "Form Control",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
+                      "fontFamily": "Outfit",
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -10264,8 +10286,8 @@
               "name": "inp_hdr",
               "fill": "#636363",
               "content": "Captures text input from the user.",
-              "fontFamily": "Inter",
-              "fontSize": 11,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "normal"
             },
             {
@@ -10274,8 +10296,8 @@
               "name": "Variants Label",
               "fill": "#636363",
               "content": "Variants",
-              "fontFamily": "Inter",
-              "fontSize": 13,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "600"
             },
             {
@@ -10292,7 +10314,7 @@
                   "name": "r1lbl",
                   "fill": "#3a3b3f",
                   "content": "Input Group",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -10350,8 +10372,8 @@
                                   "content": "Label Text",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -10383,8 +10405,8 @@
                                   "content": "Placeholder",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -10397,8 +10419,8 @@
                           "name": "c1l",
                           "fill": "#a3a3a3",
                           "content": "Default",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -10450,8 +10472,8 @@
                                   "content": "Label Text",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -10483,8 +10505,8 @@
                                   "content": "Placeholder",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -10497,8 +10519,8 @@
                           "name": "c2l",
                           "fill": "#a3a3a3",
                           "content": "Hover",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -10550,8 +10572,8 @@
                                   "content": "Label Text",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -10583,8 +10605,8 @@
                                   "content": "Input Value",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -10597,8 +10619,8 @@
                           "name": "c3l",
                           "fill": "#a3a3a3",
                           "content": "Filled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -10650,8 +10672,8 @@
                                   "content": "Label Text",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -10683,8 +10705,8 @@
                                   "content": "Placeholder",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -10697,8 +10719,8 @@
                           "name": "c4l",
                           "fill": "#a3a3a3",
                           "content": "Disabled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -10750,8 +10772,8 @@
                                   "content": "Label Text",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -10783,8 +10805,8 @@
                                   "content": "Placeholder",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -10797,8 +10819,8 @@
                           "name": "c5l",
                           "fill": "#a3a3a3",
                           "content": "Error",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -10821,7 +10843,7 @@
                   "name": "r2lbl",
                   "fill": "#3a3b3f",
                   "content": "Input (no label)",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -10880,8 +10902,8 @@
                                   "content": "Label Text",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -10913,8 +10935,8 @@
                                   "content": "Placeholder",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -10927,8 +10949,8 @@
                           "name": "d1l",
                           "fill": "#a3a3a3",
                           "content": "Default",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -10981,8 +11003,8 @@
                                   "content": "Label Text",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11014,8 +11036,8 @@
                                   "content": "Placeholder",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -11028,8 +11050,8 @@
                           "name": "d2l",
                           "fill": "#a3a3a3",
                           "content": "Hover",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -11082,8 +11104,8 @@
                                   "content": "Label Text",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11115,8 +11137,8 @@
                                   "content": "Input Value",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -11129,8 +11151,8 @@
                           "name": "d3l",
                           "fill": "#a3a3a3",
                           "content": "Filled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -11183,8 +11205,8 @@
                                   "content": "Label Text",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11216,8 +11238,8 @@
                                   "content": "Placeholder",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -11230,8 +11252,8 @@
                           "name": "d4l",
                           "fill": "#a3a3a3",
                           "content": "Disabled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -11284,8 +11306,8 @@
                                   "content": "Label Text",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11317,8 +11339,8 @@
                                   "content": "Placeholder",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -11331,8 +11353,8 @@
                           "name": "d5l",
                           "fill": "#a3a3a3",
                           "content": "Error",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -11347,8 +11369,8 @@
               "name": "fnote",
               "fill": "#a3a3a3",
               "content": "Focus: uses shadcn default ring styles",
-              "fontFamily": "Inter",
-              "fontSize": 11,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "normal"
             }
           ]
@@ -11383,7 +11405,7 @@
                   "name": "sname",
                   "fill": "#3a3b3f",
                   "content": "Select",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 18,
                   "fontWeight": "600"
                 },
@@ -11404,8 +11426,8 @@
                       "name": "stagtxt",
                       "fill": "#636363",
                       "content": "Form Control",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
+                      "fontFamily": "Outfit",
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -11418,8 +11440,8 @@
               "name": "sel_hdr",
               "fill": "#636363",
               "content": "Lets users choose from a dropdown list.",
-              "fontFamily": "Inter",
-              "fontSize": 11,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "normal"
             },
             {
@@ -11428,8 +11450,8 @@
               "name": "Variants Label",
               "fill": "#636363",
               "content": "Variants",
-              "fontFamily": "Inter",
-              "fontSize": 13,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "600"
             },
             {
@@ -11446,7 +11468,7 @@
                   "name": "r1lbl",
                   "fill": "#3a3b3f",
                   "content": "Select Group",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -11504,8 +11526,8 @@
                                   "content": "Label Text",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11539,8 +11561,8 @@
                                   "width": "fill_container",
                                   "content": "Select Option",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 },
                                 {
@@ -11562,8 +11584,8 @@
                           "name": "c1l",
                           "fill": "#a3a3a3",
                           "content": "Default",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -11615,8 +11637,8 @@
                                   "content": "Label Text",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11650,8 +11672,8 @@
                                   "width": "fill_container",
                                   "content": "Select Option",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 },
                                 {
@@ -11673,8 +11695,8 @@
                           "name": "c2l",
                           "fill": "#a3a3a3",
                           "content": "Hover",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -11726,8 +11748,8 @@
                                   "content": "Label Text",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11761,8 +11783,8 @@
                                   "width": "fill_container",
                                   "content": "Selected Option",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 },
                                 {
@@ -11784,8 +11806,8 @@
                           "name": "c3l",
                           "fill": "#a3a3a3",
                           "content": "Filled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -11837,8 +11859,8 @@
                                   "content": "Label Text",
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11872,8 +11894,8 @@
                                   "width": "fill_container",
                                   "content": "Select Option",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
-                                  "fontSize": 14,
+                                  "fontFamily": "Outfit",
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 },
                                 {
@@ -11895,8 +11917,8 @@
                           "name": "c4l",
                           "fill": "#a3a3a3",
                           "content": "Disabled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -11911,8 +11933,8 @@
               "name": "fnote",
               "fill": "#a3a3a3",
               "content": "Focus: uses shadcn default ring styles",
-              "fontFamily": "Inter",
-              "fontSize": 11,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "normal"
             }
           ]
@@ -11947,7 +11969,7 @@
                   "name": "cname",
                   "fill": "#3a3b3f",
                   "content": "Checkbox",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 18,
                   "fontWeight": "600"
                 },
@@ -11968,8 +11990,8 @@
                       "name": "ctagtxt",
                       "fill": "#636363",
                       "content": "Form Control",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
+                      "fontFamily": "Outfit",
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -11982,8 +12004,8 @@
               "name": "chk_hdr",
               "fill": "#636363",
               "content": "Toggles a boolean option on or off.",
-              "fontFamily": "Inter",
-              "fontSize": 11,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "normal"
             },
             {
@@ -11992,8 +12014,8 @@
               "name": "Variants Label",
               "fill": "#636363",
               "content": "Variants",
-              "fontFamily": "Inter",
-              "fontSize": 13,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "600"
             },
             {
@@ -12010,7 +12032,7 @@
                   "name": "r1lbl",
                   "fill": "#3a3b3f",
                   "content": "Unchecked",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -12096,7 +12118,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlign": "center",
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "500"
                                 }
@@ -12110,8 +12132,8 @@
                           "name": "c1l",
                           "fill": "#a3a3a3",
                           "content": "Default",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -12191,7 +12213,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlign": "center",
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "500"
                                 }
@@ -12205,8 +12227,8 @@
                           "name": "c2l",
                           "fill": "#a3a3a3",
                           "content": "Hover",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -12286,7 +12308,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlign": "center",
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "500"
                                 }
@@ -12300,8 +12322,8 @@
                           "name": "c3l",
                           "fill": "#a3a3a3",
                           "content": "Disabled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -12324,7 +12346,7 @@
                   "name": "r2lbl",
                   "fill": "#3a3b3f",
                   "content": "Checked",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -12409,7 +12431,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlign": "center",
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "500"
                                 }
@@ -12423,8 +12445,8 @@
                           "name": "d1l",
                           "fill": "#a3a3a3",
                           "content": "Default",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -12503,7 +12525,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlign": "center",
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "500"
                                 }
@@ -12517,8 +12539,8 @@
                           "name": "d2l",
                           "fill": "#a3a3a3",
                           "content": "Hover",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -12597,7 +12619,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlign": "center",
                                   "textAlignVertical": "middle",
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "500"
                                 }
@@ -12611,8 +12633,8 @@
                           "name": "d3l",
                           "fill": "#a3a3a3",
                           "content": "Disabled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -12627,8 +12649,8 @@
               "name": "fnote",
               "fill": "#a3a3a3",
               "content": "Focus: uses shadcn default ring styles",
-              "fontFamily": "Inter",
-              "fontSize": 11,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "normal"
             }
           ]
@@ -12663,7 +12685,7 @@
                   "name": "tname",
                   "fill": "#3a3b3f",
                   "content": "Tabs",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 18,
                   "fontWeight": "600"
                 },
@@ -12684,8 +12706,8 @@
                       "name": "ttagtxt",
                       "fill": "#636363",
                       "content": "Navigation",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
+                      "fontFamily": "Outfit",
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -12698,8 +12720,8 @@
               "name": "tab_hdr",
               "fill": "#636363",
               "content": "Tab bar for switching between content panels.",
-              "fontFamily": "Inter",
-              "fontSize": 11,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "normal"
             },
             {
@@ -12708,8 +12730,8 @@
               "name": "Variants Label",
               "fill": "#636363",
               "content": "Variants",
-              "fontFamily": "Inter",
-              "fontSize": 13,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "600"
             },
             {
@@ -12726,7 +12748,7 @@
                   "name": "r1lbl",
                   "fill": "#3a3b3f",
                   "content": "2 Tabs",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -12784,7 +12806,7 @@
                                   "fill": "#ffffff",
                                   "content": "Tab One",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -12817,7 +12839,7 @@
                                   "fill": "$--foreground",
                                   "content": "Tab Two",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -12831,8 +12853,8 @@
                           "name": "c1l",
                           "fill": "#a3a3a3",
                           "content": "Default",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -12882,7 +12904,7 @@
                                   "fill": "#ffffff",
                                   "content": "Tab One",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -12913,7 +12935,7 @@
                                   "fill": "#001166",
                                   "content": "Tab Two",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -12927,8 +12949,8 @@
                           "name": "c2l",
                           "fill": "#a3a3a3",
                           "content": "Hover",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -12978,7 +13000,7 @@
                                   "fill": "#a3a3a3",
                                   "content": "Tab One",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -13009,7 +13031,7 @@
                                   "fill": "#c4c4c4",
                                   "content": "Tab Two",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -13023,8 +13045,8 @@
                           "name": "c3l",
                           "fill": "#a3a3a3",
                           "content": "Disabled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -13047,7 +13069,7 @@
                   "name": "r2lbl",
                   "fill": "#3a3b3f",
                   "content": "3 Tabs",
-                  "fontFamily": "Inter",
+                  "fontFamily": "Outfit",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -13103,7 +13125,7 @@
                                   "fill": "#ffffff",
                                   "content": "Tab One",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -13134,7 +13156,7 @@
                                   "fill": "#636363",
                                   "content": "Tab Two",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -13165,7 +13187,7 @@
                                   "fill": "#636363",
                                   "content": "Tab Three",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -13179,8 +13201,8 @@
                           "name": "d1l",
                           "fill": "#a3a3a3",
                           "content": "Default",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -13230,7 +13252,7 @@
                                   "fill": "#ffffff",
                                   "content": "Tab One",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -13261,7 +13283,7 @@
                                   "fill": "#001166",
                                   "content": "Tab Two",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -13292,7 +13314,7 @@
                                   "fill": "#636363",
                                   "content": "Tab Three",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -13306,8 +13328,8 @@
                           "name": "d2l",
                           "fill": "#a3a3a3",
                           "content": "Hover",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -13357,7 +13379,7 @@
                                   "fill": "#a3a3a3",
                                   "content": "Tab One",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -13388,7 +13410,7 @@
                                   "fill": "#c4c4c4",
                                   "content": "Tab Two",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -13419,7 +13441,7 @@
                                   "fill": "#c4c4c4",
                                   "content": "Tab Three",
                                   "lineHeight": 1.4285714285714286,
-                                  "fontFamily": "Inter",
+                                  "fontFamily": "Outfit",
                                   "fontSize": 14,
                                   "fontWeight": "700"
                                 }
@@ -13433,8 +13455,8 @@
                           "name": "d3l",
                           "fill": "#a3a3a3",
                           "content": "Disabled",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
                           "fontWeight": "normal"
                         }
                       ]
@@ -13449,8 +13471,8 @@
               "name": "fnote",
               "fill": "#a3a3a3",
               "content": "Focus: uses shadcn default ring styles",
-              "fontFamily": "Inter",
-              "fontSize": 11,
+              "fontFamily": "Outfit",
+              "fontSize": 14,
               "fontWeight": "normal"
             }
           ]
@@ -13763,6 +13785,42 @@
     "--white": {
       "type": "color",
       "value": "#ffffffff"
+    },
+    "--font-sans": {
+      "type": "string",
+      "value": "Outfit"
+    },
+    "--text-2xl": {
+      "type": "number",
+      "value": 24
+    },
+    "--text-4xl": {
+      "type": "number",
+      "value": 36
+    },
+    "--text-5xl": {
+      "type": "number",
+      "value": 48
+    },
+    "--text-base": {
+      "type": "number",
+      "value": 16
+    },
+    "--text-lg": {
+      "type": "number",
+      "value": 18
+    },
+    "--text-sm": {
+      "type": "number",
+      "value": 14
+    },
+    "--text-xl": {
+      "type": "number",
+      "value": 20
+    },
+    "--text-xs": {
+      "type": "number",
+      "value": 12
     }
   }
 }

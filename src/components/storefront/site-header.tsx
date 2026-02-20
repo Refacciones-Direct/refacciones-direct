@@ -27,7 +27,7 @@ export async function SiteHeader() {
             <span className="flex size-9 items-center justify-center rounded-full border-[1.5px] border-current">
               <Headset className="size-5" />
             </span>
-            <span className="text-[11px] font-medium leading-tight">{t('header.help')}</span>
+            <span className="text-sm font-medium leading-tight">{t('header.help')}</span>
           </Link>
 
           <Link
@@ -37,7 +37,7 @@ export async function SiteHeader() {
             <span className="flex size-9 items-center justify-center rounded-full border-[1.5px] border-current">
               <User className="size-5" />
             </span>
-            <span className="text-[11px] font-medium leading-tight">{t('header.account')}</span>
+            <span className="text-sm font-medium leading-tight">{t('header.account')}</span>
           </Link>
 
           <Link
@@ -46,11 +46,11 @@ export async function SiteHeader() {
           >
             <span className="relative flex size-9 items-center justify-center rounded-full border-[1.5px] border-current">
               <ShoppingCart className="size-5" />
-              <span className="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-brand-red text-[10px] font-bold text-white">
+              <span className="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-brand-red text-xs font-bold text-white">
                 0
               </span>
             </span>
-            <span className="text-[11px] font-medium leading-tight">{t('header.cart')}</span>
+            <span className="text-sm font-medium leading-tight">{t('header.cart')}</span>
           </Link>
         </nav>
       </div>

@@ -22,15 +22,15 @@ export async function SiteFooter() {
         <div className="grid grid-cols-4 gap-12">
           {/* Column 1 - Help & payments */}
           <div className="flex flex-col gap-4">
-            <h4 className="text-sm font-semibold">{t('footer.helpTitle')}</h4>
-            <span className="cursor-pointer text-[13px] text-white hover:text-white/80">
+            <h4 className="text-base font-semibold">{t('footer.helpTitle')}</h4>
+            <span className="cursor-pointer text-sm text-white hover:text-white/80">
               {t('footer.returnLink')}
             </span>
             <div className="mt-2 flex gap-2">
               {paymentMethods.map((method) => (
                 <div
                   key={method}
-                  className="flex h-7 w-11 items-center justify-center rounded bg-white/20 text-[10px] font-medium text-white/70"
+                  className="flex h-7 w-11 items-center justify-center rounded bg-white/20 text-xs font-medium text-white/70"
                 >
                   {method}
                 </div>
@@ -41,10 +41,7 @@ export async function SiteFooter() {
           {/* Column 2 - Information (no heading per Pencil design) */}
           <div className="flex flex-col gap-3">
             {col2Links.map((link) => (
-              <span
-                key={link}
-                className="cursor-pointer text-[13px] text-white hover:text-white/80"
-              >
+              <span key={link} className="cursor-pointer text-sm text-white hover:text-white/80">
                 {link}
               </span>
             ))}
@@ -53,10 +50,7 @@ export async function SiteFooter() {
           {/* Column 3 - Legal (no heading per Pencil design) */}
           <div className="flex flex-col gap-3">
             {col3Links.map((link) => (
-              <span
-                key={link}
-                className="cursor-pointer text-[13px] text-white hover:text-white/80"
-              >
+              <span key={link} className="cursor-pointer text-sm text-white hover:text-white/80">
                 {link}
               </span>
             ))}
@@ -64,7 +58,7 @@ export async function SiteFooter() {
 
           {/* Column 4 - Social */}
           <div className="flex flex-col gap-3">
-            <h4 className="text-sm font-semibold">{t('footer.followTitle')}</h4>
+            <h4 className="text-base font-semibold">{t('footer.followTitle')}</h4>
             <div className="flex gap-3">
               {socialLinks.map(({ icon: Icon, label }) => (
                 <span

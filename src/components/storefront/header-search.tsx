@@ -30,9 +30,9 @@ export function HeaderSearch() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder={t('header.searchPlaceholder')}
-        className="flex-1 bg-transparent px-2 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+        className="flex-1 bg-transparent px-2 py-3 text-base text-foreground placeholder:text-muted-foreground focus:outline-none"
       />
-      <Button type="submit" size="sm" className="h-10 rounded-full px-5 text-[13px] font-semibold">
+      <Button type="submit" size="sm" className="h-10 rounded-full px-5 text-sm font-semibold">
         {t('header.searchButton')}
       </Button>
     </form>

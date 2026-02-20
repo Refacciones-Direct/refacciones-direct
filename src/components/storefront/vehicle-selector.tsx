@@ -46,7 +46,10 @@ export function VehicleSelector() {
         <TabsContent value="placa" className="min-h-45 space-y-4">
           {/* Input row */}
           <div className="flex items-center gap-3">
-            <Input placeholder={t('vehicleSelector.placaPlaceholder')} className="flex-1" />
+            <Input
+              placeholder={t('vehicleSelector.placaPlaceholder')}
+              className="flex-1 text-base"
+            />
             <button
               type="button"
               aria-label={t('vehicleSelector.search')}
@@ -70,7 +73,7 @@ export function VehicleSelector() {
           {/* Divider */}
           <div className="flex items-center gap-3">
             <Separator className="flex-1" />
-            <span className="text-[13px] font-medium text-muted-foreground">O</span>
+            <span className="text-sm font-medium text-muted-foreground">O</span>
             <Separator className="flex-1" />
           </div>
 
@@ -91,7 +94,7 @@ export function VehicleSelector() {
         <TabsContent value="modelo" className="min-h-45 space-y-4">
           {/* VIN input */}
           <div className="flex items-center gap-3">
-            <Input placeholder={t('vehicleSelector.vinPlaceholder')} className="flex-1" />
+            <Input placeholder={t('vehicleSelector.vinPlaceholder')} className="flex-1 text-base" />
             <button
               type="button"
               aria-label={t('vehicleSelector.search')}
