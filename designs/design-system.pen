@@ -13524,13 +13524,17 @@
       "type": "color",
       "value": "#c22026"
     },
+    "--destructive-hover": {
+      "type": "color",
+      "value": "#a71b20"
+    },
     "--foreground": {
       "type": "color",
       "value": "#3a3b3f"
     },
     "--input": {
       "type": "color",
-      "value": "#e8e8e8"
+      "value": "#d4d4d4"
     },
     "--muted": {
       "type": "color",
@@ -13556,6 +13560,10 @@
       "type": "color",
       "value": "#ffffff"
     },
+    "--primary-hover": {
+      "type": "color",
+      "value": "#000d4d"
+    },
     "--ring": {
       "type": "color",
       "value": "#001166"
@@ -13567,6 +13575,10 @@
     "--secondary-foreground": {
       "type": "color",
       "value": "#171717"
+    },
+    "--secondary-hover": {
+      "type": "color",
+      "value": "#ebebeb"
     },
     "--sidebar": {
       "type": "color",
