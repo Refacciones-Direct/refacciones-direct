@@ -24,7 +24,10 @@
     "header": {
       "logoText": "REFACCIONES DIRECT",
       "searchPlaceholder": "Search part, brand, reference...",
+      "searchButton": "Search",
       "help": "Help & contact",
+      "account": "My account",
+      "cart": "My cart",
       "ariaUser": "My account",
       "ariaCart": "Cart"
     },
