@@ -5,6 +5,7 @@
 The Data Architecture Spec v5.0 defines the database schema for RefaccionesDirect. We have 3 migrations (users, manufacturers, RLS, storage) but **no catalog tables**. This migration creates the core product catalog schema — the foundation for the import pipeline.
 
 Key architectural decisions informed by ACR-Automotive analysis:
+
 - **Normalized vehicles table** (ACR denormalizes vehicle data per fitment row — we fix this)
 - **Multi-make splitting at import** ("CHEVROLET, GMC" → 2 fitment rows — ACR stores literal strings, breaking exact search)
 - **Server-side normalization** (ACR has no make/model normalization — case-sensitive matching)
@@ -34,6 +35,7 @@ CHECK (year_start <= year_end AND year_start >= 1900 AND year_end <= 2100)
 ```
 
 **Unique index** (NULL-safe — Postgres treats NULL != NULL in UNIQUE constraints):
+
 ```sql
 CREATE UNIQUE INDEX idx_vehicles_unique ON vehicles (
   make, model, year_start, year_end,
@@ -76,6 +78,7 @@ UNIQUE (manufacturer_id, sku)              -- auto-creates composite index
 ```
 
 **Indexes:**
+
 - `idx_parts_manufacturer` on `(manufacturer_id)` — FK index for JOINs, RLS, dashboard queries
 - `idx_parts_category` on `(category)`
 - `idx_parts_brand` on `(brand)`
@@ -100,6 +103,7 @@ UNIQUE (part_id, vehicle_id)    -- auto-creates composite index (part_id is lead
 ```
 
 **Indexes:**
+
 - `idx_fitments_vehicle` on `(vehicle_id)` — reverse lookup: "find all parts for this vehicle"
 - No separate `(part_id)` index — the UNIQUE constraint's composite index already covers part_id lookups
 
@@ -117,6 +121,7 @@ UNIQUE (part_id, oe_number)     -- auto-creates composite index
 ```
 
 **Indexes:**
+
 - `idx_oe_normalized` on `(oe_number_normalized)` — primary search path
 
 ### vehicle_aliases — search-time alias resolution
@@ -130,61 +135,62 @@ created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
 ```
 
 **Unique index** (case-insensitive — replaces plain UNIQUE constraint):
+
 ```sql
 CREATE UNIQUE INDEX idx_vehicle_aliases_alias ON vehicle_aliases (LOWER(alias));
 ```
 
 **Seed data** (15 aliases, inserted with `ON CONFLICT DO NOTHING` for idempotency):
 
-| alias | canonical_name | alias_type |
-|-------|---------------|------------|
-| chevy | CHEVROLET | make |
-| beemer | BMW | make |
-| bimmer | BMW | make |
-| caddy | CADILLAC | make |
-| ram | DODGE-RAM | make |
-| dodge | DODGE-RAM | make |
-| vw | VOLKSWAGEN | make |
-| merc | MERCEDES-BENZ | make |
-| benz | MERCEDES-BENZ | make |
-| mercedes | MERCEDES-BENZ | make |
-| stang | MUSTANG | model |
-| vette | CORVETTE | model |
-| slade | ESCALADE | model |
-| cammy | CAMRY | model |
-| monte | MONTE CARLO | model |
+| alias    | canonical_name | alias_type |
+| -------- | -------------- | ---------- |
+| chevy    | CHEVROLET      | make       |
+| beemer   | BMW            | make       |
+| bimmer   | BMW            | make       |
+| caddy    | CADILLAC       | make       |
+| ram      | DODGE-RAM      | make       |
+| dodge    | DODGE-RAM      | make       |
+| vw       | VOLKSWAGEN     | make       |
+| merc     | MERCEDES-BENZ  | make       |
+| benz     | MERCEDES-BENZ  | make       |
+| mercedes | MERCEDES-BENZ  | make       |
+| stang    | MUSTANG        | model      |
+| vette    | CORVETTE       | model      |
+| slade    | ESCALADE       | model      |
+| cammy    | CAMRY          | model      |
+| monte    | MONTE CARLO    | model      |
 
 ### RLS Policies
 
 All 5 tables get `ALTER TABLE ... ENABLE ROW LEVEL SECURITY`.
 
-| Table | Policy | Rule |
-|-------|--------|------|
-| vehicles | `vehicles_select_public` | Anyone reads (storefront search) |
-| parts | `parts_select_active` | Public sees `status = 'active'` only |
-| parts | `parts_select_own` | Manufacturers see all their own parts (uses `current_app_user_id()` → manufacturers lookup) |
-| parts | `parts_update_own` | Manufacturers update their own parts |
-| parts | `parts_admin_all` | Admins: full access (uses `is_admin()`) |
-| fitments | `fitments_select_public` | Anyone reads |
-| oe_crossrefs | `oe_crossrefs_select_public` | Anyone reads |
-| vehicle_aliases | `vehicle_aliases_select_public` | Anyone reads (search) |
+| Table           | Policy                          | Rule                                                                                        |
+| --------------- | ------------------------------- | ------------------------------------------------------------------------------------------- |
+| vehicles        | `vehicles_select_public`        | Anyone reads (storefront search)                                                            |
+| parts           | `parts_select_active`           | Public sees `status = 'active'` only                                                        |
+| parts           | `parts_select_own`              | Manufacturers see all their own parts (uses `current_app_user_id()` → manufacturers lookup) |
+| parts           | `parts_update_own`              | Manufacturers update their own parts                                                        |
+| parts           | `parts_admin_all`               | Admins: full access (uses `is_admin()`)                                                     |
+| fitments        | `fitments_select_public`        | Anyone reads                                                                                |
+| oe_crossrefs    | `oe_crossrefs_select_public`    | Anyone reads                                                                                |
+| vehicle_aliases | `vehicle_aliases_select_public` | Anyone reads (search)                                                                       |
 
 **No INSERT/DELETE policies** on any table for anon/authenticated roles. All writes go through the import pipeline using the admin client (service role bypasses RLS). This is consistent with the existing pattern in migration 002 where `manufacturers` has no INSERT policy. A SQL comment in the migration will document this intentional omission.
 
 ### Key Decisions vs Spec v5.0
 
-| Change | Why |
-|--------|-----|
-| BIGINT IDENTITY PKs (not UUID) | Project standard; Amazon/ML/Shopify use numeric IDs; better B-tree perf |
-| TEXT (not VARCHAR) | Project standard; same Postgres perf |
-| `price` nullable | Supports draft imports (Amazon/ML allow partial listings) |
-| `status` default `'draft'` (not `'active'`) | Parts without price/stock/images start as draft |
-| `condition: 'remanufactured'` (not `'refurbished'`) | Auto parts industry standard term |
-| `is_active` omitted | Redundant with `status` — avoids consistency risk |
-| `vehicle_aliases` table added | ACR pattern — resolves colloquial terms during search |
-| `ON DELETE RESTRICT` on fitments.vehicle_id | Explicit: vehicles are shared, never casually deleted |
-| Case-insensitive unique on aliases | ACR uses case-sensitive UNIQUE — we fix this |
-| FK index on parts.manufacturer_id | Best practice: Postgres doesn't auto-index FKs |
+| Change                                              | Why                                                                     |
+| --------------------------------------------------- | ----------------------------------------------------------------------- |
+| BIGINT IDENTITY PKs (not UUID)                      | Project standard; Amazon/ML/Shopify use numeric IDs; better B-tree perf |
+| TEXT (not VARCHAR)                                  | Project standard; same Postgres perf                                    |
+| `price` nullable                                    | Supports draft imports (Amazon/ML allow partial listings)               |
+| `status` default `'draft'` (not `'active'`)         | Parts without price/stock/images start as draft                         |
+| `condition: 'remanufactured'` (not `'refurbished'`) | Auto parts industry standard term                                       |
+| `is_active` omitted                                 | Redundant with `status` — avoids consistency risk                       |
+| `vehicle_aliases` table added                       | ACR pattern — resolves colloquial terms during search                   |
+| `ON DELETE RESTRICT` on fitments.vehicle_id         | Explicit: vehicles are shared, never casually deleted                   |
+| Case-insensitive unique on aliases                  | ACR uses case-sensitive UNIQUE — we fix this                            |
+| FK index on parts.manufacturer_id                   | Best practice: Postgres doesn't auto-index FKs                          |
 
 ### Design Notes for Future Pipeline Work
 
@@ -196,10 +202,10 @@ All 5 tables get `ALTER TABLE ... ENABLE ROW LEVEL SECURITY`.
 
 ## Files
 
-| File | Action |
-|------|--------|
-| `supabase/migrations/004_create_catalog_tables.sql` | **Create** |
-| `src/types/database.ts` | **Regenerate** via `npx.cmd supabase gen types typescript` |
+| File                                                | Action                                                     |
+| --------------------------------------------------- | ---------------------------------------------------------- |
+| `supabase/migrations/004_create_catalog_tables.sql` | **Create**                                                 |
+| `src/types/database.ts`                             | **Regenerate** via `npx.cmd supabase gen types typescript` |
 
 ## Verification
 
