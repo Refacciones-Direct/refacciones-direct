@@ -3617,7 +3617,7 @@
                   "type": "ref",
                   "ref": "C3KOZ",
                   "x": 24,
-                  "y": 24.01994370166805,
+                  "y": 24.019943701668048,
                   "width": "fill_container",
                   "descendants": {
                     "NEMHS": {
@@ -13589,6 +13589,4017 @@
       "x": 840,
       "y": 2040,
       "fill": "#000d4d"
+    },
+    {
+      "type": "frame",
+      "id": "8t4lX",
+      "x": 9721,
+      "y": 2143,
+      "name": "Font Exploration (temporary)",
+      "fill": "#ffffff00",
+      "gap": 50,
+      "children": [
+        {
+          "type": "frame",
+          "id": "nf5fN",
+          "name": "1. Inter (current)",
+          "width": 1440,
+          "fill": "#fafafa",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "IG4oQ",
+              "name": "promoBanner",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#f95e4c",
+              "gap": 12,
+              "padding": [
+                0,
+                80
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "5Eq0n",
+                  "name": "promoIcon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "truck",
+                  "iconFontFamily": "lucide",
+                  "fill": "#ffffffff"
+                },
+                {
+                  "type": "text",
+                  "id": "gRi7A",
+                  "name": "promoText",
+                  "fill": "#ffffffff",
+                  "content": "¡ENVÍO GRATIS EN PEDIDOS DESDE $1,199!",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "OuiJO",
+                  "name": "promoBtn",
+                  "height": 26,
+                  "cornerRadius": 4,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#ffffffff"
+                  },
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Zutvc",
+                      "fill": "#ffffffff",
+                      "content": "Ver condiciones",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "OXTmg",
+              "type": "ref",
+              "ref": "E3AHM",
+              "width": "fill_container",
+              "name": "siteHeader",
+              "padding": [
+                16,
+                80
+              ],
+              "descendants": {
+                "yfcYu": {
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "./logos/logo-light-bg-cropped.png",
+                    "mode": "fit"
+                  }
+                }
+              }
+            },
+            {
+              "id": "2EwRj",
+              "type": "ref",
+              "ref": "yPP19",
+              "width": "fill_container",
+              "name": "catNav"
+            },
+            {
+              "type": "frame",
+              "id": "RyFSV",
+              "name": "Hero Section",
+              "width": "fill_container",
+              "fill": "#fafafa",
+              "gap": 24,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "id": "KGoaC",
+                  "type": "ref",
+                  "ref": "aMG0O",
+                  "width": 420,
+                  "name": "heroLeft",
+                  "height": "fit_content"
+                },
+                {
+                  "id": "stWin",
+                  "type": "ref",
+                  "ref": "CF305",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "name": "heroRight"
+                }
+              ]
+            },
+            {
+              "id": "FmsyT",
+              "type": "ref",
+              "ref": "jIhs0",
+              "width": "fill_container",
+              "name": "valueProps",
+              "padding": [
+                0,
+                80
+              ]
+            },
+            {
+              "id": "0IEfT",
+              "type": "ref",
+              "ref": "wei18",
+              "width": "fill_container",
+              "name": "brandLogos",
+              "padding": [
+                0,
+                80
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "gXHeI",
+              "name": "Recently Viewed",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "GBTsO",
+                  "name": "recentTitle",
+                  "fill": "#3a3b3f",
+                  "content": "Últimos productos consultados",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "SQTMx",
+                  "name": "recentCards",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "id": "Vs3rm",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc1"
+                    },
+                    {
+                      "id": "jOs6j",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc2",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Radiador, refrigeración del..."
+                        },
+                        "yeDiv": {
+                          "content": "NISSENS - 61017"
+                        }
+                      }
+                    },
+                    {
+                      "id": "BCmSl",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc3",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Pastillas de freno"
+                        },
+                        "yeDiv": {
+                          "content": "BREMBO - P 85 020"
+                        }
+                      }
+                    },
+                    {
+                      "id": "YgP7M",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc4",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Bujía de encendido"
+                        },
+                        "yeDiv": {
+                          "content": "NGK - BKR6E"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "unLDg",
+              "type": "ref",
+              "ref": "JRiHe",
+              "width": "fill_container",
+              "name": "sectionDivider"
+            },
+            {
+              "type": "frame",
+              "id": "KSslo",
+              "name": "Category Grid",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "e5iyV",
+                  "name": "catRow1",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "id": "osndk",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "name": "cat1",
+                      "width": "fill_container"
+                    },
+                    {
+                      "id": "iPPRR",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat2",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Filtros y aceite"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "fRyJG",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "filter",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "pCTkk": {
+                          "content": "Filtro"
+                        },
+                        "IyuzA": {
+                          "content": "Aceite / accesorios purga"
+                        },
+                        "ca6nO": {
+                          "content": "Herramientas cambio de aceite"
+                        },
+                        "sMZ8y": {
+                          "content": "Otras piezas de filtración"
+                        },
+                        "nvBPp": {
+                          "content": "Aceite de motor"
+                        }
+                      }
+                    },
+                    {
+                      "id": "F7b5V",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat3",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Dirección - Suspensión"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "WWnlw",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "arrow-up-down",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "pCTkk": {
+                          "content": "Amortiguadores"
+                        },
+                        "IyuzA": {
+                          "content": "Suspensión de ejes"
+                        },
+                        "ca6nO": {
+                          "content": "Dirección"
+                        },
+                        "sMZ8y": {
+                          "content": "Transmisión"
+                        },
+                        "nvBPp": {
+                          "content": "Cubos y rodamientos"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "5xfse",
+                  "name": "catRow2",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "id": "9Aqsk",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat4",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Arranque y carga"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "m15X8",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "battery-charging",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "pCTkk": {
+                          "content": "Batería"
+                        },
+                        "IyuzA": {
+                          "content": "Alternador"
+                        },
+                        "ca6nO": {
+                          "content": "Motor de arranque"
+                        },
+                        "sMZ8y": {
+                          "content": "Cable de batería"
+                        },
+                        "nvBPp": {
+                          "content": "Bujías de precalentamiento"
+                        }
+                      }
+                    },
+                    {
+                      "id": "9EOZE",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat5",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Ópticas / Faros"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "6hkhW",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "lightbulb",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "pCTkk": {
+                          "content": "Faro delantero"
+                        },
+                        "IyuzA": {
+                          "content": "Faro trasero"
+                        },
+                        "ca6nO": {
+                          "content": "Bombillas"
+                        },
+                        "sMZ8y": {
+                          "content": "Intermitentes"
+                        },
+                        "nvBPp": {
+                          "content": "Luces antiniebla"
+                        }
+                      }
+                    },
+                    {
+                      "id": "A6hoG",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat6",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Frenado"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "r1og0",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "disc",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "pCTkk": {
+                          "content": "Pastillas de freno"
+                        },
+                        "IyuzA": {
+                          "content": "Discos de freno"
+                        },
+                        "ca6nO": {
+                          "content": "Pinzas de freno"
+                        },
+                        "sMZ8y": {
+                          "content": "Líquido de frenos"
+                        },
+                        "nvBPp": {
+                          "content": "Tambores de freno"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "slFLT",
+              "type": "ref",
+              "ref": "alQzo",
+              "width": "fill_container",
+              "name": "nlSection",
+              "enabled": false
+            },
+            {
+              "id": "n3m9y",
+              "type": "ref",
+              "ref": "EhEXz",
+              "width": "fill_container",
+              "name": "footerRef",
+              "padding": [
+                48,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "jglfB",
+          "name": "2. Geist Sans",
+          "width": 1440,
+          "fill": "#fafafa",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "PzK8g",
+              "name": "promoBanner",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#f95e4c",
+              "gap": 12,
+              "padding": [
+                0,
+                80
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "kcEPH",
+                  "name": "promoIcon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "truck",
+                  "iconFontFamily": "lucide",
+                  "fill": "#ffffffff"
+                },
+                {
+                  "type": "text",
+                  "id": "DSeBY",
+                  "name": "promoText",
+                  "fill": "#ffffffff",
+                  "content": "¡ENVÍO GRATIS EN PEDIDOS DESDE $1,199!",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Geist Sans",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "4QvUM",
+                  "name": "promoBtn",
+                  "height": 26,
+                  "cornerRadius": 4,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#ffffffff"
+                  },
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "zL5wN",
+                      "fill": "#ffffffff",
+                      "content": "Ver condiciones",
+                      "fontFamily": "Geist Sans",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "hVVvK",
+              "type": "ref",
+              "ref": "E3AHM",
+              "width": "fill_container",
+              "name": "siteHeader",
+              "padding": [
+                16,
+                80
+              ],
+              "descendants": {
+                "yfcYu": {
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "./logos/logo-light-bg-cropped.png",
+                    "mode": "fit"
+                  }
+                },
+                "I5Zy1/3NkWG": {
+                  "fontFamily": "Geist Sans"
+                },
+                "I5Zy1/SDJ7v": {
+                  "fontFamily": "Geist Sans"
+                },
+                "L1qFp": {
+                  "fontFamily": "Geist Sans"
+                },
+                "xm1M7": {
+                  "fontFamily": "Geist Sans"
+                },
+                "PGdfp": {
+                  "fontFamily": "Geist Sans"
+                },
+                "ShBUi": {
+                  "fontFamily": "Geist Sans"
+                }
+              }
+            },
+            {
+              "id": "hsoHu",
+              "type": "ref",
+              "ref": "yPP19",
+              "width": "fill_container",
+              "name": "catNav",
+              "descendants": {
+                "RggAX": {
+                  "fontFamily": "Geist Sans"
+                },
+                "Sheti": {
+                  "fontFamily": "Geist Sans"
+                },
+                "YaiIs": {
+                  "fontFamily": "Geist Sans"
+                },
+                "yymfn": {
+                  "fontFamily": "Geist Sans"
+                },
+                "DaX7a": {
+                  "fontFamily": "Geist Sans"
+                },
+                "ThcyV": {
+                  "fontFamily": "Geist Sans"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "trHzV",
+              "name": "Hero Section",
+              "width": "fill_container",
+              "fill": "#fafafa",
+              "gap": 24,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "id": "TgBnq",
+                  "type": "ref",
+                  "ref": "aMG0O",
+                  "width": 420,
+                  "name": "heroLeft",
+                  "height": "fit_content",
+                  "descendants": {
+                    "rBzQI": {
+                      "fontFamily": "Geist Sans"
+                    },
+                    "4jT03/7JGiM": {
+                      "fontFamily": "Geist Sans"
+                    },
+                    "RFmIr/uaFCg": {
+                      "fontFamily": "Geist Sans"
+                    },
+                    "CRkRN/XZ8NB": {
+                      "fontFamily": "Geist Sans"
+                    },
+                    "CRkRN/7J6Rw": {
+                      "fontFamily": "Geist Sans"
+                    },
+                    "0Rqta/CN7U3": {
+                      "fontFamily": "Geist Sans"
+                    },
+                    "ALHyt/YmYzm": {
+                      "fontFamily": "Geist Sans"
+                    },
+                    "zT39k": {
+                      "fontFamily": "Geist Sans"
+                    },
+                    "btFHe/Z8L9p": {
+                      "fontFamily": "Geist Sans"
+                    },
+                    "btFHe/xJnCf": {
+                      "fontFamily": "Geist Sans"
+                    }
+                  }
+                },
+                {
+                  "id": "YYefz",
+                  "type": "ref",
+                  "ref": "CF305",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "name": "heroRight",
+                  "descendants": {
+                    "5bcDw": {
+                      "fontFamily": "Geist Sans"
+                    },
+                    "XXAEA": {
+                      "fontFamily": "Geist Sans"
+                    },
+                    "JVNHs": {
+                      "fontFamily": "Geist Sans"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "H4GSj",
+              "type": "ref",
+              "ref": "jIhs0",
+              "width": "fill_container",
+              "name": "valueProps",
+              "padding": [
+                0,
+                80
+              ],
+              "descendants": {
+                "H6uDL": {
+                  "fontFamily": "Geist Sans"
+                },
+                "bIW5g": {
+                  "fontFamily": "Geist Sans"
+                },
+                "rtcch": {
+                  "fontFamily": "Geist Sans"
+                },
+                "dTyJm": {
+                  "fontFamily": "Geist Sans"
+                },
+                "DAHLP": {
+                  "fontFamily": "Geist Sans"
+                },
+                "I9Yk2": {
+                  "fontFamily": "Geist Sans"
+                },
+                "RiGyE": {
+                  "fontFamily": "Geist Sans"
+                },
+                "MuCUu": {
+                  "fontFamily": "Geist Sans"
+                }
+              }
+            },
+            {
+              "id": "9H4gm",
+              "type": "ref",
+              "ref": "wei18",
+              "width": "fill_container",
+              "name": "brandLogos",
+              "padding": [
+                0,
+                80
+              ],
+              "descendants": {
+                "1tSR0": {
+                  "fontFamily": "Geist Sans"
+                },
+                "AWPk3": {
+                  "fontFamily": "Geist Sans"
+                },
+                "nGO42": {
+                  "fontFamily": "Geist Sans"
+                },
+                "ydYTw": {
+                  "fontFamily": "Geist Sans"
+                },
+                "hZCDH": {
+                  "fontFamily": "Geist Sans"
+                },
+                "VEBrR": {
+                  "fontFamily": "Geist Sans"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "G1nUF",
+              "name": "Recently Viewed",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "1hvho",
+                  "name": "recentTitle",
+                  "fill": "#3a3b3f",
+                  "content": "Últimos productos consultados",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Geist Sans",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "hbSbS",
+                  "name": "recentCards",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "id": "KTgA4",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc1",
+                      "descendants": {
+                        "NYBFI": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "yeDiv": {
+                          "fontFamily": "Geist Sans"
+                        }
+                      }
+                    },
+                    {
+                      "id": "UtIKq",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc2",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Radiador, refrigeración del...",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "yeDiv": {
+                          "content": "NISSENS - 61017",
+                          "fontFamily": "Geist Sans"
+                        }
+                      }
+                    },
+                    {
+                      "id": "JLiuv",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc3",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Pastillas de freno",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "yeDiv": {
+                          "content": "BREMBO - P 85 020",
+                          "fontFamily": "Geist Sans"
+                        }
+                      }
+                    },
+                    {
+                      "id": "dkXUZ",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc4",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Bujía de encendido",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "yeDiv": {
+                          "content": "NGK - BKR6E",
+                          "fontFamily": "Geist Sans"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "GeA5C",
+              "type": "ref",
+              "ref": "JRiHe",
+              "width": "fill_container",
+              "name": "sectionDivider",
+              "descendants": {
+                "7ZqTY": {
+                  "fontFamily": "Geist Sans"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "192sh",
+              "name": "Category Grid",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tV8iu",
+                  "name": "catRow1",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "id": "JRp5m",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "name": "cat1",
+                      "width": "fill_container",
+                      "descendants": {
+                        "kYXRj": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "pCTkk": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "IyuzA": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "ca6nO": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "sMZ8y": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "nvBPp": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Geist Sans"
+                        }
+                      }
+                    },
+                    {
+                      "id": "LdKXH",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat2",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Filtros y aceite",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "5C7aC",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "filter",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "pCTkk": {
+                          "content": "Filtro",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "IyuzA": {
+                          "content": "Aceite / accesorios purga",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "ca6nO": {
+                          "content": "Herramientas cambio de aceite",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "sMZ8y": {
+                          "content": "Otras piezas de filtración",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "nvBPp": {
+                          "content": "Aceite de motor",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Geist Sans"
+                        }
+                      }
+                    },
+                    {
+                      "id": "OfCUK",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat3",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Dirección - Suspensión",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "N2hT0",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "arrow-up-down",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "pCTkk": {
+                          "content": "Amortiguadores",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "IyuzA": {
+                          "content": "Suspensión de ejes",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "ca6nO": {
+                          "content": "Dirección",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "sMZ8y": {
+                          "content": "Transmisión",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "nvBPp": {
+                          "content": "Cubos y rodamientos",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Geist Sans"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Qcgmx",
+                  "name": "catRow2",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "id": "So64e",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat4",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Arranque y carga",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "lILHg",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "battery-charging",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "pCTkk": {
+                          "content": "Batería",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "IyuzA": {
+                          "content": "Alternador",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "ca6nO": {
+                          "content": "Motor de arranque",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "sMZ8y": {
+                          "content": "Cable de batería",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "nvBPp": {
+                          "content": "Bujías de precalentamiento",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Geist Sans"
+                        }
+                      }
+                    },
+                    {
+                      "id": "UhSqV",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat5",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Ópticas / Faros",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "smm77",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "lightbulb",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "pCTkk": {
+                          "content": "Faro delantero",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "IyuzA": {
+                          "content": "Faro trasero",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "ca6nO": {
+                          "content": "Bombillas",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "sMZ8y": {
+                          "content": "Intermitentes",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "nvBPp": {
+                          "content": "Luces antiniebla",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Geist Sans"
+                        }
+                      }
+                    },
+                    {
+                      "id": "ORju4",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat6",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Frenado",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "Fb7Ln",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "disc",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "pCTkk": {
+                          "content": "Pastillas de freno",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "IyuzA": {
+                          "content": "Discos de freno",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "ca6nO": {
+                          "content": "Pinzas de freno",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "sMZ8y": {
+                          "content": "Líquido de frenos",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "nvBPp": {
+                          "content": "Tambores de freno",
+                          "fontFamily": "Geist Sans"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Geist Sans"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Geist Sans"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "FNRzi",
+              "type": "ref",
+              "ref": "alQzo",
+              "width": "fill_container",
+              "name": "nlSection",
+              "enabled": false,
+              "descendants": {
+                "zcuEK": {
+                  "fontFamily": "Geist Sans"
+                },
+                "6244n": {
+                  "fontFamily": "Geist Sans"
+                },
+                "Qx8lN": {
+                  "fontFamily": "Geist Sans"
+                },
+                "n9jBQ/9CN1v": {
+                  "fontFamily": "Geist Sans"
+                },
+                "bDvKF": {
+                  "fontFamily": "Geist Sans"
+                }
+              }
+            },
+            {
+              "id": "UqcIZ",
+              "type": "ref",
+              "ref": "EhEXz",
+              "width": "fill_container",
+              "name": "footerRef",
+              "padding": [
+                48,
+                80
+              ],
+              "descendants": {
+                "JfU6r": {
+                  "fontFamily": "Geist Sans"
+                },
+                "erPq8": {
+                  "fontFamily": "Geist Sans"
+                },
+                "4FKi5": {
+                  "fontFamily": "Geist Sans"
+                },
+                "BJb8y": {
+                  "fontFamily": "Geist Sans"
+                },
+                "JoBWS": {
+                  "fontFamily": "Geist Sans"
+                },
+                "ovwsp": {
+                  "fontFamily": "Geist Sans"
+                },
+                "R8LSv": {
+                  "fontFamily": "Geist Sans"
+                },
+                "a0dpk": {
+                  "fontFamily": "Geist Sans"
+                },
+                "Y8pUw": {
+                  "fontFamily": "Geist Sans"
+                },
+                "OOnIW": {
+                  "fontFamily": "Geist Sans"
+                },
+                "vvMiw": {
+                  "fontFamily": "Geist Sans"
+                },
+                "zoADc": {
+                  "fontFamily": "Geist Sans"
+                },
+                "5jfZr": {
+                  "fontFamily": "Geist Sans"
+                },
+                "4bqww": {
+                  "fontFamily": "Geist Sans"
+                },
+                "EzNMw": {
+                  "fontFamily": "Geist Sans"
+                },
+                "x9pVf": {
+                  "fontFamily": "Geist Sans"
+                },
+                "eNyK9": {
+                  "fontFamily": "Geist Sans"
+                },
+                "p5NkI": {
+                  "fontFamily": "Geist Sans"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "NkIqm",
+          "name": "3. DM Sans",
+          "width": 1440,
+          "fill": "#fafafa",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "YxTUc",
+              "name": "promoBanner",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#f95e4c",
+              "gap": 12,
+              "padding": [
+                0,
+                80
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "j73yu",
+                  "name": "promoIcon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "truck",
+                  "iconFontFamily": "lucide",
+                  "fill": "#ffffffff"
+                },
+                {
+                  "type": "text",
+                  "id": "v63hf",
+                  "name": "promoText",
+                  "fill": "#ffffffff",
+                  "content": "¡ENVÍO GRATIS EN PEDIDOS DESDE $1,199!",
+                  "lineHeight": 1.4,
+                  "fontFamily": "DM Sans",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "zUJZ0",
+                  "name": "promoBtn",
+                  "height": 26,
+                  "cornerRadius": 4,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#ffffffff"
+                  },
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "r02rg",
+                      "fill": "#ffffffff",
+                      "content": "Ver condiciones",
+                      "fontFamily": "DM Sans",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "02bZk",
+              "type": "ref",
+              "ref": "E3AHM",
+              "width": "fill_container",
+              "name": "siteHeader",
+              "padding": [
+                16,
+                80
+              ],
+              "descendants": {
+                "yfcYu": {
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "./logos/logo-light-bg-cropped.png",
+                    "mode": "fit"
+                  }
+                },
+                "I5Zy1/3NkWG": {
+                  "fontFamily": "DM Sans"
+                },
+                "I5Zy1/SDJ7v": {
+                  "fontFamily": "DM Sans"
+                },
+                "L1qFp": {
+                  "fontFamily": "DM Sans"
+                },
+                "xm1M7": {
+                  "fontFamily": "DM Sans"
+                },
+                "PGdfp": {
+                  "fontFamily": "DM Sans"
+                },
+                "ShBUi": {
+                  "fontFamily": "DM Sans"
+                }
+              }
+            },
+            {
+              "id": "T9Jtc",
+              "type": "ref",
+              "ref": "yPP19",
+              "width": "fill_container",
+              "name": "catNav",
+              "descendants": {
+                "RggAX": {
+                  "fontFamily": "DM Sans"
+                },
+                "Sheti": {
+                  "fontFamily": "DM Sans"
+                },
+                "YaiIs": {
+                  "fontFamily": "DM Sans"
+                },
+                "yymfn": {
+                  "fontFamily": "DM Sans"
+                },
+                "DaX7a": {
+                  "fontFamily": "DM Sans"
+                },
+                "ThcyV": {
+                  "fontFamily": "DM Sans"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "OPYvh",
+              "name": "Hero Section",
+              "width": "fill_container",
+              "fill": "#fafafa",
+              "gap": 24,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "id": "QaU9c",
+                  "type": "ref",
+                  "ref": "aMG0O",
+                  "width": 420,
+                  "name": "heroLeft",
+                  "height": "fit_content",
+                  "descendants": {
+                    "rBzQI": {
+                      "fontFamily": "DM Sans"
+                    },
+                    "4jT03/7JGiM": {
+                      "fontFamily": "DM Sans"
+                    },
+                    "RFmIr/uaFCg": {
+                      "fontFamily": "DM Sans"
+                    },
+                    "CRkRN/XZ8NB": {
+                      "fontFamily": "DM Sans"
+                    },
+                    "CRkRN/7J6Rw": {
+                      "fontFamily": "DM Sans"
+                    },
+                    "0Rqta/CN7U3": {
+                      "fontFamily": "DM Sans"
+                    },
+                    "ALHyt/YmYzm": {
+                      "fontFamily": "DM Sans"
+                    },
+                    "zT39k": {
+                      "fontFamily": "DM Sans"
+                    },
+                    "btFHe/Z8L9p": {
+                      "fontFamily": "DM Sans"
+                    },
+                    "btFHe/xJnCf": {
+                      "fontFamily": "DM Sans"
+                    }
+                  }
+                },
+                {
+                  "id": "LKtM3",
+                  "type": "ref",
+                  "ref": "CF305",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "name": "heroRight",
+                  "descendants": {
+                    "5bcDw": {
+                      "fontFamily": "DM Sans"
+                    },
+                    "XXAEA": {
+                      "fontFamily": "DM Sans"
+                    },
+                    "JVNHs": {
+                      "fontFamily": "DM Sans"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "NbmW1",
+              "type": "ref",
+              "ref": "jIhs0",
+              "width": "fill_container",
+              "name": "valueProps",
+              "padding": [
+                0,
+                80
+              ],
+              "descendants": {
+                "H6uDL": {
+                  "fontFamily": "DM Sans"
+                },
+                "bIW5g": {
+                  "fontFamily": "DM Sans"
+                },
+                "rtcch": {
+                  "fontFamily": "DM Sans"
+                },
+                "dTyJm": {
+                  "fontFamily": "DM Sans"
+                },
+                "DAHLP": {
+                  "fontFamily": "DM Sans"
+                },
+                "I9Yk2": {
+                  "fontFamily": "DM Sans"
+                },
+                "RiGyE": {
+                  "fontFamily": "DM Sans"
+                },
+                "MuCUu": {
+                  "fontFamily": "DM Sans"
+                }
+              }
+            },
+            {
+              "id": "HjUAA",
+              "type": "ref",
+              "ref": "wei18",
+              "width": "fill_container",
+              "name": "brandLogos",
+              "padding": [
+                0,
+                80
+              ],
+              "descendants": {
+                "1tSR0": {
+                  "fontFamily": "DM Sans"
+                },
+                "AWPk3": {
+                  "fontFamily": "DM Sans"
+                },
+                "nGO42": {
+                  "fontFamily": "DM Sans"
+                },
+                "ydYTw": {
+                  "fontFamily": "DM Sans"
+                },
+                "hZCDH": {
+                  "fontFamily": "DM Sans"
+                },
+                "VEBrR": {
+                  "fontFamily": "DM Sans"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "sYelQ",
+              "name": "Recently Viewed",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "01YLF",
+                  "name": "recentTitle",
+                  "fill": "#3a3b3f",
+                  "content": "Últimos productos consultados",
+                  "lineHeight": 1.4,
+                  "fontFamily": "DM Sans",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "jMhOW",
+                  "name": "recentCards",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "id": "650XW",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc1",
+                      "descendants": {
+                        "NYBFI": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "yeDiv": {
+                          "fontFamily": "DM Sans"
+                        }
+                      }
+                    },
+                    {
+                      "id": "vW970",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc2",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Radiador, refrigeración del...",
+                          "fontFamily": "DM Sans"
+                        },
+                        "yeDiv": {
+                          "content": "NISSENS - 61017",
+                          "fontFamily": "DM Sans"
+                        }
+                      }
+                    },
+                    {
+                      "id": "bqZq6",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc3",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Pastillas de freno",
+                          "fontFamily": "DM Sans"
+                        },
+                        "yeDiv": {
+                          "content": "BREMBO - P 85 020",
+                          "fontFamily": "DM Sans"
+                        }
+                      }
+                    },
+                    {
+                      "id": "4AdHG",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc4",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Bujía de encendido",
+                          "fontFamily": "DM Sans"
+                        },
+                        "yeDiv": {
+                          "content": "NGK - BKR6E",
+                          "fontFamily": "DM Sans"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Q8e2c",
+              "type": "ref",
+              "ref": "JRiHe",
+              "width": "fill_container",
+              "name": "sectionDivider",
+              "descendants": {
+                "7ZqTY": {
+                  "fontFamily": "DM Sans"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "haE4a",
+              "name": "Category Grid",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ZDxzx",
+                  "name": "catRow1",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "id": "mKvoY",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "name": "cat1",
+                      "width": "fill_container",
+                      "descendants": {
+                        "kYXRj": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "orEHe": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "pCTkk": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "IyuzA": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "poYvl": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "ca6nO": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "sMZ8y": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "nvBPp": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "DM Sans"
+                        }
+                      }
+                    },
+                    {
+                      "id": "magEl",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat2",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Filtros y aceite",
+                          "fontFamily": "DM Sans"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "F2im9",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "filter",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "pCTkk": {
+                          "content": "Filtro",
+                          "fontFamily": "DM Sans"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "IyuzA": {
+                          "content": "Aceite / accesorios purga",
+                          "fontFamily": "DM Sans"
+                        },
+                        "poYvl": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "ca6nO": {
+                          "content": "Herramientas cambio de aceite",
+                          "fontFamily": "DM Sans"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "sMZ8y": {
+                          "content": "Otras piezas de filtración",
+                          "fontFamily": "DM Sans"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "nvBPp": {
+                          "content": "Aceite de motor",
+                          "fontFamily": "DM Sans"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "DM Sans"
+                        }
+                      }
+                    },
+                    {
+                      "id": "wduXC",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat3",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Dirección - Suspensión",
+                          "fontFamily": "DM Sans"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "T384c",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "arrow-up-down",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "pCTkk": {
+                          "content": "Amortiguadores",
+                          "fontFamily": "DM Sans"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "IyuzA": {
+                          "content": "Suspensión de ejes",
+                          "fontFamily": "DM Sans"
+                        },
+                        "poYvl": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "ca6nO": {
+                          "content": "Dirección",
+                          "fontFamily": "DM Sans"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "sMZ8y": {
+                          "content": "Transmisión",
+                          "fontFamily": "DM Sans"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "nvBPp": {
+                          "content": "Cubos y rodamientos",
+                          "fontFamily": "DM Sans"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "DM Sans"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "BBK49",
+                  "name": "catRow2",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "id": "a7Tn7",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat4",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Arranque y carga",
+                          "fontFamily": "DM Sans"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "7MqO2",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "battery-charging",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "pCTkk": {
+                          "content": "Batería",
+                          "fontFamily": "DM Sans"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "IyuzA": {
+                          "content": "Alternador",
+                          "fontFamily": "DM Sans"
+                        },
+                        "poYvl": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "ca6nO": {
+                          "content": "Motor de arranque",
+                          "fontFamily": "DM Sans"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "sMZ8y": {
+                          "content": "Cable de batería",
+                          "fontFamily": "DM Sans"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "nvBPp": {
+                          "content": "Bujías de precalentamiento",
+                          "fontFamily": "DM Sans"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "DM Sans"
+                        }
+                      }
+                    },
+                    {
+                      "id": "aIm2B",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat5",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Ópticas / Faros",
+                          "fontFamily": "DM Sans"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "Q0UXt",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "lightbulb",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "pCTkk": {
+                          "content": "Faro delantero",
+                          "fontFamily": "DM Sans"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "IyuzA": {
+                          "content": "Faro trasero",
+                          "fontFamily": "DM Sans"
+                        },
+                        "poYvl": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "ca6nO": {
+                          "content": "Bombillas",
+                          "fontFamily": "DM Sans"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "sMZ8y": {
+                          "content": "Intermitentes",
+                          "fontFamily": "DM Sans"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "nvBPp": {
+                          "content": "Luces antiniebla",
+                          "fontFamily": "DM Sans"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "DM Sans"
+                        }
+                      }
+                    },
+                    {
+                      "id": "wQkFn",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat6",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Frenado",
+                          "fontFamily": "DM Sans"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "jvozj",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "disc",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "pCTkk": {
+                          "content": "Pastillas de freno",
+                          "fontFamily": "DM Sans"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "IyuzA": {
+                          "content": "Discos de freno",
+                          "fontFamily": "DM Sans"
+                        },
+                        "poYvl": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "ca6nO": {
+                          "content": "Pinzas de freno",
+                          "fontFamily": "DM Sans"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "sMZ8y": {
+                          "content": "Líquido de frenos",
+                          "fontFamily": "DM Sans"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "nvBPp": {
+                          "content": "Tambores de freno",
+                          "fontFamily": "DM Sans"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "DM Sans"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "DM Sans"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Rwlna",
+              "type": "ref",
+              "ref": "alQzo",
+              "width": "fill_container",
+              "name": "nlSection",
+              "enabled": false,
+              "descendants": {
+                "zcuEK": {
+                  "fontFamily": "DM Sans"
+                },
+                "6244n": {
+                  "fontFamily": "DM Sans"
+                },
+                "Qx8lN": {
+                  "fontFamily": "DM Sans"
+                },
+                "n9jBQ/9CN1v": {
+                  "fontFamily": "DM Sans"
+                },
+                "bDvKF": {
+                  "fontFamily": "DM Sans"
+                }
+              }
+            },
+            {
+              "id": "Pxvg9",
+              "type": "ref",
+              "ref": "EhEXz",
+              "width": "fill_container",
+              "name": "footerRef",
+              "padding": [
+                48,
+                80
+              ],
+              "descendants": {
+                "JfU6r": {
+                  "fontFamily": "DM Sans"
+                },
+                "erPq8": {
+                  "fontFamily": "DM Sans"
+                },
+                "4FKi5": {
+                  "fontFamily": "DM Sans"
+                },
+                "BJb8y": {
+                  "fontFamily": "DM Sans"
+                },
+                "JoBWS": {
+                  "fontFamily": "DM Sans"
+                },
+                "ovwsp": {
+                  "fontFamily": "DM Sans"
+                },
+                "R8LSv": {
+                  "fontFamily": "DM Sans"
+                },
+                "a0dpk": {
+                  "fontFamily": "DM Sans"
+                },
+                "Y8pUw": {
+                  "fontFamily": "DM Sans"
+                },
+                "OOnIW": {
+                  "fontFamily": "DM Sans"
+                },
+                "vvMiw": {
+                  "fontFamily": "DM Sans"
+                },
+                "zoADc": {
+                  "fontFamily": "DM Sans"
+                },
+                "5jfZr": {
+                  "fontFamily": "DM Sans"
+                },
+                "4bqww": {
+                  "fontFamily": "DM Sans"
+                },
+                "EzNMw": {
+                  "fontFamily": "DM Sans"
+                },
+                "x9pVf": {
+                  "fontFamily": "DM Sans"
+                },
+                "eNyK9": {
+                  "fontFamily": "DM Sans"
+                },
+                "p5NkI": {
+                  "fontFamily": "DM Sans"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tUFw2",
+          "name": "4. Barlow",
+          "width": 1440,
+          "fill": "#fafafa",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "1wPVe",
+              "name": "promoBanner",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#f95e4c",
+              "gap": 12,
+              "padding": [
+                0,
+                80
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "FPEuK",
+                  "name": "promoIcon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "truck",
+                  "iconFontFamily": "lucide",
+                  "fill": "#ffffffff"
+                },
+                {
+                  "type": "text",
+                  "id": "ImR7B",
+                  "name": "promoText",
+                  "fill": "#ffffffff",
+                  "content": "¡ENVÍO GRATIS EN PEDIDOS DESDE $1,199!",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Barlow",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "8qbMG",
+                  "name": "promoBtn",
+                  "height": 26,
+                  "cornerRadius": 4,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#ffffffff"
+                  },
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "C9p5M",
+                      "fill": "#ffffffff",
+                      "content": "Ver condiciones",
+                      "fontFamily": "Barlow",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "nq8CI",
+              "type": "ref",
+              "ref": "E3AHM",
+              "width": "fill_container",
+              "name": "siteHeader",
+              "padding": [
+                16,
+                80
+              ],
+              "descendants": {
+                "yfcYu": {
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "./logos/logo-light-bg-cropped.png",
+                    "mode": "fit"
+                  }
+                },
+                "I5Zy1/3NkWG": {
+                  "fontFamily": "Barlow"
+                },
+                "I5Zy1/SDJ7v": {
+                  "fontFamily": "Barlow"
+                },
+                "L1qFp": {
+                  "fontFamily": "Barlow"
+                },
+                "xm1M7": {
+                  "fontFamily": "Barlow"
+                },
+                "PGdfp": {
+                  "fontFamily": "Barlow"
+                },
+                "ShBUi": {
+                  "fontFamily": "Barlow"
+                }
+              }
+            },
+            {
+              "id": "fAIkS",
+              "type": "ref",
+              "ref": "yPP19",
+              "width": "fill_container",
+              "name": "catNav",
+              "descendants": {
+                "RggAX": {
+                  "fontFamily": "Barlow"
+                },
+                "Sheti": {
+                  "fontFamily": "Barlow"
+                },
+                "YaiIs": {
+                  "fontFamily": "Barlow"
+                },
+                "yymfn": {
+                  "fontFamily": "Barlow"
+                },
+                "DaX7a": {
+                  "fontFamily": "Barlow"
+                },
+                "ThcyV": {
+                  "fontFamily": "Barlow"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "Qznf1",
+              "name": "Hero Section",
+              "width": "fill_container",
+              "fill": "#fafafa",
+              "gap": 24,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "id": "X9AQK",
+                  "type": "ref",
+                  "ref": "aMG0O",
+                  "width": 420,
+                  "name": "heroLeft",
+                  "height": "fit_content",
+                  "descendants": {
+                    "rBzQI": {
+                      "fontFamily": "Barlow"
+                    },
+                    "4jT03/7JGiM": {
+                      "fontFamily": "Barlow"
+                    },
+                    "RFmIr/uaFCg": {
+                      "fontFamily": "Barlow"
+                    },
+                    "CRkRN/XZ8NB": {
+                      "fontFamily": "Barlow"
+                    },
+                    "CRkRN/7J6Rw": {
+                      "fontFamily": "Barlow"
+                    },
+                    "0Rqta/CN7U3": {
+                      "fontFamily": "Barlow"
+                    },
+                    "ALHyt/YmYzm": {
+                      "fontFamily": "Barlow"
+                    },
+                    "zT39k": {
+                      "fontFamily": "Barlow"
+                    },
+                    "btFHe/Z8L9p": {
+                      "fontFamily": "Barlow"
+                    },
+                    "btFHe/xJnCf": {
+                      "fontFamily": "Barlow"
+                    }
+                  }
+                },
+                {
+                  "id": "uoDQx",
+                  "type": "ref",
+                  "ref": "CF305",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "name": "heroRight",
+                  "descendants": {
+                    "5bcDw": {
+                      "fontFamily": "Barlow"
+                    },
+                    "XXAEA": {
+                      "fontFamily": "Barlow"
+                    },
+                    "JVNHs": {
+                      "fontFamily": "Barlow"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "RZETy",
+              "type": "ref",
+              "ref": "jIhs0",
+              "width": "fill_container",
+              "name": "valueProps",
+              "padding": [
+                0,
+                80
+              ],
+              "descendants": {
+                "H6uDL": {
+                  "fontFamily": "Barlow"
+                },
+                "bIW5g": {
+                  "fontFamily": "Barlow"
+                },
+                "rtcch": {
+                  "fontFamily": "Barlow"
+                },
+                "dTyJm": {
+                  "fontFamily": "Barlow"
+                },
+                "DAHLP": {
+                  "fontFamily": "Barlow"
+                },
+                "I9Yk2": {
+                  "fontFamily": "Barlow"
+                },
+                "RiGyE": {
+                  "fontFamily": "Barlow"
+                },
+                "MuCUu": {
+                  "fontFamily": "Barlow"
+                }
+              }
+            },
+            {
+              "id": "JF4yk",
+              "type": "ref",
+              "ref": "wei18",
+              "width": "fill_container",
+              "name": "brandLogos",
+              "padding": [
+                0,
+                80
+              ],
+              "descendants": {
+                "1tSR0": {
+                  "fontFamily": "Barlow"
+                },
+                "AWPk3": {
+                  "fontFamily": "Barlow"
+                },
+                "nGO42": {
+                  "fontFamily": "Barlow"
+                },
+                "ydYTw": {
+                  "fontFamily": "Barlow"
+                },
+                "hZCDH": {
+                  "fontFamily": "Barlow"
+                },
+                "VEBrR": {
+                  "fontFamily": "Barlow"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "YP70q",
+              "name": "Recently Viewed",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "A6DYR",
+                  "name": "recentTitle",
+                  "fill": "#3a3b3f",
+                  "content": "Últimos productos consultados",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Barlow",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "LfcHt",
+                  "name": "recentCards",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "id": "p6Jnb",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc1",
+                      "descendants": {
+                        "NYBFI": {
+                          "fontFamily": "Barlow"
+                        },
+                        "yeDiv": {
+                          "fontFamily": "Barlow"
+                        }
+                      }
+                    },
+                    {
+                      "id": "7nVw6",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc2",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Radiador, refrigeración del...",
+                          "fontFamily": "Barlow"
+                        },
+                        "yeDiv": {
+                          "content": "NISSENS - 61017",
+                          "fontFamily": "Barlow"
+                        }
+                      }
+                    },
+                    {
+                      "id": "1C4ng",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc3",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Pastillas de freno",
+                          "fontFamily": "Barlow"
+                        },
+                        "yeDiv": {
+                          "content": "BREMBO - P 85 020",
+                          "fontFamily": "Barlow"
+                        }
+                      }
+                    },
+                    {
+                      "id": "YHFpc",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc4",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Bujía de encendido",
+                          "fontFamily": "Barlow"
+                        },
+                        "yeDiv": {
+                          "content": "NGK - BKR6E",
+                          "fontFamily": "Barlow"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "U39HT",
+              "type": "ref",
+              "ref": "JRiHe",
+              "width": "fill_container",
+              "name": "sectionDivider",
+              "descendants": {
+                "7ZqTY": {
+                  "fontFamily": "Barlow"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "VRYRk",
+              "name": "Category Grid",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "2Kjxz",
+                  "name": "catRow1",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "id": "KYqby",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "name": "cat1",
+                      "width": "fill_container",
+                      "descendants": {
+                        "kYXRj": {
+                          "fontFamily": "Barlow"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Barlow"
+                        },
+                        "pCTkk": {
+                          "fontFamily": "Barlow"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Barlow"
+                        },
+                        "IyuzA": {
+                          "fontFamily": "Barlow"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Barlow"
+                        },
+                        "ca6nO": {
+                          "fontFamily": "Barlow"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Barlow"
+                        },
+                        "sMZ8y": {
+                          "fontFamily": "Barlow"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Barlow"
+                        },
+                        "nvBPp": {
+                          "fontFamily": "Barlow"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Barlow"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Barlow"
+                        }
+                      }
+                    },
+                    {
+                      "id": "jxyhp",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat2",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Filtros y aceite",
+                          "fontFamily": "Barlow"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "NPC7K",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "filter",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Barlow"
+                        },
+                        "pCTkk": {
+                          "content": "Filtro",
+                          "fontFamily": "Barlow"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Barlow"
+                        },
+                        "IyuzA": {
+                          "content": "Aceite / accesorios purga",
+                          "fontFamily": "Barlow"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Barlow"
+                        },
+                        "ca6nO": {
+                          "content": "Herramientas cambio de aceite",
+                          "fontFamily": "Barlow"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Barlow"
+                        },
+                        "sMZ8y": {
+                          "content": "Otras piezas de filtración",
+                          "fontFamily": "Barlow"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Barlow"
+                        },
+                        "nvBPp": {
+                          "content": "Aceite de motor",
+                          "fontFamily": "Barlow"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Barlow"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Barlow"
+                        }
+                      }
+                    },
+                    {
+                      "id": "1lQCe",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat3",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Dirección - Suspensión",
+                          "fontFamily": "Barlow"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "RMJE2",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "arrow-up-down",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Barlow"
+                        },
+                        "pCTkk": {
+                          "content": "Amortiguadores",
+                          "fontFamily": "Barlow"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Barlow"
+                        },
+                        "IyuzA": {
+                          "content": "Suspensión de ejes",
+                          "fontFamily": "Barlow"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Barlow"
+                        },
+                        "ca6nO": {
+                          "content": "Dirección",
+                          "fontFamily": "Barlow"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Barlow"
+                        },
+                        "sMZ8y": {
+                          "content": "Transmisión",
+                          "fontFamily": "Barlow"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Barlow"
+                        },
+                        "nvBPp": {
+                          "content": "Cubos y rodamientos",
+                          "fontFamily": "Barlow"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Barlow"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Barlow"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "mAfmS",
+                  "name": "catRow2",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "id": "pEgww",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat4",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Arranque y carga",
+                          "fontFamily": "Barlow"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "gTTAG",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "battery-charging",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Barlow"
+                        },
+                        "pCTkk": {
+                          "content": "Batería",
+                          "fontFamily": "Barlow"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Barlow"
+                        },
+                        "IyuzA": {
+                          "content": "Alternador",
+                          "fontFamily": "Barlow"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Barlow"
+                        },
+                        "ca6nO": {
+                          "content": "Motor de arranque",
+                          "fontFamily": "Barlow"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Barlow"
+                        },
+                        "sMZ8y": {
+                          "content": "Cable de batería",
+                          "fontFamily": "Barlow"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Barlow"
+                        },
+                        "nvBPp": {
+                          "content": "Bujías de precalentamiento",
+                          "fontFamily": "Barlow"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Barlow"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Barlow"
+                        }
+                      }
+                    },
+                    {
+                      "id": "r3NhC",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat5",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Ópticas / Faros",
+                          "fontFamily": "Barlow"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "Evyjl",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "lightbulb",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Barlow"
+                        },
+                        "pCTkk": {
+                          "content": "Faro delantero",
+                          "fontFamily": "Barlow"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Barlow"
+                        },
+                        "IyuzA": {
+                          "content": "Faro trasero",
+                          "fontFamily": "Barlow"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Barlow"
+                        },
+                        "ca6nO": {
+                          "content": "Bombillas",
+                          "fontFamily": "Barlow"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Barlow"
+                        },
+                        "sMZ8y": {
+                          "content": "Intermitentes",
+                          "fontFamily": "Barlow"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Barlow"
+                        },
+                        "nvBPp": {
+                          "content": "Luces antiniebla",
+                          "fontFamily": "Barlow"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Barlow"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Barlow"
+                        }
+                      }
+                    },
+                    {
+                      "id": "BsYkQ",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat6",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Frenado",
+                          "fontFamily": "Barlow"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "m7Ml9",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "disc",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Barlow"
+                        },
+                        "pCTkk": {
+                          "content": "Pastillas de freno",
+                          "fontFamily": "Barlow"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Barlow"
+                        },
+                        "IyuzA": {
+                          "content": "Discos de freno",
+                          "fontFamily": "Barlow"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Barlow"
+                        },
+                        "ca6nO": {
+                          "content": "Pinzas de freno",
+                          "fontFamily": "Barlow"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Barlow"
+                        },
+                        "sMZ8y": {
+                          "content": "Líquido de frenos",
+                          "fontFamily": "Barlow"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Barlow"
+                        },
+                        "nvBPp": {
+                          "content": "Tambores de freno",
+                          "fontFamily": "Barlow"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Barlow"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Barlow"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Ih5BN",
+              "type": "ref",
+              "ref": "alQzo",
+              "width": "fill_container",
+              "name": "nlSection",
+              "enabled": false,
+              "descendants": {
+                "zcuEK": {
+                  "fontFamily": "Barlow"
+                },
+                "6244n": {
+                  "fontFamily": "Barlow"
+                },
+                "Qx8lN": {
+                  "fontFamily": "Barlow"
+                },
+                "n9jBQ/9CN1v": {
+                  "fontFamily": "Barlow"
+                },
+                "bDvKF": {
+                  "fontFamily": "Barlow"
+                }
+              }
+            },
+            {
+              "id": "zaMRi",
+              "type": "ref",
+              "ref": "EhEXz",
+              "width": "fill_container",
+              "name": "footerRef",
+              "padding": [
+                48,
+                80
+              ],
+              "descendants": {
+                "JfU6r": {
+                  "fontFamily": "Barlow"
+                },
+                "erPq8": {
+                  "fontFamily": "Barlow"
+                },
+                "4FKi5": {
+                  "fontFamily": "Barlow"
+                },
+                "BJb8y": {
+                  "fontFamily": "Barlow"
+                },
+                "JoBWS": {
+                  "fontFamily": "Barlow"
+                },
+                "ovwsp": {
+                  "fontFamily": "Barlow"
+                },
+                "R8LSv": {
+                  "fontFamily": "Barlow"
+                },
+                "a0dpk": {
+                  "fontFamily": "Barlow"
+                },
+                "Y8pUw": {
+                  "fontFamily": "Barlow"
+                },
+                "OOnIW": {
+                  "fontFamily": "Barlow"
+                },
+                "vvMiw": {
+                  "fontFamily": "Barlow"
+                },
+                "zoADc": {
+                  "fontFamily": "Barlow"
+                },
+                "5jfZr": {
+                  "fontFamily": "Barlow"
+                },
+                "4bqww": {
+                  "fontFamily": "Barlow"
+                },
+                "EzNMw": {
+                  "fontFamily": "Barlow"
+                },
+                "x9pVf": {
+                  "fontFamily": "Barlow"
+                },
+                "eNyK9": {
+                  "fontFamily": "Barlow"
+                },
+                "p5NkI": {
+                  "fontFamily": "Barlow"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "YGbOv",
+          "name": "5. Outfit",
+          "width": 1440,
+          "fill": "#fafafa",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "1ABxm",
+              "name": "promoBanner",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#f95e4c",
+              "gap": 12,
+              "padding": [
+                0,
+                80
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "1PZZp",
+                  "name": "promoIcon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "truck",
+                  "iconFontFamily": "lucide",
+                  "fill": "#ffffffff"
+                },
+                {
+                  "type": "text",
+                  "id": "mol6l",
+                  "name": "promoText",
+                  "fill": "#ffffffff",
+                  "content": "¡ENVÍO GRATIS EN PEDIDOS DESDE $1,199!",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Outfit",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "ipTxP",
+                  "name": "promoBtn",
+                  "height": 26,
+                  "cornerRadius": 4,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#ffffffff"
+                  },
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "SfZ05",
+                      "fill": "#ffffffff",
+                      "content": "Ver condiciones",
+                      "fontFamily": "Outfit",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "gvSyr",
+              "type": "ref",
+              "ref": "E3AHM",
+              "width": "fill_container",
+              "name": "siteHeader",
+              "padding": [
+                16,
+                80
+              ],
+              "descendants": {
+                "yfcYu": {
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "./logos/logo-light-bg-cropped.png",
+                    "mode": "fit"
+                  }
+                },
+                "I5Zy1/3NkWG": {
+                  "fontFamily": "Outfit"
+                },
+                "I5Zy1/SDJ7v": {
+                  "fontFamily": "Outfit"
+                },
+                "L1qFp": {
+                  "fontFamily": "Outfit"
+                },
+                "xm1M7": {
+                  "fontFamily": "Outfit"
+                },
+                "PGdfp": {
+                  "fontFamily": "Outfit"
+                },
+                "ShBUi": {
+                  "fontFamily": "Outfit"
+                }
+              }
+            },
+            {
+              "id": "7Gzaj",
+              "type": "ref",
+              "ref": "yPP19",
+              "width": "fill_container",
+              "name": "catNav",
+              "descendants": {
+                "RggAX": {
+                  "fontFamily": "Outfit"
+                },
+                "Sheti": {
+                  "fontFamily": "Outfit"
+                },
+                "YaiIs": {
+                  "fontFamily": "Outfit"
+                },
+                "yymfn": {
+                  "fontFamily": "Outfit"
+                },
+                "DaX7a": {
+                  "fontFamily": "Outfit"
+                },
+                "ThcyV": {
+                  "fontFamily": "Outfit"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "UhEP7",
+              "name": "Hero Section",
+              "width": "fill_container",
+              "fill": "#fafafa",
+              "gap": 24,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "id": "hXRFk",
+                  "type": "ref",
+                  "ref": "aMG0O",
+                  "width": 420,
+                  "name": "heroLeft",
+                  "height": "fit_content",
+                  "descendants": {
+                    "rBzQI": {
+                      "fontFamily": "Outfit"
+                    },
+                    "4jT03/7JGiM": {
+                      "fontFamily": "Outfit"
+                    },
+                    "RFmIr/uaFCg": {
+                      "fontFamily": "Outfit"
+                    },
+                    "CRkRN/XZ8NB": {
+                      "fontFamily": "Outfit"
+                    },
+                    "CRkRN/7J6Rw": {
+                      "fontFamily": "Outfit"
+                    },
+                    "0Rqta/CN7U3": {
+                      "fontFamily": "Outfit"
+                    },
+                    "ALHyt/YmYzm": {
+                      "fontFamily": "Outfit"
+                    },
+                    "zT39k": {
+                      "fontFamily": "Outfit"
+                    },
+                    "btFHe/Z8L9p": {
+                      "fontFamily": "Outfit"
+                    },
+                    "btFHe/xJnCf": {
+                      "fontFamily": "Outfit"
+                    }
+                  }
+                },
+                {
+                  "id": "TFzPf",
+                  "type": "ref",
+                  "ref": "CF305",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "name": "heroRight",
+                  "descendants": {
+                    "5bcDw": {
+                      "fontFamily": "Outfit"
+                    },
+                    "XXAEA": {
+                      "fontFamily": "Outfit"
+                    },
+                    "JVNHs": {
+                      "fontFamily": "Outfit"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "AHMBH",
+              "type": "ref",
+              "ref": "jIhs0",
+              "width": "fill_container",
+              "name": "valueProps",
+              "padding": [
+                0,
+                80
+              ],
+              "descendants": {
+                "H6uDL": {
+                  "fontFamily": "Outfit"
+                },
+                "bIW5g": {
+                  "fontFamily": "Outfit"
+                },
+                "rtcch": {
+                  "fontFamily": "Outfit"
+                },
+                "dTyJm": {
+                  "fontFamily": "Outfit"
+                },
+                "DAHLP": {
+                  "fontFamily": "Outfit"
+                },
+                "I9Yk2": {
+                  "fontFamily": "Outfit"
+                },
+                "RiGyE": {
+                  "fontFamily": "Outfit"
+                },
+                "MuCUu": {
+                  "fontFamily": "Outfit"
+                }
+              }
+            },
+            {
+              "id": "yxQuP",
+              "type": "ref",
+              "ref": "wei18",
+              "width": "fill_container",
+              "name": "brandLogos",
+              "padding": [
+                0,
+                80
+              ],
+              "descendants": {
+                "1tSR0": {
+                  "fontFamily": "Outfit"
+                },
+                "AWPk3": {
+                  "fontFamily": "Outfit"
+                },
+                "nGO42": {
+                  "fontFamily": "Outfit"
+                },
+                "ydYTw": {
+                  "fontFamily": "Outfit"
+                },
+                "hZCDH": {
+                  "fontFamily": "Outfit"
+                },
+                "VEBrR": {
+                  "fontFamily": "Outfit"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "HGJoB",
+              "name": "Recently Viewed",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "IHkW0",
+                  "name": "recentTitle",
+                  "fill": "#3a3b3f",
+                  "content": "Últimos productos consultados",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Outfit",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "037Si",
+                  "name": "recentCards",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "id": "HWx62",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc1",
+                      "descendants": {
+                        "NYBFI": {
+                          "fontFamily": "Outfit"
+                        },
+                        "yeDiv": {
+                          "fontFamily": "Outfit"
+                        }
+                      }
+                    },
+                    {
+                      "id": "ysWI1",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc2",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Radiador, refrigeración del...",
+                          "fontFamily": "Outfit"
+                        },
+                        "yeDiv": {
+                          "content": "NISSENS - 61017",
+                          "fontFamily": "Outfit"
+                        }
+                      }
+                    },
+                    {
+                      "id": "Tz8UT",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc3",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Pastillas de freno",
+                          "fontFamily": "Outfit"
+                        },
+                        "yeDiv": {
+                          "content": "BREMBO - P 85 020",
+                          "fontFamily": "Outfit"
+                        }
+                      }
+                    },
+                    {
+                      "id": "5iVJt",
+                      "type": "ref",
+                      "ref": "iPrKp",
+                      "name": "rc4",
+                      "descendants": {
+                        "NYBFI": {
+                          "content": "Bujía de encendido",
+                          "fontFamily": "Outfit"
+                        },
+                        "yeDiv": {
+                          "content": "NGK - BKR6E",
+                          "fontFamily": "Outfit"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "8X4AT",
+              "type": "ref",
+              "ref": "JRiHe",
+              "width": "fill_container",
+              "name": "sectionDivider",
+              "descendants": {
+                "7ZqTY": {
+                  "fontFamily": "Outfit"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "Iz6CJ",
+              "name": "Category Grid",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "oImtT",
+                  "name": "catRow1",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "id": "ZxOB5",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "name": "cat1",
+                      "width": "fill_container",
+                      "descendants": {
+                        "kYXRj": {
+                          "fontFamily": "Outfit"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Outfit"
+                        },
+                        "pCTkk": {
+                          "fontFamily": "Outfit"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Outfit"
+                        },
+                        "IyuzA": {
+                          "fontFamily": "Outfit"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Outfit"
+                        },
+                        "ca6nO": {
+                          "fontFamily": "Outfit"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Outfit"
+                        },
+                        "sMZ8y": {
+                          "fontFamily": "Outfit"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Outfit"
+                        },
+                        "nvBPp": {
+                          "fontFamily": "Outfit"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Outfit"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Outfit"
+                        }
+                      }
+                    },
+                    {
+                      "id": "ZWSTi",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat2",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Filtros y aceite",
+                          "fontFamily": "Outfit"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "MAKek",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "filter",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Outfit"
+                        },
+                        "pCTkk": {
+                          "content": "Filtro",
+                          "fontFamily": "Outfit"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Outfit"
+                        },
+                        "IyuzA": {
+                          "content": "Aceite / accesorios purga",
+                          "fontFamily": "Outfit"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Outfit"
+                        },
+                        "ca6nO": {
+                          "content": "Herramientas cambio de aceite",
+                          "fontFamily": "Outfit"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Outfit"
+                        },
+                        "sMZ8y": {
+                          "content": "Otras piezas de filtración",
+                          "fontFamily": "Outfit"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Outfit"
+                        },
+                        "nvBPp": {
+                          "content": "Aceite de motor",
+                          "fontFamily": "Outfit"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Outfit"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Outfit"
+                        }
+                      }
+                    },
+                    {
+                      "id": "br6nc",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat3",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Dirección - Suspensión",
+                          "fontFamily": "Outfit"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "QCEpd",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "arrow-up-down",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Outfit"
+                        },
+                        "pCTkk": {
+                          "content": "Amortiguadores",
+                          "fontFamily": "Outfit"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Outfit"
+                        },
+                        "IyuzA": {
+                          "content": "Suspensión de ejes",
+                          "fontFamily": "Outfit"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Outfit"
+                        },
+                        "ca6nO": {
+                          "content": "Dirección",
+                          "fontFamily": "Outfit"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Outfit"
+                        },
+                        "sMZ8y": {
+                          "content": "Transmisión",
+                          "fontFamily": "Outfit"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Outfit"
+                        },
+                        "nvBPp": {
+                          "content": "Cubos y rodamientos",
+                          "fontFamily": "Outfit"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Outfit"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Outfit"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "bac6N",
+                  "name": "catRow2",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "id": "X6Jcg",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat4",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Arranque y carga",
+                          "fontFamily": "Outfit"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "1DXmu",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "battery-charging",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Outfit"
+                        },
+                        "pCTkk": {
+                          "content": "Batería",
+                          "fontFamily": "Outfit"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Outfit"
+                        },
+                        "IyuzA": {
+                          "content": "Alternador",
+                          "fontFamily": "Outfit"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Outfit"
+                        },
+                        "ca6nO": {
+                          "content": "Motor de arranque",
+                          "fontFamily": "Outfit"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Outfit"
+                        },
+                        "sMZ8y": {
+                          "content": "Cable de batería",
+                          "fontFamily": "Outfit"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Outfit"
+                        },
+                        "nvBPp": {
+                          "content": "Bujías de precalentamiento",
+                          "fontFamily": "Outfit"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Outfit"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Outfit"
+                        }
+                      }
+                    },
+                    {
+                      "id": "CLDeN",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat5",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Ópticas / Faros",
+                          "fontFamily": "Outfit"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "d594S",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "lightbulb",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Outfit"
+                        },
+                        "pCTkk": {
+                          "content": "Faro delantero",
+                          "fontFamily": "Outfit"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Outfit"
+                        },
+                        "IyuzA": {
+                          "content": "Faro trasero",
+                          "fontFamily": "Outfit"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Outfit"
+                        },
+                        "ca6nO": {
+                          "content": "Bombillas",
+                          "fontFamily": "Outfit"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Outfit"
+                        },
+                        "sMZ8y": {
+                          "content": "Intermitentes",
+                          "fontFamily": "Outfit"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Outfit"
+                        },
+                        "nvBPp": {
+                          "content": "Luces antiniebla",
+                          "fontFamily": "Outfit"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Outfit"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Outfit"
+                        }
+                      }
+                    },
+                    {
+                      "id": "Q4NVT",
+                      "type": "ref",
+                      "ref": "syaOd",
+                      "width": "fill_container",
+                      "name": "cat6",
+                      "descendants": {
+                        "kYXRj": {
+                          "content": "Frenado",
+                          "fontFamily": "Outfit"
+                        },
+                        "RnDgO": {
+                          "type": "icon_font",
+                          "id": "4isba",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "disc",
+                          "iconFontFamily": "lucide",
+                          "fill": "#636363"
+                        },
+                        "orEHe": {
+                          "fontFamily": "Outfit"
+                        },
+                        "pCTkk": {
+                          "content": "Pastillas de freno",
+                          "fontFamily": "Outfit"
+                        },
+                        "UtgQX": {
+                          "fontFamily": "Outfit"
+                        },
+                        "IyuzA": {
+                          "content": "Discos de freno",
+                          "fontFamily": "Outfit"
+                        },
+                        "poYvl": {
+                          "fontFamily": "Outfit"
+                        },
+                        "ca6nO": {
+                          "content": "Pinzas de freno",
+                          "fontFamily": "Outfit"
+                        },
+                        "Ip6Hn": {
+                          "fontFamily": "Outfit"
+                        },
+                        "sMZ8y": {
+                          "content": "Líquido de frenos",
+                          "fontFamily": "Outfit"
+                        },
+                        "rgmiN": {
+                          "fontFamily": "Outfit"
+                        },
+                        "nvBPp": {
+                          "content": "Tambores de freno",
+                          "fontFamily": "Outfit"
+                        },
+                        "p6IlT": {
+                          "fontFamily": "Outfit"
+                        },
+                        "uhsTm": {
+                          "fontFamily": "Outfit"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "pGGcf",
+              "type": "ref",
+              "ref": "alQzo",
+              "width": "fill_container",
+              "name": "nlSection",
+              "enabled": false,
+              "descendants": {
+                "zcuEK": {
+                  "fontFamily": "Outfit"
+                },
+                "6244n": {
+                  "fontFamily": "Outfit"
+                },
+                "Qx8lN": {
+                  "fontFamily": "Outfit"
+                },
+                "n9jBQ/9CN1v": {
+                  "fontFamily": "Outfit"
+                },
+                "bDvKF": {
+                  "fontFamily": "Outfit"
+                }
+              }
+            },
+            {
+              "id": "xPfpc",
+              "type": "ref",
+              "ref": "EhEXz",
+              "width": "fill_container",
+              "name": "footerRef",
+              "padding": [
+                48,
+                80
+              ],
+              "descendants": {
+                "JfU6r": {
+                  "fontFamily": "Outfit"
+                },
+                "erPq8": {
+                  "fontFamily": "Outfit"
+                },
+                "4FKi5": {
+                  "fontFamily": "Outfit"
+                },
+                "BJb8y": {
+                  "fontFamily": "Outfit"
+                },
+                "JoBWS": {
+                  "fontFamily": "Outfit"
+                },
+                "ovwsp": {
+                  "fontFamily": "Outfit"
+                },
+                "R8LSv": {
+                  "fontFamily": "Outfit"
+                },
+                "a0dpk": {
+                  "fontFamily": "Outfit"
+                },
+                "Y8pUw": {
+                  "fontFamily": "Outfit"
+                },
+                "OOnIW": {
+                  "fontFamily": "Outfit"
+                },
+                "vvMiw": {
+                  "fontFamily": "Outfit"
+                },
+                "zoADc": {
+                  "fontFamily": "Outfit"
+                },
+                "5jfZr": {
+                  "fontFamily": "Outfit"
+                },
+                "4bqww": {
+                  "fontFamily": "Outfit"
+                },
+                "EzNMw": {
+                  "fontFamily": "Outfit"
+                },
+                "x9pVf": {
+                  "fontFamily": "Outfit"
+                },
+                "eNyK9": {
+                  "fontFamily": "Outfit"
+                },
+                "p5NkI": {
+                  "fontFamily": "Outfit"
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "variables": {
