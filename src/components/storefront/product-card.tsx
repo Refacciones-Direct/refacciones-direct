@@ -16,7 +16,7 @@ export function ProductCard({ name, reference }: ProductCardProps) {
       <div className="relative h-40 w-full bg-bg-light">
         <button
           type="button"
-          className="absolute right-7 top-2 rounded-full bg-white p-1 shadow-sm text-muted-foreground hover:bg-muted"
+          className="absolute right-2 top-2 rounded-full bg-white p-1 shadow-sm text-muted-foreground hover:bg-muted"
         >
           <X className="size-3" />
         </button>
