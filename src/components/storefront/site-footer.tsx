@@ -22,7 +22,7 @@ export async function SiteFooter() {
         <div className="grid grid-cols-4 gap-12">
           {/* Column 1 - Help & payments */}
           <div className="flex flex-col gap-4">
-            <h4 className="text-sm font-semibold">{t('footer.helpTitle')}</h4>
+            <h4 className="text-base font-semibold">{t('footer.helpTitle')}</h4>
             <span className="cursor-pointer text-sm text-white hover:text-white/80">
               {t('footer.returnLink')}
             </span>
@@ -64,7 +64,7 @@ export async function SiteFooter() {
 
           {/* Column 4 - Social */}
           <div className="flex flex-col gap-3">
-            <h4 className="text-sm font-semibold">{t('footer.followTitle')}</h4>
+            <h4 className="text-base font-semibold">{t('footer.followTitle')}</h4>
             <div className="flex gap-3">
               {socialLinks.map(({ icon: Icon, label }) => (
                 <span

@@ -28,8 +28,8 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   return (
-    <html lang={locale}>
-      <body className={`${outfit.variable} ${geistMono.variable} antialiased`}>
+    <html lang={locale} className={`${outfit.variable} ${geistMono.variable}`}>
+      <body className="antialiased">
         <AuthKitProvider>
           {children}
           <SpeedInsights />

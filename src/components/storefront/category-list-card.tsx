@@ -26,7 +26,7 @@ export function CategoryListCard({ title, icon, links, viewMoreText }: CategoryL
         {links.map((link) => (
           <li key={link} className="flex items-center gap-1.5">
             <ChevronRight className="size-3.5 shrink-0 text-brand-blue" />
-            <span className="cursor-pointer text-sm text-brand-blue hover:underline">
+            <span className="cursor-pointer text-base text-brand-blue hover:underline">
               {link}
             </span>
           </li>
@@ -35,7 +35,7 @@ export function CategoryListCard({ title, icon, links, viewMoreText }: CategoryL
 
       {/* View more */}
       <div className="mt-3">
-        <span className="inline-flex cursor-pointer items-center gap-1.5 text-sm font-bold text-brand-navy hover:underline">
+        <span className="inline-flex cursor-pointer items-center gap-1.5 text-base font-bold text-brand-navy hover:underline">
           <ChevronRight className="size-3.5 shrink-0" />
           {viewMoreText}
         </span>

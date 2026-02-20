@@ -9,7 +9,7 @@ export async function PromoBanner() {
   return (
     <div
       data-slot="promo-banner"
-      className={cn('w-full bg-brand-red text-sm font-semibold text-white')}
+      className={cn('w-full bg-brand-red text-base font-semibold text-white')}
     >
       <div className="mx-auto flex h-[52px] max-w-7xl items-center justify-center gap-3 px-4">
         <Truck className="size-4 shrink-0" />

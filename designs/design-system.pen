@@ -3617,7 +3617,7 @@
                   "type": "ref",
                   "ref": "C3KOZ",
                   "x": 24,
-                  "y": 24.01994370166805,
+                  "y": 24.019943701668048,
                   "width": "fill_container",
                   "descendants": {
                     "NEMHS": {
@@ -4929,7 +4929,7 @@
                   "content": "¡ENVÍO GRATIS EN PEDIDOS DESDE $1,199!",
                   "lineHeight": 1.4,
                   "fontFamily": "Outfit",
-                  "fontSize": 14,
+                  "fontSize": 16,
                   "fontWeight": "600"
                 },
                 {
@@ -5493,7 +5493,7 @@
                           "content": "PIEZAS NUEVAS Y ORIGINALES",
                           "lineHeight": 1.4,
                           "fontFamily": "Outfit",
-                          "fontSize": 12,
+                          "fontSize": 14,
                           "fontWeight": "700",
                           "fontStyle": "italic"
                         },
@@ -5545,7 +5545,7 @@
                           "content": "EXPERTOS EN MECÁNICA",
                           "lineHeight": 1.4,
                           "fontFamily": "Outfit",
-                          "fontSize": 12,
+                          "fontSize": 14,
                           "fontWeight": "700",
                           "fontStyle": "italic"
                         },
@@ -5597,7 +5597,7 @@
                           "content": "EL MAYOR CATÁLOGO",
                           "lineHeight": 1.4,
                           "fontFamily": "Outfit",
-                          "fontSize": 12,
+                          "fontSize": 14,
                           "fontWeight": "700",
                           "fontStyle": "italic"
                         },
@@ -5649,7 +5649,7 @@
                           "content": "ENTREGA",
                           "lineHeight": 1.4,
                           "fontFamily": "Outfit",
-                          "fontSize": 12,
+                          "fontSize": 14,
                           "fontWeight": "700",
                           "fontStyle": "italic"
                         },
@@ -6070,7 +6070,7 @@
                           "content": "Ayuda y contacto",
                           "lineHeight": 1.4,
                           "fontFamily": "Outfit",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "600"
                         },
                         {
@@ -6338,7 +6338,7 @@
                           "content": "Síguenos:",
                           "lineHeight": 1.4,
                           "fontFamily": "Outfit",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "600"
                         },
                         {
@@ -6468,7 +6468,7 @@
                       "content": "Buscar pieza, marca, referencia...",
                       "lineHeight": 1.4,
                       "fontFamily": "Outfit",
-                      "fontSize": 14,
+                      "fontSize": 16,
                       "fontWeight": "normal"
                     }
                   ]
@@ -6686,7 +6686,7 @@
                           "fill": "#0f6bff",
                           "content": ">",
                           "fontFamily": "Outfit",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         },
                         {
@@ -6697,7 +6697,7 @@
                           "content": "Correas",
                           "lineHeight": 1.4,
                           "fontFamily": "Outfit",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -6716,7 +6716,7 @@
                           "fill": "#0f6bff",
                           "content": ">",
                           "fontFamily": "Outfit",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         },
                         {
@@ -6727,7 +6727,7 @@
                           "content": "Refrigeración de motor",
                           "lineHeight": 1.4,
                           "fontFamily": "Outfit",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -6746,7 +6746,7 @@
                           "fill": "#0f6bff",
                           "content": ">",
                           "fontFamily": "Outfit",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         },
                         {
@@ -6757,7 +6757,7 @@
                           "content": "Inyección y carburación",
                           "lineHeight": 1.4,
                           "fontFamily": "Outfit",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -6776,7 +6776,7 @@
                           "fill": "#0f6bff",
                           "content": ">",
                           "fontFamily": "Outfit",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         },
                         {
@@ -6787,7 +6787,7 @@
                           "content": "Captores y cables motor",
                           "lineHeight": 1.4,
                           "fontFamily": "Outfit",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -6806,7 +6806,7 @@
                           "fill": "#0f6bff",
                           "content": ">",
                           "fontFamily": "Outfit",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         },
                         {
@@ -6817,7 +6817,7 @@
                           "content": "Motor y culata",
                           "lineHeight": 1.4,
                           "fontFamily": "Outfit",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -6838,7 +6838,7 @@
                       "fill": "#001166",
                       "content": ">",
                       "fontFamily": "Outfit",
-                      "fontSize": 14,
+                      "fontSize": 16,
                       "fontWeight": "700"
                     },
                     {
@@ -6849,7 +6849,7 @@
                       "content": "Ver más",
                       "lineHeight": 1.4,
                       "fontFamily": "Outfit",
-                      "fontSize": 14,
+                      "fontSize": 16,
                       "fontWeight": "700"
                     }
                   ]
@@ -10373,7 +10373,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -10406,7 +10406,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -10473,7 +10473,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -10506,7 +10506,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -10573,7 +10573,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -10606,7 +10606,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -10673,7 +10673,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -10706,7 +10706,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -10773,7 +10773,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -10806,7 +10806,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -10903,7 +10903,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -10936,7 +10936,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -11004,7 +11004,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11037,7 +11037,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -11105,7 +11105,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11138,7 +11138,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -11206,7 +11206,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11239,7 +11239,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -11307,7 +11307,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11340,7 +11340,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 }
                               ]
@@ -11527,7 +11527,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11562,7 +11562,7 @@
                                   "content": "Select Option",
                                   "lineHeight": 1.4285714285714286,
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 },
                                 {
@@ -11638,7 +11638,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11673,7 +11673,7 @@
                                   "content": "Select Option",
                                   "lineHeight": 1.4285714285714286,
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 },
                                 {
@@ -11749,7 +11749,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11784,7 +11784,7 @@
                                   "content": "Selected Option",
                                   "lineHeight": 1.4285714285714286,
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 },
                                 {
@@ -11860,7 +11860,7 @@
                                   "lineHeight": 1.4285714285714286,
                                   "textAlignVertical": "middle",
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -11895,7 +11895,7 @@
                                   "content": "Select Option",
                                   "lineHeight": 1.4285714285714286,
                                   "fontFamily": "Outfit",
-                                  "fontSize": 14,
+                                  "fontSize": 16,
                                   "fontWeight": "normal"
                                 },
                                 {
