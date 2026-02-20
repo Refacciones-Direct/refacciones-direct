@@ -18,7 +18,7 @@ export async function SiteHeader() {
         {/* Search */}
         <Link
           href="/search"
-          className="flex max-w-120 flex-1 items-center gap-2 rounded-md border border-border bg-background px-3 py-2 text-sm text-muted-foreground hover:border-brand-blue"
+          className="flex max-w-120 flex-1 items-center gap-2 rounded-md border border-input bg-background px-3 py-2 text-sm text-muted-foreground shadow-xs hover:border-brand-blue"
         >
           <Search className="size-4.5 shrink-0" />
           <span>{t('header.searchPlaceholder')}</span>
