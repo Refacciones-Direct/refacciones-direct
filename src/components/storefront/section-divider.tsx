@@ -7,7 +7,9 @@ export async function SectionDivider() {
   return (
     <div
       data-slot="section-divider"
-      className={cn('w-full bg-brand-navy px-8 py-3 text-center text-base font-bold text-white')}
+      className={cn(
+        'flex h-12 w-full items-center justify-center bg-brand-navy text-base font-bold text-white',
+      )}
     >
       {t('sectionDivider.text')}
     </div>

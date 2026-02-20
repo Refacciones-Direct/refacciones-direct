@@ -69,10 +69,10 @@ export async function SiteFooter() {
               {socialLinks.map(({ icon: Icon, label }) => (
                 <span
                   key={label}
-                  className="flex size-9 cursor-pointer items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20"
+                  className="cursor-pointer text-white hover:text-white/80"
                   aria-label={label}
                 >
-                  <Icon className="size-4" />
+                  <Icon className="size-6" />
                 </span>
               ))}
             </div>

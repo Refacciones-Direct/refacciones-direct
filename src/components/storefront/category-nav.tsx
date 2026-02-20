@@ -28,8 +28,8 @@ export async function CategoryNav() {
           href="/"
           className="flex items-center gap-1.5 text-bright-yellow hover:text-bright-yellow/80"
         >
-          <Tag className="size-4" />
-          <span>{t('categoryNav.ofertas')}</span>
+          <Tag className="size-3.5" />
+          <span className="font-semibold">{t('categoryNav.ofertas')}</span>
         </Link>
       </div>
     </nav>

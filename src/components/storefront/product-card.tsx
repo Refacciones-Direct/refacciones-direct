@@ -16,14 +16,14 @@ export function ProductCard({ name, reference }: ProductCardProps) {
       <div className="relative h-40 w-full bg-bg-light">
         <button
           type="button"
-          className="absolute right-2 top-2 rounded-full bg-white/80 p-1 text-muted-foreground hover:bg-white"
+          className="absolute right-7 top-2 rounded-full bg-white p-1 shadow-sm text-muted-foreground hover:bg-muted"
         >
           <X className="size-3" />
         </button>
       </div>
 
       {/* Product info */}
-      <div className="p-3">
+      <div className="flex flex-col gap-1.5 p-3">
         <p className="text-sm font-medium">{name}</p>
         <p className="text-xs text-muted-foreground">{reference}</p>
       </div>
