@@ -22,7 +22,7 @@ export async function ValueProps() {
               <span className="text-xs font-bold italic uppercase text-brand-blue">
                 {t(`valueProps.${titleKey}`)}
               </span>
-              <span className="text-[11px] uppercase text-brand-blue">
+              <span className="text-sm uppercase text-brand-blue">
                 {t(`valueProps.${subKey}`)}
               </span>
             </div>
