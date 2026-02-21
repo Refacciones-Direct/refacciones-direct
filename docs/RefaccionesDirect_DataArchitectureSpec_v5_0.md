@@ -41,6 +41,7 @@ related_documents:
 ---
 
 # RefaccionesDirect
+
 ## Data Architecture Specification
 
 **Version 5.0** | February 2026  
@@ -50,14 +51,14 @@ related_documents:
 
 ## Document History
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0 | Jan 2026 | Initial specification |
-| 2.0 | Jan 2026 | Consolidated pipeline spec; added VCdb strategy |
-| 2.5 | Jan 2026 | Search Architecture: decided Postgres for MVP |
-| 3.0 | Jan 2026 | Stakeholder validation; confirmed facts integrated |
-| 3.1 | Jan 2026 | Removed duplicates with Technical Architecture; added frontmatter |
-| 4.0 | Jan 2026 | Integrated ML deep dive research; three-layer validation; explicit action model |
+| Version | Date         | Changes                                                                                                                                                                                                                                                                                                       |
+| ------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.0     | Jan 2026     | Initial specification                                                                                                                                                                                                                                                                                         |
+| 2.0     | Jan 2026     | Consolidated pipeline spec; added VCdb strategy                                                                                                                                                                                                                                                               |
+| 2.5     | Jan 2026     | Search Architecture: decided Postgres for MVP                                                                                                                                                                                                                                                                 |
+| 3.0     | Jan 2026     | Stakeholder validation; confirmed facts integrated                                                                                                                                                                                                                                                            |
+| 3.1     | Jan 2026     | Removed duplicates with Technical Architecture; added frontmatter                                                                                                                                                                                                                                             |
+| 4.0     | Jan 2026     | Integrated ML deep dive research; three-layer validation; explicit action model                                                                                                                                                                                                                               |
 | **5.0** | **Feb 2026** | **🆕 Major update: Two-sheet template model (Partes + Aplicaciones); template registry pattern for category-specific parsing; JSONB attributes column on parts table; template detection via Metadata sheet; real ACR data analysis integrated; import pipeline architecture consolidated from separate doc** |
 
 ---
@@ -91,7 +92,7 @@ CREATE TABLE manufacturers (
   user_id UUID REFERENCES auth.users(id),
   company_name VARCHAR(255) NOT NULL,
   brand_name VARCHAR(100) NOT NULL,
-  display_mode VARCHAR(20) DEFAULT 'brand_only'  
+  display_mode VARCHAR(20) DEFAULT 'brand_only'
     CHECK (display_mode IN ('brand_only', 'company_name')),
   rfc VARCHAR(13),
   created_at TIMESTAMPTZ DEFAULT NOW(),
@@ -108,7 +109,7 @@ CREATE TABLE vehicles (
   engine VARCHAR(50),
   submodel VARCHAR(100),
   created_at TIMESTAMPTZ DEFAULT NOW(),
-  
+
   UNIQUE(make, model, year_start, year_end, engine, submodel)
 );
 
@@ -137,7 +138,7 @@ CREATE TABLE parts (
   is_active BOOLEAN DEFAULT true,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW(),
-  
+
   UNIQUE(manufacturer_id, sku)
 );
 
@@ -147,7 +148,7 @@ CREATE TABLE fitments (
   part_id UUID NOT NULL REFERENCES parts(id) ON DELETE CASCADE,
   vehicle_id UUID NOT NULL REFERENCES vehicles(id),
   created_at TIMESTAMPTZ DEFAULT NOW(),
-  
+
   UNIQUE(part_id, vehicle_id)
 );
 
@@ -159,7 +160,7 @@ CREATE TABLE oe_crossrefs (
   oe_number_normalized VARCHAR(50) NOT NULL,
   oe_brand VARCHAR(100),
   created_at TIMESTAMPTZ DEFAULT NOW(),
-  
+
   UNIQUE(part_id, oe_number)
 );
 
@@ -213,14 +214,14 @@ CREATE INDEX idx_import_jobs_manufacturer ON import_jobs(manufacturer_id);
 
 **🆕 v5.0 Schema Changes from v4.0:**
 
-| Change | Reason |
-|--------|--------|
-| Added `parts.part_type` | Pipeline needs to know what kind of part this is for search filters |
-| Added `parts.attributes JSONB` | Category-specific attributes stored flexibly (see Section 3.5) |
-| Added `import_jobs.template_type` | Track which template was used for each import |
-| Added `import_errors.sheet_name` | Two-sheet model means errors can come from either sheet |
-| Removed `fitments.qualifiers JSONB` | Attributes now live on `parts.attributes` instead — they describe the part, not the fitment |
-| Added GIN index on `parts.attributes` | Efficient JSONB queries for attribute filtering |
+| Change                                | Reason                                                                                      |
+| ------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Added `parts.part_type`               | Pipeline needs to know what kind of part this is for search filters                         |
+| Added `parts.attributes JSONB`        | Category-specific attributes stored flexibly (see Section 3.5)                              |
+| Added `import_jobs.template_type`     | Track which template was used for each import                                               |
+| Added `import_errors.sheet_name`      | Two-sheet model means errors can come from either sheet                                     |
+| Removed `fitments.qualifiers JSONB`   | Attributes now live on `parts.attributes` instead — they describe the part, not the fitment |
+| Added GIN index on `parts.attributes` | Efficient JSONB queries for attribute filtering                                             |
 
 ### 1.3 Order Tables
 
@@ -288,17 +289,20 @@ Deletion uses explicit "Status" column with value "discontinued". Setting quanti
 ### 2.2 Three-Layer Validation System
 
 **Layer 1: Template-Level (In Excel, before upload)**
+
 - Pre-populated dropdowns from hidden sheet
 - Real-time validation while user edits
 - "Obligatorio" / "Opcional" indicators on columns
 
 **Layer 2: Server-Side Normalization (Auto-fix)**
+
 - Trim whitespace from all fields
 - Normalize case for Make, Model, Position, DriveType
 - Standardize known variations (4X4 → 4WD)
 - Log ALL changes made for transparency
 
 **Layer 3: Partial Success with Error File**
+
 - Process ALL valid rows
 - Collect errors for invalid rows
 - Return downloadable error file with only failed rows + error message column
@@ -369,6 +373,7 @@ DELETED  ← Hard delete (manual only, requires confirmation)
 ```
 
 Visibility rules:
+
 - ACTIVE + stock > 0 → Visible to customers
 - ACTIVE + stock = 0 → Auto-paused, hidden
 - PAUSED → Hidden, shown in dashboard
@@ -381,10 +386,16 @@ const normalizations = {
   make: (value: string): string => {
     const trimmed = value.trim();
     const makeMap: Record<string, string> = {
-      'CHEVROLET': 'Chevrolet', 'CHEVY': 'Chevrolet',
-      'FORD': 'Ford', 'NISSAN': 'Nissan', 'TOYOTA': 'Toyota',
-      'VOLKSWAGEN': 'Volkswagen', 'VW': 'Volkswagen',
-      'BMW': 'BMW', 'DODGE': 'Dodge', 'CHRYSLER': 'Chrysler',
+      CHEVROLET: 'Chevrolet',
+      CHEVY: 'Chevrolet',
+      FORD: 'Ford',
+      NISSAN: 'Nissan',
+      TOYOTA: 'Toyota',
+      VOLKSWAGEN: 'Volkswagen',
+      VW: 'Volkswagen',
+      BMW: 'BMW',
+      DODGE: 'Dodge',
+      CHRYSLER: 'Chrysler',
       // ... extend as discovered
     };
     return makeMap[trimmed.toUpperCase()] || titleCase(trimmed);
@@ -396,12 +407,18 @@ const normalizations = {
 
   position: (value: string): string => {
     const positionMap: Record<string, string> = {
-      'FRONT': 'Front', 'REAR': 'Rear',
-      'DELANTERA': 'Front', 'TRASERA': 'Rear',
-      'DEL/TRA': 'Front/Rear', 'DELANTERO/TRASERA': 'Front/Rear',
-      'DELANTERA DERECHA': 'Front Right', 'DELANTERA IZQUIERDA': 'Front Left',
-      'TRASERA DERECHA': 'Rear Right', 'TRASERA IZQUIERDA': 'Rear Left',
-      'TRASERA "L"': 'Rear Left', 'TRASERA "R"': 'Rear Right',
+      FRONT: 'Front',
+      REAR: 'Rear',
+      DELANTERA: 'Front',
+      TRASERA: 'Rear',
+      'DEL/TRA': 'Front/Rear',
+      'DELANTERO/TRASERA': 'Front/Rear',
+      'DELANTERA DERECHA': 'Front Right',
+      'DELANTERA IZQUIERDA': 'Front Left',
+      'TRASERA DERECHA': 'Rear Right',
+      'TRASERA IZQUIERDA': 'Rear Left',
+      'TRASERA "L"': 'Rear Left',
+      'TRASERA "R"': 'Rear Right',
       'TRASERA CON ARBOL': 'Rear With Axle',
     };
     return positionMap[value.trim().toUpperCase()] || value.trim();
@@ -409,22 +426,35 @@ const normalizations = {
 
   driveType: (value: string): string => {
     const driveMap: Record<string, string> = {
-      '4X4': '4WD', '4x4': '4WD', '4WD': '4WD', 'AWD': 'AWD',
-      '4X2': '2WD', '4x2': '2WD', '2WD': '2WD', 'FWD': 'FWD', 'RWD': 'RWD',
-      '4X2 / 4X4': '2WD/4WD', '4X2/4X4': '2WD/4WD', '4X2, 4X4': '2WD/4WD',
+      '4X4': '4WD',
+      '4x4': '4WD',
+      '4WD': '4WD',
+      AWD: 'AWD',
+      '4X2': '2WD',
+      '4x2': '2WD',
+      '2WD': '2WD',
+      FWD: 'FWD',
+      RWD: 'RWD',
+      '4X2 / 4X4': '2WD/4WD',
+      '4X2/4X4': '2WD/4WD',
+      '4X2, 4X4': '2WD/4WD',
       '4X2,4X4': '2WD/4WD',
-      '4X2 DOBLE RODADA': '2WD Dually', '4X4 DOBLE RODADA': '4WD Dually',
+      '4X2 DOBLE RODADA': '2WD Dually',
+      '4X4 DOBLE RODADA': '4WD Dually',
     };
     return driveMap[value.trim().toUpperCase()] || value.trim();
   },
 
   general: (value: string): string => {
-    return value.trim().replace(/\s+/g, ' ').replace(/[\u200B-\u200D\uFEFF]/g, '');
+    return value
+      .trim()
+      .replace(/\s+/g, ' ')
+      .replace(/[\u200B-\u200D\uFEFF]/g, '');
   },
 
   upc: (value: string): string | null => {
     const digits = value.replace(/\D/g, '');
-    return (digits.length >= 8 && digits.length <= 14) ? digits : null;
+    return digits.length >= 8 && digits.length <= 14 ? digits : null;
   },
 
   price: (value: string | number): number | null => {
@@ -444,16 +474,16 @@ const normalizations = {
 
 ### 2.7 Error Types and Messages
 
-| Error Type | Message Template | Example |
-|------------|------------------|---------|
-| `missing_required` | "Required field '{field}' is empty" | "Required field 'SKU' is empty" |
-| `invalid_format` | "Field '{field}' has invalid format: {reason}" | "Field 'UPC': must be 8-14 digits" |
-| `invalid_value` | "Field '{field}' has invalid value: '{value}'" | "Field 'Currency': 'EUR'" |
-| `duplicate_sku` | "SKU '{sku}' already exists in this upload" | "SKU 'ACR-123' already exists" |
-| `sku_not_found` | "SKU '{sku}' not found in Partes sheet" | 🆕 Cross-sheet validation |
-| `invalid_year_range` | "Año Fin ({end}) must be >= Año Inicio ({start})" | "2005 must be >= 2010" |
-| `price_too_low` | "Price {price} is below minimum ($35 MXN)" | "Price $20 below minimum" |
-| `unknown_template` | "Template type '{type}' not recognized" | 🆕 Template detection error |
+| Error Type           | Message Template                                  | Example                            |
+| -------------------- | ------------------------------------------------- | ---------------------------------- |
+| `missing_required`   | "Required field '{field}' is empty"               | "Required field 'SKU' is empty"    |
+| `invalid_format`     | "Field '{field}' has invalid format: {reason}"    | "Field 'UPC': must be 8-14 digits" |
+| `invalid_value`      | "Field '{field}' has invalid value: '{value}'"    | "Field 'Currency': 'EUR'"          |
+| `duplicate_sku`      | "SKU '{sku}' already exists in this upload"       | "SKU 'ACR-123' already exists"     |
+| `sku_not_found`      | "SKU '{sku}' not found in Partes sheet"           | 🆕 Cross-sheet validation          |
+| `invalid_year_range` | "Año Fin ({end}) must be >= Año Inicio ({start})" | "2005 must be >= 2010"             |
+| `price_too_low`      | "Price {price} is below minimum ($35 MXN)"        | "Price $20 below minimum"          |
+| `unknown_template`   | "Template type '{type}' not recognized"           | 🆕 Template detection error        |
 
 ---
 
@@ -469,14 +499,15 @@ Mexican manufacturers use Excel templates similar to Mercado Libre — not ACES 
 
 **v5.0 uses separate sheets**, matching how TecDoc structures data internally:
 
-| Sheet | Purpose | Key |
-|-------|---------|-----|
-| **Portada** | Instructions for the manufacturer | N/A |
-| **Partes** | One row per product (SKU is unique) | SKU |
-| **Aplicaciones** | One row per product+vehicle combo | SKU + Vehicle |
-| **Metadata** (hidden) | Template type, version, platform ID | N/A |
+| Sheet                 | Purpose                             | Key           |
+| --------------------- | ----------------------------------- | ------------- |
+| **Portada**           | Instructions for the manufacturer   | N/A           |
+| **Partes**            | One row per product (SKU is unique) | SKU           |
+| **Aplicaciones**      | One row per product+vehicle combo   | SKU + Vehicle |
+| **Metadata** (hidden) | Template type, version, platform ID | N/A           |
 
 **Why separate sheets:**
+
 - Humberto has parts fitting 2-10 vehicles each (380 parts → 1,000 fitments = avg 2.6x)
 - Duplicating all part data across fitment rows is error-prone
 - Changing a price would require updating 10 rows in a flat file
@@ -584,6 +615,7 @@ SELECT * FROM parts WHERE part_type = 'SOPORTE_MOTOR' AND attributes->>'material
 ```
 
 **Why JSONB over alternatives:**
+
 - EAV tables: ugly queries, no type safety
 - Category-specific tables: new migration per category
 - JSONB: no extra tables, Postgres GIN indexing, flexible. Registry enforces schema at import time.
@@ -594,55 +626,55 @@ Every template shares common columns. Category-specific attributes sit between "
 
 **Common columns (all templates):**
 
-| Column | Field | Spanish | Required | Notes |
-|--------|-------|---------|----------|-------|
-| A | sku | SKU | 🔴 YES | Unique product identifier |
-| B | brand | Marca | 🔴 YES | Product brand |
-| C | name | Nombre del Producto | 🔴 YES | Descriptive name |
-| D | condition | Condición | 🔴 YES | Nuevo, Remanufacturado, Usado |
-| E | description | Descripción | No | Detailed description |
-| ... | *attributes* | *Varies by category* | Varies | See Section 3.4 |
-| K+ | price | Precio (MXN) | 🔴 YES | Minimum $35 MXN |
-| L+ | stock | Stock | 🔴 YES | Current quantity |
-| M+ | oe_numbers | Números OEM | No | Separated by semicolons |
-| N+ | image_urls | Fotos (URLs) | 🔴 YES | Separated by commas |
+| Column | Field        | Spanish              | Required | Notes                         |
+| ------ | ------------ | -------------------- | -------- | ----------------------------- |
+| A      | sku          | SKU                  | 🔴 YES   | Unique product identifier     |
+| B      | brand        | Marca                | 🔴 YES   | Product brand                 |
+| C      | name         | Nombre del Producto  | 🔴 YES   | Descriptive name              |
+| D      | condition    | Condición            | 🔴 YES   | Nuevo, Remanufacturado, Usado |
+| E      | description  | Descripción          | No       | Detailed description          |
+| ...    | _attributes_ | _Varies by category_ | Varies   | See Section 3.4               |
+| K+     | price        | Precio (MXN)         | 🔴 YES   | Minimum $35 MXN               |
+| L+     | stock        | Stock                | 🔴 YES   | Current quantity              |
+| M+     | oe_numbers   | Números OEM          | No       | Separated by semicolons       |
+| N+     | image_urls   | Fotos (URLs)         | 🔴 YES   | Separated by commas           |
 
 Column letters after E shift depending on how many category attributes exist.
 
 **Mazas-specific attributes (columns F-J):**
 
-| Column | Field | Required | Observed Values (ACR data) |
-|--------|-------|----------|---------------------------|
-| F | Posición | Yes | DELANTERA, TRASERA, DEL/TRA, plus left/right variants |
-| G | Tipo de ABS | No | C/ABS, S/ABS, P/ABS |
-| H | Barrenos | No | 4, 5, 6, 8 with thread patterns like (M12X1.5) |
-| I | Tipo de Tracción | No | 4X2, 4X4, 4X2/4X4, plus dually variants |
-| J | Especificaciones | No | Free text, e.g. "33 ESTRIAS" |
+| Column | Field            | Required | Observed Values (ACR data)                            |
+| ------ | ---------------- | -------- | ----------------------------------------------------- |
+| F      | Posición         | Yes      | DELANTERA, TRASERA, DEL/TRA, plus left/right variants |
+| G      | Tipo de ABS      | No       | C/ABS, S/ABS, P/ABS                                   |
+| H      | Barrenos         | No       | 4, 5, 6, 8 with thread patterns like (M12X1.5)        |
+| I      | Tipo de Tracción | No       | 4X2, 4X4, 4X2/4X4, plus dually variants               |
+| J      | Especificaciones | No       | Free text, e.g. "33 ESTRIAS"                          |
 
 ### 3.7 Aplicaciones Sheet Columns
 
 Identical across all templates — vehicle fitments are not category-specific.
 
-| Column | Field | Spanish | Required | Notes |
-|--------|-------|---------|----------|-------|
-| A | sku | SKU del Producto | 🔴 YES | Must match a SKU in Partes sheet |
-| B | make | Marca del Vehículo | 🔴 YES | e.g. CHEVROLET, FORD, BMW |
-| C | model | Modelo del Vehículo | 🔴 YES | e.g. SILVERADO, F-150, SERIE 3 (E90) |
-| D | year_start | Año Inicio | 🔴 YES | First year of compatibility (1950-2030) |
-| E | year_end | Año Fin | 🔴 YES | Last year of compatibility (1950-2030) |
+| Column | Field      | Spanish             | Required | Notes                                   |
+| ------ | ---------- | ------------------- | -------- | --------------------------------------- |
+| A      | sku        | SKU del Producto    | 🔴 YES   | Must match a SKU in Partes sheet        |
+| B      | make       | Marca del Vehículo  | 🔴 YES   | e.g. CHEVROLET, FORD, BMW               |
+| C      | model      | Modelo del Vehículo | 🔴 YES   | e.g. SILVERADO, F-150, SERIE 3 (E90)    |
+| D      | year_start | Año Inicio          | 🔴 YES   | First year of compatibility (1950-2030) |
+| E      | year_end   | Año Fin             | 🔴 YES   | Last year of compatibility (1950-2030)  |
 
 ### 3.8 Data Quality Reality
 
 Analysis of Humberto's ACR file (380 parts with fitments, 1,000 fitment rows):
 
-| Issue | Examples | Frequency |
-|-------|----------|-----------|
-| Case inconsistency | "CHEVROLET" vs "Chevrolet" | Common |
-| Trailing spaces | "NISSAN ", "REAR " | Common |
-| Position variations | "DELANTERA" vs "DELANTERA DERECHA" vs "DEL/TRA" | 11 distinct values |
-| DriveType variations | "4X2", "4x2", "4X2/4X4", "4X2, 4X4" | 10 distinct values |
-| Multi-make fitments | "CHEVROLET, GMC" in one cell | 68 rows |
-| Bolt pattern formats | "5", "5 (M12X1.5)", "5 BIRLOS C/ABS" | 22 distinct values |
+| Issue                | Examples                                        | Frequency          |
+| -------------------- | ----------------------------------------------- | ------------------ |
+| Case inconsistency   | "CHEVROLET" vs "Chevrolet"                      | Common             |
+| Trailing spaces      | "NISSAN ", "REAR "                              | Common             |
+| Position variations  | "DELANTERA" vs "DELANTERA DERECHA" vs "DEL/TRA" | 11 distinct values |
+| DriveType variations | "4X2", "4x2", "4X2/4X4", "4X2, 4X4"             | 10 distinct values |
+| Multi-make fitments  | "CHEVROLET, GMC" in one cell                    | 68 rows            |
+| Bolt pattern formats | "5", "5 (M12X1.5)", "5 BIRLOS C/ABS"            | 22 distinct values |
 
 Our import MUST normalize — we cannot assume clean data.
 
@@ -650,14 +682,14 @@ Our import MUST normalize — we cannot assume clean data.
 
 The Mazas template v1 was built using Humberto's ACR catalog export:
 
-| Metric | Count |
-|--------|-------|
-| Total parts in ACR file | 867 (744 active, 123 inactive) |
-| Active parts with vehicle fitments | 380 |
-| Total fitment rows | 1,000 |
-| Average fitments per part | 2.6 |
-| Parts with OEM cross-refs | 79 of 380 |
-| Unique vehicle makes | 14 |
+| Metric                             | Count                          |
+| ---------------------------------- | ------------------------------ |
+| Total parts in ACR file            | 867 (744 active, 123 inactive) |
+| Active parts with vehicle fitments | 380                            |
+| Total fitment rows                 | 1,000                          |
+| Average fitments per part          | 2.6                            |
+| Parts with OEM cross-refs          | 79 of 380                      |
+| Unique vehicle makes               | 14                             |
 
 Fields left blank for Humberto to fill: Precio, Stock, Fotos, Descripción.
 
@@ -667,11 +699,11 @@ Fields left blank for Humberto to fill: Precio, Stock, Fotos, Descripción.
 
 ### 4.1 Three Types of Part Numbers
 
-| Type | What It Is | Example | Visibility |
-|------|------------|---------|------------|
-| **OEM Number** | Assigned by vehicle manufacturer | Toyota #04465-02220 | Customer search |
-| **Factory Part #** | Internal manufacturing code | C 84020014 | Internal only |
-| **Brand SKU** | Customer-facing orderable number | ACRTM-510090 | Customers |
+| Type               | What It Is                       | Example             | Visibility      |
+| ------------------ | -------------------------------- | ------------------- | --------------- |
+| **OEM Number**     | Assigned by vehicle manufacturer | Toyota #04465-02220 | Customer search |
+| **Factory Part #** | Internal manufacturing code      | C 84020014          | Internal only   |
+| **Brand SKU**      | Customer-facing orderable number | ACRTM-510090        | Customers       |
 
 ### 4.2 Key Industry Insight
 
@@ -698,6 +730,7 @@ Nissan Tsuru Wheel Bearings:
 Professionals search by OEM number to compare all aftermarket brands.
 
 Flow:
+
 1. User enters OEM number: `33416762321`
 2. System normalizes and queries `oe_crossrefs.oe_number_normalized`
 3. Shows ALL aftermarket brands making that part
@@ -717,10 +750,10 @@ function normalizeOE(oe) {
 
 See `RefaccionesDirect_CrossReference_Architecture_v1.md` for full details. Summary:
 
-| Type | MVP Status | Example |
-|------|-----------|---------|
-| **OEM Cross-Refs** | ✅ In schema | BMW 33416762321 → ACR2302006 |
-| **Competitor Cross-Refs** | ⏳ Deferred | National 515072 ≈ ACR2306010 |
+| Type                      | MVP Status   | Example                      |
+| ------------------------- | ------------ | ---------------------------- |
+| **OEM Cross-Refs**        | ✅ In schema | BMW 33416762321 → ACR2302006 |
+| **Competitor Cross-Refs** | ⏳ Deferred  | National 515072 ≈ ACR2306010 |
 
 OEM cross-refs are captured at import time from the "Números OEM" column. Competitor cross-refs are deferred to post-MVP — adding a `competitor_crossrefs` table later won't impact existing schema.
 
@@ -742,13 +775,13 @@ When we might need VCdb in the future: US manufacturers using ACES XML with Base
 
 ### 7.1 Search Methods (Priority Order)
 
-| Priority | Method | Example | Implementation |
-|----------|--------|---------|----------------|
-| 🥇 PRIMARY | Vehicle Lookup | Year > Make > Model | Cascading dropdowns |
-| 🥈 SECONDARY | OEM Number | "33416762321" | `oe_crossrefs` lookup |
-| 🥉 SECONDARY | Brand SKU | "ACR2302006" | `parts.sku` match |
-| 4th | Keyword | "maza delantera abs" | Postgres FTS |
-| 5th | Category | Mazas de Ruedas | Hierarchical nav |
+| Priority     | Method         | Example              | Implementation        |
+| ------------ | -------------- | -------------------- | --------------------- |
+| 🥇 PRIMARY   | Vehicle Lookup | Year > Make > Model  | Cascading dropdowns   |
+| 🥈 SECONDARY | OEM Number     | "33416762321"        | `oe_crossrefs` lookup |
+| 🥉 SECONDARY | Brand SKU      | "ACR2302006"         | `parts.sku` match     |
+| 4th          | Keyword        | "maza delantera abs" | Postgres FTS          |
+| 5th          | Category       | Mazas de Ruedas      | Hierarchical nav      |
 
 ### 7.2 Vehicle Lookup Query
 
@@ -758,7 +791,7 @@ FROM parts p
 JOIN fitments f ON p.id = f.part_id
 JOIN vehicles v ON f.vehicle_id = v.id
 JOIN manufacturers m ON p.manufacturer_id = m.id
-WHERE v.make = $1 AND v.model = $2 
+WHERE v.make = $1 AND v.model = $2
   AND $3 BETWEEN v.year_start AND v.year_end
   AND p.status = 'active' AND p.quantity > 0
 ORDER BY p.price ASC;
@@ -790,10 +823,10 @@ display_mode VARCHAR(20) DEFAULT 'brand_only'
   CHECK (display_mode IN ('brand_only', 'company_name'))
 ```
 
-| Mode | Customer Sees | Use Case |
-|------|--------------|----------|
-| `brand_only` | "Sold by ACR" | Hide company identity |
-| `company_name` | "Sold by Refacciones ACR S.A. de C.V." | Full transparency |
+| Mode           | Customer Sees                          | Use Case              |
+| -------------- | -------------------------------------- | --------------------- |
+| `brand_only`   | "Sold by ACR"                          | Hide company identity |
+| `company_name` | "Sold by Refacciones ACR S.A. de C.V." | Full transparency     |
 
 ---
 
@@ -809,10 +842,10 @@ Single checkout (like Amazon), even when buying from multiple manufacturers:
 
 ### 9.1 Platform Fee Strategy
 
-| Platform | Fee | Notes |
-|----------|-----|-------|
-| Mercado Libre Clásica | 14% | Lower visibility |
-| Mercado Libre Premium | 36-40% | Higher visibility |
+| Platform              | Fee       | Notes                             |
+| --------------------- | --------- | --------------------------------- |
+| Mercado Libre Clásica | 14%       | Lower visibility                  |
+| Mercado Libre Premium | 36-40%    | Higher visibility                 |
 | **RefaccionesDirect** | **9-10%** | Flat rate, manufacturer-exclusive |
 
 ---
@@ -849,7 +882,7 @@ Order #12345
 
 ```sql
 -- Stock decrement on order
-UPDATE parts 
+UPDATE parts
 SET quantity = quantity - $1,
     status = CASE WHEN quantity - $1 <= 0 THEN 'paused' ELSE status END,
     updated_at = NOW()
@@ -865,13 +898,13 @@ RETURNING *;
 
 ### 12.1 Proposed Defaults
 
-| Policy | Default | Rationale |
-|--------|---------|-----------|
-| Return window | 30 days | Industry standard |
-| Restocking fee | 15% | Protects manufacturers |
-| Non-returnable | Electrical, installed | Prevents abuse |
-| Platform fee | Keep on returns | We facilitated transaction |
-| Defective process | Photo required | Prevents fraud |
+| Policy            | Default               | Rationale                  |
+| ----------------- | --------------------- | -------------------------- |
+| Return window     | 30 days               | Industry standard          |
+| Restocking fee    | 15%                   | Protects manufacturers     |
+| Non-returnable    | Electrical, installed | Prevents abuse             |
+| Platform fee      | Keep on returns       | We facilitated transaction |
+| Defective process | Photo required        | Prevents fraud             |
 
 See Questions_Pending.md for open items.
 
@@ -881,21 +914,21 @@ See Questions_Pending.md for open items.
 
 ### 13.1 Launch Categories (4 Committed Manufacturers)
 
-| Category | Spanish | Manufacturer | Template ID |
-|----------|---------|--------------|-------------|
-| Wheel Bearings/Hubs | Mazas de Ruedas | Humberto (ACR) | `mazas_v1` ✅ |
-| Starters & Alternators | Marchas y Alternadores | Humberto's Mom | `alternadores_v1` (stub) |
-| Engine Mounts | Soportes de Motor | Mom's Friend | `soportes_motor_v1` (stub) |
-| Cables | Chicotes | Mom's Friend | `cables_v1` (stub) |
+| Category               | Spanish                | Manufacturer   | Template ID                |
+| ---------------------- | ---------------------- | -------------- | -------------------------- |
+| Wheel Bearings/Hubs    | Mazas de Ruedas        | Humberto (ACR) | `mazas_v1` ✅              |
+| Starters & Alternators | Marchas y Alternadores | Humberto's Mom | `alternadores_v1` (stub)   |
+| Engine Mounts          | Soportes de Motor      | Mom's Friend   | `soportes_motor_v1` (stub) |
+| Cables                 | Chicotes               | Mom's Friend   | `cables_v1` (stub)         |
 
 ### 13.2 🆕 Category-Specific Attributes (from real data)
 
-| Category | Attributes | Source |
-|----------|-----------|--------|
-| Wheel Bearings | Position, ABS Type, Bolt Pattern, Drive Type, Specifications | ACR TecDoc export (380 parts analyzed) |
-| Starters/Alternators | Voltage, Amperage, Rotation, Pulley Type | Stub — awaiting ML template from Humberto |
-| Engine Mounts | Position, Material (Rubber/Hydraulic) | Stub — awaiting ML template |
-| Cables | Cable Type, Length, Connector A, Connector B | Stub — awaiting ML template |
+| Category             | Attributes                                                   | Source                                    |
+| -------------------- | ------------------------------------------------------------ | ----------------------------------------- |
+| Wheel Bearings       | Position, ABS Type, Bolt Pattern, Drive Type, Specifications | ACR TecDoc export (380 parts analyzed)    |
+| Starters/Alternators | Voltage, Amperage, Rotation, Pulley Type                     | Stub — awaiting ML template from Humberto |
+| Engine Mounts        | Position, Material (Rubber/Hydraulic)                        | Stub — awaiting ML template               |
+| Cables               | Cable Type, Length, Connector A, Connector B                 | Stub — awaiting ML template               |
 
 ---
 
@@ -903,14 +936,14 @@ See Questions_Pending.md for open items.
 
 **Mercado Libre Problems:** Price chaos (same part at $800-$1686), stolen goods sold below cost, counterfeits with fake branding.
 
-| RefaccionesDirect | Mercado Libre |
-|-------------------|---------------|
-| Manufacturer-only (invite) | Anyone can sell |
-| 9-10% flat fee | 14-40% fees |
-| Price control | Price chaos |
-| No counterfeits | Counterfeit problem |
-| Optional anonymity | Company exposed |
-| Auto parts only | Everything |
+| RefaccionesDirect          | Mercado Libre       |
+| -------------------------- | ------------------- |
+| Manufacturer-only (invite) | Anyone can sell     |
+| 9-10% flat fee             | 14-40% fees         |
+| Price control              | Price chaos         |
+| No counterfeits            | Counterfeit problem |
+| Optional anonymity         | Company exposed     |
+| Auto parts only            | Everything          |
 
 ---
 

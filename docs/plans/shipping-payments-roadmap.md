@@ -20,6 +20,7 @@ RefaccionesDirect is a multi-manufacturer auto parts marketplace for Mexico. The
 **The database currently has only `users` and `manufacturers` tables** (migrations 001-003). There is NO `parts` table, no product catalog, no inventory. The commerce tables (`order_items`, `cart_items`) reference `parts(id)` which doesn't exist yet.
 
 Before starting this roadmap, we need either:
+
 - **Option A:** Create a minimal `parts` table as part of Epic 1 (just enough for commerce: id, name, price, quantity, manufacturer_id, status, images)
 - **Option B:** Build the full product catalog epic first (parts, vehicles, fitments, cross-refs — per Data Architecture spec) then start this roadmap
 
@@ -28,6 +29,7 @@ Before starting this roadmap, we need either:
 ### Prerequisite: Account Setup (Manual — User)
 
 Before any code work begins:
+
 - [ ] Create Stripe account at [stripe.com/mx](https://stripe.com/mx) → Get test API keys
 - [ ] Create Skydropx PRO account at [skydropx.com/pro](https://www.skydropx.com/pro) → Get Client ID + Client Secret
 - [ ] Add keys to `.env.local`
@@ -36,41 +38,41 @@ Before any code work begins:
 
 ## Beads Ticket Map
 
-| Ticket | Type | Title |
-|--------|------|-------|
-| **RD-bjv** | prerequisite | Design parts/product catalog data architecture |
-| **RD-nt7** | prerequisite | Set up Stripe and Skydropx API accounts |
-| **RD-84f** | epic | Epic 1: Foundation (DB + service clients) |
-| RD-2rn | task 1.1 | Create commerce database migration |
-| RD-eng | task 1.2 | Create Stripe client wrapper |
-| RD-hkz | task 1.3 | Create Skydropx PRO client wrapper |
-| RD-bhu | task 1.4 | Configure commerce environment variables |
-| **RD-3sp** | epic | Epic 2: Manufacturer Stripe Connect Onboarding |
-| RD-9ls | task 2.1 | Create Stripe Connect onboarding API route |
-| RD-64q | task 2.2 | Create Stripe Connect return/refresh routes |
-| RD-ihe | task 2.3 | Implement Stripe Connect webhook handler |
-| RD-iyi | task 2.4 | Add Stripe status to manufacturer dashboard |
-| **RD-4fg** | epic | Epic 3: Cart System |
-| RD-2nh | task 3.1 | Create cart API routes |
-| RD-pss | task 3.2 | Implement cart state management |
-| RD-eyl | task 3.3 | Build cart page UI |
-| RD-abx | task 3.4 | Add 'Add to Cart' button to product pages |
-| **RD-9na** | epic | Epic 4: Checkout & Payment |
-| RD-t8d | task 4.1 | Build checkout shipping address form |
-| RD-seo | task 4.2 | Implement Skydropx shipping rate quotes |
-| RD-gs5 | task 4.3 | Implement Stripe payment flow with Connect splits |
-| RD-v3l | task 4.4 | Create order on payment success |
-| RD-q34 | task 4.5 | Build checkout success/failure pages |
-| **RD-kem** | epic | Epic 5: Order Fulfillment |
-| RD-yvi | task 5.1 | Create Inngest order fulfillment workflow |
-| RD-2xx | task 5.2 | Build manufacturer orders list page |
-| RD-h3a | task 5.3 | Implement shipping label generation |
-| RD-aut | task 5.4 | Build order status update API |
-| **RD-ve0** | epic | Epic 6: Notifications & Tracking |
-| RD-pgd | task 6.1 | Create order email templates |
-| RD-nvy | task 6.2 | Build customer order history page |
-| RD-ozp | task 6.3 | Implement Skydropx delivery webhooks |
-| RD-sgs | task 6.4 | Build customer order tracking page |
+| Ticket     | Type         | Title                                             |
+| ---------- | ------------ | ------------------------------------------------- |
+| **RD-bjv** | prerequisite | Design parts/product catalog data architecture    |
+| **RD-nt7** | prerequisite | Set up Stripe and Skydropx API accounts           |
+| **RD-84f** | epic         | Epic 1: Foundation (DB + service clients)         |
+| RD-2rn     | task 1.1     | Create commerce database migration                |
+| RD-eng     | task 1.2     | Create Stripe client wrapper                      |
+| RD-hkz     | task 1.3     | Create Skydropx PRO client wrapper                |
+| RD-bhu     | task 1.4     | Configure commerce environment variables          |
+| **RD-3sp** | epic         | Epic 2: Manufacturer Stripe Connect Onboarding    |
+| RD-9ls     | task 2.1     | Create Stripe Connect onboarding API route        |
+| RD-64q     | task 2.2     | Create Stripe Connect return/refresh routes       |
+| RD-ihe     | task 2.3     | Implement Stripe Connect webhook handler          |
+| RD-iyi     | task 2.4     | Add Stripe status to manufacturer dashboard       |
+| **RD-4fg** | epic         | Epic 3: Cart System                               |
+| RD-2nh     | task 3.1     | Create cart API routes                            |
+| RD-pss     | task 3.2     | Implement cart state management                   |
+| RD-eyl     | task 3.3     | Build cart page UI                                |
+| RD-abx     | task 3.4     | Add 'Add to Cart' button to product pages         |
+| **RD-9na** | epic         | Epic 4: Checkout & Payment                        |
+| RD-t8d     | task 4.1     | Build checkout shipping address form              |
+| RD-seo     | task 4.2     | Implement Skydropx shipping rate quotes           |
+| RD-gs5     | task 4.3     | Implement Stripe payment flow with Connect splits |
+| RD-v3l     | task 4.4     | Create order on payment success                   |
+| RD-q34     | task 4.5     | Build checkout success/failure pages              |
+| **RD-kem** | epic         | Epic 5: Order Fulfillment                         |
+| RD-yvi     | task 5.1     | Create Inngest order fulfillment workflow         |
+| RD-2xx     | task 5.2     | Build manufacturer orders list page               |
+| RD-h3a     | task 5.3     | Implement shipping label generation               |
+| RD-aut     | task 5.4     | Build order status update API                     |
+| **RD-ve0** | epic         | Epic 6: Notifications & Tracking                  |
+| RD-pgd     | task 6.1     | Create order email templates                      |
+| RD-nvy     | task 6.2     | Build customer order history page                 |
+| RD-ozp     | task 6.3     | Implement Skydropx delivery webhooks              |
+| RD-sgs     | task 6.4     | Build customer order tracking page                |
 
 ---
 
@@ -170,11 +172,13 @@ cart_items (session-based or user-based)
 ### Task 1.2: Stripe client wrapper
 
 Create `src/lib/stripe/client.ts`:
+
 - Initialize Stripe SDK with `STRIPE_SECRET_KEY`
 - Export typed helper functions (not raw SDK)
 - Use Stripe API version 2024-12-18 or latest
 
 Create `src/lib/stripe/config.ts`:
+
 - Platform fee percentage constant (0.09)
 - Stripe webhook secret
 - Connect configuration
@@ -184,6 +188,7 @@ Create `src/lib/stripe/config.ts`:
 ### Task 1.3: Skydropx client wrapper
 
 Create `src/lib/skydropx/client.ts`:
+
 - HTTP client wrapping Skydropx PRO REST API
 - Auth: Bearer token or OAuth2 (Client ID + Secret)
 - Base URL: `https://api.skydropx.com/v1/`
@@ -191,6 +196,7 @@ Create `src/lib/skydropx/client.ts`:
 - Zod schemas for request/response validation
 
 Create `src/lib/skydropx/types.ts`:
+
 - TypeScript types for quotation request/response, shipment, label, tracking
 
 **Files:** `src/lib/skydropx/client.ts`, `src/lib/skydropx/types.ts`, `src/lib/skydropx/config.ts`
@@ -198,6 +204,7 @@ Create `src/lib/skydropx/types.ts`:
 ### Task 1.4: Environment variables setup
 
 Add to `.env.local`:
+
 ```
 STRIPE_SECRET_KEY=sk_test_...
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
@@ -218,6 +225,7 @@ Update `.env.example` with placeholder keys.
 ### Task 2.1: Create Connect onboarding API route
 
 `src/app/api/stripe/connect/onboard/route.ts`:
+
 - POST: Creates Express connected account for manufacturer
 - Calls `stripe.accounts.create({ type: 'express', country: 'MX', ... })`
 - Saves to `manufacturer_stripe_accounts` table
@@ -226,16 +234,19 @@ Update `.env.example` with placeholder keys.
 ### Task 2.2: Create Connect return/refresh routes
 
 `src/app/api/stripe/connect/return/route.ts`:
+
 - GET: Stripe redirects here after manufacturer completes onboarding
 - Checks account status (`charges_enabled`, `payouts_enabled`)
 - Updates `manufacturer_stripe_accounts` table
 
 `src/app/api/stripe/connect/refresh/route.ts`:
+
 - GET: If onboarding link expired, generates new one
 
 ### Task 2.3: Stripe Connect webhook handler
 
 Update `src/app/api/webhooks/stripe/route.ts` (currently stub):
+
 - Verify webhook signature
 - Handle `account.updated` event → update `manufacturer_stripe_accounts`
 - Handle `payment_intent.succeeded` → update order status
@@ -245,6 +256,7 @@ Update `src/app/api/webhooks/stripe/route.ts` (currently stub):
 ### Task 2.4: Manufacturer dashboard — Stripe status
 
 Add to manufacturer dashboard:
+
 - "Connect with Stripe" button (if not onboarded)
 - Onboarding status indicator (pending / active / restricted)
 - Link to Stripe Express Dashboard for payouts/balance
@@ -260,6 +272,7 @@ Add to manufacturer dashboard:
 ### Task 3.1: Cart API routes
 
 `src/app/api/cart/route.ts`:
+
 - GET: Fetch current cart (by user_id or session_id)
 - POST: Add item to cart (part_id, quantity)
 - PATCH: Update quantity
@@ -270,6 +283,7 @@ Cart grouped by manufacturer for display purposes.
 ### Task 3.2: Cart state management
 
 `src/lib/cart/context.tsx` (or server-side with cookies):
+
 - Cart count in header
 - Optimistic updates for add/remove
 - Merge guest cart → user cart on login
@@ -277,6 +291,7 @@ Cart grouped by manufacturer for display purposes.
 ### Task 3.3: Cart page UI
 
 Update `src/app/[locale]/(storefront)/cart/page.tsx` (currently stub):
+
 - Items grouped by manufacturer
 - Quantity +/- controls
 - Subtotal per manufacturer
@@ -287,6 +302,7 @@ Update `src/app/[locale]/(storefront)/cart/page.tsx` (currently stub):
 ### Task 3.4: "Add to Cart" button on product pages
 
 Add to product detail page and product cards:
+
 - Button with quantity selector
 - Success feedback (toast or cart count animation)
 - Stock check before adding
@@ -302,6 +318,7 @@ Add to product detail page and product cards:
 ### Task 4.1: Checkout page — shipping address
 
 Update `src/app/[locale]/(storefront)/checkout/page.tsx`:
+
 - Step 1: Shipping address form (Mexico-specific: colonia, CP, city, state)
 - Address validation (Zod schema)
 - Save address for future orders (optional)
@@ -314,6 +331,7 @@ Update `src/app/[locale]/(storefront)/checkout/page.tsx`:
 - Display shipping cost breakdown
 
 **API route:** `src/app/api/checkout/shipping-quotes/route.ts`
+
 - Accepts: shipping address + cart items grouped by manufacturer
 - For each manufacturer: calls Skydropx with origin (manufacturer address) + destination
 - Returns: carrier options with prices per manufacturer
@@ -328,6 +346,7 @@ Update `src/app/[locale]/(storefront)/checkout/page.tsx`:
   - Platform keeps `application_fee_amount`
 
 **API route:** `src/app/api/checkout/create-payment-intent/route.ts`
+
 - Calculates: item totals + shipping per mfr + platform fee
 - Creates PaymentIntent with Connect transfers
 - Returns: client_secret for Stripe Elements
@@ -335,6 +354,7 @@ Update `src/app/[locale]/(storefront)/checkout/page.tsx`:
 ### Task 4.4: Order creation on payment success
 
 **API route:** `src/app/api/checkout/confirm/route.ts` (or webhook-based):
+
 - On successful payment:
   1. Create `orders` row
   2. Create `order_items` rows (one per manufacturer per part)
@@ -358,6 +378,7 @@ Update `src/app/[locale]/(storefront)/checkout/page.tsx`:
 ### Task 5.1: Inngest order fulfillment workflow
 
 `src/inngest/functions/order-fulfillment.ts`:
+
 ```
 Event: "order/created"
 Steps:
@@ -374,6 +395,7 @@ Steps:
 ### Task 5.2: Manufacturer dashboard — orders list
 
 `src/app/[locale]/(dashboard)/orders/page.tsx`:
+
 - List of order items for this manufacturer
 - Filter by status (pending, confirmed, shipped, delivered)
 - Order details: customer shipping address, items, amounts
@@ -381,12 +403,14 @@ Steps:
 ### Task 5.3: Manufacturer dashboard — generate shipping label
 
 `src/app/[locale]/(dashboard)/orders/[id]/page.tsx`:
+
 - "Generate Label" button
 - Calls Skydropx `POST /v1/shipments` then `POST /v1/labels`
 - Displays label PDF for printing
 - Saves tracking number + label URL to order_item
 
 **API route:** `src/app/api/dashboard/orders/[id]/label/route.ts`
+
 - Creates Skydropx shipment with manufacturer origin + customer destination
 - Generates label
 - Updates order_item with tracking info
@@ -395,6 +419,7 @@ Steps:
 ### Task 5.4: Order status updates
 
 API routes for manufacturer to update order status:
+
 - `PATCH /api/dashboard/orders/[id]` — mark as shipped (with tracking), mark as delivered
 - Triggers Inngest events for status change notifications
 
@@ -409,6 +434,7 @@ API routes for manufacturer to update order status:
 ### Task 6.1: Email templates (React Email + Resend)
 
 Templates:
+
 - Order confirmation (customer)
 - New order notification (manufacturer)
 - Order shipped with tracking (customer)
@@ -419,6 +445,7 @@ Using `react-email` + Resend (already in tech stack).
 ### Task 6.2: Customer order history page
 
 `src/app/[locale]/(storefront)/orders/page.tsx`:
+
 - List of past orders
 - Order detail with status per manufacturer shipment
 - Tracking link per shipment
@@ -426,6 +453,7 @@ Using `react-email` + Resend (already in tech stack).
 ### Task 6.3: Skydropx webhook handler
 
 `src/app/api/webhooks/skydropx/route.ts`:
+
 - Verify HMAC SHA-512 signature
 - Handle delivery status updates
 - Update order_item status
@@ -434,6 +462,7 @@ Using `react-email` + Resend (already in tech stack).
 ### Task 6.4: Customer order tracking page
 
 `src/app/[locale]/(storefront)/orders/[id]/page.tsx`:
+
 - Order summary
 - Per-manufacturer shipment tracking
 - Status timeline (ordered → confirmed → shipped → delivered)
@@ -460,18 +489,18 @@ Prerequisites
 
 ## Existing Code to Reuse
 
-| Existing | Path | Reuse for |
-|----------|------|-----------|
-| Stripe npm package | `package.json` (v20) | Already installed |
-| Inngest client | `src/inngest/client.ts` | Add order events to schema |
-| Inngest serve route | `src/app/api/inngest/route.ts` | Register new functions |
-| Stripe webhook stub | `src/app/api/webhooks/stripe/route.ts` | Replace with real handler |
-| Cart page stub | `src/app/[locale]/(storefront)/cart/page.tsx` | Replace with real UI |
-| Checkout page stub | `src/app/[locale]/(storefront)/checkout/page.tsx` | Replace with real UI |
-| Supabase admin client | `src/lib/supabase/admin.ts` | Service-role operations |
-| Supabase server client | `src/lib/supabase/server.ts` | User-scoped queries |
-| WorkOS auth | `src/proxy.ts` | Protect checkout/dashboard routes |
-| Database types | `src/types/database.ts` | Regenerate after migration |
+| Existing               | Path                                              | Reuse for                         |
+| ---------------------- | ------------------------------------------------- | --------------------------------- |
+| Stripe npm package     | `package.json` (v20)                              | Already installed                 |
+| Inngest client         | `src/inngest/client.ts`                           | Add order events to schema        |
+| Inngest serve route    | `src/app/api/inngest/route.ts`                    | Register new functions            |
+| Stripe webhook stub    | `src/app/api/webhooks/stripe/route.ts`            | Replace with real handler         |
+| Cart page stub         | `src/app/[locale]/(storefront)/cart/page.tsx`     | Replace with real UI              |
+| Checkout page stub     | `src/app/[locale]/(storefront)/checkout/page.tsx` | Replace with real UI              |
+| Supabase admin client  | `src/lib/supabase/admin.ts`                       | Service-role operations           |
+| Supabase server client | `src/lib/supabase/server.ts`                      | User-scoped queries               |
+| WorkOS auth            | `src/proxy.ts`                                    | Protect checkout/dashboard routes |
+| Database types         | `src/types/database.ts`                           | Regenerate after migration        |
 
 ## API References
 
@@ -485,6 +514,7 @@ Prerequisites
 ## Verification
 
 After each epic is complete:
+
 1. **Epic 1:** `supabase db reset` succeeds, types regenerate, Stripe/Skydropx clients instantiate without errors
 2. **Epic 2:** Test manufacturer can complete Stripe onboarding in test mode, webhook updates status
 3. **Epic 3:** Can add/remove items, cart persists across page loads, items grouped by manufacturer
@@ -494,15 +524,15 @@ After each epic is complete:
 
 ## Estimated Effort
 
-| Epic | Sessions | Notes |
-|------|----------|-------|
-| 1. Foundation | 2-3 | DB migration + two API clients |
-| 2. Manufacturer Onboarding | 1-2 | Stripe Connect is well-documented |
-| 3. Cart System | 1-2 | Standard CRUD + UI |
-| 4. Checkout & Payment | 2-3 | Most complex: Skydropx quotes + Stripe Connect splits |
-| 5. Order Fulfillment | 2-3 | Inngest workflow + manufacturer dashboard |
-| 6. Notifications & Tracking | 1-2 | Email templates + tracking page |
-| **Total** | **9-15 sessions** | |
+| Epic                        | Sessions          | Notes                                                 |
+| --------------------------- | ----------------- | ----------------------------------------------------- |
+| 1. Foundation               | 2-3               | DB migration + two API clients                        |
+| 2. Manufacturer Onboarding  | 1-2               | Stripe Connect is well-documented                     |
+| 3. Cart System              | 1-2               | Standard CRUD + UI                                    |
+| 4. Checkout & Payment       | 2-3               | Most complex: Skydropx quotes + Stripe Connect splits |
+| 5. Order Fulfillment        | 2-3               | Inngest workflow + manufacturer dashboard             |
+| 6. Notifications & Tracking | 1-2               | Email templates + tracking page                       |
+| **Total**                   | **9-15 sessions** |                                                       |
 
 ## Land the Plane
 
