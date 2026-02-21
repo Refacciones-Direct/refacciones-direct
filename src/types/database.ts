@@ -45,6 +45,109 @@ export type Database = {
           },
         ]
       }
+      import_errors: {
+        Row: {
+          created_at: string
+          error_message: string
+          error_type: string
+          field_name: string | null
+          id: number
+          import_job_id: number
+          original_data: Json
+          row_number: number
+          sheet_name: string | null
+        }
+        Insert: {
+          created_at?: string
+          error_message: string
+          error_type: string
+          field_name?: string | null
+          id?: never
+          import_job_id: number
+          original_data: Json
+          row_number: number
+          sheet_name?: string | null
+        }
+        Update: {
+          created_at?: string
+          error_message?: string
+          error_type?: string
+          field_name?: string | null
+          id?: never
+          import_job_id?: number
+          original_data?: Json
+          row_number?: number
+          sheet_name?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "import_errors_import_job_id_fkey"
+            columns: ["import_job_id"]
+            isOneToOne: false
+            referencedRelation: "import_jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      import_jobs: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          error_file_url: string | null
+          failed_rows: number
+          file_url: string | null
+          id: number
+          import_type: string
+          manufacturer_id: number
+          normalizations_applied: Json
+          started_at: string | null
+          status: string
+          successful_rows: number
+          template_type: string | null
+          total_rows: number | null
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          error_file_url?: string | null
+          failed_rows?: number
+          file_url?: string | null
+          id?: never
+          import_type: string
+          manufacturer_id: number
+          normalizations_applied?: Json
+          started_at?: string | null
+          status?: string
+          successful_rows?: number
+          template_type?: string | null
+          total_rows?: number | null
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          error_file_url?: string | null
+          failed_rows?: number
+          file_url?: string | null
+          id?: never
+          import_type?: string
+          manufacturer_id?: number
+          normalizations_applied?: Json
+          started_at?: string | null
+          status?: string
+          successful_rows?: number
+          template_type?: string | null
+          total_rows?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "import_jobs_manufacturer_id_fkey"
+            columns: ["manufacturer_id"]
+            isOneToOne: false
+            referencedRelation: "manufacturers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       manufacturers: {
         Row: {
           brand_name: string
