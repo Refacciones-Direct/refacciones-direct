@@ -12,9 +12,7 @@
 // ---------------------------------------------------------------------------
 
 function titleCase(str: string): string {
-  return str
-    .toLowerCase()
-    .replace(/\b\w/g, (c) => c.toUpperCase());
+  return str.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 // ---------------------------------------------------------------------------
@@ -154,9 +152,7 @@ export function normalizeUpc(value: string): string | null {
 
 const MIN_PRICE_MXN = 35;
 
-export function normalizePrice(
-  value: string | number,
-): number | null {
+export function normalizePrice(value: string | number): number | null {
   const num = typeof value === 'number' ? value : parseFloat(value);
   if (isNaN(num) || num < MIN_PRICE_MXN) return null;
   return Math.round(num * 100) / 100;
