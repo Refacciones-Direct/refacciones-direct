@@ -191,6 +191,15 @@ The session is NOT over after pushing. You must:
 - If CI fails, resolve and retry until it passes
 - Report status periodically — the user should never have to ask "what's happening?"
 
+### 6. Confirm deployment (if PR includes migrations)
+
+When a PR includes database migrations (`supabase/migrations/`), work is NOT complete until the **Deploy Staging** workflow has succeeded — meaning the staging Supabase environment has successfully applied the new migrations. After merge:
+
+1. Check workflow runs: `gh api repos/{owner}/{repo}/actions/runs --jq '.workflow_runs[:5] | .[] | {name, status, conclusion}'`
+2. Confirm `Deploy Staging` shows `conclusion: "success"`
+3. If the deploy fails: investigate logs, fix, and open a follow-up PR
+4. Report the staging deployment status to the user
+
 ## Windows MINGW64 Note
 
 Use `npm.cmd` / `npx.cmd` instead of `npm` / `npx` on this machine.
