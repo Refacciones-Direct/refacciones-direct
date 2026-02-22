@@ -30,28 +30,25 @@ export const METADATA_KEYS = {
 
 export const COMMON_PART_COLUMNS = {
   SKU: { es: 'SKU', en: 'SKU' },
-  FACTORY_PART_NUMBER: { es: 'Número de Parte Fábrica', en: 'Factory Part Number' },
-  UPC: { es: 'UPC', en: 'UPC' },
-  BRAND: { es: 'Marca Pieza', en: 'Part Brand' },
-  NAME: { es: 'Nombre', en: 'Name' },
+  BRAND: { es: 'Marca', en: 'Brand' },
+  NAME: { es: 'Nombre del Producto', en: 'Product Name' },
+  CONDITION: { es: 'Condición', en: 'Condition' },
   DESCRIPTION: { es: 'Descripción', en: 'Description' },
   PRICE: { es: 'Precio (MXN)', en: 'Price (MXN)' },
-  QUANTITY: { es: 'Cantidad', en: 'Quantity' },
-  IMAGE_URL_1: { es: 'URL Imagen 1', en: 'Image URL 1' },
-  IMAGE_URL_2: { es: 'URL Imagen 2', en: 'Image URL 2' },
-  IMAGE_URL_3: { es: 'URL Imagen 3', en: 'Image URL 3' },
-  OE_NUMBERS: { es: 'Números OE (separados por coma)', en: 'OE Numbers (comma separated)' },
-  OE_BRAND: { es: 'Marca OE', en: 'OE Brand' },
+  QUANTITY: { es: 'Stock', en: 'Stock' },
+  OE_NUMBERS: { es: 'Números OEM', en: 'OEM Numbers' },
+  IMAGE_URL_1: { es: 'Foto Frente', en: 'Photo Front' },
+  IMAGE_URL_2: { es: 'Foto Atrás', en: 'Photo Back' },
+  IMAGE_URL_3: { es: 'Foto Arriba', en: 'Photo Top' },
+  IMAGE_URL_4: { es: 'Foto Otra', en: 'Photo Other' },
 } as const;
 
 export const APPLICATION_COLUMNS = {
-  SKU: { es: 'SKU', en: 'SKU' },
-  MAKE: { es: 'Marca Vehículo', en: 'Vehicle Make' },
-  MODEL: { es: 'Modelo', en: 'Model' },
+  SKU: { es: 'SKU del Producto', en: 'Product SKU' },
+  MAKE: { es: 'Marca del Vehículo', en: 'Vehicle Make' },
+  MODEL: { es: 'Modelo del Vehículo', en: 'Vehicle Model' },
   YEAR_START: { es: 'Año Inicio', en: 'Year Start' },
   YEAR_END: { es: 'Año Fin', en: 'Year End' },
-  ENGINE: { es: 'Motor', en: 'Engine' },
-  SUBMODEL: { es: 'Submodelo', en: 'Submodel' },
 } as const;
 
 // ---------------------------------------------------------------------------
@@ -73,10 +70,10 @@ export const BATCH_SIZE = 500;
 export const MIN_PRICE_MXN = 35;
 
 // ---------------------------------------------------------------------------
-// Template data start row default (row 2 = first data row after header)
+// Template data start row default (row 3 = first data row after header + help text)
 // ---------------------------------------------------------------------------
 
-export const DEFAULT_DATA_START_ROW = 2;
+export const DEFAULT_DATA_START_ROW = 3;
 
 // ---------------------------------------------------------------------------
 // Supported file types

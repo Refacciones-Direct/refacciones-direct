@@ -7,7 +7,7 @@ import {
   buildWorkbookWithoutParts,
   buildWorkbookWithoutApplications,
 } from './helpers/test-workbook-builder';
-import { DEFAULT_PART, DEFAULT_APPLICATION, TEST_TEMPLATE_TYPE } from './helpers/test-constants';
+import { DEFAULT_PART, TEST_TEMPLATE_TYPE } from './helpers/test-constants';
 import { SHEET_NAMES, COMMON_PART_COLUMNS, APPLICATION_COLUMNS } from '../constants';
 import ExcelJS from 'exceljs';
 
@@ -49,9 +49,9 @@ describe('ExcelParseService', () => {
         .addPart({
           attributes: {
             Posición: 'Rear',
-            Birlos: 5,
-            'Sensor ABS': 'No',
-            Tracción: '2WD',
+            'Tipo de ABS': 'Sin ABS',
+            Barrenos: '5',
+            'Tipo de Tracción': '2WD',
           },
         })
         .addApplication(DEFAULT_PART.sku)
@@ -61,9 +61,9 @@ describe('ExcelParseService', () => {
       const part = result.parts[0];
 
       expect(part.data['Posición']).toBe('Rear');
-      expect(part.data['Birlos']).toBe(5);
-      expect(part.data['Sensor ABS']).toBe('No');
-      expect(part.data['Tracción']).toBe('2WD');
+      expect(part.data['Tipo de ABS']).toBe('Sin ABS');
+      expect(part.data['Barrenos']).toBe('5');
+      expect(part.data['Tipo de Tracción']).toBe('2WD');
     });
 
     it('extracts application data with all columns', async () => {
@@ -74,8 +74,6 @@ describe('ExcelParseService', () => {
           model: 'F-150',
           yearStart: 2018,
           yearEnd: 2023,
-          engine: '3.5L V6',
-          submodel: 'XLT',
         })
         .build();
 
@@ -87,8 +85,6 @@ describe('ExcelParseService', () => {
       expect(app.data[APPLICATION_COLUMNS.MODEL.es]).toBe('F-150');
       expect(app.data[APPLICATION_COLUMNS.YEAR_START.es]).toBe(2018);
       expect(app.data[APPLICATION_COLUMNS.YEAR_END.es]).toBe(2023);
-      expect(app.data[APPLICATION_COLUMNS.ENGINE.es]).toBe('3.5L V6');
-      expect(app.data[APPLICATION_COLUMNS.SUBMODEL.es]).toBe('XLT');
     });
 
     it('preserves row numbers (1-indexed)', async () => {
@@ -99,10 +95,10 @@ describe('ExcelParseService', () => {
 
       const result = await service.parse(buffer);
 
-      // Data starts at row 2 (row 1 = header)
-      expect(result.parts[0].rowNumber).toBe(2);
-      expect(result.parts[1].rowNumber).toBe(3);
-      expect(result.parts[2].rowNumber).toBe(4);
+      // Data starts at row 3 (row 1 = header, row 2 = help text)
+      expect(result.parts[0].rowNumber).toBe(3);
+      expect(result.parts[1].rowNumber).toBe(4);
+      expect(result.parts[2].rowNumber).toBe(5);
     });
 
     it('reads export_timestamp from metadata', async () => {
@@ -265,26 +261,34 @@ describe('ExcelParseService', () => {
       meta.addRow(['version', '1']);
 
       const parts = workbook.addWorksheet(SHEET_NAMES.PARTS);
-      // Header
+      // Row 1: Header
       parts.addRow([
         'SKU',
-        'Marca Pieza',
-        'Nombre',
+        'Marca',
+        'Nombre del Producto',
         'Precio (MXN)',
-        'Cantidad',
+        'Stock',
         'Posición',
-        'Birlos',
-        'Sensor ABS',
+        'Tipo de ABS',
+        'Barrenos',
       ]);
-      // Row 2: valid
-      parts.addRow(['TEST-001', 'ACR', 'Hub 1', 100, 5, 'Front', 6, 'Yes']);
-      // Row 3: empty
+      // Row 2: Help text (blank)
       parts.addRow([null, null, null, null, null, null, null, null]);
-      // Row 4: valid
-      parts.addRow(['TEST-002', 'ACR', 'Hub 2', 200, 3, 'Rear', 5, 'No']);
+      // Row 3: valid data
+      parts.addRow(['TEST-001', 'ACR', 'Hub 1', 100, 5, 'Front', 'ABS Integrado', '6']);
+      // Row 4: empty
+      parts.addRow([null, null, null, null, null, null, null, null]);
+      // Row 5: valid data
+      parts.addRow(['TEST-002', 'ACR', 'Hub 2', 200, 3, 'Rear', 'Sin ABS', '5']);
 
       const apps = workbook.addWorksheet(SHEET_NAMES.APPLICATIONS);
-      apps.addRow(['SKU', 'Marca Vehículo', 'Modelo', 'Año Inicio', 'Año Fin']);
+      apps.addRow([
+        'SKU del Producto',
+        'Marca del Vehículo',
+        'Modelo del Vehículo',
+        'Año Inicio',
+        'Año Fin',
+      ]);
       apps.addRow(['TEST-001', 'CHEVROLET', 'Silverado', 2014, 2020]);
 
       const arrayBuffer = await workbook.xlsx.writeBuffer();
@@ -292,8 +296,8 @@ describe('ExcelParseService', () => {
       const result = await service.parse(buffer);
 
       expect(result.parts).toHaveLength(2);
-      expect(result.parts[0].rowNumber).toBe(2);
-      expect(result.parts[1].rowNumber).toBe(4);
+      expect(result.parts[0].rowNumber).toBe(3);
+      expect(result.parts[1].rowNumber).toBe(5);
     });
 
     it('handles workbook with zero data rows', async () => {
@@ -303,10 +307,16 @@ describe('ExcelParseService', () => {
       meta.addRow(['version', '1']);
 
       const parts = workbook.addWorksheet(SHEET_NAMES.PARTS);
-      parts.addRow(['SKU', 'Marca Pieza', 'Nombre']);
+      parts.addRow(['SKU', 'Marca', 'Nombre del Producto']);
 
       const apps = workbook.addWorksheet(SHEET_NAMES.APPLICATIONS);
-      apps.addRow(['SKU', 'Marca Vehículo', 'Modelo', 'Año Inicio', 'Año Fin']);
+      apps.addRow([
+        'SKU del Producto',
+        'Marca del Vehículo',
+        'Modelo del Vehículo',
+        'Año Inicio',
+        'Año Fin',
+      ]);
 
       const arrayBuffer = await workbook.xlsx.writeBuffer();
       const buffer = Buffer.from(arrayBuffer);

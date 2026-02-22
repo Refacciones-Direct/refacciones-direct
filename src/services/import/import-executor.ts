@@ -175,10 +175,9 @@ export class ImportExecutor {
       const rows = batch.map((p) => ({
         manufacturer_id: manufacturerId,
         sku: p.sku,
-        factory_part_number: p.factoryPartNumber ?? null,
-        upc: p.upc ?? null,
         brand: p.brand,
         name: p.name,
+        condition: p.condition ?? null,
         description: p.description ?? null,
         category: templateConfig.categorySlug,
         part_type: templateConfig.partType,
@@ -257,8 +256,6 @@ export class ImportExecutor {
       model: app.model,
       year_start: app.yearStart,
       year_end: app.yearEnd,
-      engine: app.engine ?? null,
-      submodel: app.submodel ?? null,
     }));
 
     for (let i = 0; i < vehicleRows.length; i += BATCH_SIZE) {
@@ -276,27 +273,14 @@ export class ImportExecutor {
 
     // Now SELECT all needed vehicles to get IDs
     for (const [key, app] of uniqueVehicles) {
-      let query = this.adminClient
+      const { data } = await this.adminClient
         .from('vehicles')
         .select('id')
         .eq('make', app.make)
         .eq('model', app.model)
         .eq('year_start', app.yearStart)
-        .eq('year_end', app.yearEnd);
-
-      if (app.engine) {
-        query = query.eq('engine', app.engine);
-      } else {
-        query = query.is('engine', null);
-      }
-
-      if (app.submodel) {
-        query = query.eq('submodel', app.submodel);
-      } else {
-        query = query.is('submodel', null);
-      }
-
-      const { data } = await query.single();
+        .eq('year_end', app.yearEnd)
+        .single();
       if (data) {
         vehicleIdMap.set(key, data.id);
         counts.vehiclesUpserted++;
@@ -307,7 +291,7 @@ export class ImportExecutor {
   }
 
   private vehicleKey(app: ValidatedAppRow): string {
-    return `${app.make}|${app.model}|${app.yearStart}|${app.yearEnd}|${app.engine ?? ''}|${app.submodel ?? ''}`;
+    return `${app.make}|${app.model}|${app.yearStart}|${app.yearEnd}`;
   }
 
   // -------------------------------------------------------------------------
@@ -373,7 +357,6 @@ export class ImportExecutor {
       part_id: number;
       oe_number: string;
       oe_number_normalized: string;
-      oe_brand: string | null;
     }[] = [];
 
     for (const part of parts) {
@@ -385,7 +368,6 @@ export class ImportExecutor {
           part_id: partId,
           oe_number: oe.original,
           oe_number_normalized: oe.normalized,
-          oe_brand: oe.brand ?? null,
         });
       }
     }

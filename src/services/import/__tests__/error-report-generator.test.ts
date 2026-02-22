@@ -10,24 +10,24 @@ const mazasConfig = TEMPLATE_REGISTRY['mazas_v1'] as TemplateConfig;
 
 function makePartError(overrides: Partial<RowError> = {}): RowError {
   return {
-    rowNumber: 2,
+    rowNumber: 3,
     sheetName: SHEET_NAMES.PARTS,
     errorType: 'missing_required',
     errorMessage: 'SKU is required',
     fieldName: 'SKU',
-    originalData: { SKU: '', 'Marca Pieza': 'ACR', Nombre: 'Test' },
+    originalData: { SKU: '', Marca: 'ACR', 'Nombre del Producto': 'Test' },
     ...overrides,
   };
 }
 
 function makeAppError(overrides: Partial<RowError> = {}): RowError {
   return {
-    rowNumber: 3,
+    rowNumber: 4,
     sheetName: SHEET_NAMES.APPLICATIONS,
     errorType: 'sku_not_found',
     errorMessage: 'SKU not found in Partes: MISSING-001',
     fieldName: 'SKU',
-    originalData: { SKU: 'MISSING-001', 'Marca Vehículo': 'FORD' },
+    originalData: { 'SKU del Producto': 'MISSING-001', 'Marca del Vehículo': 'FORD' },
     ...overrides,
   };
 }
@@ -79,8 +79,8 @@ describe('ErrorReportGenerator', () => {
   it('aggregates multiple errors for same row', async () => {
     const buffer = await generator.generate({
       errors: [
-        makePartError({ rowNumber: 2, errorMessage: 'Error 1' }),
-        makePartError({ rowNumber: 2, errorMessage: 'Error 2' }),
+        makePartError({ rowNumber: 3, errorMessage: 'Error 1' }),
+        makePartError({ rowNumber: 3, errorMessage: 'Error 2' }),
       ],
       templateConfig: mazasConfig,
     });
@@ -125,7 +125,7 @@ describe('ErrorReportGenerator', () => {
   it('handles many errors (100+)', async () => {
     const errors: RowError[] = [];
     for (let i = 0; i < 100; i++) {
-      errors.push(makePartError({ rowNumber: i + 2, errorMessage: `Error ${i}` }));
+      errors.push(makePartError({ rowNumber: i + 3, errorMessage: `Error ${i}` }));
     }
 
     const buffer = await generator.generate({
@@ -156,9 +156,9 @@ describe('ErrorReportGenerator', () => {
       headers.push(String(cell.value));
     });
 
-    // Should include mazas-specific attributes
+    // Should include mazas-specific attributes (new names)
     expect(headers).toContain('Posición');
-    expect(headers).toContain('Birlos');
-    expect(headers).toContain('Sensor ABS');
+    expect(headers).toContain('Barrenos');
+    expect(headers).toContain('Tipo de ABS');
   });
 });

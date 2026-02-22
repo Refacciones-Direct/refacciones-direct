@@ -62,45 +62,46 @@ export class TemplateGenerator {
   private buildPartsSheet(workbook: ExcelJS.Workbook, config: TemplateConfig): void {
     const ws = workbook.addWorksheet(SHEET_NAMES.PARTS);
 
-    // Header row
+    // Row 1: Header row
     const headers = [
       COMMON_PART_COLUMNS.SKU.es,
-      COMMON_PART_COLUMNS.FACTORY_PART_NUMBER.es,
-      COMMON_PART_COLUMNS.UPC.es,
       COMMON_PART_COLUMNS.BRAND.es,
       COMMON_PART_COLUMNS.NAME.es,
+      COMMON_PART_COLUMNS.CONDITION.es,
       COMMON_PART_COLUMNS.DESCRIPTION.es,
+      ...config.attributes.map((a) => a.header_es),
       COMMON_PART_COLUMNS.PRICE.es,
       COMMON_PART_COLUMNS.QUANTITY.es,
+      COMMON_PART_COLUMNS.OE_NUMBERS.es,
       COMMON_PART_COLUMNS.IMAGE_URL_1.es,
       COMMON_PART_COLUMNS.IMAGE_URL_2.es,
       COMMON_PART_COLUMNS.IMAGE_URL_3.es,
-      COMMON_PART_COLUMNS.OE_NUMBERS.es,
-      COMMON_PART_COLUMNS.OE_BRAND.es,
-      ...config.attributes.map((a) => a.header_es),
+      COMMON_PART_COLUMNS.IMAGE_URL_4.es,
     ];
 
     const headerRow = ws.addRow(headers);
     this.styleHeaderRow(headerRow);
 
-    // Data validations for dropdown attributes
-    const commonColCount = 13; // Number of common columns
-    for (let i = 0; i < config.attributes.length; i++) {
-      const attr = config.attributes[i];
-      if (attr.type === 'dropdown' && attr.validation?.values) {
-        const colIndex = commonColCount + i + 1; // 1-indexed
-        const colLetter = this.colLetter(colIndex);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- ExcelJS supports dataValidations but @types are incomplete
-        (ws as any).dataValidations.add(`${colLetter}2:${colLetter}1048576`, {
-          type: 'list',
-          allowBlank: !attr.required,
-          formulae: [`"${attr.validation.values.join(',')}"`],
-          showErrorMessage: true,
-          errorTitle: 'Valor inválido',
-          error: `Debe ser uno de: ${attr.validation.values.join(', ')}`,
-        });
-      }
-    }
+    // Row 2: Help text hints
+    const helpTexts = [
+      'Código único. Ej: ACR2302006',
+      'Marca de la pieza',
+      'Nombre descriptivo del producto',
+      'Nuevo o Usado',
+      'Descripción detallada',
+      ...config.attributes.map((a) => a.header_es),
+      'Precio en pesos mexicanos',
+      'Cantidad disponible',
+      'Números OEM separados por ; o ,',
+      'URL de foto frontal',
+      'URL de foto trasera',
+      'URL de foto superior',
+      'URL de foto adicional',
+    ];
+    const helpRow = ws.addRow(helpTexts);
+    helpRow.eachCell((cell) => {
+      cell.font = { italic: true, color: { argb: 'FF808080' } };
+    });
 
     // Auto-width
     this.autoWidth(ws);
@@ -119,12 +120,24 @@ export class TemplateGenerator {
       APPLICATION_COLUMNS.MODEL.es,
       APPLICATION_COLUMNS.YEAR_START.es,
       APPLICATION_COLUMNS.YEAR_END.es,
-      APPLICATION_COLUMNS.ENGINE.es,
-      APPLICATION_COLUMNS.SUBMODEL.es,
     ];
 
     const headerRow = ws.addRow(headers);
     this.styleHeaderRow(headerRow);
+
+    // Help text row
+    const helpTexts = [
+      'SKU de la pieza en Partes',
+      'Ej: CHEVROLET, FORD',
+      'Ej: SILVERADO 1500',
+      'Ej: 2010',
+      'Ej: 2020',
+    ];
+    const helpRow = ws.addRow(helpTexts);
+    helpRow.eachCell((cell) => {
+      cell.font = { italic: true, color: { argb: 'FF808080' } };
+    });
+
     this.autoWidth(ws);
   }
 
@@ -153,16 +166,5 @@ export class TemplateGenerator {
       });
       column.width = Math.min(maxLen + 4, 40);
     });
-  }
-
-  private colLetter(colIndex: number): string {
-    let letter = '';
-    let n = colIndex;
-    while (n > 0) {
-      n--;
-      letter = String.fromCharCode(65 + (n % 26)) + letter;
-      n = Math.floor(n / 26);
-    }
-    return letter;
   }
 }

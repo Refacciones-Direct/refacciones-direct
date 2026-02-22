@@ -57,19 +57,18 @@ export class ErrorReportGenerator {
     // Header: common columns + attribute columns + Error
     const headers = [
       COMMON_PART_COLUMNS.SKU.es,
-      COMMON_PART_COLUMNS.FACTORY_PART_NUMBER.es,
-      COMMON_PART_COLUMNS.UPC.es,
       COMMON_PART_COLUMNS.BRAND.es,
       COMMON_PART_COLUMNS.NAME.es,
+      COMMON_PART_COLUMNS.CONDITION.es,
       COMMON_PART_COLUMNS.DESCRIPTION.es,
+      ...config.attributes.map((a) => a.header_es),
       COMMON_PART_COLUMNS.PRICE.es,
       COMMON_PART_COLUMNS.QUANTITY.es,
+      COMMON_PART_COLUMNS.OE_NUMBERS.es,
       COMMON_PART_COLUMNS.IMAGE_URL_1.es,
       COMMON_PART_COLUMNS.IMAGE_URL_2.es,
       COMMON_PART_COLUMNS.IMAGE_URL_3.es,
-      COMMON_PART_COLUMNS.OE_NUMBERS.es,
-      COMMON_PART_COLUMNS.OE_BRAND.es,
-      ...config.attributes.map((a) => a.header_es),
+      COMMON_PART_COLUMNS.IMAGE_URL_4.es,
       ERROR_COLUMN_HEADER.es,
     ];
 
@@ -85,19 +84,18 @@ export class ErrorReportGenerator {
 
       const row = [
         data[COMMON_PART_COLUMNS.SKU.es] ?? '',
-        data[COMMON_PART_COLUMNS.FACTORY_PART_NUMBER.es] ?? '',
-        data[COMMON_PART_COLUMNS.UPC.es] ?? '',
         data[COMMON_PART_COLUMNS.BRAND.es] ?? '',
         data[COMMON_PART_COLUMNS.NAME.es] ?? '',
+        data[COMMON_PART_COLUMNS.CONDITION.es] ?? '',
         data[COMMON_PART_COLUMNS.DESCRIPTION.es] ?? '',
+        ...config.attributes.map((a) => data[a.header_es] ?? ''),
         data[COMMON_PART_COLUMNS.PRICE.es] ?? '',
         data[COMMON_PART_COLUMNS.QUANTITY.es] ?? '',
+        data[COMMON_PART_COLUMNS.OE_NUMBERS.es] ?? '',
         data[COMMON_PART_COLUMNS.IMAGE_URL_1.es] ?? '',
         data[COMMON_PART_COLUMNS.IMAGE_URL_2.es] ?? '',
         data[COMMON_PART_COLUMNS.IMAGE_URL_3.es] ?? '',
-        data[COMMON_PART_COLUMNS.OE_NUMBERS.es] ?? '',
-        data[COMMON_PART_COLUMNS.OE_BRAND.es] ?? '',
-        ...config.attributes.map((a) => data[a.header_es] ?? ''),
+        data[COMMON_PART_COLUMNS.IMAGE_URL_4.es] ?? '',
         errorMessages,
       ];
       ws.addRow(row);
@@ -120,8 +118,6 @@ export class ErrorReportGenerator {
       APPLICATION_COLUMNS.MODEL.es,
       APPLICATION_COLUMNS.YEAR_START.es,
       APPLICATION_COLUMNS.YEAR_END.es,
-      APPLICATION_COLUMNS.ENGINE.es,
-      APPLICATION_COLUMNS.SUBMODEL.es,
       ERROR_COLUMN_HEADER.es,
     ];
 
@@ -140,8 +136,6 @@ export class ErrorReportGenerator {
         data[APPLICATION_COLUMNS.MODEL.es] ?? '',
         data[APPLICATION_COLUMNS.YEAR_START.es] ?? '',
         data[APPLICATION_COLUMNS.YEAR_END.es] ?? '',
-        data[APPLICATION_COLUMNS.ENGINE.es] ?? '',
-        data[APPLICATION_COLUMNS.SUBMODEL.es] ?? '',
         errorMessages,
       ]);
     }

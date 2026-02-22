@@ -3,24 +3,15 @@
  *
  * Responsibilities:
  *   1. Required field validation
- *   2. Format validation (UPC, URLs, prices)
- *   3. Attribute validation (driven by TemplateConfig)
+ *   2. Format validation (URLs, prices)
+ *   3. Attribute extraction (driven by TemplateConfig — free text for MVP)
  *   4. Duplicate SKU detection (within file AND against DB)
  *   5. Multi-make splitting ("CHEVROLET, GMC" → 2 rows)
- *   6. Normalization (make, model, position, drive type, OE numbers)
+ *   6. Normalization (make, model, OE numbers)
  *   7. Cross-sheet validation (app SKU must exist in Partes)
  */
 
-import {
-  normalizeMake,
-  normalizeModel,
-  normalizePosition,
-  normalizeDriveType,
-  normalizeText,
-  normalizeUpc,
-  normalizePrice,
-  normalizeOeNumber,
-} from '@/lib/normalize';
+import { normalizeMake, normalizeModel, normalizePrice, normalizeOeNumber } from '@/lib/normalize';
 import { COMMON_PART_COLUMNS, APPLICATION_COLUMNS, SHEET_NAMES, MIN_PRICE_MXN } from './constants';
 import type {
   ParsedFile,
@@ -28,7 +19,6 @@ import type {
   RawAppRow,
   TemplateConfig,
   TemplateAttribute,
-  NormalizerName,
   RowError,
   NormalizationRecord,
   ValidatedPartRow,
@@ -36,16 +26,6 @@ import type {
   ValidationSummary,
   ValidationResult,
 } from './types';
-
-// ---------------------------------------------------------------------------
-// Normalizer dispatch
-// ---------------------------------------------------------------------------
-
-const NORMALIZER_FNS: Record<NormalizerName, (v: string) => string> = {
-  normalizePosition,
-  normalizeDriveType,
-  normalizeText,
-};
 
 // ---------------------------------------------------------------------------
 // Types for DB duplicate check (injectable for testing)
@@ -230,42 +210,16 @@ export class ValidationEngine {
           ? Math.max(0, Math.round(quantityRaw))
           : parseInt(String(quantityRaw || '0'), 10) || 0;
 
-      // --- UPC (optional, validate format if provided) ---
-      const upcRaw = this.str(data[COMMON_PART_COLUMNS.UPC.es]);
-      let upc: string | undefined;
-      if (upcRaw) {
-        const normalizedUpc = normalizeUpc(upcRaw);
-        if (normalizedUpc === null) {
-          rowErrors.push(
-            this.makeError(
-              raw.rowNumber,
-              sheet,
-              'invalid_format',
-              'UPC must be 8-14 digits',
-              COMMON_PART_COLUMNS.UPC.es,
-              data,
-            ),
-          );
-        } else {
-          if (normalizedUpc !== upcRaw) {
-            normalizations.push({
-              rowNumber: raw.rowNumber,
-              sheetName: sheet,
-              field: 'UPC',
-              originalValue: upcRaw,
-              normalizedValue: normalizedUpc,
-            });
-          }
-          upc = normalizedUpc;
-        }
-      }
+      // --- Condition (optional, stored on ValidatedPartRow) ---
+      const condition = this.str(data[COMMON_PART_COLUMNS.CONDITION.es]) || undefined;
 
-      // --- Image URLs ---
+      // --- Image URLs (4 named photo columns) ---
       const imageUrls: string[] = [];
       for (const key of [
         COMMON_PART_COLUMNS.IMAGE_URL_1.es,
         COMMON_PART_COLUMNS.IMAGE_URL_2.es,
         COMMON_PART_COLUMNS.IMAGE_URL_3.es,
+        COMMON_PART_COLUMNS.IMAGE_URL_4.es,
       ]) {
         const url = this.str(data[key]);
         if (url) {
@@ -286,13 +240,12 @@ export class ValidationEngine {
         }
       }
 
-      // --- OE numbers ---
+      // --- OE numbers (split on comma, semicolon, or 2+ spaces) ---
       const oeRaw = this.str(data[COMMON_PART_COLUMNS.OE_NUMBERS.es]);
-      const oeBrand = this.str(data[COMMON_PART_COLUMNS.OE_BRAND.es]) || undefined;
-      const oeNumbers: { original: string; normalized: string; brand?: string }[] = [];
+      const oeNumbers: { original: string; normalized: string }[] = [];
       if (oeRaw) {
         const parts = oeRaw
-          .split(',')
+          .split(/[,;]|\s{2,}/)
           .map((s) => s.trim())
           .filter(Boolean);
         for (const oe of parts) {
@@ -306,7 +259,7 @@ export class ValidationEngine {
               normalizedValue: normalized,
             });
           }
-          oeNumbers.push({ original, normalized, brand: oeBrand });
+          oeNumbers.push({ original, normalized });
         }
       }
 
@@ -339,10 +292,9 @@ export class ValidationEngine {
       validParts.push({
         rowNumber: raw.rowNumber,
         sku: skuRaw,
-        factoryPartNumber: this.str(data[COMMON_PART_COLUMNS.FACTORY_PART_NUMBER.es]) || undefined,
-        upc,
         brand: brand!,
         name: name!,
+        condition,
         description: this.str(data[COMMON_PART_COLUMNS.DESCRIPTION.es]) || undefined,
         price,
         quantity,
@@ -366,7 +318,7 @@ export class ValidationEngine {
     sheet: string,
     originalData: Record<string, unknown>,
     errors: RowError[],
-    normalizations: NormalizationRecord[],
+    _normalizations: NormalizationRecord[],
   ): unknown {
     const strVal = this.str(rawVal);
 
@@ -387,90 +339,54 @@ export class ValidationEngine {
 
     if (!strVal) return undefined;
 
-    // Normalize first (if applicable)
-    let value: string | number = strVal;
-    if (attr.normalizer) {
-      const fn = NORMALIZER_FNS[attr.normalizer];
-      const normalized = fn(strVal);
-      if (normalized !== strVal) {
-        normalizations.push({
-          rowNumber,
-          sheetName: sheet,
-          field: attr.field,
-          originalValue: strVal,
-          normalizedValue: normalized,
-        });
+    // MVP: Store as free text — no dropdown validation or normalization.
+    // Number type still validates format for templates that use it.
+    if (attr.type === 'number') {
+      const num = typeof rawVal === 'number' ? rawVal : parseFloat(strVal);
+      if (isNaN(num)) {
+        errors.push(
+          this.makeError(
+            rowNumber,
+            sheet,
+            'invalid_format',
+            `${attr.header_es} must be a number`,
+            attr.header_es,
+            originalData,
+          ),
+        );
+        return undefined;
       }
-      value = normalized;
+      if (attr.validation?.min !== undefined && num < attr.validation.min) {
+        errors.push(
+          this.makeError(
+            rowNumber,
+            sheet,
+            'invalid_value',
+            `${attr.header_es} must be at least ${attr.validation.min}`,
+            attr.header_es,
+            originalData,
+          ),
+        );
+        return undefined;
+      }
+      if (attr.validation?.max !== undefined && num > attr.validation.max) {
+        errors.push(
+          this.makeError(
+            rowNumber,
+            sheet,
+            'invalid_value',
+            `${attr.header_es} must be at most ${attr.validation.max}`,
+            attr.header_es,
+            originalData,
+          ),
+        );
+        return undefined;
+      }
+      return num;
     }
 
-    // Type-specific validation
-    switch (attr.type) {
-      case 'dropdown': {
-        if (attr.validation?.values && !attr.validation.values.includes(String(value))) {
-          errors.push(
-            this.makeError(
-              rowNumber,
-              sheet,
-              'invalid_value',
-              `${attr.header_es} must be one of: ${attr.validation.values.join(', ')}. Got: "${value}"`,
-              attr.header_es,
-              originalData,
-            ),
-          );
-          return undefined;
-        }
-        return value;
-      }
-
-      case 'number': {
-        const num = typeof rawVal === 'number' ? rawVal : parseFloat(String(value));
-        if (isNaN(num)) {
-          errors.push(
-            this.makeError(
-              rowNumber,
-              sheet,
-              'invalid_format',
-              `${attr.header_es} must be a number`,
-              attr.header_es,
-              originalData,
-            ),
-          );
-          return undefined;
-        }
-        if (attr.validation?.min !== undefined && num < attr.validation.min) {
-          errors.push(
-            this.makeError(
-              rowNumber,
-              sheet,
-              'invalid_value',
-              `${attr.header_es} must be at least ${attr.validation.min}`,
-              attr.header_es,
-              originalData,
-            ),
-          );
-          return undefined;
-        }
-        if (attr.validation?.max !== undefined && num > attr.validation.max) {
-          errors.push(
-            this.makeError(
-              rowNumber,
-              sheet,
-              'invalid_value',
-              `${attr.header_es} must be at most ${attr.validation.max}`,
-              attr.header_es,
-              originalData,
-            ),
-          );
-          return undefined;
-        }
-        return num;
-      }
-
-      case 'string':
-      default:
-        return value;
-    }
+    // string — store as-is (free text for MVP)
+    return strVal;
   }
 
   // -------------------------------------------------------------------------
@@ -624,10 +540,6 @@ export class ValidationEngine {
         continue;
       }
 
-      // --- Optional fields ---
-      const engine = this.str(data[APPLICATION_COLUMNS.ENGINE.es]) || undefined;
-      const submodel = this.str(data[APPLICATION_COLUMNS.SUBMODEL.es]) || undefined;
-
       // --- Multi-make splitting ---
       const makes = makeRaw
         .split(',')
@@ -667,8 +579,6 @@ export class ValidationEngine {
           model: normalizedModel,
           yearStart,
           yearEnd,
-          engine,
-          submodel,
         });
       }
     }

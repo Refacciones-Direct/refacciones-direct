@@ -11,8 +11,6 @@ import type { Json } from '@/types/database';
 // Template Registry Types
 // ---------------------------------------------------------------------------
 
-export type NormalizerName = 'normalizePosition' | 'normalizeDriveType' | 'normalizeText';
-
 export interface TemplateAttribute {
   /** Key stored in parts.attributes JSONB */
   field: string;
@@ -21,17 +19,14 @@ export interface TemplateAttribute {
   /** Excel column header (English) */
   header_en: string;
   /** Input type for validation / template generation */
-  type: 'dropdown' | 'string' | 'number';
+  type: 'string' | 'number';
   /** Whether the attribute is required */
   required: boolean;
-  /** Validation constraints */
+  /** Validation constraints for number types */
   validation?: {
-    values?: string[];
     min?: number;
     max?: number;
   };
-  /** Normalizer function name from src/lib/normalize.ts */
-  normalizer?: NormalizerName;
 }
 
 export interface TemplateConfig {
@@ -114,16 +109,15 @@ export interface NormalizationRecord {
 export interface ValidatedPartRow {
   rowNumber: number;
   sku: string;
-  factoryPartNumber?: string;
-  upc?: string;
   brand: string;
   name: string;
+  condition?: string;
   description?: string;
   price: number | null;
   quantity: number;
   imageUrls: string[];
   attributes: Record<string, unknown>;
-  oeNumbers: { original: string; normalized: string; brand?: string }[];
+  oeNumbers: { original: string; normalized: string }[];
 }
 
 export interface ValidatedAppRow {
@@ -133,8 +127,6 @@ export interface ValidatedAppRow {
   model: string;
   yearStart: number;
   yearEnd: number;
-  engine?: string;
-  submodel?: string;
 }
 
 export interface ValidationSummary {

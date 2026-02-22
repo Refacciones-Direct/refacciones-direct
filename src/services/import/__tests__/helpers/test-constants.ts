@@ -12,7 +12,6 @@ export const TEST_MANUFACTURER_ID = 1;
 
 export const DEFAULT_PART = {
   sku: 'TEST-001',
-  factoryPartNumber: 'FP-001',
   brand: 'TestBrand',
   name: 'Test Part',
   description: 'A test part for unit tests',
@@ -20,7 +19,6 @@ export const DEFAULT_PART = {
   quantity: 10,
   imageUrl1: 'https://example.com/img1.jpg',
   oeNumbers: '12345-ABC, 67890-DEF',
-  oeBrand: 'OEM',
 } as const;
 
 export const DEFAULT_APPLICATION = {
@@ -29,14 +27,12 @@ export const DEFAULT_APPLICATION = {
   model: 'Silverado 1500',
   yearStart: 2014,
   yearEnd: 2020,
-  engine: '5.3L V8',
-  submodel: 'LT',
 } as const;
 
 export const DEFAULT_MAZA_ATTRIBUTES = {
   position: 'Front',
-  boltCount: 6,
-  absSensor: 'Yes',
+  absType: 'ABS Integrado',
+  boltCount: '6',
   driveType: '4WD',
 } as const;
 

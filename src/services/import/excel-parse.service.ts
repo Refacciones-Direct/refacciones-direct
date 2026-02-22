@@ -11,7 +11,13 @@
  */
 
 import ExcelJS from 'exceljs';
-import { SHEET_NAMES, METADATA_KEYS, COMMON_PART_COLUMNS, APPLICATION_COLUMNS } from './constants';
+import {
+  SHEET_NAMES,
+  METADATA_KEYS,
+  COMMON_PART_COLUMNS,
+  APPLICATION_COLUMNS,
+  DEFAULT_DATA_START_ROW,
+} from './constants';
 import { getTemplateConfig } from './template-registry';
 import type { ParsedFile, ParsedMetadata, RawPartRow, RawAppRow, TemplateConfig } from './types';
 
@@ -189,7 +195,7 @@ export class ExcelParseService {
     const rows: RawAppRow[] = [];
 
     ws.eachRow((row, rowNumber) => {
-      if (rowNumber < 2) return; // Skip header row
+      if (rowNumber < DEFAULT_DATA_START_ROW) return; // Skip header + help text rows
 
       if (this.isEmptyRow(row, headerMap.size)) return;
 

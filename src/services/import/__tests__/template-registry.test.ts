@@ -40,8 +40,8 @@ describe('TemplateRegistry', () => {
     expect(config.version).toMatch(/^\d+$/);
   });
 
-  it.each(entries)('%s has dataStartRow >= 2', (_key, config: TemplateConfig) => {
-    expect(config.dataStartRow).toBeGreaterThanOrEqual(2);
+  it.each(entries)('%s has dataStartRow >= 3', (_key, config: TemplateConfig) => {
+    expect(config.dataStartRow).toBeGreaterThanOrEqual(3);
   });
 
   it.each(entries)('%s has at least one attribute', (_key, config: TemplateConfig) => {
@@ -66,17 +66,6 @@ describe('TemplateRegistry', () => {
   // Attribute validation rules
   // -------------------------------------------------------------------------
 
-  it('dropdown attributes have validation.values defined', () => {
-    for (const [, config] of entries) {
-      for (const attr of config.attributes) {
-        if (attr.type === 'dropdown') {
-          expect(attr.validation?.values).toBeDefined();
-          expect(attr.validation!.values!.length).toBeGreaterThan(0);
-        }
-      }
-    }
-  });
-
   it('number attributes with validation have min <= max', () => {
     for (const [, config] of entries) {
       for (const attr of config.attributes) {
@@ -86,17 +75,6 @@ describe('TemplateRegistry', () => {
           attr.validation?.max !== undefined
         ) {
           expect(attr.validation.min).toBeLessThanOrEqual(attr.validation.max);
-        }
-      }
-    }
-  });
-
-  it('normalizer values reference valid function names', () => {
-    const validNormalizers = new Set(['normalizePosition', 'normalizeDriveType', 'normalizeText']);
-    for (const [, config] of entries) {
-      for (const attr of config.attributes) {
-        if (attr.normalizer) {
-          expect(validNormalizers.has(attr.normalizer)).toBe(true);
         }
       }
     }
