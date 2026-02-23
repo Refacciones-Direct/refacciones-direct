@@ -111,7 +111,6 @@ export interface ValidatedPartRow {
   sku: string;
   brand: string;
   name: string;
-  condition?: string;
   description?: string;
   price: number | null;
   quantity: number;

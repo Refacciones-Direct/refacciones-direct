@@ -30,7 +30,6 @@ export interface PartInput {
   sku?: string;
   brand?: string;
   name?: string;
-  condition?: string;
   description?: string;
   price?: number | string;
   quantity?: number | string;
@@ -154,7 +153,6 @@ export class TestWorkbookBuilder {
       COMMON_PART_COLUMNS.SKU.es,
       COMMON_PART_COLUMNS.BRAND.es,
       COMMON_PART_COLUMNS.NAME.es,
-      COMMON_PART_COLUMNS.CONDITION.es,
       COMMON_PART_COLUMNS.DESCRIPTION.es,
       ...this.templateConfig.attributes.map((a) => a.header_es),
       COMMON_PART_COLUMNS.PRICE.es,
@@ -177,7 +175,6 @@ export class TestWorkbookBuilder {
         part.sku ?? DEFAULT_PART.sku,
         part.brand ?? DEFAULT_PART.brand,
         part.name ?? DEFAULT_PART.name,
-        part.condition ?? '',
         part.description ?? DEFAULT_PART.description,
         ...this.templateConfig.attributes.map((a) => attrs[a.header_es] ?? attrs[a.field] ?? ''),
         part.price ?? DEFAULT_PART.price,

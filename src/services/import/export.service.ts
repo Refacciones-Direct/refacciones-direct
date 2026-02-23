@@ -63,7 +63,15 @@ export class ExportService {
 
     this.buildMetadataSheet(workbook, config, exportTimestamp);
     this.buildPartsSheet(workbook, parts, oeCrossrefs ?? [], config);
-    this.buildApplicationsSheet(workbook, parts, fitments ?? []);
+    // Supabase types infer many-to-one FK join as array; at runtime it's a single object
+    this.buildApplicationsSheet(
+      workbook,
+      parts,
+      (fitments ?? []) as unknown as Array<{
+        part_id: number;
+        vehicles: Record<string, unknown> | null;
+      }>,
+    );
 
     const arrayBuffer = await workbook.xlsx.writeBuffer();
     const buffer = Buffer.from(arrayBuffer);
@@ -139,7 +147,6 @@ export class ExportService {
       COMMON_PART_COLUMNS.SKU.es,
       COMMON_PART_COLUMNS.BRAND.es,
       COMMON_PART_COLUMNS.NAME.es,
-      COMMON_PART_COLUMNS.CONDITION.es,
       COMMON_PART_COLUMNS.DESCRIPTION.es,
       ...template.config.attributes.map((a) => a.header_es),
       COMMON_PART_COLUMNS.PRICE.es,
@@ -156,6 +163,9 @@ export class ExportService {
       cell.font = { bold: true };
     });
 
+    // Row 2: empty placeholder so data starts at row 3 (matches dataStartRow)
+    ws.addRow(headers.map(() => ''));
+
     // Data rows
     for (const part of parts) {
       const attrs = (part.attributes ?? {}) as Record<string, unknown>;
@@ -166,7 +176,6 @@ export class ExportService {
         part.sku,
         part.brand,
         part.name,
-        part.condition ?? '',
         part.description ?? '',
         ...template.config.attributes.map((a) => attrs[a.field] ?? ''),
         part.price ?? '',
@@ -187,15 +196,8 @@ export class ExportService {
   private buildApplicationsSheet(
     workbook: ExcelJS.Workbook,
     parts: Array<Record<string, unknown>>,
-    fitments: Array<{
-      part_id: number;
-      vehicles: Array<{
-        make: string;
-        model: string;
-        year_start: number;
-        year_end: number;
-      }>;
-    }>,
+    // Supabase infers many-to-one join as array; at runtime it's a single object
+    fitments: Array<{ part_id: number; vehicles: Record<string, unknown> | null }>,
   ): void {
     const ws = workbook.addWorksheet(SHEET_NAMES.APPLICATIONS);
 
@@ -212,6 +214,9 @@ export class ExportService {
       cell.font = { bold: true };
     });
 
+    // Row 2: empty placeholder so data starts at row 3 (matches dataStartRow)
+    ws.addRow(headers.map(() => ''));
+
     // Build part_id → SKU map
     const idToSku = new Map<number, string>();
     for (const part of parts) {
@@ -222,10 +227,10 @@ export class ExportService {
       const sku = idToSku.get(fitment.part_id);
       if (!sku) continue;
 
-      // Supabase joins return related tables as arrays
-      for (const vehicle of fitment.vehicles) {
-        ws.addRow([sku, vehicle.make, vehicle.model, vehicle.year_start, vehicle.year_end]);
-      }
+      // Supabase many-to-one join returns a single object (not array)
+      const vehicle = fitment.vehicles;
+      if (!vehicle) continue;
+      ws.addRow([sku, vehicle.make, vehicle.model, vehicle.year_start, vehicle.year_end]);
     }
   }
 }
