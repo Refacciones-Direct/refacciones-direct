@@ -1,10 +1,7 @@
 import { useSyncExternalStore } from 'react';
+import type { VehicleContext } from '@/services/search/types';
 
-export interface VehicleContext {
-  make: string;
-  model: string;
-  year: number;
-}
+export type { VehicleContext };
 
 const STORAGE_KEY = 'vehicle-context:v1';
 const CHANGE_EVENT = 'vehiclechange';

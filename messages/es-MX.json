@@ -162,6 +162,11 @@
       "pagination": {
         "previous": "Anterior",
         "next": "Siguiente"
+      },
+      "error": {
+        "title": "La búsqueda no está disponible",
+        "description": "Hubo un problema al buscar. Intenta de nuevo.",
+        "retry": "Reintentar"
       }
     },
     "footer": {

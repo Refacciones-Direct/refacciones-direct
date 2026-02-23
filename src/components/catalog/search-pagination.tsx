@@ -17,6 +17,8 @@ interface SearchPaginationProps {
   baseUrl: string;
 }
 
+// Manually prefixes locale because shadcn PaginationLink uses <a>, not next-intl Link.
+// If locale routing strategy changes (e.g., domain-based), this function must be updated.
 function buildPageUrl(locale: string, baseUrl: string, page: number): string {
   const url = new URL(baseUrl, 'http://localhost');
   url.searchParams.set('page', String(page));

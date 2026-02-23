@@ -144,6 +144,11 @@
       "pagination": {
         "previous": "Previous",
         "next": "Next"
+      },
+      "error": {
+        "title": "Search is temporarily unavailable",
+        "description": "There was a problem with the search. Please try again.",
+        "retry": "Try again"
       }
     },
     "footer": {

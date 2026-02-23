@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -50,15 +50,16 @@ async function fetchYears(make: string, model: string): Promise<number[]> {
   return [];
 }
 
-// Unique sentinel per fetch cycle — lets us discard stale responses
-let makesFetchId = 0;
-let modelsFetchId = 0;
-let yearsFetchId = 0;
-
 export function VehicleSelector({ className }: VehicleSelectorProps) {
   const t = useTranslations('catalog');
   const router = useRouter();
   const { setVehicle } = useVehicleContext();
+
+  // Unique sentinel per fetch cycle — lets us discard stale responses.
+  // useRef scopes these to the component instance (not module-level).
+  const makesFetchId = useRef(0);
+  const modelsFetchId = useRef(0);
+  const yearsFetchId = useRef(0);
 
   const [makes, setMakes] = useState<string[] | null>(null);
   const [models, setModels] = useState<string[] | null>(null);
@@ -75,39 +76,39 @@ export function VehicleSelector({ className }: VehicleSelectorProps) {
 
   // Fetch makes on mount
   useEffect(() => {
-    const id = ++makesFetchId;
+    const id = ++makesFetchId.current;
     fetchMakes()
       .then((data) => {
-        if (id === makesFetchId) setMakes(data);
+        if (id === makesFetchId.current) setMakes(data);
       })
       .catch(() => {
-        if (id === makesFetchId) setMakes([]);
+        if (id === makesFetchId.current) setMakes([]);
       });
   }, []);
 
   // Fetch models when make changes
   useEffect(() => {
     if (!selectedMake) return;
-    const id = ++modelsFetchId;
+    const id = ++modelsFetchId.current;
     fetchModels(selectedMake)
       .then((data) => {
-        if (id === modelsFetchId) setModels(data);
+        if (id === modelsFetchId.current) setModels(data);
       })
       .catch(() => {
-        if (id === modelsFetchId) setModels([]);
+        if (id === modelsFetchId.current) setModels([]);
       });
   }, [selectedMake]);
 
   // Fetch years when model changes
   useEffect(() => {
     if (!selectedMake || !selectedModel) return;
-    const id = ++yearsFetchId;
+    const id = ++yearsFetchId.current;
     fetchYears(selectedMake, selectedModel)
       .then((data) => {
-        if (id === yearsFetchId) setYears(data);
+        if (id === yearsFetchId.current) setYears(data);
       })
       .catch(() => {
-        if (id === yearsFetchId) setYears([]);
+        if (id === yearsFetchId.current) setYears([]);
       });
   }, [selectedMake, selectedModel]);
 

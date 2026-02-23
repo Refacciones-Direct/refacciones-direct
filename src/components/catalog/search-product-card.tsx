@@ -1,3 +1,4 @@
+import { Package } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 
 interface SearchProductCardProps {
@@ -28,6 +29,7 @@ export function SearchProductCard({
         )
       : null;
 
+  // TODO: Link to /parts/{id} when product detail page is implemented
   return (
     <Link
       href={`/search?q=${encodeURIComponent(sku)}`}
@@ -38,7 +40,7 @@ export function SearchProductCard({
         {imageUrls.length > 0 ? (
           <img src={imageUrls[0]} alt={name} className="h-full w-full object-cover" />
         ) : (
-          <div className="text-4xl text-muted-foreground/30">📦</div>
+          <Package className="size-10 text-muted-foreground/30" />
         )}
       </div>
 
