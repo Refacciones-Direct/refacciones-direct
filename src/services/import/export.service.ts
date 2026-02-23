@@ -44,7 +44,7 @@ export class ExportService {
     const partIds = parts.map((p) => p.id);
     const { data: fitments, error: fitmentsError } = await this.adminClient
       .from('fitments')
-      .select('part_id, vehicles(make, model, year_start, year_end, engine, submodel)')
+      .select('part_id, vehicles(make, model, year_start, year_end)')
       .in('part_id', partIds);
 
     if (fitmentsError) throw new Error(`Failed to fetch fitments: ${fitmentsError.message}`);
@@ -52,7 +52,7 @@ export class ExportService {
     // Fetch OE crossrefs
     const { data: oeCrossrefs, error: oeError } = await this.adminClient
       .from('oe_crossrefs')
-      .select('part_id, oe_number, oe_brand')
+      .select('part_id, oe_number')
       .in('part_id', partIds);
 
     if (oeError) throw new Error(`Failed to fetch OE crossrefs: ${oeError.message}`);
@@ -121,36 +121,34 @@ export class ExportService {
   private buildPartsSheet(
     workbook: ExcelJS.Workbook,
     parts: Array<Record<string, unknown>>,
-    oeCrossrefs: Array<{ part_id: number; oe_number: string; oe_brand: string | null }>,
+    oeCrossrefs: Array<{ part_id: number; oe_number: string }>,
     template: { key: string; config: TemplateConfig },
   ): void {
     const ws = workbook.addWorksheet(SHEET_NAMES.PARTS);
 
     // Build OE map
-    const oeByPart = new Map<number, { numbers: string[]; brand: string | null }>();
+    const oeByPart = new Map<number, string[]>();
     for (const oe of oeCrossrefs) {
-      const existing = oeByPart.get(oe.part_id) ?? { numbers: [], brand: null };
-      existing.numbers.push(oe.oe_number);
-      if (oe.oe_brand) existing.brand = oe.oe_brand;
+      const existing = oeByPart.get(oe.part_id) ?? [];
+      existing.push(oe.oe_number);
       oeByPart.set(oe.part_id, existing);
     }
 
     // Headers
     const headers = [
       COMMON_PART_COLUMNS.SKU.es,
-      COMMON_PART_COLUMNS.FACTORY_PART_NUMBER.es,
-      COMMON_PART_COLUMNS.UPC.es,
       COMMON_PART_COLUMNS.BRAND.es,
       COMMON_PART_COLUMNS.NAME.es,
+      COMMON_PART_COLUMNS.CONDITION.es,
       COMMON_PART_COLUMNS.DESCRIPTION.es,
+      ...template.config.attributes.map((a) => a.header_es),
       COMMON_PART_COLUMNS.PRICE.es,
       COMMON_PART_COLUMNS.QUANTITY.es,
+      COMMON_PART_COLUMNS.OE_NUMBERS.es,
       COMMON_PART_COLUMNS.IMAGE_URL_1.es,
       COMMON_PART_COLUMNS.IMAGE_URL_2.es,
       COMMON_PART_COLUMNS.IMAGE_URL_3.es,
-      COMMON_PART_COLUMNS.OE_NUMBERS.es,
-      COMMON_PART_COLUMNS.OE_BRAND.es,
-      ...template.config.attributes.map((a) => a.header_es),
+      COMMON_PART_COLUMNS.IMAGE_URL_4.es,
     ];
 
     const headerRow = ws.addRow(headers);
@@ -162,23 +160,22 @@ export class ExportService {
     for (const part of parts) {
       const attrs = (part.attributes ?? {}) as Record<string, unknown>;
       const imageUrls = (part.image_urls ?? []) as string[];
-      const oeData = oeByPart.get(part.id as number);
+      const oeNumbers = oeByPart.get(part.id as number);
 
       ws.addRow([
         part.sku,
-        part.factory_part_number ?? '',
-        part.upc ?? '',
         part.brand,
         part.name,
+        part.condition ?? '',
         part.description ?? '',
+        ...template.config.attributes.map((a) => attrs[a.field] ?? ''),
         part.price ?? '',
         part.quantity ?? 0,
+        oeNumbers?.join('; ') ?? '',
         imageUrls[0] ?? '',
         imageUrls[1] ?? '',
         imageUrls[2] ?? '',
-        oeData?.numbers.join(', ') ?? '',
-        oeData?.brand ?? '',
-        ...template.config.attributes.map((a) => attrs[a.field] ?? ''),
+        imageUrls[3] ?? '',
       ]);
     }
   }
@@ -197,8 +194,6 @@ export class ExportService {
         model: string;
         year_start: number;
         year_end: number;
-        engine: string | null;
-        submodel: string | null;
       }>;
     }>,
   ): void {
@@ -210,8 +205,6 @@ export class ExportService {
       APPLICATION_COLUMNS.MODEL.es,
       APPLICATION_COLUMNS.YEAR_START.es,
       APPLICATION_COLUMNS.YEAR_END.es,
-      APPLICATION_COLUMNS.ENGINE.es,
-      APPLICATION_COLUMNS.SUBMODEL.es,
     ];
 
     const headerRow = ws.addRow(headers);
@@ -231,15 +224,7 @@ export class ExportService {
 
       // Supabase joins return related tables as arrays
       for (const vehicle of fitment.vehicles) {
-        ws.addRow([
-          sku,
-          vehicle.make,
-          vehicle.model,
-          vehicle.year_start,
-          vehicle.year_end,
-          vehicle.engine ?? '',
-          vehicle.submodel ?? '',
-        ]);
+        ws.addRow([sku, vehicle.make, vehicle.model, vehicle.year_start, vehicle.year_end]);
       }
     }
   }

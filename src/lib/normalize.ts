@@ -159,6 +159,18 @@ export function normalizePrice(value: string | number): number | null {
 }
 
 // ---------------------------------------------------------------------------
+// Bolt count extraction — "5 (M12X1.5)" → 5, "5" → 5
+// ---------------------------------------------------------------------------
+
+export function extractBoltCount(value: string): number | null {
+  const trimmed = value.trim();
+  const match = trimmed.match(/^(\d+)/);
+  if (!match) return null;
+  const num = parseInt(match[1], 10);
+  return isNaN(num) ? null : num;
+}
+
+// ---------------------------------------------------------------------------
 // OE number normalization — uppercase, strip spaces/hyphens/dots
 // ---------------------------------------------------------------------------
 

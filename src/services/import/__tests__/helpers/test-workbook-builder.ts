@@ -28,18 +28,17 @@ import { DEFAULT_PART, DEFAULT_APPLICATION, DEFAULT_MAZA_ATTRIBUTES } from './te
 
 export interface PartInput {
   sku?: string;
-  factoryPartNumber?: string;
-  upc?: string;
   brand?: string;
   name?: string;
+  condition?: string;
   description?: string;
   price?: number | string;
   quantity?: number | string;
   imageUrl1?: string;
   imageUrl2?: string;
   imageUrl3?: string;
+  imageUrl4?: string;
   oeNumbers?: string;
-  oeBrand?: string;
   /** Category-specific attributes keyed by header_es */
   attributes?: Record<string, unknown>;
 }
@@ -49,8 +48,6 @@ export interface AppInput {
   model?: string;
   yearStart?: number | string;
   yearEnd?: number | string;
-  engine?: string;
-  submodel?: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -152,43 +149,44 @@ export class TestWorkbookBuilder {
   private buildPartsSheet(workbook: ExcelJS.Workbook): void {
     const ws = workbook.addWorksheet(SHEET_NAMES.PARTS);
 
-    // Header row: common columns + attribute columns
+    // Row 1: Header row — matches production template-generator column order
     const headers = [
       COMMON_PART_COLUMNS.SKU.es,
-      COMMON_PART_COLUMNS.FACTORY_PART_NUMBER.es,
-      COMMON_PART_COLUMNS.UPC.es,
       COMMON_PART_COLUMNS.BRAND.es,
       COMMON_PART_COLUMNS.NAME.es,
+      COMMON_PART_COLUMNS.CONDITION.es,
       COMMON_PART_COLUMNS.DESCRIPTION.es,
+      ...this.templateConfig.attributes.map((a) => a.header_es),
       COMMON_PART_COLUMNS.PRICE.es,
       COMMON_PART_COLUMNS.QUANTITY.es,
+      COMMON_PART_COLUMNS.OE_NUMBERS.es,
       COMMON_PART_COLUMNS.IMAGE_URL_1.es,
       COMMON_PART_COLUMNS.IMAGE_URL_2.es,
       COMMON_PART_COLUMNS.IMAGE_URL_3.es,
-      COMMON_PART_COLUMNS.OE_NUMBERS.es,
-      COMMON_PART_COLUMNS.OE_BRAND.es,
-      ...this.templateConfig.attributes.map((a) => a.header_es),
+      COMMON_PART_COLUMNS.IMAGE_URL_4.es,
     ];
     ws.addRow(headers);
 
-    // Data rows
+    // Row 2: Help text row (to match production template with dataStartRow=3)
+    ws.addRow(headers.map(() => ''));
+
+    // Data rows (starting at row 3)
     for (const part of this.parts) {
       const attrs = part.attributes ?? this.defaultAttributes();
       const row = [
         part.sku ?? DEFAULT_PART.sku,
-        part.factoryPartNumber ?? DEFAULT_PART.factoryPartNumber,
-        part.upc ?? '',
         part.brand ?? DEFAULT_PART.brand,
         part.name ?? DEFAULT_PART.name,
+        part.condition ?? '',
         part.description ?? DEFAULT_PART.description,
+        ...this.templateConfig.attributes.map((a) => attrs[a.header_es] ?? attrs[a.field] ?? ''),
         part.price ?? DEFAULT_PART.price,
         part.quantity ?? DEFAULT_PART.quantity,
+        part.oeNumbers ?? DEFAULT_PART.oeNumbers,
         part.imageUrl1 ?? DEFAULT_PART.imageUrl1,
         part.imageUrl2 ?? '',
         part.imageUrl3 ?? '',
-        part.oeNumbers ?? DEFAULT_PART.oeNumbers,
-        part.oeBrand ?? DEFAULT_PART.oeBrand,
-        ...this.templateConfig.attributes.map((a) => attrs[a.header_es] ?? attrs[a.field] ?? ''),
+        part.imageUrl4 ?? '',
       ];
       ws.addRow(row);
     }
@@ -207,10 +205,11 @@ export class TestWorkbookBuilder {
       APPLICATION_COLUMNS.MODEL.es,
       APPLICATION_COLUMNS.YEAR_START.es,
       APPLICATION_COLUMNS.YEAR_END.es,
-      APPLICATION_COLUMNS.ENGINE.es,
-      APPLICATION_COLUMNS.SUBMODEL.es,
     ];
     ws.addRow(headers);
+
+    // Row 2: Help text row (to match production template with dataStartRow)
+    ws.addRow(headers.map(() => ''));
 
     for (const { sku, app } of this.applications) {
       ws.addRow([
@@ -219,8 +218,6 @@ export class TestWorkbookBuilder {
         app.model ?? DEFAULT_APPLICATION.model,
         app.yearStart ?? DEFAULT_APPLICATION.yearStart,
         app.yearEnd ?? DEFAULT_APPLICATION.yearEnd,
-        app.engine ?? DEFAULT_APPLICATION.engine ?? '',
-        app.submodel ?? DEFAULT_APPLICATION.submodel ?? '',
       ]);
     }
   }
@@ -233,9 +230,9 @@ export class TestWorkbookBuilder {
     if (this.templateType === 'mazas_v1') {
       return {
         Posición: DEFAULT_MAZA_ATTRIBUTES.position,
-        Birlos: DEFAULT_MAZA_ATTRIBUTES.boltCount,
-        'Sensor ABS': DEFAULT_MAZA_ATTRIBUTES.absSensor,
-        Tracción: DEFAULT_MAZA_ATTRIBUTES.driveType,
+        'Tipo de ABS': DEFAULT_MAZA_ATTRIBUTES.absType,
+        Barrenos: DEFAULT_MAZA_ATTRIBUTES.boltCount,
+        'Tipo de Tracción': DEFAULT_MAZA_ATTRIBUTES.driveType,
       };
     }
     // Other templates: return empty — tests should provide explicit values

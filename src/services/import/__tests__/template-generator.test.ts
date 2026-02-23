@@ -87,9 +87,9 @@ describe('TemplateGenerator', () => {
     });
 
     expect(headers).toContain('Posición');
-    expect(headers).toContain('Birlos');
-    expect(headers).toContain('Sensor ABS');
-    expect(headers).toContain('Tracción');
+    expect(headers).toContain('Barrenos');
+    expect(headers).toContain('Tipo de ABS');
+    expect(headers).toContain('Tipo de Tracción');
   });
 
   it('includes all application columns in Aplicaciones sheet', async () => {
@@ -111,6 +111,33 @@ describe('TemplateGenerator', () => {
   });
 
   // -------------------------------------------------------------------------
+  // Help text row
+  // -------------------------------------------------------------------------
+
+  it('includes help text row at row 2 in Partes sheet', async () => {
+    const buffer = await generator.generate('mazas_v1');
+    const wb = new ExcelJS.Workbook();
+    await wb.xlsx.load(buffer as never);
+
+    const ws = wb.getWorksheet(SHEET_NAMES.PARTS)!;
+    const helpRow = ws.getRow(2);
+    // Help text row should have italic gray font
+    const firstCell = helpRow.getCell(1);
+    expect(firstCell.font?.italic).toBe(true);
+  });
+
+  it('includes help text row at row 2 in Aplicaciones sheet', async () => {
+    const buffer = await generator.generate('mazas_v1');
+    const wb = new ExcelJS.Workbook();
+    await wb.xlsx.load(buffer as never);
+
+    const ws = wb.getWorksheet(SHEET_NAMES.APPLICATIONS)!;
+    const helpRow = ws.getRow(2);
+    const firstCell = helpRow.getCell(1);
+    expect(firstCell.font?.italic).toBe(true);
+  });
+
+  // -------------------------------------------------------------------------
   // Round-trip: generate → parse
   // -------------------------------------------------------------------------
 
@@ -120,8 +147,8 @@ describe('TemplateGenerator', () => {
 
     expect(parsed.metadata.templateType).toBe('mazas_v1');
     expect(parsed.metadata.version).toBe('1');
-    expect(parsed.parts).toHaveLength(0); // No data rows in template
-    expect(parsed.applications).toHaveLength(0);
+    expect(parsed.parts).toHaveLength(0); // No data rows (dataStartRow=3 skips help text)
+    expect(parsed.applications).toHaveLength(0); // No data rows (dataStartRow=3 skips help text)
   });
 
   // -------------------------------------------------------------------------

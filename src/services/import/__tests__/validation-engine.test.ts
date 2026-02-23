@@ -62,7 +62,6 @@ describe('ValidationEngine', () => {
             quantity: 15,
             imageUrl1: 'https://example.com/img.jpg',
             oeNumbers: '12345-ABC',
-            oeBrand: 'OEM',
           })
           .addApplication('HUB-200'),
       );
@@ -75,7 +74,7 @@ describe('ValidationEngine', () => {
       expect(part.quantity).toBe(15);
       expect(part.imageUrls).toEqual(['https://example.com/img.jpg']);
       expect(part.oeNumbers).toHaveLength(1);
-      expect(part.oeNumbers[0].brand).toBe('OEM');
+      expect(part.oeNumbers[0].original).toBe('12345-ABC');
     });
 
     it('extracts validated application fields correctly', async () => {
@@ -85,8 +84,6 @@ describe('ValidationEngine', () => {
           model: 'F-150',
           yearStart: 2018,
           yearEnd: 2023,
-          engine: '3.5L V6',
-          submodel: 'XLT',
         }),
       );
 
@@ -96,6 +93,24 @@ describe('ValidationEngine', () => {
       expect(app.model).toBe('F-150');
       expect(app.yearStart).toBe(2018);
       expect(app.yearEnd).toBe(2023);
+    });
+
+    it('extracts condition when provided', async () => {
+      const result = await parseAndValidate(
+        TestWorkbookBuilder.forTemplate('mazas_v1')
+          .addPart({ condition: 'Nuevo' })
+          .addApplication(DEFAULT_PART.sku),
+      );
+
+      expect(result.validParts[0].condition).toBe('Nuevo');
+    });
+
+    it('condition is undefined when not provided', async () => {
+      const result = await parseAndValidate(
+        TestWorkbookBuilder.forTemplate('mazas_v1').addPart().addApplication(DEFAULT_PART.sku),
+      );
+
+      expect(result.validParts[0].condition).toBeUndefined();
     });
   });
 
@@ -151,19 +166,21 @@ describe('ValidationEngine', () => {
       );
     });
 
-    it('flags missing required attribute (position for mazas)', async () => {
+    it('accepts missing optional attribute (position for mazas)', async () => {
       const result = await parseAndValidate(
         TestWorkbookBuilder.forTemplate('mazas_v1')
-          .addPart({ attributes: { Birlos: 6, 'Sensor ABS': 'Yes' } })
+          .addPart({
+            attributes: {
+              'Tipo de ABS': 'ABS Integrado',
+              Barrenos: '6',
+            },
+          })
           .addApplication(DEFAULT_PART.sku),
       );
 
-      expect(result.errors).toContainEqual(
-        expect.objectContaining({
-          errorType: 'missing_required',
-          fieldName: 'Posición',
-        }),
-      );
+      // All mazas attributes are optional for MVP — missing Posición should not error
+      expect(result.errors).toHaveLength(0);
+      expect(result.validParts).toHaveLength(1);
     });
 
     it('flags missing Make in Aplicaciones', async () => {
@@ -202,21 +219,6 @@ describe('ValidationEngine', () => {
   // -------------------------------------------------------------------------
 
   describe('format errors', () => {
-    it('flags invalid UPC (too short)', async () => {
-      const result = await parseAndValidate(
-        TestWorkbookBuilder.forTemplate('mazas_v1')
-          .addPart({ upc: '123' })
-          .addApplication(DEFAULT_PART.sku),
-      );
-
-      expect(result.errors).toContainEqual(
-        expect.objectContaining({
-          errorType: 'invalid_format',
-          fieldName: expect.stringContaining('UPC'),
-        }),
-      );
-    });
-
     it('flags invalid image URL', async () => {
       const result = await parseAndValidate(
         TestWorkbookBuilder.forTemplate('mazas_v1')
@@ -227,20 +229,8 @@ describe('ValidationEngine', () => {
       expect(result.errors).toContainEqual(
         expect.objectContaining({
           errorType: 'invalid_format',
-          fieldName: expect.stringContaining('URL'),
         }),
       );
-    });
-
-    it('accepts valid UPC and normalizes', async () => {
-      const result = await parseAndValidate(
-        TestWorkbookBuilder.forTemplate('mazas_v1')
-          .addPart({ upc: '  012345678901  ' })
-          .addApplication(DEFAULT_PART.sku),
-      );
-
-      // Valid: 12 digits after stripping whitespace
-      expect(result.validParts[0]?.upc).toBe('012345678901');
     });
   });
 
@@ -285,14 +275,33 @@ describe('ValidationEngine', () => {
   // -------------------------------------------------------------------------
 
   describe('attribute validation', () => {
-    it('flags invalid dropdown value', async () => {
+    it('accepts string attributes as free text (mazas)', async () => {
       const result = await parseAndValidate(
         TestWorkbookBuilder.forTemplate('mazas_v1')
           .addPart({
             attributes: {
-              Posición: 'InvalidPosition',
-              Birlos: 6,
-              'Sensor ABS': 'Yes',
+              Posición: 'CustomPosition',
+              'Tipo de ABS': 'ABS Integrado',
+              Barrenos: '6',
+              'Tipo de Tracción': 'Anything goes',
+            },
+          })
+          .addApplication(DEFAULT_PART.sku),
+      );
+
+      // All mazas attributes are type: 'string', so any value is accepted
+      expect(result.valid).toBe(true);
+      expect(result.validParts[0].attributes.position).toBe('CustomPosition');
+      expect(result.validParts[0].attributes.drive_type).toBe('Anything goes');
+    });
+
+    it('flags number attribute below minimum (alternadores amperage)', async () => {
+      const result = await parseAndValidate(
+        TestWorkbookBuilder.forTemplate('alternadores_v1')
+          .addPart({
+            attributes: {
+              Amperaje: 5, // min is 10
+              Voltaje: '12V',
             },
           })
           .addApplication(DEFAULT_PART.sku),
@@ -301,19 +310,18 @@ describe('ValidationEngine', () => {
       expect(result.errors).toContainEqual(
         expect.objectContaining({
           errorType: 'invalid_value',
-          fieldName: 'Posición',
+          fieldName: 'Amperaje',
         }),
       );
     });
 
-    it('flags number attribute below minimum', async () => {
+    it('flags number attribute above maximum (alternadores amperage)', async () => {
       const result = await parseAndValidate(
-        TestWorkbookBuilder.forTemplate('mazas_v1')
+        TestWorkbookBuilder.forTemplate('alternadores_v1')
           .addPart({
             attributes: {
-              Posición: 'Front',
-              Birlos: 1, // min is 3
-              'Sensor ABS': 'Yes',
+              Amperaje: 999, // max is 500
+              Voltaje: '12V',
             },
           })
           .addApplication(DEFAULT_PART.sku),
@@ -322,28 +330,7 @@ describe('ValidationEngine', () => {
       expect(result.errors).toContainEqual(
         expect.objectContaining({
           errorType: 'invalid_value',
-          fieldName: 'Birlos',
-        }),
-      );
-    });
-
-    it('flags number attribute above maximum', async () => {
-      const result = await parseAndValidate(
-        TestWorkbookBuilder.forTemplate('mazas_v1')
-          .addPart({
-            attributes: {
-              Posición: 'Front',
-              Birlos: 99, // max is 10
-              'Sensor ABS': 'Yes',
-            },
-          })
-          .addApplication(DEFAULT_PART.sku),
-      );
-
-      expect(result.errors).toContainEqual(
-        expect.objectContaining({
-          errorType: 'invalid_value',
-          fieldName: 'Birlos',
+          fieldName: 'Amperaje',
         }),
       );
     });
@@ -354,9 +341,9 @@ describe('ValidationEngine', () => {
           .addPart({
             attributes: {
               Posición: 'Front',
-              Birlos: 6,
-              'Sensor ABS': 'Yes',
-              Tracción: '', // Optional
+              'Tipo de ABS': 'ABS Integrado',
+              Barrenos: '6',
+              'Tipo de Tracción': '', // Optional
             },
           })
           .addApplication(DEFAULT_PART.sku),
@@ -556,51 +543,6 @@ describe('ValidationEngine', () => {
       );
     });
 
-    it('records position normalization (Spanish → English)', async () => {
-      const result = await parseAndValidate(
-        TestWorkbookBuilder.forTemplate('mazas_v1')
-          .addPart({
-            attributes: {
-              Posición: 'DELANTERA',
-              Birlos: 6,
-              'Sensor ABS': 'Yes',
-            },
-          })
-          .addApplication(DEFAULT_PART.sku),
-      );
-
-      expect(result.normalizations).toContainEqual(
-        expect.objectContaining({
-          field: 'position',
-          originalValue: 'DELANTERA',
-          normalizedValue: 'Front',
-        }),
-      );
-    });
-
-    it('records drive type normalization', async () => {
-      const result = await parseAndValidate(
-        TestWorkbookBuilder.forTemplate('mazas_v1')
-          .addPart({
-            attributes: {
-              Posición: 'Front',
-              Birlos: 6,
-              'Sensor ABS': 'Yes',
-              Tracción: '4X4',
-            },
-          })
-          .addApplication(DEFAULT_PART.sku),
-      );
-
-      expect(result.normalizations).toContainEqual(
-        expect.objectContaining({
-          field: 'drive_type',
-          originalValue: '4X4',
-          normalizedValue: '4WD',
-        }),
-      );
-    });
-
     it('records OE number normalization', async () => {
       const result = await parseAndValidate(
         TestWorkbookBuilder.forTemplate('mazas_v1')
@@ -617,21 +559,54 @@ describe('ValidationEngine', () => {
       );
     });
 
-    it('does not record normalization when value is unchanged', async () => {
+    it('does not record normalization when make value is unchanged', async () => {
       const result = await parseAndValidate(
         TestWorkbookBuilder.forTemplate('mazas_v1')
-          .addPart({
-            attributes: {
-              Posición: 'Front', // Already canonical
-              Birlos: 6,
-              'Sensor ABS': 'Yes',
-            },
-          })
+          .addPart()
           .addApplication(DEFAULT_PART.sku, { make: 'Chevrolet' }),
       );
 
-      // 'Front' is already canonical, should not be in normalizations for position
-      expect(result.normalizations.filter((n) => n.field === 'position')).toHaveLength(0);
+      // 'Chevrolet' is already canonical, should not be in normalizations for Make
+      expect(result.normalizations.filter((n) => n.field === 'Make')).toHaveLength(0);
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // OE number parsing
+  // -------------------------------------------------------------------------
+
+  describe('OE number parsing', () => {
+    it('splits OE numbers on comma', async () => {
+      const result = await parseAndValidate(
+        TestWorkbookBuilder.forTemplate('mazas_v1')
+          .addPart({ oeNumbers: '12345-ABC, 67890-DEF' })
+          .addApplication(DEFAULT_PART.sku),
+      );
+
+      expect(result.validParts[0].oeNumbers).toHaveLength(2);
+    });
+
+    it('splits OE numbers on semicolon', async () => {
+      const result = await parseAndValidate(
+        TestWorkbookBuilder.forTemplate('mazas_v1')
+          .addPart({ oeNumbers: '12345-ABC; 67890-DEF' })
+          .addApplication(DEFAULT_PART.sku),
+      );
+
+      expect(result.validParts[0].oeNumbers).toHaveLength(2);
+    });
+
+    it('OE numbers have original and normalized fields (no brand)', async () => {
+      const result = await parseAndValidate(
+        TestWorkbookBuilder.forTemplate('mazas_v1')
+          .addPart({ oeNumbers: '12-345.ABC' })
+          .addApplication(DEFAULT_PART.sku),
+      );
+
+      const oe = result.validParts[0].oeNumbers[0];
+      expect(oe).toHaveProperty('original');
+      expect(oe).toHaveProperty('normalized');
+      expect(oe).not.toHaveProperty('brand');
     });
   });
 

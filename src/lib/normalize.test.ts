@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  extractBoltCount,
   normalizeDriveType,
   normalizeMake,
   normalizeModel,
@@ -122,6 +123,27 @@ describe('normalizePrice', () => {
   it('rejects NaN', () => {
     expect(normalizePrice('abc')).toBeNull();
     expect(normalizePrice(NaN)).toBeNull();
+  });
+});
+
+describe('extractBoltCount', () => {
+  it('extracts leading integer from compound values', () => {
+    expect(extractBoltCount('5 (M12X1.5)')).toBe(5);
+    expect(extractBoltCount('6 (M14X1.5)')).toBe(6);
+  });
+
+  it('extracts plain integers', () => {
+    expect(extractBoltCount('5')).toBe(5);
+    expect(extractBoltCount('8')).toBe(8);
+  });
+
+  it('returns null for non-numeric input', () => {
+    expect(extractBoltCount('abc')).toBeNull();
+    expect(extractBoltCount('')).toBeNull();
+  });
+
+  it('trims whitespace', () => {
+    expect(extractBoltCount('  5  ')).toBe(5);
   });
 });
 

@@ -6,7 +6,6 @@
 export type {
   TemplateAttribute,
   TemplateConfig,
-  NormalizerName,
   ParsedMetadata,
   RawPartRow,
   RawAppRow,
