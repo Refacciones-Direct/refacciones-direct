@@ -13,7 +13,7 @@ const categories = [
 ] as const;
 
 export async function CategoryGrid() {
-  const t = await getTranslations('storefront');
+  const t = await getTranslations('catalog');
 
   const row1 = categories.slice(0, 3);
   const row2 = categories.slice(3, 6);

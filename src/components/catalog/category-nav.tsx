@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 const CATEGORY_KEYS = ['refacciones', 'aceite', 'llantas', 'accesorios', 'herramientas'] as const;
 
 export async function CategoryNav() {
-  const t = await getTranslations('storefront');
+  const t = await getTranslations('catalog');
 
   return (
     <nav data-slot="category-nav" className={cn('bg-brand-navy text-sm font-medium text-white')}>

@@ -17,7 +17,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export function VehicleSelector() {
-  const t = useTranslations('storefront');
+  const t = useTranslations('catalog');
 
   return (
     <div

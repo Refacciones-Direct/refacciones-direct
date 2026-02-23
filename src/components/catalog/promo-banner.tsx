@@ -4,7 +4,7 @@ import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 
 export async function PromoBanner() {
-  const t = await getTranslations('storefront');
+  const t = await getTranslations('catalog');
 
   return (
     <div

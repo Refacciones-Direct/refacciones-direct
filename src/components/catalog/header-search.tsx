@@ -7,7 +7,7 @@ import { useRouter } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
 
 export function HeaderSearch() {
-  const t = useTranslations('storefront');
+  const t = useTranslations('catalog');
   const router = useRouter();
   const [query, setQuery] = useState('');
 

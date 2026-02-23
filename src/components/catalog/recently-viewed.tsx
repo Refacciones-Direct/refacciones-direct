@@ -10,7 +10,7 @@ const MOCK_PRODUCTS = [
 ];
 
 export async function RecentlyViewed() {
-  const t = await getTranslations('storefront');
+  const t = await getTranslations('catalog');
 
   return (
     <section data-slot="recently-viewed" className={cn('py-6')}>

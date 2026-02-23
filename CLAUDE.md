@@ -30,7 +30,7 @@
 
 - **src/ directory:** All source code under `src/`, `@/*` alias maps to `./src/*`
 - **Three portals (route groups):**
-  - `(storefront)` — Consumer-facing catalog/checkout
+  - `(catalog)` — Consumer-facing catalog/checkout
   - `(dashboard)` — Manufacturer portal (parts, orders, team)
   - `(admin)` — Platform admin (manufacturers, users, oversight)
 - **Locale routing:** `app/[locale]/` with next-intl, proxy.ts handles routing

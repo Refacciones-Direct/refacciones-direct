@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/utils';
 
 export async function SiteFooter() {
-  const t = await getTranslations('storefront');
+  const t = await getTranslations('catalog');
 
   const col2Links = t.raw('footer.col2Links') as string[];
   const col3Links = t.raw('footer.col3Links') as string[];

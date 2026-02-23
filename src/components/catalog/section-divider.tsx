@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/utils';
 
 export async function SectionDivider() {
-  const t = await getTranslations('storefront');
+  const t = await getTranslations('catalog');
 
   return (
     <div

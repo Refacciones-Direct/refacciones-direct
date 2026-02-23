@@ -10,7 +10,7 @@ const VALUE_PROPS = [
 ] as const;
 
 export async function ValueProps() {
-  const t = await getTranslations('storefront');
+  const t = await getTranslations('catalog');
 
   return (
     <section data-slot="value-props" className={cn('h-20 bg-bg-section')}>

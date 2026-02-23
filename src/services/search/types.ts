@@ -1,5 +1,5 @@
 /**
- * Search service types for the storefront catalog search.
+ * Search service types for the catalog search.
  *
  * These types flow through: API Route -> SearchService -> Supabase RPC -> UI
  */

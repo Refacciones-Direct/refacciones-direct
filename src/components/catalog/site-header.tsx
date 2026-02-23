@@ -1,11 +1,11 @@
 import { Headset, ShoppingCart, User } from 'lucide-react';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
-import { HeaderSearch } from '@/components/storefront/header-search';
+import { HeaderSearch } from '@/components/catalog/header-search';
 import { Link } from '@/i18n/navigation';
 
 export async function SiteHeader() {
-  const t = await getTranslations('storefront');
+  const t = await getTranslations('catalog');
 
   return (
     <header data-slot="site-header" className="border-b border-border">

@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 const BRANDS = ['BOSCH', 'brembo', 'MANN', 'Valeo', 'Continental', 'Castrol'] as const;
 
 export async function BrandLogos() {
-  const t = await getTranslations('storefront');
+  const t = await getTranslations('catalog');
 
   return (
     <section data-slot="brand-logos" className={cn('bg-card')} aria-label={t('brands.title')}>
