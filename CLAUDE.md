@@ -39,10 +39,23 @@
 - **Database types:** `src/types/database.ts`
 - **Translations:** `messages/es-MX.json`, `messages/en-US.json`
 
+## Branching Strategy
+
+```
+feature/xyz ──PR──> dev ──PR──> main
+                     │            │
+                  staging      production
+```
+
+- **`dev`** — integration branch. All feature PRs target `dev`.
+- **`main`** — production branch. Only `dev` → `main` promotion PRs.
+- Both branches are protected: require PR, CI status checks, no direct push, no deletion, no force push.
+- **Default PR target is `dev`**, not `main`.
+
 ## CI/CD
 
-- **CI** (`.github/workflows/ci.yml`): Runs on every PR and push to `main` — typecheck, lint, format, test, build, schema validation
-- **Staging migrations** (`.github/workflows/deploy-staging.yml`): Auto-deploys on merge to `main` when `supabase/migrations/` changes
+- **CI** (`.github/workflows/ci.yml`): Runs on every PR and push to `main`/`dev` — typecheck, lint, format, test, build, schema validation
+- **Staging migrations** (`.github/workflows/deploy-staging.yml`): Auto-deploys on merge to `dev` when `supabase/migrations/` changes
 - **Production migrations** (`.github/workflows/deploy-production.yml`): Manual `workflow_dispatch` with GitHub Environment approval gate
 - **Dependabot** (`.github/dependabot.yml`): Weekly npm + GitHub Actions dependency PRs (Mondays)
 
@@ -177,6 +190,15 @@ The session is NOT over after pushing. You must:
 - NEVER say "ready to push when you are" — YOU must push and open the PR
 - If CI fails, resolve and retry until it passes
 - Report status periodically — the user should never have to ask "what's happening?"
+
+### 6. Confirm deployment (if PR includes migrations)
+
+When a PR includes database migrations (`supabase/migrations/`), work is NOT complete until the **Deploy Staging** workflow has succeeded — meaning the staging Supabase environment has successfully applied the new migrations. After merge:
+
+1. Check workflow runs: `gh api repos/{owner}/{repo}/actions/runs --jq '.workflow_runs[:5] | .[] | {name, status, conclusion}'`
+2. Confirm `Deploy Staging` shows `conclusion: "success"`
+3. If the deploy fails: investigate logs, fix, and open a follow-up PR
+4. Report the staging deployment status to the user
 
 ## Windows MINGW64 Note
 

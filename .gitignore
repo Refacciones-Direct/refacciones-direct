@@ -54,6 +54,9 @@ supabase/.branches/
 *.swp
 *.swo
 
+# Script output
+scripts/output/
+
 # Claude Code
 .claude/settings.local.json
 .claude/skills

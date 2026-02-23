@@ -9,6 +9,145 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      fitments: {
+        Row: {
+          created_at: string
+          id: number
+          part_id: number
+          vehicle_id: number
+        }
+        Insert: {
+          created_at?: string
+          id?: never
+          part_id: number
+          vehicle_id: number
+        }
+        Update: {
+          created_at?: string
+          id?: never
+          part_id?: number
+          vehicle_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fitments_part_id_fkey"
+            columns: ["part_id"]
+            isOneToOne: false
+            referencedRelation: "parts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fitments_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      import_errors: {
+        Row: {
+          created_at: string
+          error_message: string
+          error_type: string
+          field_name: string | null
+          id: number
+          import_job_id: number
+          original_data: Json
+          row_number: number
+          sheet_name: string | null
+        }
+        Insert: {
+          created_at?: string
+          error_message: string
+          error_type: string
+          field_name?: string | null
+          id?: never
+          import_job_id: number
+          original_data: Json
+          row_number: number
+          sheet_name?: string | null
+        }
+        Update: {
+          created_at?: string
+          error_message?: string
+          error_type?: string
+          field_name?: string | null
+          id?: never
+          import_job_id?: number
+          original_data?: Json
+          row_number?: number
+          sheet_name?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "import_errors_import_job_id_fkey"
+            columns: ["import_job_id"]
+            isOneToOne: false
+            referencedRelation: "import_jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      import_jobs: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          error_file_url: string | null
+          failed_rows: number
+          file_url: string | null
+          id: number
+          import_type: string
+          manufacturer_id: number
+          normalizations_applied: Json
+          started_at: string | null
+          status: string
+          successful_rows: number
+          template_type: string | null
+          total_rows: number | null
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          error_file_url?: string | null
+          failed_rows?: number
+          file_url?: string | null
+          id?: never
+          import_type: string
+          manufacturer_id: number
+          normalizations_applied?: Json
+          started_at?: string | null
+          status?: string
+          successful_rows?: number
+          template_type?: string | null
+          total_rows?: number | null
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          error_file_url?: string | null
+          failed_rows?: number
+          file_url?: string | null
+          id?: never
+          import_type?: string
+          manufacturer_id?: number
+          normalizations_applied?: Json
+          started_at?: string | null
+          status?: string
+          successful_rows?: number
+          template_type?: string | null
+          total_rows?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "import_jobs_manufacturer_id_fkey"
+            columns: ["manufacturer_id"]
+            isOneToOne: false
+            referencedRelation: "manufacturers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       manufacturers: {
         Row: {
           brand_name: string
@@ -53,6 +192,118 @@ export type Database = {
           },
         ]
       }
+      oe_crossrefs: {
+        Row: {
+          created_at: string
+          id: number
+          oe_brand: string | null
+          oe_number: string
+          oe_number_normalized: string
+          part_id: number
+        }
+        Insert: {
+          created_at?: string
+          id?: never
+          oe_brand?: string | null
+          oe_number: string
+          oe_number_normalized: string
+          part_id: number
+        }
+        Update: {
+          created_at?: string
+          id?: never
+          oe_brand?: string | null
+          oe_number?: string
+          oe_number_normalized?: string
+          part_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "oe_crossrefs_part_id_fkey"
+            columns: ["part_id"]
+            isOneToOne: false
+            referencedRelation: "parts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      parts: {
+        Row: {
+          attributes: Json
+          brand: string
+          category: string
+          condition: string
+          created_at: string
+          currency: string
+          description: string | null
+          factory_part_number: string | null
+          id: number
+          image_urls: string[]
+          low_stock_threshold: number
+          manufacturer_id: number
+          name: string
+          part_type: string
+          price: number | null
+          quantity: number
+          sku: string
+          status: string
+          upc: string | null
+          updated_at: string
+        }
+        Insert: {
+          attributes?: Json
+          brand: string
+          category: string
+          condition?: string
+          created_at?: string
+          currency?: string
+          description?: string | null
+          factory_part_number?: string | null
+          id?: never
+          image_urls?: string[]
+          low_stock_threshold?: number
+          manufacturer_id: number
+          name: string
+          part_type: string
+          price?: number | null
+          quantity?: number
+          sku: string
+          status?: string
+          upc?: string | null
+          updated_at?: string
+        }
+        Update: {
+          attributes?: Json
+          brand?: string
+          category?: string
+          condition?: string
+          created_at?: string
+          currency?: string
+          description?: string | null
+          factory_part_number?: string | null
+          id?: never
+          image_urls?: string[]
+          low_stock_threshold?: number
+          manufacturer_id?: number
+          name?: string
+          part_type?: string
+          price?: number | null
+          quantity?: number
+          sku?: string
+          status?: string
+          upc?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "parts_manufacturer_id_fkey"
+            columns: ["manufacturer_id"]
+            isOneToOne: false
+            referencedRelation: "manufacturers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       users: {
         Row: {
           avatar_url: string | null
@@ -92,6 +343,63 @@ export type Database = {
           updated_at?: string
           workos_org_id?: string | null
           workos_user_id?: string
+        }
+        Relationships: []
+      }
+      vehicle_aliases: {
+        Row: {
+          alias: string
+          alias_type: string
+          canonical_name: string
+          created_at: string
+          id: number
+        }
+        Insert: {
+          alias: string
+          alias_type: string
+          canonical_name: string
+          created_at?: string
+          id?: never
+        }
+        Update: {
+          alias?: string
+          alias_type?: string
+          canonical_name?: string
+          created_at?: string
+          id?: never
+        }
+        Relationships: []
+      }
+      vehicles: {
+        Row: {
+          created_at: string
+          engine: string | null
+          id: number
+          make: string
+          model: string
+          submodel: string | null
+          year_end: number
+          year_start: number
+        }
+        Insert: {
+          created_at?: string
+          engine?: string | null
+          id?: never
+          make: string
+          model: string
+          submodel?: string | null
+          year_end: number
+          year_start: number
+        }
+        Update: {
+          created_at?: string
+          engine?: string | null
+          id?: never
+          make?: string
+          model?: string
+          submodel?: string | null
+          year_end?: number
+          year_start?: number
         }
         Relationships: []
       }
