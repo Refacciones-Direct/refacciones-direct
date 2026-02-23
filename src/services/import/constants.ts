@@ -89,3 +89,9 @@ export const SUPPORTED_EXTENSIONS = ['.xlsx'] as const;
 // ---------------------------------------------------------------------------
 
 export const ERROR_COLUMN_HEADER = { es: 'Error', en: 'Error' } as const;
+
+// ---------------------------------------------------------------------------
+// Maximum rows per sheet (Excel limit minus headers)
+// ---------------------------------------------------------------------------
+
+export const MAX_ROWS_PER_SHEET = 1_048_575;
