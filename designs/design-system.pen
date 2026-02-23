@@ -4881,7 +4881,7 @@
       "y": 0,
       "name": "Components: Catalog",
       "width": 2080,
-      "height": 2544,
+      "height": 3825,
       "fill": "#ffffff00",
       "layout": "vertical",
       "gap": 100,
@@ -6498,6 +6498,114 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "frame",
+              "id": "DPv9W",
+              "name": "Search Results Header",
+              "reusable": true,
+              "width": 1440,
+              "fill": "#fafafa",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "#e8e8e8"
+              },
+              "padding": [
+                16,
+                80
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "DSoIp",
+                  "name": "leftInfo",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "zZgq3",
+                      "name": "resultCount",
+                      "fill": "#0a0a0a",
+                      "content": "24 resultados para \"filtro aceite\"",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Outfit",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LiTsg",
+                      "name": "vehiclePill",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "id": "WCUt1",
+                          "type": "ref",
+                          "ref": "UjXug",
+                          "name": "pillBadge",
+                          "descendants": {
+                            "zHpCv": {
+                              "content": "Chevrolet Silverado 2015"
+                            }
+                          }
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "FZrqD",
+                          "name": "dismissIcon",
+                          "width": 14,
+                          "height": 14,
+                          "iconFontName": "x",
+                          "iconFontFamily": "lucide",
+                          "fill": "$--muted-foreground"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "OOMM8",
+                  "name": "sortArea",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "GBqOw",
+                      "name": "sortLabel",
+                      "fill": "$--muted-foreground",
+                      "content": "Ordenar por:",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Outfit",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "id": "Zk0ZF",
+                      "type": "ref",
+                      "ref": "VaBvc",
+                      "width": 200,
+                      "name": "sortSelect",
+                      "descendants": {
+                        "bWFT3": {
+                          "enabled": false
+                        },
+                        "xJnCf": {
+                          "content": "Relevancia"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -6897,176 +7005,69 @@
                 },
                 {
                   "type": "frame",
-                  "id": "BqQFs",
-                  "name": "vsTabs",
-                  "clip": true,
-                  "width": "fill_container",
-                  "height": 36,
-                  "fill": "$--secondary-hover",
-                  "cornerRadius": 8,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "$--input"
-                  },
-                  "gap": 8,
-                  "padding": 4,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "id": "4jT03",
-                      "type": "ref",
-                      "ref": "gW59j",
-                      "name": "activeTab",
-                      "height": "fill_container",
-                      "width": "fill_container",
-                      "descendants": {
-                        "7JGiM": {
-                          "content": "Placa"
-                        }
-                      }
-                    },
-                    {
-                      "id": "RFmIr",
-                      "type": "ref",
-                      "ref": "Zpebp",
-                      "name": "inactiveTab",
-                      "height": "fill_container",
-                      "width": "fill_container",
-                      "descendants": {
-                        "uaFCg": {
-                          "content": "Modelo"
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
                   "id": "jvVKJ",
-                  "name": "vsPlacaForm",
+                  "name": "vsForm",
                   "width": "fill_container",
                   "layout": "vertical",
                   "gap": 16,
                   "children": [
                     {
-                      "type": "frame",
-                      "id": "cj1gO",
-                      "name": "vsPlateRow",
-                      "width": "fill_container",
-                      "gap": 12,
-                      "alignItems": "end",
-                      "children": [
-                        {
-                          "id": "CRkRN",
-                          "type": "ref",
-                          "ref": "ioHl9",
-                          "name": "plateInput",
-                          "width": "fill_container",
-                          "descendants": {
-                            "7J6Rw": {
-                              "content": "ABC-1234"
-                            }
-                          }
-                        },
-                        {
-                          "id": "0Rqta",
-                          "type": "ref",
-                          "ref": "mhHPg",
-                          "name": "goBtn",
-                          "cornerRadius": 20,
-                          "fill": "#f95e4c",
-                          "descendants": {
-                            "AoMFE": {
-                              "iconFontName": "arrow-right"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "vGGQ2",
-                      "name": "vsGarageRow",
-                      "width": "fill_container",
-                      "gap": 8,
-                      "justifyContent": "space_between",
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "id": "ALHyt",
-                          "type": "ref",
-                          "ref": "DsFJJ",
-                          "name": "chk",
-                          "descendants": {
-                            "YmYzm": {
-                              "content": "Registrar en mi garaje",
-                              "fontSize": 14
-                            }
-                          }
-                        },
-                        {
-                          "type": "icon_font",
-                          "id": "WzRh1",
-                          "name": "vsInfoIcon",
-                          "width": 14,
-                          "height": 14,
-                          "iconFontName": "info",
-                          "iconFontFamily": "lucide",
-                          "fill": "#636363"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "0MXg9",
-                      "name": "vsDotIndicator",
-                      "width": "fill_container",
-                      "height": 20,
-                      "gap": 12,
-                      "justifyContent": "center",
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "8P5py",
-                          "name": "divLine",
-                          "width": "fill_container",
-                          "height": 1,
-                          "fill": "#e5e5e5"
-                        },
-                        {
-                          "type": "text",
-                          "id": "zT39k",
-                          "name": "orText",
-                          "fill": "#636363",
-                          "content": "O",
-                          "fontFamily": "Outfit",
-                          "fontSize": 14,
-                          "fontWeight": "500"
-                        },
-                        {
-                          "type": "frame",
-                          "id": "UV6xo",
-                          "name": "divLine2",
-                          "width": "fill_container",
-                          "height": 1,
-                          "fill": "#e5e5e5"
-                        }
-                      ]
-                    },
-                    {
-                      "id": "btFHe",
+                      "id": "y53DY",
                       "type": "ref",
                       "ref": "VaBvc",
-                      "name": "vehicleSelect",
                       "width": "fill_container",
+                      "name": "makeSelect",
                       "descendants": {
                         "bWFT3": {
                           "enabled": false
                         },
                         "xJnCf": {
-                          "content": "Selecciona un vehículo registrado"
+                          "content": "Marca"
+                        }
+                      }
+                    },
+                    {
+                      "id": "PnolS",
+                      "type": "ref",
+                      "ref": "VaBvc",
+                      "width": "fill_container",
+                      "name": "modelSelect",
+                      "descendants": {
+                        "bWFT3": {
+                          "enabled": false
+                        },
+                        "xJnCf": {
+                          "content": "Modelo"
+                        }
+                      }
+                    },
+                    {
+                      "id": "3jjMp",
+                      "type": "ref",
+                      "ref": "VaBvc",
+                      "width": "fill_container",
+                      "name": "yearSelect",
+                      "descendants": {
+                        "bWFT3": {
+                          "enabled": false
+                        },
+                        "xJnCf": {
+                          "content": "Año"
+                        }
+                      }
+                    },
+                    {
+                      "id": "Yow9Z",
+                      "type": "ref",
+                      "ref": "VSnC2",
+                      "width": "fill_container",
+                      "name": "searchBtn",
+                      "descendants": {
+                        "8jVfJ": {
+                          "enabled": false
+                        },
+                        "8tnXG": {
+                          "content": "Buscar piezas"
                         }
                       }
                     }
@@ -7350,6 +7351,197 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "frame",
+              "id": "28dZ4",
+              "name": "Search Result Card",
+              "reusable": true,
+              "width": 220,
+              "fill": "#fafafa",
+              "cornerRadius": 8,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#e8e8e8"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "S9yqE",
+                  "name": "Product Image",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 160,
+                  "fill": "#f3f3f3",
+                  "cornerRadius": [
+                    8,
+                    8,
+                    0,
+                    0
+                  ],
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "ILSXY",
+                      "x": 90,
+                      "y": 60,
+                      "name": "imgIcon",
+                      "width": 40,
+                      "height": 40,
+                      "iconFontName": "package",
+                      "iconFontFamily": "lucide",
+                      "fill": "#d4d4d4"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "3xR8r",
+                  "name": "cardBody",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qG0cA",
+                      "name": "catLabel",
+                      "fill": "$--muted-foreground",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Filtración",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Outfit",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "vs3RL",
+                      "name": "prodName",
+                      "fill": "#0a0a0a",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Filtro de aceite",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Outfit",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "JrRnV",
+                      "name": "prodRef",
+                      "fill": "$--muted-foreground",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "MANN-FILTER · W 712/95",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Outfit",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "HWfTN",
+                      "name": "priceRow",
+                      "width": "fill_container",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t9e3H",
+                          "name": "priceText",
+                          "fill": "#0a0a0a",
+                          "content": "$250.50",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "zfDe0",
+                          "name": "currText",
+                          "fill": "$--muted-foreground",
+                          "content": "MXN",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DnVQx",
+              "name": "No Results State",
+              "reusable": true,
+              "width": 400,
+              "fill": "#fafafa",
+              "cornerRadius": 8,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 48,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "5uJLZ",
+                  "name": "nrIcon",
+                  "width": 48,
+                  "height": 48,
+                  "iconFontName": "search-x",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                },
+                {
+                  "type": "text",
+                  "id": "RiK6L",
+                  "name": "nrTitle",
+                  "fill": "#0a0a0a",
+                  "content": "No encontramos resultados",
+                  "lineHeight": 1.4,
+                  "textAlign": "center",
+                  "fontFamily": "Outfit",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "xlyym",
+                  "name": "nrSubtext",
+                  "fill": "$--muted-foreground",
+                  "content": "Intenta con otro término o verifica el número de pieza",
+                  "lineHeight": 1.4,
+                  "textAlign": "center",
+                  "fontFamily": "Outfit",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "id": "n1hO5",
+                  "type": "ref",
+                  "ref": "ymLaY",
+                  "name": "nrBtn",
+                  "descendants": {
+                    "Pnm2t": {
+                      "enabled": false
+                    },
+                    "wLO2J": {
+                      "content": "Limpiar búsqueda"
+                    }
+                  }
+                }
+              ]
             }
           ]
         }
@@ -7358,8 +7550,8 @@
     {
       "type": "frame",
       "id": "9fKI1",
-      "x": 9721,
-      "y": 0,
+      "x": 10266,
+      "y": -37,
       "name": "Screens: Catalog",
       "width": 1449,
       "height": 1943,
@@ -7869,6 +8061,139 @@
                 48,
                 80
               ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "84JUP",
+          "name": "Search Results Page",
+          "width": 1440,
+          "fill": "$--background",
+          "layout": "vertical",
+          "children": [
+            {
+              "id": "qGdlq",
+              "type": "ref",
+              "ref": "E3AHM",
+              "width": "fill_container",
+              "name": "sHeader"
+            },
+            {
+              "id": "BqLA9",
+              "type": "ref",
+              "ref": "yPP19",
+              "width": "fill_container",
+              "name": "catNav"
+            },
+            {
+              "id": "aOkv9",
+              "type": "ref",
+              "ref": "DPv9W",
+              "width": "fill_container",
+              "name": "srHeader"
+            },
+            {
+              "type": "frame",
+              "id": "qM618",
+              "name": "searchContent",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "padding": [
+                24,
+                80
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "IMNwc",
+                  "name": "resultGrid",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "id": "5mAql",
+                      "type": "ref",
+                      "ref": "28dZ4",
+                      "width": "fill_container",
+                      "name": "c1"
+                    },
+                    {
+                      "id": "ipdTc",
+                      "type": "ref",
+                      "ref": "28dZ4",
+                      "width": "fill_container",
+                      "name": "c2"
+                    },
+                    {
+                      "id": "ONtFa",
+                      "type": "ref",
+                      "ref": "28dZ4",
+                      "width": "fill_container",
+                      "name": "c3"
+                    },
+                    {
+                      "id": "9iXOm",
+                      "type": "ref",
+                      "ref": "28dZ4",
+                      "width": "fill_container",
+                      "name": "c4"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "1NnqJ",
+                  "name": "resultGrid2",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "id": "LPoi7",
+                      "type": "ref",
+                      "ref": "28dZ4",
+                      "width": "fill_container",
+                      "name": "c5"
+                    },
+                    {
+                      "id": "msVfr",
+                      "type": "ref",
+                      "ref": "28dZ4",
+                      "width": "fill_container",
+                      "name": "c6"
+                    },
+                    {
+                      "id": "Hq7lC",
+                      "type": "ref",
+                      "ref": "28dZ4",
+                      "width": "fill_container",
+                      "name": "c7"
+                    },
+                    {
+                      "id": "y2JGh",
+                      "type": "ref",
+                      "ref": "28dZ4",
+                      "width": "fill_container",
+                      "name": "c8"
+                    }
+                  ]
+                },
+                {
+                  "id": "66Ktx",
+                  "type": "ref",
+                  "ref": "U5noB",
+                  "name": "pag"
+                }
+              ]
+            },
+            {
+              "id": "OVMM7",
+              "type": "ref",
+              "ref": "EhEXz",
+              "width": "fill_container",
+              "name": "footer"
             }
           ]
         }
