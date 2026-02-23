@@ -24,6 +24,7 @@
     "header": {
       "logoText": "REFACCIONES DIRECT",
       "searchPlaceholder": "Search part, brand, reference...",
+      "searchPlaceholderWithVehicle": "Search parts for {vehicle}...",
       "searchButton": "Search",
       "help": "Help & contact",
       "account": "My account",
@@ -122,6 +123,27 @@
       "cat6": {
         "title": "Braking",
         "links": ["Brake pads", "Brake discs", "Brake calipers", "Brake fluid", "Brake drums"]
+      }
+    },
+    "search": {
+      "title": "Search results",
+      "resultCount": "{count, plural, one {# result} other {# results}}",
+      "sortLabel": "Sort by:",
+      "sort": {
+        "relevance": "Relevance",
+        "priceAsc": "Price: low to high",
+        "priceDesc": "Price: high to low",
+        "nameAsc": "Name: A-Z",
+        "nameDesc": "Name: Z-A"
+      },
+      "noResults": {
+        "title": "No results found",
+        "description": "Try different search terms or select a different vehicle.",
+        "backHome": "Back to home"
+      },
+      "pagination": {
+        "previous": "Previous",
+        "next": "Next"
       }
     },
     "footer": {

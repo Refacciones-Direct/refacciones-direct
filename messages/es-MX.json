@@ -24,6 +24,7 @@
     "header": {
       "logoText": "REFACCIONES DIRECT",
       "searchPlaceholder": "Buscar pieza, marca, referencia...",
+      "searchPlaceholderWithVehicle": "Buscar piezas para {vehicle}...",
       "searchButton": "Buscar",
       "help": "Ayuda y contacto",
       "account": "Mi cuenta",
@@ -140,6 +141,27 @@
           "Líquido de frenos",
           "Tambores de freno"
         ]
+      }
+    },
+    "search": {
+      "title": "Resultados de búsqueda",
+      "resultCount": "{count, plural, one {# resultado} other {# resultados}}",
+      "sortLabel": "Ordenar por:",
+      "sort": {
+        "relevance": "Relevancia",
+        "priceAsc": "Precio: menor a mayor",
+        "priceDesc": "Precio: mayor a menor",
+        "nameAsc": "Nombre: A-Z",
+        "nameDesc": "Nombre: Z-A"
+      },
+      "noResults": {
+        "title": "No se encontraron resultados",
+        "description": "Intenta con otros términos de búsqueda o selecciona un vehículo diferente.",
+        "backHome": "Volver al inicio"
+      },
+      "pagination": {
+        "previous": "Anterior",
+        "next": "Siguiente"
       }
     },
     "footer": {
