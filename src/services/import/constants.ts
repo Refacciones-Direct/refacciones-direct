@@ -32,7 +32,6 @@ export const COMMON_PART_COLUMNS = {
   SKU: { es: 'SKU', en: 'SKU' },
   BRAND: { es: 'Marca', en: 'Brand' },
   NAME: { es: 'Nombre del Producto', en: 'Product Name' },
-  CONDITION: { es: 'Condición', en: 'Condition' },
   DESCRIPTION: { es: 'Descripción', en: 'Description' },
   PRICE: { es: 'Precio (MXN)', en: 'Price (MXN)' },
   QUANTITY: { es: 'Stock', en: 'Stock' },

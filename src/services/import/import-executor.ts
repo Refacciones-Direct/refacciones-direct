@@ -177,7 +177,6 @@ export class ImportExecutor {
         sku: p.sku,
         brand: p.brand,
         name: p.name,
-        condition: p.condition ?? null,
         description: p.description ?? null,
         category: templateConfig.categorySlug,
         part_type: templateConfig.partType,

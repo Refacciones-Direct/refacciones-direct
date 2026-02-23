@@ -94,24 +94,6 @@ describe('ValidationEngine', () => {
       expect(app.yearStart).toBe(2018);
       expect(app.yearEnd).toBe(2023);
     });
-
-    it('extracts condition when provided', async () => {
-      const result = await parseAndValidate(
-        TestWorkbookBuilder.forTemplate('mazas_v1')
-          .addPart({ condition: 'Nuevo' })
-          .addApplication(DEFAULT_PART.sku),
-      );
-
-      expect(result.validParts[0].condition).toBe('Nuevo');
-    });
-
-    it('condition is undefined when not provided', async () => {
-      const result = await parseAndValidate(
-        TestWorkbookBuilder.forTemplate('mazas_v1').addPart().addApplication(DEFAULT_PART.sku),
-      );
-
-      expect(result.validParts[0].condition).toBeUndefined();
-    });
   });
 
   // -------------------------------------------------------------------------

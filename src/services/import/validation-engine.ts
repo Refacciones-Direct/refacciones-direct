@@ -210,9 +210,6 @@ export class ValidationEngine {
           ? Math.max(0, Math.round(quantityRaw))
           : parseInt(String(quantityRaw || '0'), 10) || 0;
 
-      // --- Condition (optional, stored on ValidatedPartRow) ---
-      const condition = this.str(data[COMMON_PART_COLUMNS.CONDITION.es]) || undefined;
-
       // --- Image URLs (4 named photo columns) ---
       const imageUrls: string[] = [];
       for (const key of [
@@ -294,7 +291,6 @@ export class ValidationEngine {
         sku: skuRaw,
         brand: brand!,
         name: name!,
-        condition,
         description: this.str(data[COMMON_PART_COLUMNS.DESCRIPTION.es]) || undefined,
         price,
         quantity,
