@@ -1,12 +1,9 @@
 'use client';
 
-import { ArrowRight, Info } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
-import { Separator } from '@/components/ui/separator';
 import {
   Select,
   SelectContent,
@@ -14,109 +11,204 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useRouter } from '@/i18n/navigation';
+import { useVehicleContext } from '@/hooks/use-vehicle-context';
+import type {
+  VehicleOptionsMakes,
+  VehicleOptionsModels,
+  VehicleOptionsYears,
+} from '@/services/search/types';
 
-export function VehicleSelector() {
+interface VehicleSelectorProps {
+  className?: string;
+}
+
+async function fetchMakes(): Promise<string[]> {
+  const res = await fetch('/api/public/vehicle-options');
+  const data: VehicleOptionsMakes = await res.json();
+  return data.makes ?? [];
+}
+
+async function fetchModels(make: string): Promise<string[]> {
+  const res = await fetch(`/api/public/vehicle-options?make=${encodeURIComponent(make)}`);
+  const data: VehicleOptionsModels = await res.json();
+  return data.models ?? [];
+}
+
+async function fetchYears(make: string, model: string): Promise<number[]> {
+  const res = await fetch(
+    `/api/public/vehicle-options?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}`,
+  );
+  const data: VehicleOptionsYears = await res.json();
+  if (data.year_min && data.year_max) {
+    const range: number[] = [];
+    for (let y = data.year_max; y >= data.year_min; y--) {
+      range.push(y);
+    }
+    return range;
+  }
+  return [];
+}
+
+// Unique sentinel per fetch cycle — lets us discard stale responses
+let makesFetchId = 0;
+let modelsFetchId = 0;
+let yearsFetchId = 0;
+
+export function VehicleSelector({ className }: VehicleSelectorProps) {
   const t = useTranslations('catalog');
+  const router = useRouter();
+  const { setVehicle } = useVehicleContext();
+
+  const [makes, setMakes] = useState<string[] | null>(null);
+  const [models, setModels] = useState<string[] | null>(null);
+  const [years, setYears] = useState<number[] | null>(null);
+
+  const [selectedMake, setSelectedMake] = useState('');
+  const [selectedModel, setSelectedModel] = useState('');
+  const [selectedYear, setSelectedYear] = useState('');
+
+  const isReady = !!selectedMake && !!selectedModel && !!selectedYear;
+  const loadingMakes = makes === null;
+  const loadingModels = !!selectedMake && models === null;
+  const loadingYears = !!selectedModel && years === null;
+
+  // Fetch makes on mount
+  useEffect(() => {
+    const id = ++makesFetchId;
+    fetchMakes()
+      .then((data) => {
+        if (id === makesFetchId) setMakes(data);
+      })
+      .catch(() => {
+        if (id === makesFetchId) setMakes([]);
+      });
+  }, []);
+
+  // Fetch models when make changes
+  useEffect(() => {
+    if (!selectedMake) return;
+    const id = ++modelsFetchId;
+    fetchModels(selectedMake)
+      .then((data) => {
+        if (id === modelsFetchId) setModels(data);
+      })
+      .catch(() => {
+        if (id === modelsFetchId) setModels([]);
+      });
+  }, [selectedMake]);
+
+  // Fetch years when model changes
+  useEffect(() => {
+    if (!selectedMake || !selectedModel) return;
+    const id = ++yearsFetchId;
+    fetchYears(selectedMake, selectedModel)
+      .then((data) => {
+        if (id === yearsFetchId) setYears(data);
+      })
+      .catch(() => {
+        if (id === yearsFetchId) setYears([]);
+      });
+  }, [selectedMake, selectedModel]);
+
+  function handleMakeChange(value: string) {
+    setSelectedMake(value);
+    setSelectedModel('');
+    setSelectedYear('');
+    setModels(null); // Reset to loading
+    setYears(null);
+  }
+
+  function handleModelChange(value: string) {
+    setSelectedModel(value);
+    setSelectedYear('');
+    setYears(null); // Reset to loading
+  }
+
+  function handleSearch() {
+    if (!isReady) return;
+    const year = parseInt(selectedYear, 10);
+    setVehicle({ make: selectedMake, model: selectedModel, year });
+    router.push(
+      `/search?make=${encodeURIComponent(selectedMake)}&model=${encodeURIComponent(selectedModel)}&year=${year}`,
+    );
+  }
 
   return (
     <div
       data-slot="vehicle-selector"
-      className={cn('rounded-lg border border-border bg-card p-6 shadow')}
+      className={cn('rounded-lg border border-border bg-card p-6 shadow', className)}
     >
       <h2 className="text-center text-lg font-semibold">{t('vehicleSelector.title')}</h2>
 
-      <Tabs defaultValue="placa" className="mt-5 gap-5">
-        <TabsList className="h-9! w-full rounded-lg border border-input bg-secondary-hover p-1!">
-          <TabsTrigger
-            value="placa"
-            className="flex-1 cursor-pointer rounded-md font-bold text-foreground hover:bg-border data-[state=active]:bg-brand-navy data-[state=active]:text-white data-[state=active]:shadow-none"
-          >
-            {t('vehicleSelector.tabPlaca')}
-          </TabsTrigger>
-          <TabsTrigger
-            value="modelo"
-            className="flex-1 cursor-pointer rounded-md font-bold text-foreground hover:bg-border data-[state=active]:bg-brand-navy data-[state=active]:text-white data-[state=active]:shadow-none"
-          >
-            {t('vehicleSelector.tabModelo')}
-          </TabsTrigger>
-        </TabsList>
-
-        {/* Placa tab */}
-        <TabsContent value="placa" className="min-h-45 space-y-4">
-          {/* Input row */}
-          <div className="flex items-center gap-3">
-            <Input
-              placeholder={t('vehicleSelector.placaPlaceholder')}
-              className="flex-1 text-base"
+      <div className="mt-5 flex flex-col gap-4">
+        {/* Make */}
+        <Select value={selectedMake} onValueChange={handleMakeChange} disabled={loadingMakes}>
+          <SelectTrigger className="w-full">
+            <SelectValue
+              placeholder={
+                loadingMakes ? t('vehicleSelector.loading') : t('vehicleSelector.makePlaceholder')
+              }
             />
-            <button
-              type="button"
-              aria-label={t('vehicleSelector.search')}
-              className="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-brand-red text-white hover:bg-brand-red-hover"
-            >
-              <ArrowRight className="size-5" />
-            </button>
-          </div>
-
-          {/* Checkbox row */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Checkbox id="garage" />
-              <label htmlFor="garage" className="text-sm">
-                {t('vehicleSelector.garageLabel')}
-              </label>
-            </div>
-            <Info className="size-3.5 text-muted-foreground" />
-          </div>
-
-          {/* Divider */}
-          <div className="flex items-center gap-3">
-            <Separator className="flex-1" />
-            <span className="text-sm font-medium text-muted-foreground">O</span>
-            <Separator className="flex-1" />
-          </div>
-
-          {/* Select dropdown */}
-          <Select>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder={t('vehicleSelector.registeredVehicle')} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="none" disabled>
-                {t('vehicleSelector.registeredVehicle')}
+          </SelectTrigger>
+          <SelectContent>
+            {(makes ?? []).map((make) => (
+              <SelectItem key={make} value={make}>
+                {make}
               </SelectItem>
-            </SelectContent>
-          </Select>
-        </TabsContent>
+            ))}
+          </SelectContent>
+        </Select>
 
-        {/* Modelo tab */}
-        <TabsContent value="modelo" className="min-h-45 space-y-4">
-          {/* VIN input */}
-          <div className="flex items-center gap-3">
-            <Input placeholder={t('vehicleSelector.vinPlaceholder')} className="flex-1 text-base" />
-            <button
-              type="button"
-              aria-label={t('vehicleSelector.search')}
-              className="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-brand-red text-white hover:bg-brand-red-hover"
-            >
-              <ArrowRight className="size-5" />
-            </button>
-          </div>
+        {/* Model */}
+        <Select
+          value={selectedModel}
+          onValueChange={handleModelChange}
+          disabled={!selectedMake || loadingModels}
+        >
+          <SelectTrigger className="w-full">
+            <SelectValue
+              placeholder={
+                loadingModels ? t('vehicleSelector.loading') : t('vehicleSelector.modelPlaceholder')
+              }
+            />
+          </SelectTrigger>
+          <SelectContent>
+            {(models ?? []).map((model) => (
+              <SelectItem key={model} value={model}>
+                {model}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
-          {/* Separator with OR */}
-          <div className="flex items-center gap-4">
-            <Separator className="flex-1" />
-            <span className="text-sm text-muted-foreground">{t('vehicleSelector.or')}</span>
-            <Separator className="flex-1" />
-          </div>
+        {/* Year */}
+        <Select
+          value={selectedYear}
+          onValueChange={setSelectedYear}
+          disabled={!selectedModel || loadingYears}
+        >
+          <SelectTrigger className="w-full">
+            <SelectValue
+              placeholder={
+                loadingYears ? t('vehicleSelector.loading') : t('vehicleSelector.yearPlaceholder')
+              }
+            />
+          </SelectTrigger>
+          <SelectContent>
+            {(years ?? []).map((year) => (
+              <SelectItem key={year} value={String(year)}>
+                {year}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
-          {/* Search by model button */}
-          <Button variant="default" className="w-full">
-            {t('vehicleSelector.searchByModel')}
-          </Button>
-        </TabsContent>
-      </Tabs>
+        {/* Search button */}
+        <Button className="w-full" disabled={!isReady} onClick={handleSearch}>
+          {t('vehicleSelector.searchButton')}
+        </Button>
+      </div>
     </div>
   );
 }

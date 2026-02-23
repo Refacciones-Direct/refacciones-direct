@@ -41,17 +41,11 @@
     },
     "vehicleSelector": {
       "title": "Identifica tu vehículo",
-      "tabPlaca": "Placa",
-      "tabModelo": "Modelo",
-      "placaPlaceholder": "Ingresa tu placa",
+      "makePlaceholder": "Marca",
+      "modelPlaceholder": "Modelo",
       "yearPlaceholder": "Año",
-      "garageLabel": "Registrar en mi garaje",
-      "garageInfo": "Almacena tus vehículos para futuras búsquedas",
-      "registeredVehicle": "Selecciona un vehículo registrado",
-      "search": "Buscar",
-      "searchByModel": "Buscar por modelo",
-      "or": "O",
-      "vinPlaceholder": "VF1JM0U0634537488"
+      "searchButton": "Buscar piezas",
+      "loading": "Cargando..."
     },
     "promoCarousel": {
       "slide1Title": "CADENAS\nDE NIEVE",

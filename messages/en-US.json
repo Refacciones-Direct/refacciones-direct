@@ -41,17 +41,11 @@
     },
     "vehicleSelector": {
       "title": "Identify your vehicle",
-      "tabPlaca": "Plate",
-      "tabModelo": "Model",
-      "placaPlaceholder": "Enter your plate",
+      "makePlaceholder": "Make",
+      "modelPlaceholder": "Model",
       "yearPlaceholder": "Year",
-      "garageLabel": "Save to my garage",
-      "garageInfo": "Store your vehicles for future searches",
-      "registeredVehicle": "Select a registered vehicle",
-      "search": "Search",
-      "searchByModel": "Search by model",
-      "or": "OR",
-      "vinPlaceholder": "VF1JM0U0634537488"
+      "searchButton": "Search parts",
+      "loading": "Loading..."
     },
     "promoCarousel": {
       "slide1Title": "SNOW\nCHAINS",
