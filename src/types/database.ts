@@ -245,6 +245,7 @@ export type Database = {
           part_type: string
           price: number | null
           quantity: number
+          search_vector: unknown
           sku: string
           status: string
           upc: string | null
@@ -267,6 +268,7 @@ export type Database = {
           part_type: string
           price?: number | null
           quantity?: number
+          search_vector?: unknown
           sku: string
           status?: string
           upc?: string | null
@@ -289,6 +291,7 @@ export type Database = {
           part_type?: string
           price?: number | null
           quantity?: number
+          search_vector?: unknown
           sku?: string
           status?: string
           upc?: string | null
@@ -409,7 +412,92 @@ export type Database = {
     }
     Functions: {
       current_app_user_id: { Args: never; Returns: number }
+      get_vehicle_options: {
+        Args: { p_make?: string; p_model?: string }
+        Returns: Json
+      }
       is_admin: { Args: never; Returns: boolean }
+      search_parts_by_text: {
+        Args: { p_limit?: number; p_offset?: number; search_term: string }
+        Returns: {
+          attributes: Json
+          brand: string
+          category: string
+          condition: string
+          currency: string
+          description: string
+          id: number
+          image_urls: string[]
+          manufacturer_id: number
+          match_type: string
+          name: string
+          part_type: string
+          price: number
+          quantity: number
+          similarity_score: number
+          sku: string
+          total_count: number
+        }[]
+      }
+      search_parts_by_vehicle: {
+        Args: {
+          p_limit?: number
+          p_make: string
+          p_model: string
+          p_offset?: number
+          p_year: number
+        }
+        Returns: {
+          attributes: Json
+          brand: string
+          category: string
+          condition: string
+          currency: string
+          description: string
+          id: number
+          image_urls: string[]
+          manufacturer_id: number
+          match_type: string
+          name: string
+          part_type: string
+          price: number
+          quantity: number
+          similarity_score: number
+          sku: string
+          total_count: number
+        }[]
+      }
+      search_parts_combined: {
+        Args: {
+          p_limit?: number
+          p_make: string
+          p_model: string
+          p_offset?: number
+          p_year: number
+          search_term: string
+        }
+        Returns: {
+          attributes: Json
+          brand: string
+          category: string
+          condition: string
+          currency: string
+          description: string
+          id: number
+          image_urls: string[]
+          manufacturer_id: number
+          match_type: string
+          name: string
+          part_type: string
+          price: number
+          quantity: number
+          similarity_score: number
+          sku: string
+          total_count: number
+        }[]
+      }
+      show_limit: { Args: never; Returns: number }
+      show_trgm: { Args: { "": string }; Returns: string[] }
     }
     Enums: {
       [_ in never]: never

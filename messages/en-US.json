@@ -16,7 +16,7 @@
     "title": "Administration",
     "comingSoon": "Coming soon..."
   },
-  "storefront": {
+  "catalog": {
     "promoBanner": {
       "text": "FREE SHIPPING ON ORDERS OVER $1,199!",
       "link": "See conditions"
@@ -24,6 +24,7 @@
     "header": {
       "logoText": "REFACCIONES DIRECT",
       "searchPlaceholder": "Search part, brand, reference...",
+      "searchPlaceholderWithVehicle": "Search parts for {vehicle}...",
       "searchButton": "Search",
       "help": "Help & contact",
       "account": "My account",
@@ -41,17 +42,11 @@
     },
     "vehicleSelector": {
       "title": "Identify your vehicle",
-      "tabPlaca": "Plate",
-      "tabModelo": "Model",
-      "placaPlaceholder": "Enter your plate",
+      "makePlaceholder": "Make",
+      "modelPlaceholder": "Model",
       "yearPlaceholder": "Year",
-      "garageLabel": "Save to my garage",
-      "garageInfo": "Store your vehicles for future searches",
-      "registeredVehicle": "Select a registered vehicle",
-      "search": "Search",
-      "searchByModel": "Search by model",
-      "or": "OR",
-      "vinPlaceholder": "VF1JM0U0634537488"
+      "searchButton": "Search parts",
+      "loading": "Loading..."
     },
     "promoCarousel": {
       "slide1Title": "SNOW\nCHAINS",
@@ -128,6 +123,32 @@
       "cat6": {
         "title": "Braking",
         "links": ["Brake pads", "Brake discs", "Brake calipers", "Brake fluid", "Brake drums"]
+      }
+    },
+    "search": {
+      "title": "Search results",
+      "resultCount": "{count, plural, one {# result} other {# results}}",
+      "sortLabel": "Sort by:",
+      "sort": {
+        "relevance": "Relevance",
+        "priceAsc": "Price: low to high",
+        "priceDesc": "Price: high to low",
+        "nameAsc": "Name: A-Z",
+        "nameDesc": "Name: Z-A"
+      },
+      "noResults": {
+        "title": "No results found",
+        "description": "Try different search terms or select a different vehicle.",
+        "backHome": "Back to home"
+      },
+      "pagination": {
+        "previous": "Previous",
+        "next": "Next"
+      },
+      "error": {
+        "title": "Search is temporarily unavailable",
+        "description": "There was a problem with the search. Please try again.",
+        "retry": "Try again"
       }
     },
     "footer": {

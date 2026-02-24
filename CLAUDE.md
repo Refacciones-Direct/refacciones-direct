@@ -24,13 +24,15 @@
 - `npm run test:run` — Vitest (single run)
 - `npm run test:e2e` — Playwright E2E
 - `supabase start` — Start local Supabase (Docker)
-- `supabase db reset` — Reset DB + migrations + seed
+- `npm run db:reset` — Reset DB + migrations + seed auth + import catalog + upload product images
+- `npm run db:seed-catalog` — Re-import catalog without resetting
+- `npm run db:seed-images` — Re-upload product images without resetting
 
 ## Architecture
 
 - **src/ directory:** All source code under `src/`, `@/*` alias maps to `./src/*`
 - **Three portals (route groups):**
-  - `(storefront)` — Consumer-facing catalog/checkout
+  - `(catalog)` — Consumer-facing catalog/checkout
   - `(dashboard)` — Manufacturer portal (parts, orders, team)
   - `(admin)` — Platform admin (manufacturers, users, oversight)
 - **Locale routing:** `app/[locale]/` with next-intl, proxy.ts handles routing
