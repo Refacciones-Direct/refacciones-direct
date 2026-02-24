@@ -15,9 +15,11 @@ export async function GET(request: NextRequest) {
     const yearStr = searchParams.get('year') ?? '';
     const year = yearStr ? parseInt(yearStr, 10) : undefined;
     const limitStr = searchParams.get('limit');
-    const limit = limitStr ? parseInt(limitStr, 10) : 24;
+    const limitParsed = limitStr ? parseInt(limitStr, 10) : 24;
+    const limit = isNaN(limitParsed) || limitParsed < 1 ? 24 : limitParsed;
     const offsetStr = searchParams.get('offset');
-    const offset = offsetStr ? parseInt(offsetStr, 10) : 0;
+    const offsetParsed = offsetStr ? parseInt(offsetStr, 10) : 0;
+    const offset = isNaN(offsetParsed) || offsetParsed < 0 ? 0 : offsetParsed;
     const sortRaw = searchParams.get('sort') ?? 'relevance';
     const sort: SortOption = VALID_SORTS.includes(sortRaw as SortOption)
       ? (sortRaw as SortOption)
