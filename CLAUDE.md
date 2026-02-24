@@ -24,7 +24,9 @@
 - `npm run test:run` — Vitest (single run)
 - `npm run test:e2e` — Playwright E2E
 - `supabase start` — Start local Supabase (Docker)
-- `supabase db reset` — Reset DB + migrations + seed
+- `npm run db:reset` — Reset DB + migrations + seed auth + import catalog + upload product images
+- `npm run db:seed-catalog` — Re-import catalog without resetting
+- `npm run db:seed-images` — Re-upload product images without resetting
 
 ## Architecture
 

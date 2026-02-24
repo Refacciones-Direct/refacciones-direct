@@ -1,7 +1,15 @@
 /**
- * Test importing Humberto's mazas file into local Supabase.
+ * Seed the local database with catalog data from the mazas Excel file.
  *
- * Usage: npx.cmd tsx scripts/test-import-db.ts
+ * Runs the full import pipeline: parse → validate → execute.
+ *
+ * Usage:
+ *   npx.cmd tsx scripts/seed-catalog.ts                          # default file
+ *   npx.cmd tsx scripts/seed-catalog.ts path/to/other-file.xlsx  # custom file
+ *
+ * Environment variables (loaded via --env-file=.env.local):
+ *   NEXT_PUBLIC_SUPABASE_URL   — Supabase API URL
+ *   SUPABASE_SERVICE_ROLE_KEY  — Service role key (admin access)
  *
  * Prerequisites:
  *   - `npx.cmd supabase start` (local Supabase running)
@@ -17,17 +25,23 @@ import {
   ImportExecutor,
 } from '../src/services/import/index.js';
 
-// Local Supabase credentials (from `supabase status -o env`)
-const SUPABASE_URL = 'http://127.0.0.1:54331';
-const SERVICE_ROLE_KEY =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU';
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+if (!SUPABASE_URL || !SERVICE_ROLE_KEY) {
+  console.error(
+    'Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY.\n' +
+      'Run with: node --env-file=.env.local --import=tsx scripts/seed-catalog.ts',
+  );
+  process.exit(1);
+}
 
 const MANUFACTURER_ID = 1; // Seed data: ACR Automotive Parts
 
 const adminClient = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
 
 // ── Read file ───────────────────────────────────────────────
-const filePath = resolve(process.argv[2] ?? 'docs/RefaccionesDirect_Mazas_Template_v1.xlsx');
+const filePath = resolve(process.argv[2] ?? 'scripts/output/catalog_mazas_2026-02-23.xlsx');
 const buffer = readFileSync(filePath);
 console.log(`\nFile: ${filePath}`);
 console.log(`Size: ${(buffer.byteLength / 1024).toFixed(1)} KB\n`);
@@ -77,6 +91,20 @@ console.log(`  Vehicles upserted:   ${result.counts.vehiclesUpserted}`);
 console.log(`  Fitments inserted:   ${result.counts.fitmentsInserted}`);
 console.log(`  Fitments failed:     ${result.counts.fitmentsFailed}`);
 console.log(`  OE crossrefs:        ${result.counts.oeCrossrefsInserted}`);
+console.log('');
+
+// Activate all imported parts (import pipeline defaults to 'draft')
+const { data: activatedRows, error: activateError } = await adminClient
+  .from('parts')
+  .update({ status: 'active' })
+  .eq('manufacturer_id', MANUFACTURER_ID)
+  .eq('status', 'draft')
+  .select('id');
+if (activateError) {
+  console.error(`Failed to activate parts: ${activateError.message}`);
+} else {
+  console.log(`Parts activated:   ${activatedRows?.length ?? 0}`);
+}
 console.log('');
 
 if (result.errors.length > 0) {

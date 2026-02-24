@@ -9,3 +9,6 @@ package-lock.json
 
 # Reference assets (third-party, not our code)
 public/oscaro.es/
+
+# Seed fixtures (binary images + generated manifest)
+fixtures/
