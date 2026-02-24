@@ -2,8 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/navigation';
-import { SearchX, X } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import { SearchX } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -25,7 +24,6 @@ interface SearchResultsProps {
   hasMore: boolean;
   query: string;
   sort: SortOption;
-  vehicleLabel: string | null;
 }
 
 export function SearchResults({
@@ -36,12 +34,11 @@ export function SearchResults({
   hasMore,
   query,
   sort,
-  vehicleLabel,
 }: SearchResultsProps) {
   const t = useTranslations('catalog');
   const router = useRouter();
   const pathname = usePathname();
-  const { vehicle, clearVehicle } = useVehicleContext();
+  const { vehicle } = useVehicleContext();
 
   const totalPages = Math.ceil(totalCount / pageSize);
 
@@ -64,14 +61,6 @@ export function SearchResults({
       params.delete('sort');
     }
     params.delete('page');
-    router.push(`${pathname}?${params.toString()}`);
-  }
-
-  function handleDismissVehicle() {
-    clearVehicle();
-    const params = new URLSearchParams();
-    if (query) params.set('q', query);
-    if (sort !== 'relevance') params.set('sort', sort);
     router.push(`${pathname}?${params.toString()}`);
   }
 
@@ -100,17 +89,9 @@ export function SearchResults({
     <div className="flex flex-col gap-6">
       {/* Results header */}
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <span className="text-sm text-muted-foreground">
-            {t('search.resultCount', { count: totalCount })}
-          </span>
-          {vehicleLabel ? (
-            <Badge variant="secondary" className="gap-1 text-xs" onClick={handleDismissVehicle}>
-              {vehicleLabel}
-              <X className="size-3 cursor-pointer" />
-            </Badge>
-          ) : null}
-        </div>
+        <span className="text-sm text-muted-foreground">
+          {t('search.resultCount', { count: totalCount })}
+        </span>
 
         <div className="flex items-center gap-2">
           <span className="text-sm text-muted-foreground">{t('search.sortLabel')}</span>

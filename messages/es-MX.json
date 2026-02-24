@@ -143,6 +143,11 @@
         ]
       }
     },
+    "vehicleBanner": {
+      "shoppingFor": "BUSCANDO PARA:",
+      "changeVehicle": "Cambiar vehículo",
+      "searchWithout": "Buscar sin vehículo"
+    },
     "search": {
       "title": "Resultados de búsqueda",
       "resultCount": "{count, plural, one {# resultado} other {# resultados}}",

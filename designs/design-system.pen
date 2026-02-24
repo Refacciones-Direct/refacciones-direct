@@ -3617,7 +3617,7 @@
                   "type": "ref",
                   "ref": "C3KOZ",
                   "x": 24,
-                  "y": 24.019943701668048,
+                  "y": 24.01994370166805,
                   "width": "fill_container",
                   "descendants": {
                     "NEMHS": {
@@ -6606,6 +6606,103 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "frame",
+              "id": "BD9fe",
+              "name": "Vehicle Banner",
+              "reusable": true,
+              "width": 1440,
+              "fill": "$--accent",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "top": 2
+                },
+                "fill": "$--primary"
+              },
+              "padding": [
+                12,
+                80
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "dx6uM",
+                  "name": "Left",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "LHiNV",
+                      "name": "carIcon",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "car",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Wbd4I",
+                      "name": "Label",
+                      "fill": "$--muted-foreground",
+                      "content": "BUSCANDO PARA:",
+                      "fontFamily": "Outfit",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "jHD4l",
+                      "name": "Vehicle",
+                      "fill": "$--foreground",
+                      "content": "2022 Acura ILX",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "0U5v1",
+                  "name": "Right",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "id": "IDZDj",
+                      "type": "ref",
+                      "ref": "ymLaY",
+                      "name": "changeBtn",
+                      "descendants": {
+                        "Pnm2t": {
+                          "enabled": false
+                        },
+                        "wLO2J": {
+                          "content": "Cambiar vehículo",
+                          "fontSize": 12
+                        }
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "l9Met",
+                      "name": "Clear Link",
+                      "fill": "$--muted-foreground",
+                      "content": "Buscar sin vehículo",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -8085,6 +8182,13 @@
               "ref": "yPP19",
               "width": "fill_container",
               "name": "catNav"
+            },
+            {
+              "id": "KTn8t",
+              "type": "ref",
+              "ref": "BD9fe",
+              "name": "vehicleBanner",
+              "width": "fill_container"
             },
             {
               "id": "aOkv9",
@@ -11243,7 +11347,7 @@
                               "stroke": {
                                 "align": "inside",
                                 "thickness": 1,
-                                "fill": "#d4d4d4"
+                                "fill": "$--input"
                               },
                               "gap": 8,
                               "padding": [
@@ -11344,7 +11448,7 @@
                               "stroke": {
                                 "align": "inside",
                                 "thickness": 1,
-                                "fill": "#001166"
+                                "fill": "$--input-hover"
                               },
                               "gap": 8,
                               "padding": [
@@ -11445,7 +11549,7 @@
                               "stroke": {
                                 "align": "inside",
                                 "thickness": 1,
-                                "fill": "#d4d4d4"
+                                "fill": "$--input"
                               },
                               "gap": 8,
                               "padding": [
@@ -11867,7 +11971,7 @@
                               "stroke": {
                                 "align": "inside",
                                 "thickness": 1,
-                                "fill": "#d4d4d4"
+                                "fill": "$--input"
                               },
                               "gap": 10,
                               "padding": [
@@ -11978,7 +12082,7 @@
                               "stroke": {
                                 "align": "inside",
                                 "thickness": 1,
-                                "fill": "#001166"
+                                "fill": "$--input-hover"
                               },
                               "gap": 10,
                               "padding": [
@@ -12089,7 +12193,7 @@
                               "stroke": {
                                 "align": "inside",
                                 "thickness": 1,
-                                "fill": "#d4d4d4"
+                                "fill": "$--input"
                               },
                               "gap": 10,
                               "padding": [
@@ -13965,7 +14069,17 @@
     },
     "--border": {
       "type": "color",
-      "value": "#e8e8e8"
+      "value": [
+        {
+          "value": "#e8e8e8"
+        },
+        {
+          "value": "#b3b3b3"
+        },
+        {
+          "value": "#8a8a8a"
+        }
+      ]
     },
     "--brand-blue": {
       "type": "color",
@@ -14029,7 +14143,17 @@
     },
     "--input": {
       "type": "color",
-      "value": "#d4d4d4"
+      "value": [
+        {
+          "value": "#d4d4d4"
+        },
+        {
+          "value": "#b3b3b3"
+        },
+        {
+          "value": "#8a8a8a"
+        }
+      ]
     },
     "--muted": {
       "type": "color",
@@ -14146,6 +14270,21 @@
     "--text-xs": {
       "type": "number",
       "value": 12
+    },
+    "--accent-hover": {
+      "type": "color",
+      "value": "#e4e6ed"
+    },
+    "--input-hover": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#8a8a8a"
+        },
+        {
+          "value": "#636363"
+        }
+      ]
     }
   }
 }

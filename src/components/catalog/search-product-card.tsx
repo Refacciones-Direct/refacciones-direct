@@ -36,9 +36,9 @@ export function SearchProductCard({
       className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-shadow hover:shadow-md"
     >
       {/* Image area */}
-      <div className="flex h-40 items-center justify-center bg-muted">
+      <div className="flex h-40 items-center justify-center bg-bg-light">
         {imageUrls.length > 0 ? (
-          <img src={imageUrls[0]} alt={name} className="h-full w-full object-cover" />
+          <img src={imageUrls[0]} alt={name} className="h-full w-full object-contain p-2" />
         ) : (
           <Package className="size-10 text-muted-foreground/30" />
         )}

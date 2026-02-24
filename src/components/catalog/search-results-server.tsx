@@ -37,9 +37,6 @@ export async function SearchResultsServer({ searchParams }: SearchResultsServerP
   const supabase = await createClient();
   const service = new SearchService(supabase);
 
-  const hasVehicle = !!(make && model && year);
-  const vehicleLabel = hasVehicle ? `${make} ${model} ${year}` : null;
-
   const result = await service.searchCombined({
     q: q || undefined,
     make: make || undefined,
@@ -59,7 +56,6 @@ export async function SearchResultsServer({ searchParams }: SearchResultsServerP
       hasMore={result.has_more}
       query={q}
       sort={sort}
-      vehicleLabel={vehicleLabel}
     />
   );
 }

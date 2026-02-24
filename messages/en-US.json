@@ -125,6 +125,11 @@
         "links": ["Brake pads", "Brake discs", "Brake calipers", "Brake fluid", "Brake drums"]
       }
     },
+    "vehicleBanner": {
+      "shoppingFor": "SHOPPING FOR:",
+      "changeVehicle": "Change vehicle",
+      "searchWithout": "Search without vehicle"
+    },
     "search": {
       "title": "Search results",
       "resultCount": "{count, plural, one {# result} other {# results}}",

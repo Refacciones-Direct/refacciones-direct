@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { SiteHeader } from '@/components/catalog/site-header';
 import { CategoryNav } from '@/components/catalog/category-nav';
 import { SiteFooter } from '@/components/catalog/site-footer';
+import { VehicleBanner } from '@/components/catalog/vehicle-banner';
 import { SearchResultsServer } from '@/components/catalog/search-results-server';
 
 function SearchFallback() {
@@ -23,6 +24,7 @@ export default async function SearchPage(props: {
     <>
       <SiteHeader />
       <CategoryNav />
+      <VehicleBanner />
       <main className="mx-auto w-full max-w-7xl px-4 py-8">
         <h1 className="mb-6 text-2xl font-bold">{t('search.title')}</h1>
         <Suspense fallback={<SearchFallback />}>
