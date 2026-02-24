@@ -1,12 +1,12 @@
-import { BadgeCheck, BookOpen, Package, Wrench } from 'lucide-react';
+import { Factory, Headset, ShieldCheck, Truck } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/utils';
 
 const VALUE_PROPS = [
-  { icon: BadgeCheck, titleKey: 'vp1Title', subKey: 'vp1Sub' },
-  { icon: Wrench, titleKey: 'vp2Title', subKey: 'vp2Sub' },
-  { icon: BookOpen, titleKey: 'vp3Title', subKey: 'vp3Sub' },
-  { icon: Package, titleKey: 'vp4Title', subKey: 'vp4Sub' },
+  { icon: Factory, titleKey: 'vp1Title', subKey: 'vp1Sub' },
+  { icon: ShieldCheck, titleKey: 'vp2Title', subKey: 'vp2Sub' },
+  { icon: Truck, titleKey: 'vp3Title', subKey: 'vp3Sub' },
+  { icon: Headset, titleKey: 'vp4Title', subKey: 'vp4Sub' },
 ] as const;
 
 export async function ValueProps() {

@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from '@/i18n/navigation';
-import { Button } from '@/components/ui/button';
 import { useVehicleContext } from '@/hooks/use-vehicle-context';
 
 export function HeaderSearch() {
@@ -50,9 +49,13 @@ export function HeaderSearch() {
         }
         className="min-w-0 flex-1 bg-transparent px-2 py-3 text-base text-foreground placeholder:text-muted-foreground focus:outline-none"
       />
-      <Button type="submit" size="sm" className="h-10 rounded-full px-5 text-sm font-semibold">
+
+      <button
+        type="submit"
+        className="h-10 shrink-0 rounded-full bg-brand-navy px-5 text-sm font-semibold text-white transition-colors hover:bg-brand-navy/90"
+      >
         {t('header.searchButton')}
-      </Button>
+      </button>
     </form>
   );
 }

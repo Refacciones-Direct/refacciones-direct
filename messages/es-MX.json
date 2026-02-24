@@ -38,7 +38,8 @@
       "llantas": "Llantas",
       "accesorios": "Accesorios y Limpieza",
       "herramientas": "Herramientas",
-      "ofertas": "Piezas de ocasión"
+      "ofertas": "Piezas de ocasión",
+      "addVehicle": "Agregar vehículo"
     },
     "vehicleSelector": {
       "title": "Identifica tu vehículo",
@@ -48,34 +49,70 @@
       "searchButton": "Buscar piezas",
       "loading": "Cargando..."
     },
+    "vehicleSidebar": {
+      "title": "Agregar vehículo",
+      "chooseModel": "Elegir modelo",
+      "chooseYear": "Elegir año",
+      "back": "Regresar",
+      "close": "Cerrar",
+      "searchMake": "Buscar marca...",
+      "searchModel": "Buscar modelo...",
+      "searchYear": "Buscar año...",
+      "tab": {
+        "make": "Marca",
+        "model": "Modelo",
+        "year": "Año"
+      },
+      "popularMakes": "Marcas populares",
+      "allMakes": "Todas las marcas",
+      "loading": "Cargando...",
+      "noResults": "Sin resultados"
+    },
     "promoCarousel": {
-      "slide1Title": "CADENAS\nDE NIEVE",
-      "slide1Discount": "-10%",
-      "slide1Cta": "Aprovecha ya",
-      "slide2Title": "ACEITES\nDE MOTOR",
-      "slide2Discount": "-15%",
-      "slide2Cta": "Ver ofertas",
-      "slide3Title": "PASTILLAS\nDE FRENO",
-      "slide3Discount": "-20%",
-      "slide3Cta": "Comprar ahora"
+      "controls": {
+        "previous": "Anterior",
+        "pause": "Pausar",
+        "play": "Reproducir",
+        "next": "Siguiente"
+      },
+      "inventory": {
+        "headline": "Encuentra la Pieza Perfecta para Tu Auto.",
+        "subheadline": "Millones de refacciones. Miles de modelos. Una búsqueda.",
+        "cta": "Buscar por Vehículo"
+      },
+      "brands": {
+        "headline": "Refacciones Premium de Marcas que Confías.",
+        "subheadline": "Refacciones OEM y de alto rendimiento directo de fabricantes.",
+        "cta": "Ver Todas las Marcas"
+      },
+      "sale": {
+        "badge": "TIEMPO LIMITADO",
+        "headline": "Ahorra en Grande: 20% en Kits de Frenos.",
+        "subheadline": "Usa el código FRENO20 en tu compra. Oferta por tiempo limitado.",
+        "cta": "Ver Oferta"
+      },
+      "performance": {
+        "headline": "Libera el Potencial de Tu Motor.",
+        "subheadline": "Mejoras de alto rendimiento para máxima potencia.",
+        "cta": "Mejorar Ahora"
+      }
     },
     "valueProps": {
-      "vp1Title": "PIEZAS NUEVAS Y ORIGINALES",
-      "vp1Sub": "AL MEJOR PRECIO",
-      "vp2Title": "EXPERTOS EN MECÁNICA",
-      "vp2Sub": "A TU DISPOSICIÓN",
-      "vp3Title": "EL MAYOR CATÁLOGO",
-      "vp3Sub": "DE MÉXICO",
-      "vp4Title": "ENTREGA",
-      "vp4Sub": "ADAPTADA A TUS NECESIDADES"
+      "vp1Title": "DIRECTO DEL FABRICANTE",
+      "vp1Sub": "SIN INTERMEDIARIOS",
+      "vp2Title": "PIEZAS ORIGINALES",
+      "vp2Sub": "GARANTIZADAS",
+      "vp3Title": "ENVÍO RÁPIDO",
+      "vp3Sub": "A TODO MÉXICO",
+      "vp4Title": "SOPORTE EXPERTO",
+      "vp4Sub": "A TU DISPOSICIÓN"
     },
-    "brands": {
-      "title": "Marcas destacadas",
-      "previous": "Anterior",
-      "next": "Siguiente"
+    "manufacturers": {
+      "title": "Nuestros Fabricantes",
+      "subtitle": "Fabricantes mexicanos verificados"
     },
-    "recentlyViewed": {
-      "title": "Últimos productos consultados"
+    "featuredProducts": {
+      "title": "Productos Destacados"
     },
     "sectionDivider": {
       "text": "Todas las refacciones"

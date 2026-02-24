@@ -1,21 +1,21 @@
 import { Headset, ShoppingCart, User } from 'lucide-react';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
-import { HeaderSearch } from '@/components/catalog/header-search';
 import { Link } from '@/i18n/navigation';
+import { HeaderSearch } from '@/components/catalog/header-search';
 
 export async function SiteHeader() {
   const t = await getTranslations('catalog');
 
   return (
     <header data-slot="site-header" className="border-b border-border">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8 lg:px-20">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 md:px-8 lg:px-20">
         {/* Logo */}
         <Link href="/" className="shrink-0">
           <Image src="/logo.svg" alt={t('header.logoText')} width={160} height={46} priority />
         </Link>
 
-        {/* Search */}
+        {/* Search bar */}
         <HeaderSearch />
 
         {/* Nav links */}
