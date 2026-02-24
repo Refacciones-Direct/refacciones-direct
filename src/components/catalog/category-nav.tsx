@@ -1,37 +1,36 @@
-import { ChevronDown, Tag } from 'lucide-react';
-import { getTranslations } from 'next-intl/server';
-import { Link } from '@/i18n/navigation';
-import { cn } from '@/lib/utils';
+'use client';
 
-const CATEGORY_KEYS = ['refacciones', 'aceite', 'llantas', 'accesorios', 'herramientas'] as const;
+import { useState } from 'react';
+import { Car, ChevronRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useVehicleContext } from '@/hooks/use-vehicle-context';
+import { VehicleSidebar } from '@/components/catalog/vehicle-sidebar';
 
-export async function CategoryNav() {
-  const t = await getTranslations('catalog');
+export function CategoryNav() {
+  const t = useTranslations('catalog');
+  const { vehicle } = useVehicleContext();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const vehicleLabel = vehicle ? `${vehicle.year} ${vehicle.make} ${vehicle.model}` : null;
 
   return (
-    <nav data-slot="category-nav" className={cn('bg-brand-navy text-sm font-medium text-white')}>
-      <div className="mx-auto flex h-11 max-w-7xl items-center justify-between px-4">
-        <div className="flex items-center gap-1">
-          {CATEGORY_KEYS.map((key) => (
-            <Link
-              key={key}
-              href="/"
-              className="flex items-center gap-1 rounded px-3 py-1.5 hover:bg-white/10"
-            >
-              <span>{t(`categoryNav.${key}`)}</span>
-              <ChevronDown className="size-3.5 opacity-70" />
-            </Link>
-          ))}
+    <>
+      <nav data-slot="category-nav" className="bg-brand-navy text-sm font-medium text-white">
+        <div className="mx-auto flex h-11 max-w-7xl items-center gap-5 px-4 md:px-8 lg:px-20">
+          {/* Vehicle button */}
+          <button
+            type="button"
+            onClick={() => setSidebarOpen(true)}
+            className="flex shrink-0 items-center gap-1.5 rounded-md px-2.5 py-1.5 transition-colors hover:bg-white/10"
+          >
+            <Car className="size-5" />
+            <span>{vehicleLabel ?? t('categoryNav.addVehicle')}</span>
+            <ChevronRight className="size-4 opacity-70" />
+          </button>
         </div>
+      </nav>
 
-        <Link
-          href="/"
-          className="flex items-center gap-1.5 text-bright-yellow hover:text-bright-yellow/80"
-        >
-          <Tag className="size-3.5" />
-          <span className="font-semibold">{t('categoryNav.ofertas')}</span>
-        </Link>
-      </div>
-    </nav>
+      <VehicleSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+    </>
   );
 }

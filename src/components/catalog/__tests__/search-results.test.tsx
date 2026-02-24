@@ -74,7 +74,6 @@ const defaultProps = {
   hasMore: false,
   query: 'brake',
   sort: 'relevance' as SortOption,
-  vehicleLabel: null,
 };
 
 describe('SearchResults', () => {
@@ -107,21 +106,6 @@ describe('SearchResults', () => {
     render(<SearchResults {...defaultProps} parts={parts} totalCount={1} />);
 
     expect(screen.getByText('Sort by:')).toBeInTheDocument();
-  });
-
-  it('shows vehicle label badge when provided', () => {
-    const parts = [makePart()];
-
-    render(
-      <SearchResults
-        {...defaultProps}
-        parts={parts}
-        totalCount={1}
-        vehicleLabel="Toyota Corolla 2020"
-      />,
-    );
-
-    expect(screen.getByText('Toyota Corolla 2020')).toBeInTheDocument();
   });
 
   it('does not render pagination for single page', () => {

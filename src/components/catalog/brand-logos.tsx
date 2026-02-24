@@ -1,41 +1,31 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/utils';
 
-const BRANDS = ['BOSCH', 'brembo', 'MANN', 'Valeo', 'Continental', 'Castrol'] as const;
+const MANUFACTURERS = ['Fabricante 1', 'Fabricante 2', 'Fabricante 3'] as const;
 
 export async function BrandLogos() {
   const t = await getTranslations('catalog');
 
   return (
-    <section data-slot="brand-logos" className={cn('bg-card')} aria-label={t('brands.title')}>
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-center gap-8 px-4">
-        <button
-          type="button"
-          className="flex size-8 shrink-0 items-center justify-center rounded-full border border-border hover:bg-accent"
-          aria-label={t('brands.previous')}
-        >
-          <ChevronLeft className="size-4" />
-        </button>
+    <section
+      data-slot="brand-logos"
+      className={cn('bg-card py-8')}
+      aria-label={t('manufacturers.title')}
+    >
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-4">
+        <h2 className="text-lg font-semibold">{t('manufacturers.title')}</h2>
+        <p className="text-sm text-muted-foreground">{t('manufacturers.subtitle')}</p>
 
         <div className="flex items-center gap-8">
-          {BRANDS.map((brand) => (
+          {MANUFACTURERS.map((mfg) => (
             <span
-              key={brand}
-              className="flex h-12 w-30 items-center justify-center rounded bg-bg-light text-base font-bold text-foreground"
+              key={mfg}
+              className="flex h-14 w-36 items-center justify-center rounded bg-bg-light text-sm font-bold text-foreground"
             >
-              {brand}
+              {mfg}
             </span>
           ))}
         </div>
-
-        <button
-          type="button"
-          className="flex size-8 shrink-0 items-center justify-center rounded-full border border-border hover:bg-accent"
-          aria-label={t('brands.next')}
-        >
-          <ChevronRight className="size-4" />
-        </button>
       </div>
     </section>
   );

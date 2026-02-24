@@ -38,7 +38,8 @@
       "llantas": "Tires",
       "accesorios": "Accessories & Cleaning",
       "herramientas": "Tools",
-      "ofertas": "Clearance Parts"
+      "ofertas": "Clearance Parts",
+      "addVehicle": "Add vehicle"
     },
     "vehicleSelector": {
       "title": "Identify your vehicle",
@@ -48,34 +49,70 @@
       "searchButton": "Search parts",
       "loading": "Loading..."
     },
+    "vehicleSidebar": {
+      "title": "Add vehicle",
+      "chooseModel": "Choose model",
+      "chooseYear": "Choose year",
+      "back": "Back",
+      "close": "Close",
+      "searchMake": "Search make...",
+      "searchModel": "Search model...",
+      "searchYear": "Search year...",
+      "tab": {
+        "make": "Make",
+        "model": "Model",
+        "year": "Year"
+      },
+      "popularMakes": "Popular makes",
+      "allMakes": "All makes",
+      "loading": "Loading...",
+      "noResults": "No results"
+    },
     "promoCarousel": {
-      "slide1Title": "SNOW\nCHAINS",
-      "slide1Discount": "-10%",
-      "slide1Cta": "Shop now",
-      "slide2Title": "MOTOR\nOILS",
-      "slide2Discount": "-15%",
-      "slide2Cta": "See offers",
-      "slide3Title": "BRAKE\nPADS",
-      "slide3Discount": "-20%",
-      "slide3Cta": "Buy now"
+      "controls": {
+        "previous": "Previous",
+        "pause": "Pause",
+        "play": "Play",
+        "next": "Next"
+      },
+      "inventory": {
+        "headline": "Find the Perfect Fit for Your Ride.",
+        "subheadline": "Millions of parts. Thousands of models. One search.",
+        "cta": "Shop Parts by Vehicle"
+      },
+      "brands": {
+        "headline": "Premium Parts from the Brands You Trust.",
+        "subheadline": "OEM and aftermarket upgrades direct from top manufacturers.",
+        "cta": "Browse All Brands"
+      },
+      "sale": {
+        "badge": "LIMITED TIME",
+        "headline": "Rev Up Your Savings: 20% Off Brake Kits.",
+        "subheadline": "Use code BRAKE20 at checkout. Limited time only.",
+        "cta": "Shop the Sale"
+      },
+      "performance": {
+        "headline": "Unleash Your Engine's Potential.",
+        "subheadline": "High-performance upgrades for maximum horsepower.",
+        "cta": "Upgrade Now"
+      }
     },
     "valueProps": {
-      "vp1Title": "NEW & ORIGINAL PARTS",
-      "vp1Sub": "AT THE BEST PRICE",
-      "vp2Title": "MECHANICS EXPERTS",
-      "vp2Sub": "AT YOUR SERVICE",
-      "vp3Title": "THE LARGEST CATALOG",
-      "vp3Sub": "IN MEXICO",
-      "vp4Title": "DELIVERY",
-      "vp4Sub": "ADAPTED TO YOUR NEEDS"
+      "vp1Title": "DIRECT FROM MANUFACTURER",
+      "vp1Sub": "NO MIDDLEMEN",
+      "vp2Title": "ORIGINAL PARTS",
+      "vp2Sub": "GUARANTEED",
+      "vp3Title": "FAST SHIPPING",
+      "vp3Sub": "ACROSS MEXICO",
+      "vp4Title": "EXPERT SUPPORT",
+      "vp4Sub": "AT YOUR SERVICE"
     },
-    "brands": {
-      "title": "Featured brands",
-      "previous": "Previous",
-      "next": "Next"
+    "manufacturers": {
+      "title": "Our Manufacturers",
+      "subtitle": "Verified Mexican manufacturers"
     },
-    "recentlyViewed": {
-      "title": "Recently viewed products"
+    "featuredProducts": {
+      "title": "Featured Products"
     },
     "sectionDivider": {
       "text": "All auto parts"
@@ -124,6 +161,11 @@
         "title": "Braking",
         "links": ["Brake pads", "Brake discs", "Brake calipers", "Brake fluid", "Brake drums"]
       }
+    },
+    "vehicleBanner": {
+      "shoppingFor": "SHOPPING FOR:",
+      "changeVehicle": "Change vehicle",
+      "searchWithout": "Search without vehicle"
     },
     "search": {
       "title": "Search results",
