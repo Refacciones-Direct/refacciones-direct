@@ -105,6 +105,18 @@ Use these skills when relevant:
 - `next-intl-app-router` — i18n routing/translations
 - `pen-design-system` — Design system workflow (Pencil .pen files)
 
+## Design-First Rule
+
+**All UI/UX work MUST start in the `.pen` design file before writing code. No exceptions.**
+
+If the Pencil MCP tools fail, time out, or the editor cannot open:
+
+1. STOP immediately — do NOT skip to code.
+2. Report the failure to the user.
+3. Wait for explicit guidance before proceeding.
+
+Writing code without an approved design creates drift between the `.pen` source of truth and the codebase. This is never acceptable, even when the fix "seems obvious." See `pen-design-system` skill for full workflow.
+
 ## Testing Rules
 
 - **No sneaky implementation changes**: When writing tests, do NOT modify production/implementation code to make tests easier to write or pass. Tests must work against the current codebase as-is.

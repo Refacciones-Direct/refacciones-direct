@@ -1,18 +1,21 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, Car, Check, Search, X } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { ArrowLeft, Car, Check, Search, Trash2, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { useVehicleContext } from '@/hooks/use-vehicle-context';
 import { useRouter } from '@/i18n/navigation';
+import { Button } from '@/components/ui/button';
 import type {
+  VehicleContext,
   VehicleOptionsMakes,
   VehicleOptionsModels,
   VehicleOptionsYears,
 } from '@/services/search/types';
 
 type Tab = 'make' | 'model' | 'year';
+type SidebarView = 'list' | 'add' | 'delete';
 
 interface VehicleSidebarProps {
   open: boolean;
@@ -51,16 +54,99 @@ async function fetchYears(make: string, model: string): Promise<number[]> {
 
 const TABS: Tab[] = ['make', 'model', 'year'];
 
+// ---------------------------------------------------------------------------
+// VehicleCard — inline sub-component for the garage list view
+// ---------------------------------------------------------------------------
+
+function VehicleCard({
+  vehicle,
+  isActive,
+  onSelect,
+  onDelete,
+  deleteLabel,
+}: {
+  vehicle: VehicleContext;
+  isActive: boolean;
+  onSelect: () => void;
+  onDelete: () => void;
+  deleteLabel: string;
+}) {
+  return (
+    <div
+      className={cn(
+        'flex cursor-pointer items-center gap-3 px-4 py-3 transition-colors',
+        isActive
+          ? 'rounded-r-lg border-l-[3px] border-primary bg-accent'
+          : 'rounded-lg border border-border bg-white hover:bg-accent',
+      )}
+      onClick={onSelect}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onSelect();
+        }
+      }}
+    >
+      {/* Icon stack — active has check badge overlay */}
+      {isActive ? (
+        <div className="relative size-12 shrink-0">
+          <div className="absolute bottom-0 right-0 flex size-11 items-center justify-center rounded-md bg-muted">
+            <Car className="size-6 text-muted-foreground" />
+          </div>
+          <div className="absolute left-0 top-0 z-10 flex size-[18px] items-center justify-center rounded-full bg-primary">
+            <Check className="size-2.5 text-white" />
+          </div>
+        </div>
+      ) : (
+        <div className="flex size-12 shrink-0 items-center justify-center rounded-md bg-muted">
+          <Car className="size-6 text-muted-foreground" />
+        </div>
+      )}
+
+      {/* Vehicle info */}
+      <div className="flex flex-1 flex-col gap-0.5">
+        <span className="text-sm font-bold text-foreground">
+          {vehicle.year} {vehicle.make} {vehicle.model}
+        </span>
+      </div>
+
+      {/* Delete button */}
+      <button
+        type="button"
+        className="shrink-0 rounded-md p-1.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+        onClick={(e) => {
+          e.stopPropagation();
+          onDelete();
+        }}
+        aria-label={deleteLabel}
+      >
+        <Trash2 className="size-4" />
+      </button>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// VehicleSidebar — main component
+// ---------------------------------------------------------------------------
+
 export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
   const t = useTranslations('catalog.vehicleSidebar');
   const router = useRouter();
-  const { vehicle, setVehicle } = useVehicleContext();
+  const { vehicles, activeIndex, addVehicle, removeVehicle, setActiveVehicle, clearVehicle } =
+    useVehicleContext();
+
+  // View state: 'list' (garage), 'add' (make/model/year flow), or 'delete' (confirmation)
+  const [view, setView] = useState<SidebarView>('list');
+  const [deleteTargetIndex, setDeleteTargetIndex] = useState<number | null>(null);
 
   const [activeTab, setActiveTab] = useState<Tab>('make');
   const [searchQuery, setSearchQuery] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Selection state
+  // Selection state (for add flow)
   const [selectedMake, setSelectedMake] = useState('');
   const [selectedModel, setSelectedModel] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
@@ -76,21 +162,21 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
   const yearsFetchId = useRef(0);
 
   // --- Render-phase state adjustment for open/close transitions ---
-  // React docs: "adjust state during render" pattern avoids effects for prop transitions
   const [prevOpen, setPrevOpen] = useState(false);
   if (open !== prevOpen) {
     setPrevOpen(open);
     if (open) {
-      // Opening — pre-populate from existing vehicle context
-      if (vehicle) {
-        setSelectedMake(vehicle.make);
-        setSelectedModel(vehicle.model);
-        setSelectedYear(String(vehicle.year));
+      // Opening — decide which view to show
+      if (vehicles.length > 0) {
+        setView('list');
       } else {
-        setSelectedMake('');
-        setSelectedModel('');
-        setSelectedYear('');
+        setView('add');
       }
+      // Reset add flow + delete state
+      setDeleteTargetIndex(null);
+      setSelectedMake('');
+      setSelectedModel('');
+      setSelectedYear('');
       setActiveTab('make');
       setSearchQuery('');
       setModels(null);
@@ -98,10 +184,11 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
     }
   }
 
-  // Close — reset after slide-out animation completes (async setTimeout is fine)
+  // Close — reset after slide-out animation completes
   useEffect(() => {
     if (open) return;
     const timer = setTimeout(() => {
+      setView('list');
       setActiveTab('make');
       setSelectedMake('');
       setSelectedModel('');
@@ -114,11 +201,10 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
     return () => clearTimeout(timer);
   }, [open]);
 
-  // --- Data fetching effects (no synchronous setState, only async callbacks) ---
+  // --- Data fetching effects ---
 
-  // Fetch makes on first open
   useEffect(() => {
-    if (!open || makes !== null) return;
+    if (!open || view !== 'add' || makes !== null) return;
     const id = ++makesFetchId.current;
     fetchMakes()
       .then((data) => {
@@ -127,9 +213,8 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
       .catch(() => {
         if (id === makesFetchId.current) setMakes([]);
       });
-  }, [open, makes]);
+  }, [open, view, makes]);
 
-  // Fetch models when make is set and models need loading
   useEffect(() => {
     if (!selectedMake || models !== null) return;
     const id = ++modelsFetchId.current;
@@ -142,7 +227,6 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
       });
   }, [selectedMake, models]);
 
-  // Fetch years when make+model set and years need loading
   useEffect(() => {
     if (!selectedMake || !selectedModel || years !== null) return;
     const id = ++yearsFetchId.current;
@@ -175,20 +259,20 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [open, onClose]);
 
-  // --- Tab switching (always clears search) ---
+  // --- Tab switching ---
 
   function switchTab(tab: Tab) {
     setActiveTab(tab);
     setSearchQuery('');
   }
 
-  // --- Selection handlers ---
+  // --- Selection handlers (add flow) ---
 
   function handleSelectMake(make: string) {
     setSelectedMake(make);
     setSelectedModel('');
     setSelectedYear('');
-    setModels(null); // triggers models fetch effect
+    setModels(null);
     setYears(null);
     switchTab('model');
   }
@@ -196,36 +280,96 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
   function handleSelectModel(model: string) {
     setSelectedModel(model);
     setSelectedYear('');
-    setYears(null); // triggers years fetch effect
+    setYears(null);
     switchTab('year');
   }
 
   function handleSelectYear(year: number) {
-    setVehicle({ make: selectedMake, model: selectedModel, year });
+    addVehicle({ make: selectedMake, model: selectedModel, year });
     onClose();
     router.push(
       `/search?make=${encodeURIComponent(selectedMake)}&model=${encodeURIComponent(selectedModel)}&year=${year}`,
     );
   }
 
-  const handleBack = useCallback(() => {
-    if (activeTab === 'year') {
-      switchTab('model');
-      setSelectedModel('');
-      setSelectedYear('');
-    } else if (activeTab === 'model') {
-      switchTab('make');
-      setSelectedMake('');
-      setSelectedYear('');
-      setModels(null);
-      setYears(null);
+  // --- List view handlers ---
+
+  function handleSelectVehicle(index: number) {
+    const v = vehicles[index];
+    setActiveVehicle(index);
+    onClose();
+    router.push(
+      `/search?make=${encodeURIComponent(v.make)}&model=${encodeURIComponent(v.model)}&year=${v.year}`,
+    );
+  }
+
+  function handleDeleteVehicle(index: number) {
+    setDeleteTargetIndex(index);
+    setView('delete');
+  }
+
+  function handleConfirmDelete() {
+    if (deleteTargetIndex !== null) {
+      removeVehicle(deleteTargetIndex);
+    }
+    setDeleteTargetIndex(null);
+    setView(vehicles.length > 1 ? 'list' : 'add');
+  }
+
+  function handleCancelDelete() {
+    setDeleteTargetIndex(null);
+    setView('list');
+  }
+
+  function handleShopWithout() {
+    clearVehicle();
+    onClose();
+  }
+
+  function handleAddNewVehicle() {
+    setView('add');
+    setSelectedMake('');
+    setSelectedModel('');
+    setSelectedYear('');
+    setActiveTab('make');
+    setSearchQuery('');
+    setModels(null);
+    setYears(null);
+  }
+
+  // --- Back handler ---
+
+  function handleBack() {
+    if (view === 'delete') {
+      handleCancelDelete();
+    } else if (view === 'add') {
+      if (activeTab === 'year') {
+        switchTab('model');
+        setSelectedModel('');
+        setSelectedYear('');
+      } else if (activeTab === 'model') {
+        switchTab('make');
+        setSelectedMake('');
+        setSelectedYear('');
+        setModels(null);
+        setYears(null);
+      } else if (vehicles.length > 0) {
+        // Return to list view if garage has vehicles
+        setView('list');
+      } else {
+        onClose();
+      }
     } else {
       onClose();
     }
-  }, [activeTab, onClose]);
+  }
 
-  // Filter current list by search query
+  const MAX_VEHICLES = 5;
+
+  // --- Filtered items for add flow ---
+
   const filteredItems = useMemo(() => {
+    if (view !== 'add') return [];
     const q = searchQuery.toLowerCase().trim();
     if (activeTab === 'make') {
       const items = makes ?? [];
@@ -237,14 +381,15 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
     }
     const items = (years ?? []).map(String);
     return q ? items.filter((y) => y.includes(q)) : items;
-  }, [activeTab, makes, models, years, searchQuery]);
+  }, [view, activeTab, makes, models, years, searchQuery]);
 
   const isLoading =
-    (activeTab === 'make' && makes === null) ||
-    (activeTab === 'model' && models === null) ||
-    (activeTab === 'year' && years === null);
+    view === 'add' &&
+    ((activeTab === 'make' && makes === null) ||
+      (activeTab === 'model' && models === null) ||
+      (activeTab === 'year' && years === null));
 
-  const title =
+  const addTitle =
     activeTab === 'make' ? t('title') : activeTab === 'model' ? t('chooseModel') : t('chooseYear');
 
   const searchPlaceholder =
@@ -273,164 +418,331 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
         aria-hidden="true"
       />
 
-      {/* Sidebar panel */}
+      {/* Sidebar panel — 460px wide (~15% wider than original 400px) */}
       <aside
         className={cn(
-          'fixed inset-y-0 right-0 z-50 flex w-100 max-w-[85vw] flex-col bg-white shadow-[4px_0_16px_rgba(0,0,0,0.15)] transition-transform duration-300',
+          'fixed inset-y-0 right-0 z-50 flex w-115 max-w-[85vw] flex-col bg-white shadow-[4px_0_16px_rgba(0,0,0,0.15)] transition-transform duration-300',
           open ? 'translate-x-0' : 'translate-x-full',
         )}
         role="dialog"
         aria-modal="true"
-        aria-label={t('title')}
+        aria-label={
+          view === 'list'
+            ? t('chooseVehicle')
+            : view === 'delete'
+              ? t('deleteVehicleTitle')
+              : addTitle
+        }
       >
-        {/* Header */}
-        <div className="flex shrink-0 items-center justify-between border-b border-border px-5 py-4">
-          <button
-            type="button"
-            onClick={handleBack}
-            className="text-foreground hover:text-muted-foreground"
-            aria-label={t('back')}
-          >
-            <ArrowLeft className="size-5" />
-          </button>
-          <span className="text-base font-semibold text-foreground">{title}</span>
-          <button
-            type="button"
-            onClick={onClose}
-            className="text-muted-foreground hover:text-foreground"
-            aria-label={t('close')}
-          >
-            <X className="size-5" />
-          </button>
-        </div>
+        {/* ============================================================= */}
+        {/* LIST VIEW — Garage                                            */}
+        {/* ============================================================= */}
+        {view === 'list' && (
+          <>
+            {/* Header */}
+            <div className="flex shrink-0 items-center justify-between border-b border-border px-5 py-4">
+              <span className="text-base font-semibold text-foreground">{t('chooseVehicle')}</span>
+              <button
+                type="button"
+                onClick={onClose}
+                className="text-muted-foreground hover:text-foreground"
+                aria-label={t('close')}
+              >
+                <X className="size-5" />
+              </button>
+            </div>
 
-        {/* Selected context bar */}
-        {contextLabel && (
-          <div className="flex shrink-0 items-center gap-2 bg-accent px-5 py-2.5">
-            <Car className="size-4.5 text-primary" />
-            <span className="text-sm font-semibold text-foreground">{contextLabel}</span>
-          </div>
+            {/* Vehicle cards */}
+            <div className="flex-1 overflow-y-auto p-4">
+              <div className="flex flex-col gap-3">
+                {/* Active vehicle */}
+                {activeIndex >= 0 && activeIndex < vehicles.length && (
+                  <VehicleCard
+                    key={`${vehicles[activeIndex].year}-${vehicles[activeIndex].make}-${vehicles[activeIndex].model}`}
+                    vehicle={vehicles[activeIndex]}
+                    isActive={true}
+                    onSelect={() => handleSelectVehicle(activeIndex)}
+                    onDelete={() => handleDeleteVehicle(activeIndex)}
+                    deleteLabel={t('deleteVehicle')}
+                  />
+                )}
+
+                {/* Shop without vehicle link — right-aligned */}
+                <button
+                  type="button"
+                  className="self-end text-[13px] font-medium text-muted-foreground hover:text-foreground"
+                  onClick={handleShopWithout}
+                >
+                  {t('shopWithout')}
+                </button>
+
+                {/* Saved vehicles section */}
+                {vehicles.filter((_, i) => i !== activeIndex).length > 0 && (
+                  <span className="text-[13px] font-semibold text-foreground">
+                    {t('savedVehicles', {
+                      count: vehicles.filter((_, i) => i !== activeIndex).length,
+                    })}
+                  </span>
+                )}
+
+                {/* Inactive vehicle cards */}
+                {vehicles.map((v, i) =>
+                  i !== activeIndex ? (
+                    <VehicleCard
+                      key={`${v.year}-${v.make}-${v.model}`}
+                      vehicle={v}
+                      isActive={false}
+                      onSelect={() => handleSelectVehicle(i)}
+                      onDelete={() => handleDeleteVehicle(i)}
+                      deleteLabel={t('deleteVehicle')}
+                    />
+                  ) : null,
+                )}
+              </div>
+            </div>
+
+            {/* Add new vehicle button — pinned to bottom */}
+            <div className="shrink-0 border-t border-border px-4 py-4">
+              <Button
+                className="w-full uppercase tracking-wider"
+                onClick={handleAddNewVehicle}
+                disabled={vehicles.length >= MAX_VEHICLES}
+              >
+                {t('addNewVehicle')}
+              </Button>
+            </div>
+          </>
         )}
 
-        {/* Tab bar */}
-        <div className="flex shrink-0 border-b border-border px-5">
-          {TABS.map((tab) => {
-            const isActive = tab === activeTab;
-            const isDisabled =
-              (tab === 'model' && !selectedMake) || (tab === 'year' && !selectedModel);
-            return (
+        {/* ============================================================= */}
+        {/* DELETE VIEW — Confirmation                                    */}
+        {/* ============================================================= */}
+        {view === 'delete' && deleteTargetIndex !== null && vehicles[deleteTargetIndex] && (
+          <>
+            {/* Header */}
+            <div className="flex shrink-0 items-center justify-between border-b border-border px-5 py-4">
               <button
-                key={tab}
                 type="button"
-                disabled={isDisabled}
-                onClick={() => !isDisabled && switchTab(tab)}
-                className={cn(
-                  'flex-1 py-3 text-center text-[13px] font-medium uppercase tracking-wider',
-                  isActive
-                    ? 'border-b-2 border-primary font-semibold text-primary'
-                    : 'text-muted-foreground',
-                  isDisabled && 'cursor-not-allowed opacity-40',
-                )}
+                onClick={handleCancelDelete}
+                className="text-foreground hover:text-muted-foreground"
+                aria-label={t('back')}
               >
-                {t(`tab.${tab}`)}
+                <ArrowLeft className="size-5" />
               </button>
-            );
-          })}
-        </div>
-
-        {/* Search input */}
-        <div className="shrink-0 px-4 py-3">
-          <div className="flex items-center gap-2 rounded-lg border-[1.5px] border-input bg-accent px-4 py-3 transition-[border-color,box-shadow] hover:border-ring focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50">
-            <Search className="size-4.5 shrink-0 text-muted-foreground" />
-            <input
-              ref={searchInputRef}
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={searchPlaceholder}
-              className="min-w-0 flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
-            />
-          </div>
-        </div>
-
-        {/* List */}
-        <div className="flex-1 overflow-y-auto py-2">
-          {isLoading ? (
-            <div className="flex items-center justify-center px-5 py-8 text-sm text-muted-foreground">
-              {t('loading')}
+              <span className="text-base font-semibold text-foreground">
+                {t('deleteVehicleTitle')}
+              </span>
+              <button
+                type="button"
+                onClick={onClose}
+                className="text-muted-foreground hover:text-foreground"
+                aria-label={t('close')}
+              >
+                <X className="size-5" />
+              </button>
             </div>
-          ) : filteredItems.length === 0 ? (
-            <div className="flex items-center justify-center px-5 py-8 text-sm text-muted-foreground">
-              {t('noResults')}
+
+            {/* Content */}
+            <div className="flex flex-1 flex-col items-center gap-6 px-6 pt-8">
+              <div className="flex flex-col gap-2 text-center">
+                <span className="text-base font-bold text-foreground">
+                  {t('deleteConfirmQuestion')}
+                </span>
+                <span className="text-sm text-muted-foreground">{t('deleteConfirmSubtitle')}</span>
+              </div>
+
+              {/* Vehicle preview card */}
+              <div className="flex w-full items-center gap-4 rounded-lg border border-border p-5">
+                <div className="flex size-16 shrink-0 items-center justify-center rounded-lg bg-muted">
+                  <Car className="size-8 text-muted-foreground" />
+                </div>
+                <span className="text-base font-bold text-foreground">
+                  {vehicles[deleteTargetIndex].year} {vehicles[deleteTargetIndex].make}{' '}
+                  {vehicles[deleteTargetIndex].model}
+                </span>
+              </div>
             </div>
-          ) : (
-            <ul className="flex flex-col">
-              {activeTab === 'make' && (
-                <>
-                  <li className="px-5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground leading-[3.2]">
-                    {t('allMakes')}
-                  </li>
-                  {filteredItems.map((item) => {
-                    const isSelected = item === selectedMake;
-                    return (
-                      <li key={item}>
-                        <button
-                          type="button"
-                          onClick={() => handleSelectMake(item)}
-                          className={cn(
-                            'flex w-full cursor-pointer items-center justify-between px-5 text-left text-sm leading-[3.2] hover:bg-accent hover:text-primary',
-                            isSelected ? 'bg-accent font-semibold text-primary' : 'text-foreground',
-                          )}
-                        >
-                          {item}
-                          {isSelected && <Check className="size-4 shrink-0" />}
-                        </button>
+
+            {/* Footer */}
+            <div className="flex shrink-0 gap-3 border-t border-border p-4">
+              <Button
+                variant="outline"
+                className="flex-1 uppercase tracking-wider"
+                onClick={handleCancelDelete}
+              >
+                {t('keepVehicle')}
+              </Button>
+              <Button
+                className="flex-1 bg-foreground uppercase tracking-wider text-white hover:bg-foreground/90"
+                onClick={handleConfirmDelete}
+              >
+                {t('deleteVehicle')}
+              </Button>
+            </div>
+          </>
+        )}
+
+        {/* ============================================================= */}
+        {/* ADD VIEW — Make / Model / Year progressive flow               */}
+        {/* ============================================================= */}
+        {view === 'add' && (
+          <>
+            {/* Header */}
+            <div className="flex shrink-0 items-center justify-between border-b border-border px-5 py-4">
+              <button
+                type="button"
+                onClick={handleBack}
+                className="text-foreground hover:text-muted-foreground"
+                aria-label={t('back')}
+              >
+                <ArrowLeft className="size-5" />
+              </button>
+              <span className="text-base font-semibold text-foreground">{addTitle}</span>
+              <button
+                type="button"
+                onClick={onClose}
+                className="text-muted-foreground hover:text-foreground"
+                aria-label={t('close')}
+              >
+                <X className="size-5" />
+              </button>
+            </div>
+
+            {/* Selected context bar */}
+            {contextLabel && (
+              <div className="flex shrink-0 items-center gap-2 bg-accent px-5 py-2.5">
+                <Car className="size-4.5 text-primary" />
+                <span className="text-sm font-semibold text-foreground">{contextLabel}</span>
+              </div>
+            )}
+
+            {/* Tab bar */}
+            <div className="flex shrink-0 border-b border-border px-5">
+              {TABS.map((tab) => {
+                const isActive = tab === activeTab;
+                const isDisabled =
+                  (tab === 'model' && !selectedMake) || (tab === 'year' && !selectedModel);
+                return (
+                  <button
+                    key={tab}
+                    type="button"
+                    disabled={isDisabled}
+                    onClick={() => !isDisabled && switchTab(tab)}
+                    className={cn(
+                      'flex-1 py-3 text-center text-[13px] font-medium uppercase tracking-wider',
+                      isActive
+                        ? 'border-b-2 border-primary font-semibold text-primary'
+                        : 'text-muted-foreground',
+                      isDisabled && 'cursor-not-allowed opacity-40',
+                    )}
+                  >
+                    {t(`tab.${tab}`)}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Search input */}
+            <div className="shrink-0 px-4 py-3">
+              <div className="flex items-center gap-2 rounded-lg border-[1.5px] border-input bg-accent px-4 py-3 transition-[border-color,box-shadow] hover:border-ring focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50">
+                <Search className="size-4.5 shrink-0 text-muted-foreground" />
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={searchPlaceholder}
+                  className="min-w-0 flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+                />
+              </div>
+            </div>
+
+            {/* List */}
+            <div className="flex-1 overflow-y-auto py-2">
+              {isLoading ? (
+                <div className="flex items-center justify-center px-5 py-8 text-sm text-muted-foreground">
+                  {t('loading')}
+                </div>
+              ) : filteredItems.length === 0 ? (
+                <div className="flex items-center justify-center px-5 py-8 text-sm text-muted-foreground">
+                  {t('noResults')}
+                </div>
+              ) : (
+                <ul className="flex flex-col">
+                  {activeTab === 'make' && (
+                    <>
+                      <li className="px-5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground leading-[3.2]">
+                        {t('allMakes')}
                       </li>
-                    );
-                  })}
-                </>
+                      {filteredItems.map((item) => {
+                        const isSelected = item === selectedMake;
+                        return (
+                          <li key={item}>
+                            <button
+                              type="button"
+                              onClick={() => handleSelectMake(item)}
+                              className={cn(
+                                'flex w-full cursor-pointer items-center justify-between px-5 text-left text-sm leading-[3.2] hover:bg-accent hover:text-primary',
+                                isSelected
+                                  ? 'bg-accent font-semibold text-primary'
+                                  : 'text-foreground',
+                              )}
+                            >
+                              {item}
+                              {isSelected && <Check className="size-4 shrink-0" />}
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </>
+                  )}
+                  {activeTab === 'model' &&
+                    filteredItems.map((item) => {
+                      const isSelected = item === selectedModel;
+                      return (
+                        <li key={item}>
+                          <button
+                            type="button"
+                            onClick={() => handleSelectModel(item)}
+                            className={cn(
+                              'flex w-full cursor-pointer items-center justify-between px-5 text-left text-sm leading-[3.2] hover:bg-accent hover:text-primary',
+                              isSelected
+                                ? 'bg-accent font-semibold text-primary'
+                                : 'text-foreground',
+                            )}
+                          >
+                            {item}
+                            {isSelected && <Check className="size-4 shrink-0" />}
+                          </button>
+                        </li>
+                      );
+                    })}
+                  {activeTab === 'year' &&
+                    filteredItems.map((item) => {
+                      const isSelected = item === selectedYear;
+                      return (
+                        <li key={item}>
+                          <button
+                            type="button"
+                            onClick={() => handleSelectYear(Number(item))}
+                            className={cn(
+                              'flex w-full cursor-pointer items-center justify-between px-5 text-left text-sm leading-[3.2] hover:bg-accent hover:text-primary',
+                              isSelected
+                                ? 'bg-accent font-semibold text-primary'
+                                : 'text-foreground',
+                            )}
+                          >
+                            {item}
+                            {isSelected && <Check className="size-4 shrink-0" />}
+                          </button>
+                        </li>
+                      );
+                    })}
+                </ul>
               )}
-              {activeTab === 'model' &&
-                filteredItems.map((item) => {
-                  const isSelected = item === selectedModel;
-                  return (
-                    <li key={item}>
-                      <button
-                        type="button"
-                        onClick={() => handleSelectModel(item)}
-                        className={cn(
-                          'flex w-full cursor-pointer items-center justify-between px-5 text-left text-sm leading-[3.2] hover:bg-accent hover:text-primary',
-                          isSelected ? 'bg-accent font-semibold text-primary' : 'text-foreground',
-                        )}
-                      >
-                        {item}
-                        {isSelected && <Check className="size-4 shrink-0" />}
-                      </button>
-                    </li>
-                  );
-                })}
-              {activeTab === 'year' &&
-                filteredItems.map((item) => {
-                  const isSelected = item === selectedYear;
-                  return (
-                    <li key={item}>
-                      <button
-                        type="button"
-                        onClick={() => handleSelectYear(Number(item))}
-                        className={cn(
-                          'flex w-full cursor-pointer items-center justify-between px-5 text-left text-sm leading-[3.2] hover:bg-accent hover:text-primary',
-                          isSelected ? 'bg-accent font-semibold text-primary' : 'text-foreground',
-                        )}
-                      >
-                        {item}
-                        {isSelected && <Check className="size-4 shrink-0" />}
-                      </button>
-                    </li>
-                  );
-                })}
-            </ul>
-          )}
-        </div>
+            </div>
+          </>
+        )}
       </aside>
     </>
   );

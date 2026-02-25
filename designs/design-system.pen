@@ -3617,7 +3617,7 @@
                   "type": "ref",
                   "ref": "C3KOZ",
                   "x": 24,
-                  "y": 24.01994370166805,
+                  "y": 24.019943701668048,
                   "width": "fill_container",
                   "descendants": {
                     "NEMHS": {
@@ -6504,11 +6504,10 @@
               "reusable": true,
               "width": "fill_container",
               "fill": "$--accent",
-              "cornerRadius": 8,
               "stroke": {
                 "align": "inside",
                 "thickness": {
-                  "top": 3
+                  "top": 4
                 },
                 "fill": "$--primary"
               },
@@ -6523,7 +6522,7 @@
                 "blur": 4
               },
               "padding": [
-                16,
+                24,
                 80
               ],
               "justifyContent": "space_between",
@@ -6533,46 +6532,79 @@
                   "type": "frame",
                   "id": "dx6uM",
                   "name": "Left",
-                  "gap": 12,
+                  "gap": 20,
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
-                      "id": "LHiNV",
-                      "name": "carIcon",
-                      "width": 32,
-                      "height": 32,
-                      "iconFontName": "car",
-                      "iconFontFamily": "lucide",
-                      "fill": "$--primary"
+                      "type": "frame",
+                      "id": "geDRP",
+                      "name": "carIconBox",
+                      "width": 72,
+                      "height": 72,
+                      "fill": "$--muted",
+                      "cornerRadius": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "LHiNV",
+                          "name": "carIcon",
+                          "width": 40,
+                          "height": 40,
+                          "iconFontName": "car",
+                          "iconFontFamily": "lucide",
+                          "fill": "$--primary"
+                        }
+                      ]
                     },
                     {
                       "type": "frame",
                       "id": "JW6h2",
                       "name": "textStack",
                       "layout": "vertical",
-                      "gap": 2,
+                      "gap": 3,
                       "children": [
                         {
                           "type": "text",
                           "id": "Wbd4I",
                           "name": "Label",
-                          "fill": "$--muted-foreground",
+                          "fill": "$--foreground",
                           "content": "BUSCANDO PARA:",
                           "fontFamily": "Outfit",
-                          "fontSize": 11,
-                          "fontWeight": "600",
-                          "letterSpacing": 1
+                          "fontSize": 12,
+                          "fontWeight": "700",
+                          "letterSpacing": 1.2
                         },
                         {
                           "type": "text",
                           "id": "jHD4l",
                           "name": "Vehicle",
                           "fill": "$--foreground",
-                          "content": "2022 Acura ILX",
-                          "fontFamily": "Inter",
-                          "fontSize": 16,
+                          "content": "2019 Ram / Dodge 4500",
+                          "fontFamily": "Outfit",
+                          "fontSize": 18,
                           "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "gYk3R",
+                          "name": "SubModel",
+                          "fill": "$--muted-foreground",
+                          "content": "Sub-Model: SLT",
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Jos5M",
+                          "name": "Engine",
+                          "fill": "$--muted-foreground",
+                          "content": "Engine: 8 Cylinders 6.4L Hemi",
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -6583,8 +6615,9 @@
                   "id": "0U5v1",
                   "name": "Right",
                   "layout": "vertical",
-                  "gap": 8,
-                  "alignItems": "end",
+                  "gap": 10,
+                  "justifyContent": "center",
+                  "alignItems": "center",
                   "children": [
                     {
                       "id": "IDZDj",
@@ -6597,7 +6630,7 @@
                         },
                         "wLO2J": {
                           "content": "Cambiar vehículo",
-                          "fontSize": 12
+                          "fontSize": 14
                         }
                       }
                     },
@@ -6607,8 +6640,8 @@
                       "name": "Clear Link",
                       "fill": "$--muted-foreground",
                       "content": "Buscar sin vehículo",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
+                      "fontFamily": "Outfit",
+                      "fontSize": 13,
                       "fontWeight": "500"
                     }
                   ]
@@ -7659,7 +7692,7 @@
           "name": "Vehicle Sidebar/Year",
           "reusable": true,
           "clip": true,
-          "width": 400,
+          "width": 460,
           "height": 900,
           "fill": "$--white",
           "effect": {
@@ -8069,7 +8102,7 @@
           "name": "Vehicle Sidebar/Make",
           "reusable": true,
           "clip": true,
-          "width": 400,
+          "width": 460,
           "height": 900,
           "fill": "$--white",
           "effect": {
@@ -8393,6 +8426,641 @@
                   "fontFamily": "Outfit",
                   "fontSize": 14,
                   "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "zJWkN",
+          "name": "Vehicle Sidebar/Garage",
+          "reusable": true,
+          "clip": true,
+          "width": 460,
+          "height": 900,
+          "fill": "$--white",
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#00000026",
+            "offset": {
+              "x": -4,
+              "y": 0
+            },
+            "blur": 16
+          },
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "EyRej",
+              "name": "sidebarHeader",
+              "width": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "$--border"
+              },
+              "padding": [
+                16,
+                20
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jBv6B",
+                  "name": "title",
+                  "fill": "$--foreground",
+                  "content": "Elige un vehículo",
+                  "fontFamily": "Outfit",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "i9j9k",
+                  "name": "closeX",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Vd5sx",
+              "name": "cardList",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "VG0rG",
+                  "name": "vehicleCard/active",
+                  "width": "fill_container",
+                  "fill": "$--accent",
+                  "cornerRadius": [
+                    0,
+                    8,
+                    8,
+                    0
+                  ],
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": {
+                      "left": 3
+                    },
+                    "fill": "$--primary"
+                  },
+                  "gap": 12,
+                  "padding": [
+                    12,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "gLEbW",
+                      "name": "iconStack",
+                      "width": 48,
+                      "height": 48,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "Ly7WM",
+                          "x": 4,
+                          "y": 4,
+                          "name": "carIconBox",
+                          "width": 44,
+                          "height": 44,
+                          "fill": "$--muted",
+                          "cornerRadius": 6,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "A8fd0",
+                              "name": "carIcon",
+                              "width": 24,
+                              "height": 24,
+                              "iconFontName": "car",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--muted-foreground"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "BPoF7",
+                          "x": 0,
+                          "y": 0,
+                          "name": "checkCircle",
+                          "width": 18,
+                          "height": 18,
+                          "fill": "$--primary",
+                          "cornerRadius": 9,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "FGHCL",
+                              "name": "checkIcon",
+                              "width": 10,
+                              "height": 10,
+                              "iconFontName": "check",
+                              "iconFontFamily": "lucide",
+                              "fill": "#ffffff"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "RLbFM",
+                      "name": "vehicleInfo",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "2FoaS",
+                          "name": "vehicleName",
+                          "fill": "$--foreground",
+                          "content": "2019 Ram / Dodge 4500",
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "w79gF",
+                          "name": "vehicleSub",
+                          "fill": "$--muted-foreground",
+                          "content": "Sub-Model: SLT",
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "LWDbs",
+                          "name": "vehicleEngine",
+                          "fill": "$--muted-foreground",
+                          "content": "Engine: 8 Cylinders 6.4L Hemi",
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "FVXDl",
+                      "name": "trashIcon",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "trash-2",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--muted-foreground"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "Owl6H",
+                  "name": "shopWithoutLink",
+                  "fill": "$--muted-foreground",
+                  "content": "Buscar sin vehículo",
+                  "textAlign": "right",
+                  "fontFamily": "Outfit",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "HyB8Z",
+                  "name": "savedVehiclesLabel",
+                  "fill": "$--foreground",
+                  "content": "Mis vehículos guardados (1)",
+                  "fontFamily": "Outfit",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "whfbe",
+                  "name": "vehicleCard/inactive",
+                  "width": "fill_container",
+                  "fill": "$--white",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$--border"
+                  },
+                  "gap": 12,
+                  "padding": [
+                    12,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Jn2xi",
+                      "name": "carIconBox",
+                      "width": 48,
+                      "height": 48,
+                      "fill": "$--muted",
+                      "cornerRadius": 6,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "WTxQD",
+                          "name": "carIcon",
+                          "width": 24,
+                          "height": 24,
+                          "iconFontName": "car",
+                          "iconFontFamily": "lucide",
+                          "fill": "$--muted-foreground"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "WdZWq",
+                      "name": "vehicleInfo",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "qlUvP",
+                          "name": "vehicleName",
+                          "fill": "$--foreground",
+                          "content": "2024 Acura TLX",
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "5HzSE",
+                          "name": "vehicleSub",
+                          "fill": "$--muted-foreground",
+                          "content": "Sub-Model: Type S",
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Ofhcn",
+                          "name": "vehicleEngine",
+                          "fill": "$--muted-foreground",
+                          "content": "Engine: 6 Cylinders 3.0L Turbo VTEC",
+                          "fontFamily": "Outfit",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "MqRKz",
+                      "name": "trashIcon",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "trash-2",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--muted-foreground"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "QGb7u",
+              "name": "sidebarFooter",
+              "width": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "top": 1
+                },
+                "fill": "$--border"
+              },
+              "layout": "vertical",
+              "padding": 16,
+              "children": [
+                {
+                  "id": "PCcC8",
+                  "type": "ref",
+                  "ref": "J76IQ",
+                  "width": "fill_container",
+                  "name": "addBtn",
+                  "descendants": {
+                    "dAXqI": {
+                      "enabled": false
+                    },
+                    "9CN1v": {
+                      "content": "AGREGAR NUEVO VEHÍCULO",
+                      "fontSize": 13,
+                      "letterSpacing": 0.5
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "NFKm5",
+          "name": "Vehicle Sidebar/Delete",
+          "reusable": true,
+          "clip": true,
+          "width": 460,
+          "height": 900,
+          "fill": "$--white",
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#00000026",
+            "offset": {
+              "x": -4,
+              "y": 0
+            },
+            "blur": 16
+          },
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "zMzTl",
+              "name": "sidebarHeader",
+              "width": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "$--border"
+              },
+              "padding": [
+                16,
+                20
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "tZk5l",
+                  "name": "backArrow",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "text",
+                  "id": "4ME2D",
+                  "name": "title",
+                  "fill": "$--foreground",
+                  "content": "Delete Vehicle",
+                  "fontFamily": "Outfit",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "4VrdC",
+                  "name": "closeX",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xWp9x",
+              "name": "content",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "padding": [
+                32,
+                24
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "zWBOy",
+                  "name": "questionText",
+                  "fill": "$--foreground",
+                  "content": "Are you sure you want to delete this vehicle?",
+                  "textAlign": "center",
+                  "fontFamily": "Outfit",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "gdKuI",
+                  "name": "subtitleText",
+                  "fill": "$--muted-foreground",
+                  "content": "This will permanently remove this vehicle.",
+                  "textAlign": "center",
+                  "fontFamily": "Outfit",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "h15pn",
+                  "name": "vehiclePreview",
+                  "width": "fill_container",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$--border"
+                  },
+                  "gap": 16,
+                  "padding": [
+                    20,
+                    24
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "1EEko",
+                      "name": "carIconBox",
+                      "width": 64,
+                      "height": 64,
+                      "fill": "$--muted",
+                      "cornerRadius": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "J81G7",
+                          "name": "carIcon",
+                          "width": 32,
+                          "height": 32,
+                          "iconFontName": "car",
+                          "iconFontFamily": "lucide",
+                          "fill": "$--muted-foreground"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ADFH1",
+                      "name": "vehicleInfo",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 3,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "k5YH4",
+                          "name": "vehicleName",
+                          "fill": "$--foreground",
+                          "content": "2024 Acura TLX",
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "xbohJ",
+                          "name": "vehicleSub",
+                          "fill": "$--muted-foreground",
+                          "content": "Sub-Model: Type S",
+                          "fontFamily": "Outfit",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "KFpvv",
+                          "name": "vehicleEngine",
+                          "fill": "$--muted-foreground",
+                          "content": "Engine: 6 Cylinders 3.0L Turbo VTEC",
+                          "fontFamily": "Outfit",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "69PnW",
+              "name": "sidebarFooter",
+              "width": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "top": 1
+                },
+                "fill": "$--border"
+              },
+              "gap": 12,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Vhp24",
+                  "name": "keepBtn",
+                  "width": "fill_container",
+                  "fill": "$--white",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$--border"
+                  },
+                  "padding": [
+                    12,
+                    16
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "MggLi",
+                      "name": "keepText",
+                      "fill": "$--foreground",
+                      "content": "KEEP VEHICLE",
+                      "textAlign": "center",
+                      "fontFamily": "Outfit",
+                      "fontSize": 13,
+                      "fontWeight": "500",
+                      "letterSpacing": 0.5
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "u6EjK",
+                  "name": "deleteBtn",
+                  "width": "fill_container",
+                  "fill": "$--foreground",
+                  "cornerRadius": 8,
+                  "padding": [
+                    12,
+                    16
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "1vdzP",
+                      "name": "deleteText",
+                      "fill": "$--white",
+                      "content": "DELETE VEHICLE",
+                      "textAlign": "center",
+                      "fontFamily": "Outfit",
+                      "fontSize": 13,
+                      "fontWeight": "500",
+                      "letterSpacing": 0.5
+                    }
+                  ]
                 }
               ]
             }
