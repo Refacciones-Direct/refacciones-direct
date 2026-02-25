@@ -5,13 +5,13 @@ const GARAGE_KEY = 'vehicle-garage:v1';
 const OLD_KEY = 'vehicle-context:v1';
 
 // Dynamic import to reset module-level cache between tests
-let useVehicleContext: typeof import('../use-vehicle-context').useVehicleContext;
+let useVehicleContext: typeof import('./use-vehicle-context').useVehicleContext;
 
 describe('useVehicleContext', () => {
   beforeEach(async () => {
     vi.resetModules();
     sessionStorage.clear();
-    const mod = await import('../use-vehicle-context');
+    const mod = await import('./use-vehicle-context');
     useVehicleContext = mod.useVehicleContext;
   });
 

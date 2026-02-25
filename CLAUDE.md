@@ -195,8 +195,15 @@ The session is NOT over after pushing. You must:
    gh pr checks <pr-number>
    ```
 3. If CI fails: investigate, fix, push again, and repeat.
-4. If CI passes: report to the user that the PR is ready for review/merge.
-5. Once the PR is merged, confirm with `gh pr view <pr-number>` and report completion.
+4. **Check `claude-review` bot comments** on the PR:
+   ```bash
+   gh pr view <pr-number> --comments --json comments --jq '.comments[] | select(.author.login=="claude") | .body'
+   ```
+
+   - Fix any issues flagged as **Critical** before proceeding — these are blockers.
+   - Important/Minor issues: file as beads issues for follow-up unless trivially fixable.
+5. If CI passes and no Critical review issues: report to the user that the PR is ready for review/merge.
+6. Once the PR is merged, confirm with `gh pr view <pr-number>` and report completion.
 
 **Critical rules:**
 
