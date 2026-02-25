@@ -1,6 +1,6 @@
 # API Endpoints & Envia.com Integration — Technical Planning Doc
 
-This document lists **existing** API routes, **planned** shipping-related routes (from the roadmap), and how they map to **envia.com** so you can plan the next steps.
+This document lists **existing** API routes, **planned** shipping-related routes (from the roadmap), and how they map to **envia.com** so we can plan the next steps.
 
 ---
 
@@ -86,6 +86,266 @@ You can either:
 
 **Auth:** JWT bearer token (Envia).  
 **Environments:** Production `api.envia.com`, Sandbox `api-test.envia.com`.
+
+### Envia endpoints — short summary list
+
+| #   | API      | Endpoint / feature                        | Use                                                     |
+| --- | -------- | ----------------------------------------- | ------------------------------------------------------- |
+| 1   | Shipping | **Quote Shipments**                       | Checkout: get rates per manufacturer shipment           |
+| 2   | Shipping | **Create Shipping Labels**                | Manufacturer: generate label after order paid           |
+| 3   | Shipping | **Track Shipments**                       | Tracking page; optional status polling if no webhooks   |
+| 4   | Shipping | **Cancel Shipments**                      | Cancel label (mistakes, duplicates)                     |
+| 5   | Shipping | **Webhooks**                              | Delivery status updates → update order, notify customer |
+| 6   | Queries  | **Get address structure**                 | MX (and other) address form fields and validation       |
+| 7   | Queries  | **Get carriers by country**               | Which carriers to quote for MX                          |
+| 8   | Queries  | **Get services by carrier** (and country) | Optional: service list per carrier                      |
+| 9   | Queries  | **Get states by country**                 | State dropdown (e.g. MX)                                |
+| 10  | Geocodes | **Validate zip code**                     | CP validation before quote/label                        |
+| 11  | Geocodes | **Locate city**                           | City/locality from CP (autofill)                        |
+| 12  | Shipping | **Schedule Pickup**                       | Optional: manufacturer requests carrier pickup          |
+
+---
+
+## 3.1 Envia Quote Shipments (`POST /ship/rate/`) — Full Requirements
+
+Reference: [Quote Shipments](https://docs.envia.com/reference/quote-shipments).
+
+### Top-level body (all required)
+
+| Field         | Type   | Required | Notes                                   |
+| ------------- | ------ | -------- | --------------------------------------- |
+| `origin`      | object | ✅       | Sender address (manufacturer warehouse) |
+| `destination` | object | ✅       | Recipient address (customer)            |
+| `packages`    | array  | ✅       | One or more package specs               |
+| `shipment`    | object | ✅       | Carrier + shipment type                 |
+
+### Origin & destination address (same shape)
+
+| Field         | Type                    | Required | Notes                                              |
+| ------------- | ----------------------- | -------- | -------------------------------------------------- |
+| `name`        | string                  | ✅       | Person or contact name                             |
+| `phone`       | string                  | ✅       | Phone number                                       |
+| `street`      | string                  | ✅       | Street address                                     |
+| `city`        | string                  | ✅       | City (use Queries/Geocodes for valid values)       |
+| `state`       | string                  | ✅       | **2-digit state code** (e.g. `NL`, `CMX` for CDMX) |
+| `country`     | string                  | ✅       | **2-digit country code** (e.g. `MX`)               |
+| `postalCode`  | string                  | ✅       | Zip; validate with Geocodes API for MX             |
+| `company`     | string                  | —        | Optional                                           |
+| `email`       | string                  | —        | Optional                                           |
+| `phone_code`  | string                  | —        | e.g. `52`, `MX`                                    |
+| `number`      | string                  | —        | Street number (Mexico example uses it)             |
+| `district`    | string                  | —        | Colonia / neighborhood (Mexico)                    |
+| `reference`   | string                  | —        | Delivery notes                                     |
+| `coordinates` | { latitude, longitude } | —        | Optional                                           |
+
+**Mexico:** Envia examples use `district` (colonia), `number` (street number). State must be 2 digits (e.g. `NL`, `CMX`). Use [Get address structure](https://docs.envia.com/reference/get-address-structure) with `country_code=MX` and `form=address_info` to get required fields and validation rules.
+
+### Packages (each item in `packages` array)
+
+| Field                | Type    | Required | Notes                                                                                       |
+| -------------------- | ------- | -------- | ------------------------------------------------------------------------------------------- |
+| `type`               | string  | ✅       | `envelope` \| `box` \| `pallet` \| `full_truck_load`                                        |
+| `content`            | string  | ✅       | Description of contents                                                                     |
+| `amount`             | integer | ✅       | Number of packages (usually 1 per line or aggregated)                                       |
+| `declaredValue`      | number  | ✅       | Merchandise value (not insurance amount)                                                    |
+| `lengthUnit`         | string  | ✅       | `CM` \| `IN`                                                                                |
+| `weightUnit`         | string  | ✅       | `KG` \| `LB`                                                                                |
+| `weight`             | number  | ✅       | Package weight                                                                              |
+| `dimensions`         | object  | ✅       | See below                                                                                   |
+| `name`               | string  | —        | Package name                                                                                |
+| `additionalServices` | array   | —        | e.g. `envia_insurance`, `cash_on_delivery`, `electronic_signature`; some need `data.amount` |
+
+**dimensions** (required): `length`, `width`, `height` (numbers).
+
+**International:** For cross-border, packages can include `items[]` with `description`, `productCode` (HS code), `quantity`, `countryOfManufacture`, `price`, `currency`.
+
+### Shipment object
+
+| Field                | Type    | Required | Notes                                          |
+| -------------------- | ------- | -------- | ---------------------------------------------- |
+| `type`               | integer | ✅       | `1` = Parcel, `2` = LTL, `3` = FTL (default 1) |
+| `carrier`            | string  | ✅       | Carrier key, e.g. `dhl`, `ups`, `usps`         |
+| `service`            | string  | —        | If set, quote only this service                |
+| `reverse_pickup`     | 0 \| 1  | —        | Return shipment (default 0)                    |
+| `import`             | 0 \| 1  | —        | Import shipment (default 0)                    |
+| `declaredValue`      | number  | —        | Shipment-level declared value                  |
+| `additionalServices` | array   | —        | Shipment-level services                        |
+
+**Important:** **One request per carrier.** To get multiple carriers (DHL, Estafeta, etc.), the app must call Quote Shipments once per carrier and aggregate results.
+
+### Optional: settings
+
+| Field      | Type   | Notes                                           |
+| ---------- | ------ | ----------------------------------------------- |
+| `currency` | string | `MXN`, `USD`, etc. (ISO). Use `MXN` for Mexico. |
+| `comments` | string | Shipment comments                               |
+
+### Optional: customsSettings (international only)
+
+| Field                 | Type   | Notes                                               |
+| --------------------- | ------ | --------------------------------------------------- |
+| `dutiesPaymentEntity` | string | `envia_guaranteed` \| `sender` \| `recipient`       |
+| `exportReason`        | string | `sale` \| `gift` \| `sample` \| `return` \| `other` |
+
+### Response (200) — fields useful for checkout
+
+| Field                                   | Use in RefaccionesDirect                                        |
+| --------------------------------------- | --------------------------------------------------------------- |
+| `data[]`                                | Array of quote options                                          |
+| `data[].carrier`                        | Carrier key (e.g. `dhl`)                                        |
+| `data[].carrierDescription`             | Display name                                                    |
+| `data[].serviceId`                      | **Required later for Create Label** — save with selected option |
+| `data[].service` / `serviceDescription` | Display name for service                                        |
+| `data[].totalPrice`                     | Price to show customer (string)                                 |
+| `data[].currency`                       | e.g. `MXN`                                                      |
+| `data[].deliveryEstimate`               | e.g. "2-3 days"                                                 |
+| `data[].deliveryDate`                   | `date`, `time`, `timeUnit` (hours/days)                         |
+| `data[].dropOff`                        | 0=home-home, 1=branch-home, 2=home-branch, 3=branch-branch      |
+
+---
+
+## 3.2 Consumer Journey vs Envia Requirements
+
+| Consumer step                | What we need for Envia Quote                                       | Source / open question                                                                                                                                        |
+| ---------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Browse / add to cart         | —                                                                  | —                                                                                                                                                             |
+| Go to checkout               | **Destination address** (full Envia shape)                         | Customer form: name, phone, street, number?, district (colonia?), city, state (2-digit), country, postalCode. Do we validate CP with Geocodes before quoting? |
+| See shipping options         | **Origin address** per manufacturer                                | Where do we store manufacturer warehouse address? (manufacturers table? new `addresses`?)                                                                     |
+|                              | **Packages** (weight, dimensions, declaredValue, content)          | From `parts`: weight_kg, dimensions_cm. Do we have defaults for missing dims? Declared value = sum of (unit_price × qty) per package?                         |
+|                              | **One quote request per carrier** per manufacturer                 | Which carriers do we support for MX? (DHL, Estafeta, Redpack, …?) Get list from Envia Queries: “Get carriers by country” for MX.                              |
+|                              | **Currency**                                                       | MXN (confirm).                                                                                                                                                |
+| Select carrier + service     | Store `serviceId` (and carrier key) for each manufacturer shipment | Pass to Create Label step later.                                                                                                                              |
+| Pay                          | —                                                                  | Stripe flow.                                                                                                                                                  |
+| Order created                | —                                                                  | Order + order_items with chosen carrier/serviceId per line.                                                                                                   |
+| Manufacturer generates label | Same origin, destination, packages + **serviceId** from quote      | Create Shipping Labels API.                                                                                                                                   |
+
+---
+
+## 3.3 Questions to Resolve (Planning)
+
+### Address & validation
+
+1. **Mexico address form:** Do we use Envia’s [Get address structure](https://docs.envia.com/reference/get-address-structure) (`country_code=MX`, `form=address_info`) to drive checkout address fields and validation rules?
+2. **Postal code validation:** Do we call Envia Geocodes (e.g. validate zip / locate city) before calling Quote, to avoid bad quotes or failed labels?
+3. **Colonia (district):** Is colonia required for Mexico in practice? Envia Mexico example includes `district` (e.g. "Obispado", "Jardines de Mirasierra"). Do we collect it and from where (CP lookup vs free text)?
+
+### Product & packaging
+
+4. **Missing weight/dimensions:** If a part has no `weight_kg` or `dimensions_cm`, do we block checkout, use defaults, or estimate from category?
+5. **Declared value:** Is `declaredValue` per package always the sum of (unit_price × quantity) for that package, or do we allow override (e.g. for insurance)?
+6. **Multiple parts in one box:** For one manufacturer, do we quote one package (aggregate weight/dims) or one package per part? Envia allows multiple packages in one quote; we need a rule (e.g. one box per manufacturer with aggregated specs).
+
+### Multi-manufacturer & carriers
+
+7. **Manufacturer origin address:** Where is it stored? (e.g. `manufacturers.shipping_address` or separate `addresses` table.) Who maintains it (manufacturer profile in dashboard)?
+8. **Carrier list for MX:** Which carriers do we expose? Use Envia Queries “Get carriers by country” (MX) and optionally “Get services by carrier” to show only serviceable options.
+9. **One quote per carrier:** We need N × M requests (N manufacturers, M carriers). Do we run them in parallel and cap M (e.g. top 3–5 carriers) to keep checkout fast?
+
+### UX & business
+
+10. **Display of options:** Show one combined list (all carriers × all manufacturers) or grouped by manufacturer? How do we display “DHL $120, Estafeta $95” when there are 2 manufacturers (2 shipments)?
+11. **Free shipping:** Do we ever offer free shipping (e.g. over threshold) and hide or zero out Envia’s quote for that leg?
+12. **Service code for label:** When generating the label later, we must pass the same `serviceId` (and carrier) the customer chose. Is that stored on `order_items` (e.g. `envia_carrier`, `envia_service_id`) at checkout confirmation?
+
+---
+
+## 3.4 Envia Create Shipping Labels (`POST /ship/generate/`) — Full Requirements
+
+Reference: [Create Shipping Labels](https://docs.envia.com/reference/create-shipping-labels).
+
+Use this **after** the customer has paid and the manufacturer is fulfilling: same origin/destination/packages as the quote, plus the **service** (and carrier) the customer selected. Creating a label **charges** the Envia account and generates a real shipment with the carrier.
+
+### Top-level body (all required)
+
+| Field         | Type   | Required | Notes                                                                |
+| ------------- | ------ | -------- | -------------------------------------------------------------------- |
+| `origin`      | object | ✅       | Same shape as Quote (manufacturer address)                           |
+| `destination` | object | ✅       | Same shape as Quote (customer shipping address)                      |
+| `packages`    | array  | ✅       | Same shape as Quote (one or more packages)                           |
+| `shipment`    | object | ✅       | **Must include `carrier` + `service`** from the quote                |
+| `settings`    | object | ✅       | **Required for labels** — must include `printFormat` and `printSize` |
+
+### Origin & destination
+
+Same as Quote Shipments: `name`, `phone`, `street`, `city`, `state`, `country`, `postalCode` (all required). Optional: `company`, `email`, `phone_code`, `number`, `district`, `reference`, `address_id`, `identificationNumber`, `category`. State/country 2-digit codes; Mexico uses `district` (colonia), `number`.
+
+### Packages
+
+Same as Quote except **package type** enum: `envelope` | `box` | `pallet` (no `full_truck_load`). Required per item: `type`, `content`, `amount`, `declaredValue`, `lengthUnit`, `weightUnit`, `weight`, `dimensions` (length/width/height). Optional: `name`, `additionalServices`, `items` (international). For LTL/freight, `bolComplement` can be used.
+
+### Shipment object (required fields differ from Quote)
+
+| Field                | Type    | Required | Notes                                                                 |
+| -------------------- | ------- | -------- | --------------------------------------------------------------------- |
+| `type`               | integer | ✅       | 1 = Parcel, 2 = LTL, 3 = FTL                                          |
+| `carrier`            | string  | ✅       | Same carrier key used in the quote (e.g. `dhl`, `fedex`)              |
+| `service`            | string  | ✅       | **Service code from the Quote response** — must match what was quoted |
+| `reverse_pickup`     | 0 \| 1  | —        | Return shipment (default 0)                                           |
+| `import`             | 0 \| 1  | —        | Import shipment (default 0)                                           |
+| `declaredValue`      | number  | —        | Shipment-level declared value                                         |
+| `orderReference`     | string  | —        | **Our order ID** — good to pass for support and reconciliation        |
+| `additionalServices` | array   | —        | LTL only                                                              |
+| `pickup`             | object  | —        | Pickup date, totalPackages, totalWeight (for scheduled pickup)        |
+
+**Critical:** `shipment.service` must be the exact **service** (or serviceId) returned by Quote for the chosen option; otherwise label creation can fail or not match the quoted price.
+
+### Settings (required for label generation)
+
+| Field         | Type   | Required | Notes                                                          |
+| ------------- | ------ | -------- | -------------------------------------------------------------- |
+| `printFormat` | string | ✅       | `PDF` \| `PNG` \| `ZPL` \| `ZPLII` \| `EPL`                    |
+| `printSize`   | string | ✅       | `PAPER_4X6` \| `PAPER_7X4.75` \| `STOCK_4X6` \| `PAPER_LETTER` |
+| `currency`    | string | —        | MXN, USD, etc.                                                 |
+| `comments`    | string | —        | Shipment comments                                              |
+
+**Typical:** `printFormat: "PDF"`, `printSize: "STOCK_4X6"` or `"PAPER_4X6"` for standard 4×6 labels.
+
+### Optional: customsSettings
+
+Same as Quote: `dutiesPaymentEntity`, `exportReason` for international.
+
+### Response (200) — fields to persist
+
+| Field                               | Use in RefaccionesDirect                                                     |
+| ----------------------------------- | ---------------------------------------------------------------------------- |
+| `data`                              | Array of generated label(s) (usually one per request)                        |
+| `data[].shipmentId`                 | **Store as `envia_shipment_id`** — Envia’s shipment ID                       |
+| `data[].trackingNumber`             | **Store** — show to customer and manufacturer                                |
+| `data[].trackUrl`                   | **Store as `tracking_url`** — carrier tracking link                          |
+| `data[].label`                      | **Store as `label_url`** — URL to download/print label (PDF/PNG/etc.)        |
+| `data[].carrier` / `data[].service` | Echo of request; can store for display                                       |
+| `data[].totalPrice`                 | What was charged for this label                                              |
+| `data[].packages[]`                 | Per-package tracking if multiple; each can have `trackingNumber`, `trackUrl` |
+| `data[].additionalFiles`            | Any extra documents (e.g. commercial invoice)                                |
+
+### Create Label vs Quote — differences
+
+| Aspect                    | Quote (`/ship/rate/`)                           | Create Label (`/ship/generate/`)                                     |
+| ------------------------- | ----------------------------------------------- | -------------------------------------------------------------------- |
+| `settings`                | Optional (currency, comments)                   | **Required**; must include **printFormat**, **printSize**            |
+| `shipment.service`        | Optional (if omitted, all services for carrier) | **Required** — must be the selected quote option                     |
+| `shipment.orderReference` | —                                               | Optional but recommended (our order ID)                              |
+| Package type              | envelope, box, pallet, full_truck_load          | envelope, box, pallet only                                           |
+| Effect                    | Returns rates only                              | **Charges account**, creates real shipment, returns label + tracking |
+
+### Consumer journey (fulfillment)
+
+| Step                     | What we need                                                                                                                        | Source                                                       |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Manufacturer opens order | Order + order_items with shipping address, package specs, chosen carrier/service                                                    | DB (orders, order_items, parts)                              |
+| Clicks “Generate label”  | Same origin (manufacturer), destination (order shipping_address), packages (from parts), **carrier + service** (stored at checkout) | order_items: envia_carrier, envia_service_id (or equivalent) |
+| Backend calls Envia      | Add **settings.printFormat**, **settings.printSize**; optionally **shipment.orderReference** = order id                             | App config (e.g. PDF, STOCK_4X6)                             |
+| Persist response         | Save shipmentId, trackingNumber, trackUrl, label URL on order_item                                                                  | API route + DB update                                        |
+| Notify customer          | Trigger Inngest “order shipped” → email with tracking link                                                                          | Inngest                                                      |
+
+### Questions to resolve (Create Label)
+
+1. **Print format/size:** Default to `PDF` + `STOCK_4X6` (or `PAPER_4X6`)? Or let manufacturer choose in dashboard settings?
+2. **Order reference:** Always send `shipment.orderReference` = our `orders.id` (or order number) for support and reconciliation?
+3. **Label storage:** Store only the Envia `label` URL, or also download and store in Supabase Storage for durability if Envia URL expires?
+4. **Idempotency:** If manufacturer clicks “Generate label” twice, do we block (already has tracking) or call Envia again (risk of double charge)? Prefer: check order_item for existing tracking_number before calling Envia.
+5. **Service code format:** Quote returns `serviceId` and `service` — which one does Create Label expect in `shipment.service`? (Verify in Envia docs; often the string service code.)
+6. **Cancel flow:** If label was created by mistake, use Envia **Cancel Shipments** endpoint; document and optionally expose “Cancel shipment” in dashboard with confirmation.
 
 ---
 
