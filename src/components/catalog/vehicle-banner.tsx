@@ -30,27 +30,35 @@ export function VehicleBanner() {
   }
 
   return (
-    <div className="border-t-[3px] border-primary bg-accent px-4 py-4 shadow-sm sm:px-20">
+    <div className="border-t-4 border-primary bg-accent px-4 py-6 shadow-sm sm:px-20">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
-        {/* Left: icon + stacked text */}
-        <div className="flex items-center gap-3">
-          <Car className="size-8 shrink-0 text-primary" />
-          <div className="flex flex-col gap-0.5">
-            <span className="text-[11px] font-semibold tracking-widest text-muted-foreground">
+        {/* Left: icon box + stacked label/vehicle */}
+        <div className="flex items-center gap-3 sm:gap-5">
+          <div className="hidden size-18 shrink-0 items-center justify-center rounded-lg bg-muted sm:flex">
+            <Car className="size-10 text-primary" />
+          </div>
+          <Car className="size-8 shrink-0 text-primary sm:hidden" />
+          <div className="flex flex-col gap-0.75">
+            <span className="text-xs font-bold tracking-[1.2px] text-foreground">
               {t('vehicleBanner.shoppingFor')}
             </span>
-            <span className="text-base font-bold">{vehicleLabel}</span>
+            <span className="text-base font-bold sm:text-lg">{vehicleLabel}</span>
           </div>
         </div>
 
         {/* Right: stacked actions */}
-        <div className="flex flex-col items-end gap-2">
-          <Button variant="outline" size="sm" className="text-xs" onClick={() => router.push('/')}>
+        <div className="flex flex-col items-center justify-center gap-2.5">
+          <Button
+            variant="outline"
+            size="sm"
+            className="border-primary text-sm text-primary hover:bg-primary/5 hover:text-primary"
+            onClick={() => router.push('/')}
+          >
             {t('vehicleBanner.changeVehicle')}
           </Button>
           <button
             type="button"
-            className="text-xs text-muted-foreground underline hover:text-foreground"
+            className="text-[13px] font-medium text-muted-foreground hover:text-foreground"
             onClick={handleClearVehicle}
           >
             {t('vehicleBanner.searchWithout')}

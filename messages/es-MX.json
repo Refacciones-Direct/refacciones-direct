@@ -66,7 +66,16 @@
       "popularMakes": "Marcas populares",
       "allMakes": "Todas las marcas",
       "loading": "Cargando...",
-      "noResults": "Sin resultados"
+      "noResults": "Sin resultados",
+      "chooseVehicle": "Elige un vehículo",
+      "addNewVehicle": "Agregar nuevo vehículo",
+      "deleteVehicle": "Eliminar vehículo",
+      "shopWithout": "Buscar sin vehículo",
+      "savedVehicles": "Mis vehículos guardados ({count})",
+      "deleteVehicleTitle": "Eliminar vehículo",
+      "deleteConfirmQuestion": "¿Estás seguro de que quieres eliminar este vehículo?",
+      "deleteConfirmSubtitle": "Esto eliminará permanentemente este vehículo.",
+      "keepVehicle": "Conservar vehículo"
     },
     "promoCarousel": {
       "controls": {

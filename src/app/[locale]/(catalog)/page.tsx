@@ -22,8 +22,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <PromoCarousel />
       </HeroSection>
       <ValueProps />
-      <BrandLogos />
-      <RecentlyViewed />
+      {/* <BrandLogos /> */}
+      {/* <RecentlyViewed /> */}
       <SiteFooter />
     </>
   );

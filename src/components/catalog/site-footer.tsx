@@ -1,6 +1,7 @@
 import { Facebook, Instagram, Youtube } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/utils';
+import { Container } from '@/components/shared/container';
 
 export async function SiteFooter() {
   const t = await getTranslations('catalog');
@@ -18,7 +19,7 @@ export async function SiteFooter() {
 
   return (
     <footer data-slot="site-footer" className={cn('w-full bg-brand-navy text-white')}>
-      <div className="mx-auto max-w-7xl px-4 py-12">
+      <Container className="py-12">
         <div className="grid grid-cols-4 gap-12">
           {/* Column 1 - Help & payments */}
           <div className="flex flex-col gap-4">
@@ -77,7 +78,7 @@ export async function SiteFooter() {
         <div className="mt-8 border-t border-white/10 pt-4 text-center text-xs text-white/50">
           {t('footer.copyright')}
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }
