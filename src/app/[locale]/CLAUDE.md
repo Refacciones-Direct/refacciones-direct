@@ -1,6 +1,6 @@
 # UI Development Guide — src/app/[locale]/
 
-This directory is the root of all portal UI: (storefront), (dashboard), (admin).
+This directory is the root of all portal UI: (catalog), (dashboard), (admin).
 
 ## Skills
 

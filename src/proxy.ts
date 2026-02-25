@@ -11,8 +11,11 @@ const unauthenticatedPaths = [
   /^\/[a-z]{2}-[A-Z]{2}$/, // locale root (e.g., /es-MX, /en-US)
   /^\/[a-z]{2}-[A-Z]{2}\/login$/,
   /^\/[a-z]{2}-[A-Z]{2}\/signup$/,
+  /^\/[a-z]{2}-[A-Z]{2}\/search/, // catalog search
+  /^\/[a-z]{2}-[A-Z]{2}\/cart$/, // view cart
   /^\/api\/auth\/callback$/,
   /^\/api\/inngest$/,
+  /^\/api\/public\//, // public API routes (vehicle-options, search)
 ];
 
 function isUnauthenticatedPath(pathname: string): boolean {
