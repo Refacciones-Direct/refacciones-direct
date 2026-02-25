@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/utils';
+import { Container } from '@/components/shared/container';
 
 const MANUFACTURERS = ['Fabricante 1', 'Fabricante 2', 'Fabricante 3'] as const;
 
@@ -12,7 +13,7 @@ export async function BrandLogos() {
       className={cn('bg-card py-8')}
       aria-label={t('manufacturers.title')}
     >
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-4">
+      <Container className="flex flex-col items-center gap-4">
         <h2 className="text-lg font-semibold">{t('manufacturers.title')}</h2>
         <p className="text-sm text-muted-foreground">{t('manufacturers.subtitle')}</p>
 
@@ -26,7 +27,7 @@ export async function BrandLogos() {
             </span>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

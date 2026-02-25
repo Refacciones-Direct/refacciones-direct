@@ -1,6 +1,7 @@
 import { Factory, Headset, ShieldCheck, Truck } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/utils';
+import { Container } from '@/components/shared/container';
 
 const VALUE_PROPS = [
   { icon: Factory, titleKey: 'vp1Title', subKey: 'vp1Sub' },
@@ -14,7 +15,7 @@ export async function ValueProps() {
 
   return (
     <section data-slot="value-props" className={cn('h-20 bg-bg-section')}>
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-around px-4">
+      <Container className="flex h-full items-center justify-around">
         {VALUE_PROPS.map(({ icon: Icon, titleKey, subKey }) => (
           <div key={titleKey} className="flex items-center gap-3">
             <Icon className="size-7 shrink-0 text-brand-blue" />
@@ -26,7 +27,7 @@ export async function ValueProps() {
             </div>
           </div>
         ))}
-      </div>
+      </Container>
     </section>
   );
 }

@@ -1,6 +1,7 @@
 import { ArrowUpDown, BatteryCharging, Cog, Disc, Filter, Lightbulb } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/utils';
+import { Container } from '@/components/shared/container';
 import { CategoryListCard } from './category-list-card';
 
 const categories = [
@@ -20,7 +21,7 @@ export async function CategoryGrid() {
 
   return (
     <section data-slot="category-grid" className={cn('py-6')}>
-      <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4">
+      <Container className="flex flex-col gap-6">
         <div className="flex gap-6 *:flex-1">
           {row1.map(({ key, icon: Icon }) => (
             <CategoryListCard
@@ -43,7 +44,7 @@ export async function CategoryGrid() {
             />
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

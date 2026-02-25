@@ -1,18 +1,14 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, Car, Check, Search, Trash2, X } from 'lucide-react';
+import { ArrowLeft, Car, Check, Search, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { useVehicleContext } from '@/hooks/use-vehicle-context';
+import { useVehicleOptions } from '@/hooks/use-vehicle-options';
 import { useRouter } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
-import type {
-  VehicleContext,
-  VehicleOptionsMakes,
-  VehicleOptionsModels,
-  VehicleOptionsYears,
-} from '@/services/search/types';
+import { VehicleCard } from '@/components/catalog/vehicle-card';
 
 type Tab = 'make' | 'model' | 'year';
 type SidebarView = 'list' | 'add' | 'delete';
@@ -22,115 +18,8 @@ interface VehicleSidebarProps {
   onClose: () => void;
 }
 
-async function fetchMakes(): Promise<string[]> {
-  const res = await fetch('/api/public/vehicle-options');
-  if (!res.ok) throw new Error(`Failed to fetch makes: ${res.status}`);
-  const data: VehicleOptionsMakes = await res.json();
-  return data.makes ?? [];
-}
-
-async function fetchModels(make: string): Promise<string[]> {
-  const res = await fetch(`/api/public/vehicle-options?make=${encodeURIComponent(make)}`);
-  if (!res.ok) throw new Error(`Failed to fetch models: ${res.status}`);
-  const data: VehicleOptionsModels = await res.json();
-  return data.models ?? [];
-}
-
-async function fetchYears(make: string, model: string): Promise<number[]> {
-  const res = await fetch(
-    `/api/public/vehicle-options?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}`,
-  );
-  if (!res.ok) throw new Error(`Failed to fetch years: ${res.status}`);
-  const data: VehicleOptionsYears = await res.json();
-  if (data.year_min && data.year_max) {
-    const range: number[] = [];
-    for (let y = data.year_max; y >= data.year_min; y--) {
-      range.push(y);
-    }
-    return range;
-  }
-  return [];
-}
-
 const TABS: Tab[] = ['make', 'model', 'year'];
-
-// ---------------------------------------------------------------------------
-// VehicleCard — inline sub-component for the garage list view
-// ---------------------------------------------------------------------------
-
-function VehicleCard({
-  vehicle,
-  isActive,
-  onSelect,
-  onDelete,
-  deleteLabel,
-}: {
-  vehicle: VehicleContext;
-  isActive: boolean;
-  onSelect: () => void;
-  onDelete: () => void;
-  deleteLabel: string;
-}) {
-  return (
-    <div
-      className={cn(
-        'flex cursor-pointer items-center gap-3 px-4 py-3 transition-colors',
-        isActive
-          ? 'rounded-r-lg border-l-[3px] border-primary bg-accent'
-          : 'rounded-lg border border-border bg-white hover:bg-accent',
-      )}
-      onClick={onSelect}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onSelect();
-        }
-      }}
-    >
-      {/* Icon stack — active has check badge overlay */}
-      {isActive ? (
-        <div className="relative size-12 shrink-0">
-          <div className="absolute bottom-0 right-0 flex size-11 items-center justify-center rounded-md bg-muted">
-            <Car className="size-6 text-muted-foreground" />
-          </div>
-          <div className="absolute left-0 top-0 z-10 flex size-[18px] items-center justify-center rounded-full bg-primary">
-            <Check className="size-2.5 text-white" />
-          </div>
-        </div>
-      ) : (
-        <div className="flex size-12 shrink-0 items-center justify-center rounded-md bg-muted">
-          <Car className="size-6 text-muted-foreground" />
-        </div>
-      )}
-
-      {/* Vehicle info */}
-      <div className="flex flex-1 flex-col gap-0.5">
-        <span className="text-sm font-bold text-foreground">
-          {vehicle.year} {vehicle.make} {vehicle.model}
-        </span>
-      </div>
-
-      {/* Delete button */}
-      <button
-        type="button"
-        className="shrink-0 rounded-md p-1.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
-        onClick={(e) => {
-          e.stopPropagation();
-          onDelete();
-        }}
-        aria-label={deleteLabel}
-      >
-        <Trash2 className="size-4" />
-      </button>
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// VehicleSidebar — main component
-// ---------------------------------------------------------------------------
+const MAX_VEHICLES = 5;
 
 export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
   const t = useTranslations('catalog.vehicleSidebar');
@@ -146,20 +35,8 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Selection state (for add flow)
-  const [selectedMake, setSelectedMake] = useState('');
-  const [selectedModel, setSelectedModel] = useState('');
-  const [selectedYear, setSelectedYear] = useState('');
-
-  // Data state
-  const [makes, setMakes] = useState<string[] | null>(null);
-  const [models, setModels] = useState<string[] | null>(null);
-  const [years, setYears] = useState<number[] | null>(null);
-
-  // Stale-response guards
-  const makesFetchId = useRef(0);
-  const modelsFetchId = useRef(0);
-  const yearsFetchId = useRef(0);
+  // Shared vehicle options hook
+  const options = useVehicleOptions({ enabled: open && view === 'add' });
 
   // --- Render-phase state adjustment for open/close transitions ---
   const [prevOpen, setPrevOpen] = useState(false);
@@ -174,13 +51,9 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
       }
       // Reset add flow + delete state
       setDeleteTargetIndex(null);
-      setSelectedMake('');
-      setSelectedModel('');
-      setSelectedYear('');
+      options.reset();
       setActiveTab('make');
       setSearchQuery('');
-      setModels(null);
-      setYears(null);
     }
   }
 
@@ -190,54 +63,11 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
     const timer = setTimeout(() => {
       setView('list');
       setActiveTab('make');
-      setSelectedMake('');
-      setSelectedModel('');
-      setSelectedYear('');
-      setMakes(null);
-      setModels(null);
-      setYears(null);
+      options.reset();
       setSearchQuery('');
     }, 300);
     return () => clearTimeout(timer);
-  }, [open]);
-
-  // --- Data fetching effects ---
-
-  useEffect(() => {
-    if (!open || view !== 'add' || makes !== null) return;
-    const id = ++makesFetchId.current;
-    fetchMakes()
-      .then((data) => {
-        if (id === makesFetchId.current) setMakes(data);
-      })
-      .catch(() => {
-        if (id === makesFetchId.current) setMakes([]);
-      });
-  }, [open, view, makes]);
-
-  useEffect(() => {
-    if (!selectedMake || models !== null) return;
-    const id = ++modelsFetchId.current;
-    fetchModels(selectedMake)
-      .then((data) => {
-        if (id === modelsFetchId.current) setModels(data);
-      })
-      .catch(() => {
-        if (id === modelsFetchId.current) setModels([]);
-      });
-  }, [selectedMake, models]);
-
-  useEffect(() => {
-    if (!selectedMake || !selectedModel || years !== null) return;
-    const id = ++yearsFetchId.current;
-    fetchYears(selectedMake, selectedModel)
-      .then((data) => {
-        if (id === yearsFetchId.current) setYears(data);
-      })
-      .catch(() => {
-        if (id === yearsFetchId.current) setYears([]);
-      });
-  }, [selectedMake, selectedModel, years]);
+  }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Lock body scroll when open
   useEffect(() => {
@@ -269,26 +99,20 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
   // --- Selection handlers (add flow) ---
 
   function handleSelectMake(make: string) {
-    setSelectedMake(make);
-    setSelectedModel('');
-    setSelectedYear('');
-    setModels(null);
-    setYears(null);
+    options.selectMake(make);
     switchTab('model');
   }
 
   function handleSelectModel(model: string) {
-    setSelectedModel(model);
-    setSelectedYear('');
-    setYears(null);
+    options.selectModel(model);
     switchTab('year');
   }
 
   function handleSelectYear(year: number) {
-    addVehicle({ make: selectedMake, model: selectedModel, year });
+    addVehicle({ make: options.selectedMake, model: options.selectedModel, year });
     onClose();
     router.push(
-      `/search?make=${encodeURIComponent(selectedMake)}&model=${encodeURIComponent(selectedModel)}&year=${year}`,
+      `/search?make=${encodeURIComponent(options.selectedMake)}&model=${encodeURIComponent(options.selectedModel)}&year=${year}`,
     );
   }
 
@@ -328,13 +152,9 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
 
   function handleAddNewVehicle() {
     setView('add');
-    setSelectedMake('');
-    setSelectedModel('');
-    setSelectedYear('');
+    options.reset();
     setActiveTab('make');
     setSearchQuery('');
-    setModels(null);
-    setYears(null);
   }
 
   // --- Back handler ---
@@ -345,16 +165,11 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
     } else if (view === 'add') {
       if (activeTab === 'year') {
         switchTab('model');
-        setSelectedModel('');
-        setSelectedYear('');
+        options.resetToModel();
       } else if (activeTab === 'model') {
         switchTab('make');
-        setSelectedMake('');
-        setSelectedYear('');
-        setModels(null);
-        setYears(null);
+        options.resetToMake();
       } else if (vehicles.length > 0) {
-        // Return to list view if garage has vehicles
         setView('list');
       } else {
         onClose();
@@ -364,30 +179,20 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
     }
   }
 
-  const MAX_VEHICLES = 5;
-
   // --- Filtered items for add flow ---
 
   const filteredItems = useMemo(() => {
     if (view !== 'add') return [];
-    const q = searchQuery.toLowerCase().trim();
-    if (activeTab === 'make') {
-      const items = makes ?? [];
-      return q ? items.filter((m) => m.toLowerCase().includes(q)) : items;
-    }
-    if (activeTab === 'model') {
-      const items = models ?? [];
-      return q ? items.filter((m) => m.toLowerCase().includes(q)) : items;
-    }
-    const items = (years ?? []).map(String);
-    return q ? items.filter((y) => y.includes(q)) : items;
-  }, [view, activeTab, makes, models, years, searchQuery]);
+    if (activeTab === 'make') return options.filterItems(options.makes, searchQuery);
+    if (activeTab === 'model') return options.filterItems(options.models, searchQuery);
+    return options.filterItems(options.yearStrings, searchQuery);
+  }, [view, activeTab, options, searchQuery]);
 
   const isLoading =
     view === 'add' &&
-    ((activeTab === 'make' && makes === null) ||
-      (activeTab === 'model' && models === null) ||
-      (activeTab === 'year' && years === null));
+    ((activeTab === 'make' && options.loadingMakes) ||
+      (activeTab === 'model' && options.loadingModels) ||
+      (activeTab === 'year' && options.loadingYears));
 
   const addTitle =
     activeTab === 'make' ? t('title') : activeTab === 'model' ? t('chooseModel') : t('chooseYear');
@@ -401,9 +206,9 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
 
   const contextLabel =
     activeTab === 'year'
-      ? `${selectedMake} ${selectedModel}`
+      ? `${options.selectedMake} ${options.selectedModel}`
       : activeTab === 'model'
-        ? selectedMake
+        ? options.selectedMake
         : null;
 
   return (
@@ -418,7 +223,7 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
         aria-hidden="true"
       />
 
-      {/* Sidebar panel — 460px wide (~15% wider than original 400px) */}
+      {/* Sidebar panel */}
       <aside
         className={cn(
           'fixed inset-y-0 right-0 z-50 flex w-115 max-w-[85vw] flex-col bg-white shadow-[4px_0_16px_rgba(0,0,0,0.15)] transition-transform duration-300',
@@ -621,7 +426,8 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
               {TABS.map((tab) => {
                 const isActive = tab === activeTab;
                 const isDisabled =
-                  (tab === 'model' && !selectedMake) || (tab === 'year' && !selectedModel);
+                  (tab === 'model' && !options.selectedMake) ||
+                  (tab === 'year' && !options.selectedModel);
                 return (
                   <button
                     key={tab}
@@ -675,7 +481,7 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
                         {t('allMakes')}
                       </li>
                       {filteredItems.map((item) => {
-                        const isSelected = item === selectedMake;
+                        const isSelected = item === options.selectedMake;
                         return (
                           <li key={item}>
                             <button
@@ -698,7 +504,7 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
                   )}
                   {activeTab === 'model' &&
                     filteredItems.map((item) => {
-                      const isSelected = item === selectedModel;
+                      const isSelected = item === options.selectedModel;
                       return (
                         <li key={item}>
                           <button
@@ -719,7 +525,7 @@ export function VehicleSidebar({ open, onClose }: VehicleSidebarProps) {
                     })}
                   {activeTab === 'year' &&
                     filteredItems.map((item) => {
-                      const isSelected = item === selectedYear;
+                      const isSelected = item === options.selectedYear;
                       return (
                         <li key={item}>
                           <button

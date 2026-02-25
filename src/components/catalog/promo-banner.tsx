@@ -2,6 +2,7 @@ import { Truck } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
+import { Container } from '@/components/shared/container';
 
 export async function PromoBanner() {
   const t = await getTranslations('catalog');
@@ -11,7 +12,7 @@ export async function PromoBanner() {
       data-slot="promo-banner"
       className={cn('w-full bg-brand-red text-base font-semibold text-white')}
     >
-      <div className="mx-auto flex h-[52px] max-w-7xl items-center justify-center gap-3 px-4">
+      <Container className="flex h-13 items-center justify-center gap-3">
         <Truck className="size-4 shrink-0" />
         <span>{t('promoBanner.text')}</span>
         <Link
@@ -20,7 +21,7 @@ export async function PromoBanner() {
         >
           {t('promoBanner.link')}
         </Link>
-      </div>
+      </Container>
     </div>
   );
 }

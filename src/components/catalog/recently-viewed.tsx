@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/utils';
+import { Container } from '@/components/shared/container';
 import { ProductCard } from './product-card';
 
 const MOCK_PRODUCTS = [
@@ -14,7 +15,7 @@ export async function RecentlyViewed() {
 
   return (
     <section data-slot="recently-viewed" className={cn('py-6')}>
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4">
+      <Container className="flex flex-col gap-4">
         <h2 className="text-lg font-semibold">{t('featuredProducts.title')}</h2>
 
         <div className="flex gap-4">
@@ -26,7 +27,7 @@ export async function RecentlyViewed() {
             />
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
