@@ -42,7 +42,7 @@ export async function SiteHeader() {
           </Link>
 
           <Link
-            href="/"
+            href="/cart"
             className="flex flex-col items-center gap-1 text-brand-navy hover:text-brand-blue"
           >
             <span className="relative flex size-9 items-center justify-center rounded-full border-[1.5px] border-current">

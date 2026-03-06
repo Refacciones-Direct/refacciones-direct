@@ -29,10 +29,9 @@ export function SearchProductCard({
         )
       : null;
 
-  // TODO: Link to /parts/{id} when product detail page is implemented
   return (
     <Link
-      href={`/search?q=${encodeURIComponent(sku)}`}
+      href={`/products/${id}`}
       className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-shadow hover:shadow-md"
     >
       {/* Image area */}

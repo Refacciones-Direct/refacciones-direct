@@ -1,5 +1,6 @@
-import { ComingSoonPage } from '@/components/shared/coming-soon-page';
+import { redirect } from '@/i18n/navigation';
 
-export default function CheckoutPage() {
-  return <ComingSoonPage title="Checkout" />;
+export default async function CheckoutPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  redirect({ href: '/checkout/shipping', locale });
 }
