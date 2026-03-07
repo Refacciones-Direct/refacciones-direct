@@ -4,15 +4,23 @@ import { useState } from 'react';
 import { Package } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-export function ProductGallery() {
+interface ProductGalleryProps {
+  imageUrl?: string;
+}
+
+export function ProductGallery({ imageUrl }: ProductGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const thumbnailCount = 4;
 
   return (
     <div data-slot="product-gallery" className="flex flex-col gap-3">
       {/* Main image */}
-      <div className="flex aspect-square items-center justify-center rounded-lg bg-bg-light">
-        <Package className="size-20 text-muted-foreground/30" />
+      <div className="flex aspect-square items-center justify-center rounded-lg bg-white">
+        {imageUrl ? (
+          <img src={imageUrl} alt="" className="h-full w-full rounded-lg object-contain" />
+        ) : (
+          <Package className="size-20 text-muted-foreground/30" />
+        )}
       </div>
 
       {/* Thumbnails */}
@@ -27,7 +35,11 @@ export function ProductGallery() {
               selectedIndex === i ? 'ring-2 ring-brand-blue' : 'ring-1 ring-border',
             )}
           >
-            <Package className="size-6 text-muted-foreground/30" />
+            {i === 0 && imageUrl ? (
+              <img src={imageUrl} alt="" className="h-full w-full rounded-md object-contain" />
+            ) : (
+              <Package className="size-6 text-muted-foreground/30" />
+            )}
           </button>
         ))}
       </div>

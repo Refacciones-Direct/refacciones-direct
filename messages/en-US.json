@@ -123,6 +123,9 @@
     "featuredProducts": {
       "title": "Featured Products"
     },
+    "homepage": {
+      "shopByCategory": "Shop by category"
+    },
     "sectionDivider": {
       "text": "All auto parts"
     },

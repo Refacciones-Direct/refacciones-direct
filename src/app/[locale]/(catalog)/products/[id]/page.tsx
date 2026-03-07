@@ -38,7 +38,7 @@ export default async function ProductDetailPage({
           />
           <div className="mt-6 grid gap-8 lg:grid-cols-5">
             <div className="lg:col-span-3">
-              <ProductGallery />
+              <ProductGallery imageUrl={product.imageUrl} />
             </div>
             <div className="lg:col-span-2">
               <ProductInfo product={product} />

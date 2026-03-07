@@ -3617,7 +3617,7 @@
                   "type": "ref",
                   "ref": "C3KOZ",
                   "x": 24,
-                  "y": 24.01994370166805,
+                  "y": 24.019943701668048,
                   "width": "fill_container",
                   "descendants": {
                     "NEMHS": {
@@ -16406,6 +16406,908 @@
                 80
               ],
               "name": "ordFtr"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "BnDtV",
+          "name": "Landing Page v3 (Featured Products)",
+          "width": 1440,
+          "fill": "#fafafa",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "EuwHT",
+              "name": "screenLabel",
+              "width": "fill_container",
+              "height": 36,
+              "fill": "#1e1e2e",
+              "gap": 8,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "1RI2R",
+                  "fill": "#ffffff",
+                  "content": "v3 — Featured Products",
+                  "fontFamily": "Outfit",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "ITORJ",
+                  "fill": "#a0a0b0",
+                  "content": "AutoZone-style product cards grouped by category",
+                  "fontFamily": "Outfit",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Tj3Cu",
+              "name": "promoBanner",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#f95e4c",
+              "gap": 12,
+              "padding": [
+                0,
+                80
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "pxKxR",
+                  "name": "promoIcon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "truck",
+                  "iconFontFamily": "lucide",
+                  "fill": "#ffffffff"
+                },
+                {
+                  "type": "text",
+                  "id": "Ag7BU",
+                  "name": "promoText",
+                  "fill": "#ffffffff",
+                  "content": "¡ENVÍO GRATIS EN PEDIDOS DESDE $1,199!",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Outfit",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "PwIMS",
+                  "name": "promoBtn",
+                  "height": 26,
+                  "cornerRadius": 4,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#ffffffff"
+                  },
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "yUYtN",
+                      "fill": "#ffffffff",
+                      "content": "Ver condiciones",
+                      "fontFamily": "Outfit",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "zL3RR",
+              "type": "ref",
+              "ref": "E3AHM",
+              "width": "fill_container",
+              "name": "siteHeader",
+              "padding": [
+                16,
+                80
+              ],
+              "descendants": {
+                "yfcYu": {
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "./logos/logo-light-bg-cropped.png",
+                    "mode": "fit"
+                  }
+                },
+                "I5Zy1/3NkWG": {
+                  "fontSize": 16
+                }
+              }
+            },
+            {
+              "id": "3JLyx",
+              "type": "ref",
+              "ref": "yPP19",
+              "width": "fill_container",
+              "name": "catNav"
+            },
+            {
+              "type": "frame",
+              "id": "CBmfO",
+              "name": "Hero Section",
+              "width": "fill_container",
+              "fill": "#fafafa",
+              "padding": [
+                24,
+                80
+              ],
+              "children": [
+                {
+                  "id": "ygJbY",
+                  "type": "ref",
+                  "ref": "CF305",
+                  "width": "fill_container",
+                  "height": 300,
+                  "name": "heroRight"
+                }
+              ]
+            },
+            {
+              "id": "CUzpH",
+              "type": "ref",
+              "ref": "jIhs0",
+              "width": "fill_container",
+              "name": "valueProps",
+              "padding": [
+                0,
+                80
+              ],
+              "descendants": {
+                "15UUV": {
+                  "iconFontName": "factory"
+                },
+                "H6uDL": {
+                  "fontSize": 14,
+                  "content": "DIRECTO DEL FABRICANTE"
+                },
+                "bIW5g": {
+                  "content": "SIN INTERMEDIARIOS"
+                },
+                "nRWK8": {
+                  "iconFontName": "shield-check"
+                },
+                "rtcch": {
+                  "fontSize": 14,
+                  "content": "PIEZAS ORIGINALES"
+                },
+                "dTyJm": {
+                  "content": "GARANTIZADAS"
+                },
+                "Blbqf": {
+                  "iconFontName": "truck"
+                },
+                "DAHLP": {
+                  "fontSize": 14,
+                  "content": "ENVÍO RÁPIDO"
+                },
+                "I9Yk2": {
+                  "content": "A TODO MÉXICO"
+                },
+                "1LDPy": {
+                  "iconFontName": "headset"
+                },
+                "RiGyE": {
+                  "fontSize": 14,
+                  "content": "SOPORTE EXPERTO"
+                },
+                "MuCUu": {
+                  "content": "A TU DISPOSICIÓN"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "f1Np0",
+              "name": "Category Tiles",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "padding": [
+                32,
+                80
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "1Aaal",
+                  "name": "catTitle",
+                  "fill": "#0a0a0a",
+                  "content": "Compra por categoría",
+                  "fontFamily": "Outfit",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "nSxwS",
+                  "name": "catGrid",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Nz7LC",
+                      "name": "catRow1",
+                      "width": "fill_container",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "TYvHF",
+                          "name": "tileFrenado",
+                          "width": "fill_container",
+                          "fill": "#ffffff",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#e8e8e8"
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": [
+                            24,
+                            16
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "iaOYF",
+                              "name": "ico1",
+                              "width": 40,
+                              "height": 40,
+                              "iconFontName": "disc",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--primary"
+                            },
+                            {
+                              "type": "text",
+                              "id": "S0536",
+                              "name": "lbl1",
+                              "fill": "#0a0a0a",
+                              "content": "Frenado",
+                              "fontFamily": "Outfit",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "JSfgF",
+                          "name": "tileFiltros",
+                          "width": "fill_container",
+                          "fill": "#ffffff",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#e8e8e8"
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": [
+                            24,
+                            16
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "YTCNx",
+                              "name": "ico2",
+                              "width": 40,
+                              "height": 40,
+                              "iconFontName": "sliders-horizontal",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--primary"
+                            },
+                            {
+                              "type": "text",
+                              "id": "M4Fhu",
+                              "name": "lbl2",
+                              "fill": "#0a0a0a",
+                              "content": "Filtros y aceite",
+                              "fontFamily": "Outfit",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Xkr0W",
+                          "name": "tileMotor",
+                          "width": "fill_container",
+                          "fill": "#ffffff",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#e8e8e8"
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": [
+                            24,
+                            16
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "rplGn",
+                              "name": "ico3",
+                              "width": 40,
+                              "height": 40,
+                              "iconFontName": "cog",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--primary"
+                            },
+                            {
+                              "type": "text",
+                              "id": "kTxNj",
+                              "name": "lbl3",
+                              "fill": "#0a0a0a",
+                              "content": "Piezas de motor",
+                              "fontFamily": "Outfit",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "nlEjm",
+                      "name": "catRow2",
+                      "width": "fill_container",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "DzYpl",
+                          "name": "tileArranque",
+                          "width": "fill_container",
+                          "fill": "#ffffff",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#e8e8e8"
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": [
+                            24,
+                            16
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "1Q0zu",
+                              "name": "ico4",
+                              "width": 40,
+                              "height": 40,
+                              "iconFontName": "battery-charging",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--primary"
+                            },
+                            {
+                              "type": "text",
+                              "id": "HlAUQ",
+                              "name": "lbl4",
+                              "fill": "#0a0a0a",
+                              "content": "Arranque y carga",
+                              "fontFamily": "Outfit",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ybWCE",
+                          "name": "tileOpticas",
+                          "width": "fill_container",
+                          "fill": "#ffffff",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#e8e8e8"
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": [
+                            24,
+                            16
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "r4eSf",
+                              "name": "ico5",
+                              "width": 40,
+                              "height": 40,
+                              "iconFontName": "lightbulb",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--primary"
+                            },
+                            {
+                              "type": "text",
+                              "id": "O5AyF",
+                              "name": "lbl5",
+                              "fill": "#0a0a0a",
+                              "content": "Ópticas / Faros",
+                              "fontFamily": "Outfit",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tZn1w",
+                          "name": "tileSuspension",
+                          "width": "fill_container",
+                          "fill": "#ffffff",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#e8e8e8"
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": [
+                            24,
+                            16
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "G2B9M",
+                              "name": "ico6",
+                              "width": 40,
+                              "height": 40,
+                              "iconFontName": "arrow-up-down",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--primary"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Emj6X",
+                              "name": "lbl6",
+                              "fill": "#0a0a0a",
+                              "content": "Dirección - Suspensión",
+                              "fontFamily": "Outfit",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jUYCd",
+              "name": "Productos Destacados",
+              "width": "fill_container",
+              "fill": "#fafafa",
+              "layout": "vertical",
+              "gap": 20,
+              "padding": [
+                32,
+                80
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ZzQtD",
+                  "name": "pTitle",
+                  "fill": "#0a0a0a",
+                  "content": "Productos Destacados",
+                  "fontFamily": "Outfit",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "95grh",
+                  "name": "prodGrid",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "IR3xN",
+                      "name": "pRow1",
+                      "width": "fill_container",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "id": "U9nJe",
+                          "type": "ref",
+                          "ref": "28dZ4",
+                          "width": "fill_container",
+                          "name": "pc1",
+                          "descendants": {
+                            "qG0cA": {
+                              "content": "Frenado"
+                            },
+                            "vs3RL": {
+                              "content": "Pastillas de Freno Cerámicas"
+                            },
+                            "JrRnV": {
+                              "content": "DURALAST · BRK-CER-045"
+                            },
+                            "t9e3H": {
+                              "content": "$849.00"
+                            },
+                            "zfDe0": {
+                              "content": "MXN"
+                            }
+                          }
+                        },
+                        {
+                          "id": "XPaTR",
+                          "type": "ref",
+                          "ref": "28dZ4",
+                          "width": "fill_container",
+                          "name": "pc2",
+                          "descendants": {
+                            "qG0cA": {
+                              "content": "Filtros"
+                            },
+                            "vs3RL": {
+                              "content": "Filtro de Aceite Premium"
+                            },
+                            "JrRnV": {
+                              "content": "MANN-FILTER · FLT-OIL-101"
+                            },
+                            "t9e3H": {
+                              "content": "$245.00"
+                            },
+                            "zfDe0": {
+                              "content": "MXN"
+                            }
+                          }
+                        },
+                        {
+                          "id": "Vni3D",
+                          "type": "ref",
+                          "ref": "28dZ4",
+                          "width": "fill_container",
+                          "name": "pc3",
+                          "descendants": {
+                            "qG0cA": {
+                              "content": "Motor"
+                            },
+                            "vs3RL": {
+                              "content": "Bomba de Agua"
+                            },
+                            "JrRnV": {
+                              "content": "GMB · MOT-WP-301"
+                            },
+                            "t9e3H": {
+                              "content": "$1,450.00"
+                            },
+                            "zfDe0": {
+                              "content": "MXN"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "P33Ou",
+                      "name": "pRow2",
+                      "width": "fill_container",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "id": "m1AXR",
+                          "type": "ref",
+                          "ref": "28dZ4",
+                          "width": "fill_container",
+                          "name": "pc4",
+                          "descendants": {
+                            "qG0cA": {
+                              "content": "Arranque"
+                            },
+                            "vs3RL": {
+                              "content": "Batería AGM Premium"
+                            },
+                            "JrRnV": {
+                              "content": "BOSCH · STR-BAT-401"
+                            },
+                            "t9e3H": {
+                              "content": "$3,500.00"
+                            },
+                            "zfDe0": {
+                              "content": "MXN"
+                            }
+                          }
+                        },
+                        {
+                          "id": "BKHYn",
+                          "type": "ref",
+                          "ref": "28dZ4",
+                          "width": "fill_container",
+                          "name": "pc5",
+                          "descendants": {
+                            "qG0cA": {
+                              "content": "Ópticas"
+                            },
+                            "vs3RL": {
+                              "content": "Faro Delantero LED"
+                            },
+                            "JrRnV": {
+                              "content": "HELLA · OPT-HL-501"
+                            },
+                            "t9e3H": {
+                              "content": "$1,800.00"
+                            },
+                            "zfDe0": {
+                              "content": "MXN"
+                            }
+                          }
+                        },
+                        {
+                          "id": "UglJP",
+                          "type": "ref",
+                          "ref": "28dZ4",
+                          "width": "fill_container",
+                          "name": "pc6",
+                          "descendants": {
+                            "qG0cA": {
+                              "content": "Suspensión"
+                            },
+                            "vs3RL": {
+                              "content": "Kit de Amortiguadores"
+                            },
+                            "JrRnV": {
+                              "content": "MONROE · SUS-SH-601"
+                            },
+                            "t9e3H": {
+                              "content": "$2,100.00"
+                            },
+                            "zfDe0": {
+                              "content": "MXN"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KUgi7",
+              "name": "Nuestras Marcas",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "padding": [
+                32,
+                80
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "y8x9H",
+                  "name": "bTitle",
+                  "fill": "#0a0a0a",
+                  "content": "Nuestras Marcas",
+                  "fontFamily": "Outfit",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "H62Sh",
+                  "name": "brandRow",
+                  "width": "fill_container",
+                  "gap": 32,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "jWimi",
+                      "name": "brandDuralast",
+                      "width": 160,
+                      "height": 60,
+                      "fill": "#f5f5f5",
+                      "cornerRadius": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "VIbSZ",
+                          "name": "b1t",
+                          "fill": "#636363",
+                          "content": "DURALAST",
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "SrQdy",
+                      "name": "brandMann",
+                      "width": 160,
+                      "height": 60,
+                      "fill": "#f5f5f5",
+                      "cornerRadius": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "TKgIU",
+                          "name": "b2t",
+                          "fill": "#636363",
+                          "content": "MANN-FILTER",
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "DijMW",
+                      "name": "brandBosch",
+                      "width": 160,
+                      "height": 60,
+                      "fill": "#f5f5f5",
+                      "cornerRadius": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Nlvdc",
+                          "name": "b3t",
+                          "fill": "#636363",
+                          "content": "BOSCH",
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "0fFdl",
+                      "name": "brandGates",
+                      "width": 160,
+                      "height": 60,
+                      "fill": "#f5f5f5",
+                      "cornerRadius": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "4oTQ8",
+                          "name": "b4t",
+                          "fill": "#636363",
+                          "content": "GATES",
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Hnm3I",
+                      "name": "brandHella",
+                      "width": 160,
+                      "height": 60,
+                      "fill": "#f5f5f5",
+                      "cornerRadius": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "KCEQ0",
+                          "name": "b5t",
+                          "fill": "#636363",
+                          "content": "HELLA",
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "AIScn",
+                      "name": "brandMonroe",
+                      "width": 160,
+                      "height": 60,
+                      "fill": "#f5f5f5",
+                      "cornerRadius": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "fuDQ0",
+                          "name": "b6t",
+                          "fill": "#636363",
+                          "content": "MONROE",
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "yNsyR",
+              "type": "ref",
+              "ref": "EhEXz",
+              "width": "fill_container",
+              "name": "footerRef",
+              "padding": [
+                48,
+                80
+              ]
             }
           ]
         }

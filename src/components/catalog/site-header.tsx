@@ -1,9 +1,10 @@
-import { Headset, ShoppingCart, User } from 'lucide-react';
+import { Headset, User } from 'lucide-react';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { Container } from '@/components/shared/container';
 import { HeaderSearch } from '@/components/catalog/header-search';
+import { CartIcon } from '@/components/catalog/cart-icon';
 
 export async function SiteHeader() {
   const t = await getTranslations('catalog');
@@ -41,18 +42,7 @@ export async function SiteHeader() {
             <span className="text-sm font-medium leading-tight">{t('header.account')}</span>
           </Link>
 
-          <Link
-            href="/cart"
-            className="flex flex-col items-center gap-1 text-brand-navy hover:text-brand-blue"
-          >
-            <span className="relative flex size-9 items-center justify-center rounded-full border-[1.5px] border-current">
-              <ShoppingCart className="size-5" />
-              <span className="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-brand-red text-xs font-bold text-white">
-                0
-              </span>
-            </span>
-            <span className="text-sm font-medium leading-tight">{t('header.cart')}</span>
-          </Link>
+          <CartIcon label={t('header.cart')} />
         </nav>
       </Container>
     </header>

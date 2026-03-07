@@ -3,13 +3,14 @@
 import { useState } from 'react';
 import { RotateCcw, Shield, Truck } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { FitmentBadge } from '@/components/catalog/pdp/fitment-badge';
 import { QuantityStepper } from '@/components/catalog/pdp/quantity-stepper';
 import { StarRating } from '@/components/catalog/pdp/star-rating';
+import { useCartContext } from '@/hooks/use-cart-context';
 import type { MockProduct } from '@/data/mock-demo';
 import { formatPrice } from '@/data/mock-demo';
 
@@ -19,6 +20,8 @@ interface ProductInfoProps {
 
 export function ProductInfo({ product }: ProductInfoProps) {
   const t = useTranslations('catalog');
+  const router = useRouter();
+  const { addItem } = useCartContext();
   const [quantity, setQuantity] = useState(1);
 
   return (
@@ -87,11 +90,14 @@ export function ProductInfo({ product }: ProductInfoProps) {
       <div className="flex items-center gap-4">
         <QuantityStepper value={quantity} onChange={setQuantity} />
         <Button
-          asChild
           size="lg"
           className="flex-1 bg-brand-navy text-white hover:bg-brand-navy/90"
+          onClick={() => {
+            addItem(product, quantity);
+            router.push('/cart');
+          }}
         >
-          <Link href="/cart">{t('pdp.addToCart')}</Link>
+          {t('pdp.addToCart')}
         </Button>
       </div>
 

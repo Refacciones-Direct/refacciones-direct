@@ -2,13 +2,14 @@ import { Package } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 
 interface SearchProductCardProps {
-  id: number;
+  id: number | string;
   name: string;
   brand: string;
   sku: string;
   price: number | null;
   currency: string;
-  imageUrls: string[];
+  imageUrl?: string;
+  imageUrls?: string[];
   category: string;
 }
 
@@ -19,6 +20,7 @@ export function SearchProductCard({
   sku,
   price,
   currency,
+  imageUrl,
   imageUrls,
   category,
 }: SearchProductCardProps) {
@@ -29,15 +31,21 @@ export function SearchProductCard({
         )
       : null;
 
+  const src = imageUrl ?? (imageUrls && imageUrls.length > 0 ? imageUrls[0] : undefined);
+
   return (
     <Link
       href={`/products/${id}`}
       className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-shadow hover:shadow-md"
     >
       {/* Image area */}
-      <div className="flex h-40 items-center justify-center bg-bg-light">
-        {imageUrls.length > 0 ? (
-          <img src={imageUrls[0]} alt={name} className="h-full w-full object-contain p-2" />
+      <div className="flex h-40 items-center justify-center overflow-hidden bg-white">
+        {src ? (
+          <img
+            src={src}
+            alt={name}
+            className="h-full w-full object-contain transition-transform group-hover:scale-105"
+          />
         ) : (
           <Package className="size-10 text-muted-foreground/30" />
         )}

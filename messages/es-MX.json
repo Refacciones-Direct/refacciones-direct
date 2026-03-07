@@ -117,11 +117,14 @@
       "vp4Sub": "A TU DISPOSICIÓN"
     },
     "manufacturers": {
-      "title": "Nuestros Fabricantes",
-      "subtitle": "Fabricantes mexicanos verificados"
+      "title": "Nuestras Marcas",
+      "subtitle": "Marcas líderes en refacciones automotrices"
     },
     "featuredProducts": {
       "title": "Productos Destacados"
+    },
+    "homepage": {
+      "shopByCategory": "Compra por categoría"
     },
     "sectionDivider": {
       "text": "Todas las refacciones"

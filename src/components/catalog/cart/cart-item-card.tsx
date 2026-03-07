@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { CircleCheck, Package } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useVehicleContext } from '@/hooks/use-vehicle-context';
@@ -10,12 +9,13 @@ import { formatPrice } from '@/data/mock-demo';
 
 interface CartItemCardProps {
   item: MockCartItem;
+  onQuantityChange: (quantity: number) => void;
+  onRemove: () => void;
 }
 
-export function CartItemCard({ item }: CartItemCardProps) {
+export function CartItemCard({ item, onQuantityChange, onRemove }: CartItemCardProps) {
   const t = useTranslations('catalog');
   const { vehicle } = useVehicleContext();
-  const [quantity, setQuantity] = useState(item.quantity);
 
   const vehicleLabel = vehicle ? `${vehicle.year} ${vehicle.make} ${vehicle.model}` : null;
 
@@ -42,17 +42,21 @@ export function CartItemCard({ item }: CartItemCardProps) {
             )}
           </div>
           <span className="shrink-0 text-lg font-bold">
-            {formatPrice(item.product.price * quantity)}
+            {formatPrice(item.product.price * item.quantity)}
           </span>
         </div>
 
         <div className="flex items-center justify-between">
-          <QuantityStepper value={quantity} onChange={setQuantity} />
+          <QuantityStepper value={item.quantity} onChange={onQuantityChange} />
           <div className="flex items-center gap-3">
             <button type="button" className="text-xs text-brand-blue hover:underline">
               {t('cart.saveForLater')}
             </button>
-            <button type="button" className="text-xs text-destructive hover:underline">
+            <button
+              type="button"
+              className="text-xs text-destructive hover:underline"
+              onClick={onRemove}
+            >
               {t('cart.remove')}
             </button>
           </div>
