@@ -2,28 +2,34 @@ import { getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/utils';
 import { Container } from '@/components/shared/container';
 
-const MANUFACTURERS = ['Fabricante 1', 'Fabricante 2', 'Fabricante 3'] as const;
+const BRANDS = [
+  { name: 'DURALAST', logo: '/images/duralast logo.png' },
+  { name: 'MANN-FILTER', logo: '/images/mann filter logo.png' },
+  { name: 'BOSCH', logo: '/images/Bosch-logo.svg.png' },
+  { name: 'GATES', logo: '/images/GatesCorporation_Logo.svg' },
+  { name: 'HELLA', logo: '/images/hella logo.jpg' },
+  { name: 'MONROE', logo: '/images/monroe logo.png' },
+] as const;
 
 export async function BrandLogos() {
   const t = await getTranslations('catalog');
 
   return (
-    <section
-      data-slot="brand-logos"
-      className={cn('bg-card py-8')}
-      aria-label={t('manufacturers.title')}
-    >
-      <Container className="flex flex-col items-center gap-4">
-        <h2 className="text-lg font-semibold">{t('manufacturers.title')}</h2>
-        <p className="text-sm text-muted-foreground">{t('manufacturers.subtitle')}</p>
+    <section data-slot="brand-logos" className={cn('py-8')} aria-label={t('manufacturers.title')}>
+      <Container className="flex flex-col items-center gap-5">
+        <h2 className="text-xl font-bold">{t('manufacturers.title')}</h2>
 
-        <div className="flex items-center gap-8">
-          {MANUFACTURERS.map((mfg) => (
+        <div className="flex flex-wrap items-center justify-center gap-6">
+          {BRANDS.map((brand) => (
             <span
-              key={mfg}
-              className="flex h-14 w-36 items-center justify-center rounded bg-bg-light text-sm font-bold text-foreground"
+              key={brand.name}
+              className="flex h-20 w-40 items-center justify-center rounded-lg border border-border bg-white p-3 transition-shadow hover:shadow-md"
             >
-              {mfg}
+              <img
+                src={brand.logo}
+                alt={brand.name}
+                className="max-h-full max-w-full object-contain"
+              />
             </span>
           ))}
         </div>
