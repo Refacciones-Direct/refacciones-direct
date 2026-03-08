@@ -8,6 +8,8 @@ This project uses Claude Code's native subagent system with three specialized ag
 
 **Role:** Orchestrator. Analyzes requests, produces implementation plans, delegates to Coder and Reviewer, reports results.
 
+**Model:** Opus 4.6 — uses the most capable model for deep reasoning, architectural analysis, and plan generation.
+
 **Access:** Read-only (Read, Glob, Grep)
 
 **When to use:** Starting any feature, bug fix, or refactor that touches more than one file or requires design decisions. The Planner reads the codebase, breaks the work into small scoped tasks, gets your approval, then runs each task through the Coder → Reviewer pipeline.
@@ -16,6 +18,8 @@ This project uses Claude Code's native subagent system with three specialized ag
 
 **Role:** Implementation worker. Receives one task at a time and implements it precisely, with tests.
 
+**Model:** Sonnet 4.6 — conserves tokens on well-scoped implementation tasks where the plan is already defined.
+
 **Access:** Read + Write (Read, Write, Edit, Bash, Glob, Grep)
 
 **When to use:** Typically invoked by the Planner, but you can invoke it directly for small, well-defined tasks where planning isn't needed.
@@ -23,6 +27,8 @@ This project uses Claude Code's native subagent system with three specialized ag
 ### Reviewer (`.claude/agents/reviewer.md`)
 
 **Role:** Quality gate. Reviews code changes against the task spec, runs tests, reports findings.
+
+**Model:** Sonnet 4.6 — conserves tokens on well-scoped review tasks where criteria are clearly defined.
 
 **Access:** Read-only + Bash (for running tests/lints)
 
