@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -13,41 +12,10 @@ import {
 } from '@/components/ui/select';
 import { useRouter } from '@/i18n/navigation';
 import { useVehicleContext } from '@/hooks/use-vehicle-context';
-import type {
-  VehicleOptionsMakes,
-  VehicleOptionsModels,
-  VehicleOptionsYears,
-} from '@/services/search/types';
+import { useVehicleOptions } from '@/hooks/use-vehicle-options';
 
 interface VehicleSelectorProps {
   className?: string;
-}
-
-async function fetchMakes(): Promise<string[]> {
-  const res = await fetch('/api/public/vehicle-options');
-  const data: VehicleOptionsMakes = await res.json();
-  return data.makes ?? [];
-}
-
-async function fetchModels(make: string): Promise<string[]> {
-  const res = await fetch(`/api/public/vehicle-options?make=${encodeURIComponent(make)}`);
-  const data: VehicleOptionsModels = await res.json();
-  return data.models ?? [];
-}
-
-async function fetchYears(make: string, model: string): Promise<number[]> {
-  const res = await fetch(
-    `/api/public/vehicle-options?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}`,
-  );
-  const data: VehicleOptionsYears = await res.json();
-  if (data.year_min && data.year_max) {
-    const range: number[] = [];
-    for (let y = data.year_max; y >= data.year_min; y--) {
-      range.push(y);
-    }
-    return range;
-  }
-  return [];
 }
 
 export function VehicleSelector({ className }: VehicleSelectorProps) {
@@ -55,76 +23,21 @@ export function VehicleSelector({ className }: VehicleSelectorProps) {
   const router = useRouter();
   const { setVehicle } = useVehicleContext();
 
-  // Unique sentinel per fetch cycle — lets us discard stale responses.
-  // useRef scopes these to the component instance (not module-level).
-  const makesFetchId = useRef(0);
-  const modelsFetchId = useRef(0);
-  const yearsFetchId = useRef(0);
-
-  const [makes, setMakes] = useState<string[] | null>(null);
-  const [models, setModels] = useState<string[] | null>(null);
-  const [years, setYears] = useState<number[] | null>(null);
-
-  const [selectedMake, setSelectedMake] = useState('');
-  const [selectedModel, setSelectedModel] = useState('');
-  const [selectedYear, setSelectedYear] = useState('');
-
-  const isReady = !!selectedMake && !!selectedModel && !!selectedYear;
-  const loadingMakes = makes === null;
-  const loadingModels = !!selectedMake && models === null;
-  const loadingYears = !!selectedModel && years === null;
-
-  // Fetch makes on mount
-  useEffect(() => {
-    const id = ++makesFetchId.current;
-    fetchMakes()
-      .then((data) => {
-        if (id === makesFetchId.current) setMakes(data);
-      })
-      .catch(() => {
-        if (id === makesFetchId.current) setMakes([]);
-      });
-  }, []);
-
-  // Fetch models when make changes
-  useEffect(() => {
-    if (!selectedMake) return;
-    const id = ++modelsFetchId.current;
-    fetchModels(selectedMake)
-      .then((data) => {
-        if (id === modelsFetchId.current) setModels(data);
-      })
-      .catch(() => {
-        if (id === modelsFetchId.current) setModels([]);
-      });
-  }, [selectedMake]);
-
-  // Fetch years when model changes
-  useEffect(() => {
-    if (!selectedMake || !selectedModel) return;
-    const id = ++yearsFetchId.current;
-    fetchYears(selectedMake, selectedModel)
-      .then((data) => {
-        if (id === yearsFetchId.current) setYears(data);
-      })
-      .catch(() => {
-        if (id === yearsFetchId.current) setYears([]);
-      });
-  }, [selectedMake, selectedModel]);
-
-  function handleMakeChange(value: string) {
-    setSelectedMake(value);
-    setSelectedModel('');
-    setSelectedYear('');
-    setModels(null); // Reset to loading
-    setYears(null);
-  }
-
-  function handleModelChange(value: string) {
-    setSelectedModel(value);
-    setSelectedYear('');
-    setYears(null); // Reset to loading
-  }
+  const {
+    makes,
+    models,
+    years,
+    selectedMake,
+    selectedModel,
+    selectedYear,
+    loadingMakes,
+    loadingModels,
+    loadingYears,
+    isReady,
+    selectMake,
+    selectModel,
+    selectYear,
+  } = useVehicleOptions();
 
   function handleSearch() {
     if (!isReady) return;
@@ -144,7 +57,7 @@ export function VehicleSelector({ className }: VehicleSelectorProps) {
 
       <div className="mt-5 flex flex-col gap-4">
         {/* Make */}
-        <Select value={selectedMake} onValueChange={handleMakeChange} disabled={loadingMakes}>
+        <Select value={selectedMake} onValueChange={selectMake} disabled={loadingMakes}>
           <SelectTrigger className="w-full">
             <SelectValue
               placeholder={
@@ -153,7 +66,7 @@ export function VehicleSelector({ className }: VehicleSelectorProps) {
             />
           </SelectTrigger>
           <SelectContent>
-            {(makes ?? []).map((make) => (
+            {makes.map((make) => (
               <SelectItem key={make} value={make}>
                 {make}
               </SelectItem>
@@ -164,7 +77,7 @@ export function VehicleSelector({ className }: VehicleSelectorProps) {
         {/* Model */}
         <Select
           value={selectedModel}
-          onValueChange={handleModelChange}
+          onValueChange={selectModel}
           disabled={!selectedMake || loadingModels}
         >
           <SelectTrigger className="w-full">
@@ -175,7 +88,7 @@ export function VehicleSelector({ className }: VehicleSelectorProps) {
             />
           </SelectTrigger>
           <SelectContent>
-            {(models ?? []).map((model) => (
+            {models.map((model) => (
               <SelectItem key={model} value={model}>
                 {model}
               </SelectItem>
@@ -186,7 +99,7 @@ export function VehicleSelector({ className }: VehicleSelectorProps) {
         {/* Year */}
         <Select
           value={selectedYear}
-          onValueChange={setSelectedYear}
+          onValueChange={selectYear}
           disabled={!selectedModel || loadingYears}
         >
           <SelectTrigger className="w-full">
@@ -197,7 +110,7 @@ export function VehicleSelector({ className }: VehicleSelectorProps) {
             />
           </SelectTrigger>
           <SelectContent>
-            {(years ?? []).map((year) => (
+            {years.map((year) => (
               <SelectItem key={year} value={String(year)}>
                 {year}
               </SelectItem>
