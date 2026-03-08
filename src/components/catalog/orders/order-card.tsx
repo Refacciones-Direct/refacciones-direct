@@ -48,7 +48,18 @@ export async function OrderCard({ order }: OrderCardProps) {
         {/* Items row */}
         <div className="flex items-center gap-2">
           {order.items.map((item) => (
-            <div key={item.product.id} className="size-12 rounded-md bg-bg-light" />
+            <div
+              key={item.product.id}
+              className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md bg-bg-light"
+            >
+              {item.product.imageUrl ? (
+                <img
+                  src={item.product.imageUrl}
+                  alt={item.product.name}
+                  className="h-full w-full object-contain"
+                />
+              ) : null}
+            </div>
           ))}
           <span className="ml-1 text-sm text-muted-foreground">
             {t('orders.items', { count: itemCount })}

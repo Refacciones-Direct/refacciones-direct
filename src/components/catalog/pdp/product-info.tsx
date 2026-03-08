@@ -26,26 +26,22 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
   return (
     <div data-slot="product-info" className="flex flex-col gap-4">
-      {/* Brand */}
-      <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-        {product.brand}
-      </span>
-
-      {/* Name */}
-      <h1 className="text-2xl font-bold">{product.name}</h1>
-
-      {/* Part number + SKU */}
-      <div className="flex items-center gap-3 text-sm text-muted-foreground">
-        <span>
-          {t('pdp.partNumber')}: {product.partNumber}
+      {/* Brand + Name + Meta + Rating */}
+      <div className="flex flex-col gap-1">
+        <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+          {product.brand}
         </span>
-        <span>
-          {t('pdp.sku')}: {product.sku}
-        </span>
+        <h1 className="text-2xl font-bold">{product.name}</h1>
+        <div className="flex items-center gap-3 text-sm text-muted-foreground">
+          <span>
+            {t('pdp.partNumber')}: {product.partNumber}
+          </span>
+          <span>
+            {t('pdp.sku')}: {product.sku}
+          </span>
+        </div>
+        <StarRating rating={product.rating} count={product.reviewCount} />
       </div>
-
-      {/* Rating */}
-      <StarRating rating={product.rating} count={product.reviewCount} />
 
       <Separator />
 
@@ -99,6 +95,18 @@ export function ProductInfo({ product }: ProductInfoProps) {
         >
           {t('pdp.addToCart')}
         </Button>
+      </div>
+
+      {/* Subtotal row */}
+      <div className="flex items-center justify-between">
+        <span className="text-sm text-muted-foreground">
+          {t('pdp.perUnit', { price: formatPrice(product.price) })}
+        </span>
+        <div className="flex items-center gap-1">
+          <span className="text-sm text-muted-foreground">{t('pdp.subtotal')}</span>
+          <span className="text-base font-bold">{formatPrice(product.price * quantity)}</span>
+          <span className="text-xs text-muted-foreground">{product.currency}</span>
+        </div>
       </div>
 
       {/* Trust signals */}

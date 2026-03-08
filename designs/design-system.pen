@@ -3617,7 +3617,7 @@
                   "type": "ref",
                   "ref": "C3KOZ",
                   "x": 24,
-                  "y": 24.01994370166805,
+                  "y": 24.019943701668048,
                   "width": "fill_container",
                   "descendants": {
                     "NEMHS": {
@@ -5079,6 +5079,7 @@
                           "fill": "$--brand-navy",
                           "content": "Ayuda y contacto",
                           "lineHeight": 1.2,
+                          "textAlign": "center",
                           "fontFamily": "Outfit",
                           "fontSize": 14,
                           "fontWeight": "500"
@@ -5127,6 +5128,7 @@
                           "fill": "$--brand-navy",
                           "content": "Mi cuenta",
                           "lineHeight": 1.2,
+                          "textAlign": "center",
                           "fontFamily": "Outfit",
                           "fontSize": 14,
                           "fontWeight": "500"
@@ -5213,6 +5215,7 @@
                           "fill": "$--brand-navy",
                           "content": "Mi cesta",
                           "lineHeight": 1.2,
+                          "textAlign": "center",
                           "fontFamily": "Outfit",
                           "fontSize": 14,
                           "fontWeight": "500"
@@ -6298,7 +6301,7 @@
                       "id": "p5NkI",
                       "name": "copyText",
                       "fill": "#ffffff80",
-                      "content": "Copyright 2011-2026 — RefaccionesDirect MX — Todos los derechos reservados",
+                      "content": "Copyright 2026 — RefaccionesDirect MX — Todos los derechos reservados",
                       "lineHeight": 1.4,
                       "textAlign": "center",
                       "fontFamily": "Outfit",
@@ -11435,6 +11438,63 @@
                               "fontFamily": "Outfit",
                               "fontSize": 16,
                               "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "U5DtZ",
+                      "name": "subtotalRow",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "YFFKt",
+                          "name": "unitPriceHint",
+                          "fill": "$--muted-foreground",
+                          "content": "$849.00 c/u",
+                          "fontFamily": "Outfit",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "1Ettr",
+                          "name": "subtotalValue",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "k3B33",
+                              "fill": "$--muted-foreground",
+                              "content": "Subtotal:",
+                              "fontFamily": "Outfit",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "ebvfd",
+                              "name": "subtotalAmount",
+                              "fill": "#3a3b3f",
+                              "content": "$849.00",
+                              "fontFamily": "Outfit",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "I8qlE",
+                              "fill": "$--muted-foreground",
+                              "content": "MXN",
+                              "fontFamily": "Outfit",
+                              "fontSize": 12,
+                              "fontWeight": "500"
                             }
                           ]
                         }
@@ -17307,6 +17367,911 @@
               "padding": [
                 48,
                 80
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "HkkDe",
+          "name": "Landing Page v3 — Tablet (768px)",
+          "width": 768,
+          "fill": "#fafafa",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "OoUSX",
+              "name": "screenLabel",
+              "width": "fill_container",
+              "height": 36,
+              "fill": "#1e1e2e",
+              "gap": 8,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "83Xo4",
+                  "fill": "#ffffff",
+                  "content": "v3 — Tablet Responsive (768px)",
+                  "fontFamily": "Outfit",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "sDD9G",
+                  "fill": "#a0a0b0",
+                  "content": "Carousel pattern for categories, products, and brands",
+                  "fontFamily": "Outfit",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "F8nsU",
+              "name": "Category Tiles — Carousel",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                32,
+                24
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "CFToX",
+                  "name": "catHeader",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "1hCNi",
+                      "name": "catTitle",
+                      "fill": "#0a0a0a",
+                      "content": "Compra por categoría",
+                      "fontFamily": "Outfit",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "NghsZ",
+                  "name": "carouselWithArrows",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "qkTb3",
+                      "name": "arrowLeft",
+                      "width": 36,
+                      "height": 36,
+                      "fill": "#ffffffdd",
+                      "cornerRadius": 18,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#e0e0e0"
+                      },
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "NMnPc",
+                          "name": "catArrLI",
+                          "width": 18,
+                          "height": 18,
+                          "iconFontName": "chevron-left",
+                          "iconFontFamily": "lucide",
+                          "fill": "#333333"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "usP8e",
+                      "name": "catCarouselRow",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "v2Mog",
+                          "name": "tileFrenado",
+                          "width": 200,
+                          "fill": "#ffffff",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#e8e8e8"
+                          },
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": [
+                            20,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "dAFpy",
+                              "name": "tileImg",
+                              "width": 120,
+                              "height": 90,
+                              "fill": "#f0f0f0",
+                              "cornerRadius": 6,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon_font",
+                                  "id": "6vl9c",
+                                  "name": "tile1Icon",
+                                  "width": 32,
+                                  "height": 32,
+                                  "iconFontName": "disc",
+                                  "iconFontFamily": "lucide",
+                                  "fill": "#b0b0b0"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "PqhI8",
+                              "name": "tile1Label",
+                              "fill": "#0a0a0a",
+                              "content": "Frenado",
+                              "fontFamily": "Outfit",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "5ds0i",
+                          "name": "tileFiltros",
+                          "width": 200,
+                          "fill": "#ffffff",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#e8e8e8"
+                          },
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": [
+                            20,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "6aAUW",
+                              "name": "tileImg",
+                              "width": 120,
+                              "height": 90,
+                              "fill": "#f0f0f0",
+                              "cornerRadius": 6,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon_font",
+                                  "id": "oCpOr",
+                                  "name": "tile2Icon",
+                                  "width": 32,
+                                  "height": 32,
+                                  "iconFontName": "filter",
+                                  "iconFontFamily": "lucide",
+                                  "fill": "#b0b0b0"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "KAALb",
+                              "name": "tile2Label",
+                              "fill": "#0a0a0a",
+                              "content": "Filtros y aceite",
+                              "fontFamily": "Outfit",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "1vv7K",
+                          "name": "tileMotor",
+                          "width": 200,
+                          "fill": "#ffffff",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#e8e8e8"
+                          },
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": [
+                            20,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "J6xGw",
+                              "name": "tileImg",
+                              "width": 120,
+                              "height": 90,
+                              "fill": "#f0f0f0",
+                              "cornerRadius": 6,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon_font",
+                                  "id": "PXyJG",
+                                  "name": "tile3Icon",
+                                  "width": 32,
+                                  "height": 32,
+                                  "iconFontName": "wrench",
+                                  "iconFontFamily": "lucide",
+                                  "fill": "#b0b0b0"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "13as8",
+                              "name": "tile3Label",
+                              "fill": "#0a0a0a",
+                              "content": "Piezas de motor",
+                              "fontFamily": "Outfit",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "SEVAT",
+                          "name": "tileArranquePeek",
+                          "opacity": 0.5,
+                          "width": 200,
+                          "fill": "#ffffff",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#e8e8e8"
+                          },
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": [
+                            20,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "qhGgA",
+                              "name": "tileImg",
+                              "width": 120,
+                              "height": 90,
+                              "fill": "#f0f0f0",
+                              "cornerRadius": 6,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon_font",
+                                  "id": "hGSkt",
+                                  "name": "tile4Icon",
+                                  "width": 32,
+                                  "height": 32,
+                                  "iconFontName": "battery",
+                                  "iconFontFamily": "lucide",
+                                  "fill": "#b0b0b0"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "2Hb7N",
+                              "name": "tile4Label",
+                              "fill": "#0a0a0a",
+                              "content": "Arranque y carga",
+                              "fontFamily": "Outfit",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "N4N7P",
+                      "name": "arrowRight",
+                      "width": 36,
+                      "height": 36,
+                      "fill": "$--primary",
+                      "cornerRadius": 18,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "EHuvP",
+                          "name": "catArrRI",
+                          "width": 18,
+                          "height": 18,
+                          "iconFontName": "chevron-right",
+                          "iconFontFamily": "lucide",
+                          "fill": "#ffffff"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "CyXxg",
+                  "name": "scrollDots",
+                  "width": "fill_container",
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    0,
+                    0,
+                    0
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "dcTzO",
+                      "name": "catDot1",
+                      "fill": "$--primary",
+                      "width": 8,
+                      "height": 8
+                    },
+                    {
+                      "type": "ellipse",
+                      "id": "Y3ZCf",
+                      "name": "catDot2",
+                      "fill": "#d0d0d0",
+                      "width": 6,
+                      "height": 6
+                    },
+                    {
+                      "type": "ellipse",
+                      "id": "k560O",
+                      "name": "catDot3",
+                      "fill": "#d0d0d0",
+                      "width": 6,
+                      "height": 6
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "nJENj",
+              "name": "Productos Destacados — Carousel",
+              "width": "fill_container",
+              "fill": "#fafafa",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                32,
+                24
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ASq00",
+                  "name": "prodHeader",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "bG1lS",
+                      "name": "prodTitle",
+                      "fill": "#0a0a0a",
+                      "content": "Productos Destacados",
+                      "fontFamily": "Outfit",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Hd6Xj",
+                  "name": "carouselWithArrows",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "7nHeO",
+                      "name": "arrowLeft",
+                      "width": 36,
+                      "height": 36,
+                      "fill": "#ffffffdd",
+                      "cornerRadius": 18,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#e0e0e0"
+                      },
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "Bj1jy",
+                          "name": "pArrLI",
+                          "width": 18,
+                          "height": 18,
+                          "iconFontName": "chevron-left",
+                          "iconFontFamily": "lucide",
+                          "fill": "#333333"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "363uy",
+                      "name": "prodCarouselRow",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "id": "IMOmm",
+                          "type": "ref",
+                          "ref": "28dZ4",
+                          "width": 220,
+                          "name": "pc1",
+                          "descendants": {
+                            "qG0cA": {
+                              "content": "Frenado"
+                            },
+                            "vs3RL": {
+                              "content": "Rotor de Freno Ventilado..."
+                            },
+                            "JrRnV": {
+                              "content": "DURALAST · BRK-ROT-078"
+                            },
+                            "t9e3H": {
+                              "content": "$629.00"
+                            },
+                            "zfDe0": {
+                              "content": "MXN"
+                            }
+                          }
+                        },
+                        {
+                          "id": "Tgbhw",
+                          "type": "ref",
+                          "ref": "28dZ4",
+                          "width": 220,
+                          "name": "pc2",
+                          "descendants": {
+                            "qG0cA": {
+                              "content": "Filtros y aceite"
+                            },
+                            "vs3RL": {
+                              "content": "Aceite de Motor Sintético 5W-30"
+                            },
+                            "JrRnV": {
+                              "content": "MOBIL 1 · OIL-SYN-530"
+                            },
+                            "t9e3H": {
+                              "content": "$589.00"
+                            },
+                            "zfDe0": {
+                              "content": "MXN"
+                            }
+                          }
+                        },
+                        {
+                          "id": "VvgiW",
+                          "type": "ref",
+                          "ref": "28dZ4",
+                          "width": 220,
+                          "name": "pc3",
+                          "descendants": {
+                            "qG0cA": {
+                              "content": "Piezas de motor"
+                            },
+                            "vs3RL": {
+                              "content": "Bomba de Agua con Empaque"
+                            },
+                            "JrRnV": {
+                              "content": "GMB · ENG-WPM-045"
+                            },
+                            "t9e3H": {
+                              "content": "$1,249.00"
+                            },
+                            "zfDe0": {
+                              "content": "MXN"
+                            }
+                          }
+                        },
+                        {
+                          "id": "IckkT",
+                          "type": "ref",
+                          "ref": "28dZ4",
+                          "width": 220,
+                          "opacity": 0.5,
+                          "name": "pc4",
+                          "descendants": {
+                            "qG0cA": {
+                              "content": "Arranque y carga"
+                            },
+                            "vs3RL": {
+                              "content": "Alternador Remanufactura..."
+                            },
+                            "JrRnV": {
+                              "content": "DENSO · ALT-RMF-802"
+                            },
+                            "t9e3H": {
+                              "content": "$4,599.00"
+                            },
+                            "zfDe0": {
+                              "content": "MXN"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "DE65w",
+                      "name": "arrowRight",
+                      "width": 36,
+                      "height": 36,
+                      "fill": "$--primary",
+                      "cornerRadius": 18,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "Fg9GZ",
+                          "name": "pArrRI",
+                          "width": 18,
+                          "height": 18,
+                          "iconFontName": "chevron-right",
+                          "iconFontFamily": "lucide",
+                          "fill": "#ffffff"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "IDuiu",
+                  "name": "scrollDots",
+                  "width": "fill_container",
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    0,
+                    0,
+                    0
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "EUCQ1",
+                      "name": "prodDot1",
+                      "fill": "$--primary",
+                      "width": 8,
+                      "height": 8
+                    },
+                    {
+                      "type": "ellipse",
+                      "id": "EKqCN",
+                      "name": "prodDot2",
+                      "fill": "#d0d0d0",
+                      "width": 6,
+                      "height": 6
+                    },
+                    {
+                      "type": "ellipse",
+                      "id": "LzdH1",
+                      "name": "prodDot3",
+                      "fill": "#d0d0d0",
+                      "width": 6,
+                      "height": 6
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "7ETO3",
+              "name": "Nuestras Marcas — Carousel",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                32,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "pcoMl",
+                  "name": "brandHeader",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "zjSwq",
+                      "name": "brandTitle",
+                      "fill": "#0a0a0a",
+                      "content": "Nuestras Marcas",
+                      "fontFamily": "Outfit",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "EFhpI",
+                  "name": "carouselWithArrows",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "pWF3a",
+                      "name": "arrowLeft",
+                      "width": 36,
+                      "height": 36,
+                      "fill": "#ffffffdd",
+                      "cornerRadius": 18,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#e0e0e0"
+                      },
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "P7y7A",
+                          "name": "bArrLI",
+                          "width": 18,
+                          "height": 18,
+                          "iconFontName": "chevron-left",
+                          "iconFontFamily": "lucide",
+                          "fill": "#333333"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "yrwbi",
+                      "name": "brandCarouselRow",
+                      "width": "fill_container",
+                      "gap": 16,
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "WVQ9b",
+                          "name": "brandDuralast",
+                          "width": 160,
+                          "height": 70,
+                          "fill": "#ffffff",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#e8e8e8"
+                          },
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "hm7Iu",
+                              "name": "b1t",
+                              "fill": "#636363",
+                              "content": "DURALAST",
+                              "fontFamily": "Outfit",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Et4HG",
+                          "name": "brandMann",
+                          "width": 160,
+                          "height": 70,
+                          "fill": "#ffffff",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#e8e8e8"
+                          },
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "IxZTw",
+                              "name": "b2t",
+                              "fill": "#636363",
+                              "content": "MANN-FILTER",
+                              "fontFamily": "Outfit",
+                              "fontSize": 14,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Uhf4m",
+                          "name": "brandBosch",
+                          "width": 160,
+                          "height": 70,
+                          "fill": "#ffffff",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#e8e8e8"
+                          },
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "jRbEV",
+                              "name": "b3t",
+                              "fill": "#636363",
+                              "content": "BOSCH",
+                              "fontFamily": "Outfit",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "bGGnw",
+                          "name": "brandGatesPeek",
+                          "opacity": 0.5,
+                          "width": 160,
+                          "height": 70,
+                          "fill": "#ffffff",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#e8e8e8"
+                          },
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "UtOYE",
+                              "name": "b4t",
+                              "fill": "#636363",
+                              "content": "GATES",
+                              "fontFamily": "Outfit",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vqutT",
+                      "name": "arrowRight",
+                      "width": 36,
+                      "height": 36,
+                      "fill": "$--primary",
+                      "cornerRadius": 18,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "pUmV2",
+                          "name": "bArrRI",
+                          "width": 18,
+                          "height": 18,
+                          "iconFontName": "chevron-right",
+                          "iconFontFamily": "lucide",
+                          "fill": "#ffffff"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "pKlH8",
+                  "name": "scrollDots",
+                  "width": "fill_container",
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    0,
+                    0,
+                    0
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "C9gaY",
+                      "name": "brandDot1",
+                      "fill": "$--primary",
+                      "width": 8,
+                      "height": 8
+                    },
+                    {
+                      "type": "ellipse",
+                      "id": "X4k3Q",
+                      "name": "brandDot2",
+                      "fill": "#d0d0d0",
+                      "width": 6,
+                      "height": 6
+                    }
+                  ]
+                }
               ]
             }
           ]

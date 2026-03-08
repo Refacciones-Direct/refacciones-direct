@@ -21,9 +21,17 @@ export function CartItemCard({ item, onQuantityChange, onRemove }: CartItemCardP
 
   return (
     <div data-slot="cart-item-card" className="flex gap-4 rounded-lg border border-border p-4">
-      {/* Image placeholder */}
-      <div className="flex size-[100px] shrink-0 items-center justify-center rounded-md bg-bg-light">
-        <Package className="size-8 text-muted-foreground/30" />
+      {/* Product image */}
+      <div className="flex size-[100px] shrink-0 items-center justify-center overflow-hidden rounded-md bg-bg-light">
+        {item.product.imageUrl ? (
+          <img
+            src={item.product.imageUrl}
+            alt={item.product.name}
+            className="h-full w-full object-contain"
+          />
+        ) : (
+          <Package className="size-8 text-muted-foreground/30" />
+        )}
       </div>
 
       {/* Info */}

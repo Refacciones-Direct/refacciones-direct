@@ -243,7 +243,9 @@
       "fitmentTitle": "Vehículos compatibles",
       "specsTitle": "Especificaciones técnicas",
       "partNumber": "No. Parte",
-      "sku": "SKU"
+      "sku": "SKU",
+      "perUnit": "{price} c/u",
+      "subtotal": "Subtotal:"
     },
     "cart": {
       "title": "Carrito de Compras",
@@ -360,7 +362,7 @@
         "Menciones legales"
       ],
       "followTitle": "Síguenos:",
-      "copyright": "Copyright 2011-2026 — RefaccionesDirect MX — Todos los derechos reservados"
+      "copyright": "Copyright 2026 — RefaccionesDirect MX — Todos los derechos reservados"
     }
   }
 }

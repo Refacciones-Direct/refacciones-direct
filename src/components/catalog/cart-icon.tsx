@@ -10,7 +10,7 @@ export function CartIcon({ label }: { label: string }) {
   return (
     <Link
       href="/cart"
-      className="flex flex-col items-center gap-1 text-brand-navy hover:text-brand-blue"
+      className="flex flex-col items-center gap-1 text-brand-navy hover:text-brand-red"
     >
       <span className="relative flex size-9 items-center justify-center rounded-full border-[1.5px] border-current">
         <ShoppingCart className="size-5" />
@@ -20,7 +20,7 @@ export function CartIcon({ label }: { label: string }) {
           </span>
         )}
       </span>
-      <span className="text-sm font-medium leading-tight">{label}</span>
+      <span className="text-center text-sm font-medium leading-tight">{label}</span>
     </Link>
   );
 }
