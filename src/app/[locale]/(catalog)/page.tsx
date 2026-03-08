@@ -5,8 +5,9 @@ import { CategoryNav } from '@/components/catalog/category-nav';
 import { HeroSection } from '@/components/catalog/hero-section';
 import { PromoCarousel } from '@/components/catalog/promo-carousel';
 import { ValueProps } from '@/components/catalog/value-props';
+import { CategoryTileGrid } from '@/components/catalog/category-tile-grid';
+import { FeaturedProducts } from '@/components/catalog/featured-products';
 import { BrandLogos } from '@/components/catalog/brand-logos';
-import { RecentlyViewed } from '@/components/catalog/recently-viewed';
 import { SiteFooter } from '@/components/catalog/site-footer';
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -22,8 +23,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <PromoCarousel />
       </HeroSection>
       <ValueProps />
+      <CategoryTileGrid />
+      <FeaturedProducts />
       <BrandLogos />
-      <RecentlyViewed />
       <SiteFooter />
     </>
   );

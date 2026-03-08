@@ -106,6 +106,15 @@ export interface VehicleContext {
 }
 
 // ---------------------------------------------------------------------------
+// Vehicle Garage (Multi-Vehicle Session State)
+// ---------------------------------------------------------------------------
+
+export interface VehicleGarage {
+  vehicles: VehicleContext[];
+  activeIndex: number; // -1 means "no active vehicle" (shop without)
+}
+
+// ---------------------------------------------------------------------------
 // API Error
 // ---------------------------------------------------------------------------
 

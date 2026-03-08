@@ -1,8 +1,24 @@
-export default function CartPage() {
+import { setRequestLocale } from 'next-intl/server';
+import { SiteHeader } from '@/components/catalog/site-header';
+import { CategoryNav } from '@/components/catalog/category-nav';
+import { SiteFooter } from '@/components/catalog/site-footer';
+import { Container } from '@/components/shared/container';
+import { CartPageContent } from '@/components/catalog/cart/cart-page-content';
+
+export default async function CartPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold">Cart</h1>
-      <p className="text-muted-foreground">Coming soon...</p>
-    </div>
+    <>
+      <SiteHeader />
+      <CategoryNav />
+      <main>
+        <Container className="py-8">
+          <CartPageContent />
+        </Container>
+      </main>
+      <SiteFooter />
+    </>
   );
 }
