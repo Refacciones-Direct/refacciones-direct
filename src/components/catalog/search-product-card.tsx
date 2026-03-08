@@ -36,7 +36,7 @@ export function SearchProductCard({
   return (
     <Link
       href={`/products/${id}`}
-      className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-shadow hover:shadow-md"
+      className="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-shadow hover:shadow-md"
     >
       {/* Image area */}
       <div className="flex h-40 items-center justify-center overflow-hidden bg-white">
@@ -52,14 +52,14 @@ export function SearchProductCard({
       </div>
 
       {/* Card body */}
-      <div className="flex flex-col gap-1 p-3">
+      <div className="flex flex-1 flex-col gap-1 p-3">
         <span className="text-xs text-muted-foreground">{category}</span>
         <span className="line-clamp-2 text-sm font-medium">{name}</span>
         <span className="text-xs text-muted-foreground">
           {brand} · {sku}
         </span>
         {formattedPrice ? (
-          <div className="mt-1 flex items-baseline gap-1">
+          <div className="mt-auto flex items-baseline gap-1 pt-1">
             <span className="text-base font-semibold">{formattedPrice}</span>
             <span className="text-xs text-muted-foreground">{currency}</span>
           </div>
