@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { SiteHeader } from '@/components/catalog/site-header';
 import { SiteFooter } from '@/components/catalog/site-footer';
 import { Container } from '@/components/shared/container';
@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckoutProgressBar } from '@/components/catalog/checkout/progress-bar';
 import { PaymentForm } from '@/components/catalog/checkout/payment-form';
 import { OrderSummary } from '@/components/catalog/checkout/order-summary';
+import { Link } from '@/i18n/navigation';
 import { MOCK_CART, MOCK_SHIPPING_ADDRESS } from '@/data/mock-demo';
 
 export default async function CheckoutPaymentPage({
@@ -13,7 +14,8 @@ export default async function CheckoutPaymentPage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  await params;
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations('catalog');
 
   return (
@@ -37,17 +39,25 @@ export default async function CheckoutPaymentPage({
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm">{t('checkout.shippingAddress')}</CardTitle>
-                    <span className="text-sm text-brand-navy hover:underline">
+                    <Link
+                      href="/checkout/shipping"
+                      className="text-sm font-medium text-brand-navy hover:underline"
+                    >
                       {t('checkout.edit')}
-                    </span>
+                    </Link>
                   </div>
                 </CardHeader>
                 <CardContent className="text-sm">
                   <p className="font-medium">{MOCK_SHIPPING_ADDRESS.name}</p>
-                  <p className="text-muted-foreground">{MOCK_SHIPPING_ADDRESS.street}</p>
                   <p className="text-muted-foreground">
-                    {MOCK_SHIPPING_ADDRESS.city}, {MOCK_SHIPPING_ADDRESS.state}{' '}
-                    {MOCK_SHIPPING_ADDRESS.zip}
+                    {MOCK_SHIPPING_ADDRESS.street} {MOCK_SHIPPING_ADDRESS.extNumber}
+                    {MOCK_SHIPPING_ADDRESS.intNumber && ` Int. ${MOCK_SHIPPING_ADDRESS.intNumber}`}
+                  </p>
+                  <p className="text-muted-foreground">
+                    {MOCK_SHIPPING_ADDRESS.colonia}, {MOCK_SHIPPING_ADDRESS.municipio}
+                  </p>
+                  <p className="text-muted-foreground">
+                    {MOCK_SHIPPING_ADDRESS.state} {MOCK_SHIPPING_ADDRESS.zip}
                   </p>
                   <p className="text-muted-foreground">{MOCK_SHIPPING_ADDRESS.phone}</p>
                 </CardContent>

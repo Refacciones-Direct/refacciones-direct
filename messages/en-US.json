@@ -225,7 +225,9 @@
       "fitmentTitle": "Compatible vehicles",
       "specsTitle": "Technical specifications",
       "partNumber": "Part No.",
-      "sku": "SKU"
+      "sku": "SKU",
+      "perUnit": "{price} ea.",
+      "subtotal": "Subtotal:"
     },
     "cart": {
       "title": "Shopping Cart",
@@ -241,7 +243,20 @@
       "shippingFree": "FREE",
       "tax": "Tax (16%)",
       "total": "Total",
-      "emptyCart": "Your cart is empty"
+      "emptyCart": "Your cart is empty",
+      "print": "Print cart",
+      "authBannerTitle": "Sign in to save your cart",
+      "authBannerSubtitle": "Save your items and track your orders.",
+      "signIn": "Sign In"
+    },
+    "addedToCart": {
+      "title": "Added to Cart",
+      "close": "Close",
+      "qty": "Qty: {count}",
+      "cartSubtotal": "Cart subtotal:",
+      "itemCount": "{count} {count, plural, one {item} other {items}}",
+      "viewCartAndCheckout": "View Cart and Checkout",
+      "continueShopping": "Continue shopping"
     },
     "checkout": {
       "stepShipping": "Shipping",
@@ -250,10 +265,17 @@
       "shippingTitle": "Shipping Address",
       "firstName": "First name",
       "lastName": "Last name",
-      "address": "Address",
-      "city": "City",
+      "street": "Street",
+      "extNumber": "Ext. number",
+      "intNumber": "Int. number",
+      "intNumberPlaceholder": "Apt, office, suite",
+      "optional": "optional",
+      "colonia": "Neighborhood (Colonia)",
+      "municipio": "Municipality",
       "state": "State",
       "zipCode": "ZIP Code",
+      "references": "Delivery references",
+      "referencesPlaceholder": "E.g.: between Street A and Street B, black gate, across from the store...",
       "phone": "Phone",
       "saveAddress": "Save this address",
       "deliveryMethod": "Delivery Method",
@@ -276,6 +298,12 @@
       "secureCheckout": "Secure Checkout",
       "shippingAddress": "Shipping address",
       "edit": "Edit"
+    },
+    "review": {
+      "cardEnding": "Visa ending in {last4}",
+      "items": "{count, plural, one {# item} other {# items}}",
+      "placeOrder": "Place Order",
+      "termsNotice": "By placing your order, you agree to our terms and conditions of sale."
     },
     "confirmation": {
       "title": "Order Confirmed!",
@@ -342,7 +370,7 @@
         "Legal notices"
       ],
       "followTitle": "Follow us:",
-      "copyright": "Copyright 2011-2026 — RefaccionesDirect MX — All rights reserved"
+      "copyright": "Copyright 2026 — RefaccionesDirect MX — All rights reserved"
     }
   }
 }

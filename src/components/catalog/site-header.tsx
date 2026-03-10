@@ -24,22 +24,26 @@ export async function SiteHeader() {
         <nav className="flex items-center gap-5">
           <Link
             href="/"
-            className="flex flex-col items-center gap-1 text-brand-navy hover:text-brand-blue"
+            className="flex flex-col items-center gap-1 text-brand-navy hover:text-brand-red"
           >
             <span className="flex size-9 items-center justify-center rounded-full border-[1.5px] border-current">
               <Headset className="size-5" />
             </span>
-            <span className="text-sm font-medium leading-tight">{t('header.help')}</span>
+            <span className="text-center text-sm font-medium leading-tight">
+              {t('header.help')}
+            </span>
           </Link>
 
           <Link
             href="/"
-            className="flex flex-col items-center gap-1 text-brand-navy hover:text-brand-blue"
+            className="flex flex-col items-center gap-1 text-brand-navy hover:text-brand-red"
           >
             <span className="flex size-9 items-center justify-center rounded-full border-[1.5px] border-current">
               <User className="size-5" />
             </span>
-            <span className="text-sm font-medium leading-tight">{t('header.account')}</span>
+            <span className="text-center text-sm font-medium leading-tight">
+              {t('header.account')}
+            </span>
           </Link>
 
           <CartIcon label={t('header.cart')} />

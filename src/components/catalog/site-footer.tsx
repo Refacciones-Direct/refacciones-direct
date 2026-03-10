@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Youtube } from 'lucide-react';
+import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/utils';
 import { Container } from '@/components/shared/container';
@@ -15,10 +16,15 @@ export async function SiteFooter() {
     { icon: Instagram, label: 'Instagram' },
   ];
 
-  const paymentMethods = ['Visa', 'MC', 'Amex', 'PayPal'];
+  const paymentMethods = [
+    { name: 'Visa', src: '/images/payments/visa.svg' },
+    { name: 'Mastercard', src: '/images/payments/mastercard.svg' },
+    { name: 'Amex', src: '/images/payments/amex.svg' },
+    { name: 'OXXO', src: '/images/payments/oxxo.svg' },
+  ];
 
   return (
-    <footer data-slot="site-footer" className={cn('w-full bg-brand-navy text-white')}>
+    <footer data-slot="site-footer" className={cn('mt-auto w-full bg-brand-navy text-white')}>
       <Container className="py-12">
         <div className="grid grid-cols-4 gap-12">
           {/* Column 1 - Help & payments */}
@@ -29,12 +35,14 @@ export async function SiteFooter() {
             </span>
             <div className="mt-2 flex gap-2">
               {paymentMethods.map((method) => (
-                <div
-                  key={method}
-                  className="flex h-7 w-11 items-center justify-center rounded bg-white/20 text-xs font-medium text-white/70"
-                >
-                  {method}
-                </div>
+                <Image
+                  key={method.name}
+                  src={method.src}
+                  alt={method.name}
+                  width={44}
+                  height={28}
+                  className="rounded bg-white"
+                />
               ))}
             </div>
           </div>

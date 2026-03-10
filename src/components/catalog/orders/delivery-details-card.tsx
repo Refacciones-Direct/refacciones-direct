@@ -38,10 +38,15 @@ export async function DeliveryDetailsCard() {
             </p>
             <div className="mt-1 space-y-0.5 text-sm font-semibold">
               <p>{MOCK_SHIPPING_ADDRESS.name}</p>
-              <p className="font-normal text-muted-foreground">{MOCK_SHIPPING_ADDRESS.street}</p>
               <p className="font-normal text-muted-foreground">
-                {MOCK_SHIPPING_ADDRESS.city}, {MOCK_SHIPPING_ADDRESS.state}{' '}
-                {MOCK_SHIPPING_ADDRESS.zip}
+                {MOCK_SHIPPING_ADDRESS.street} {MOCK_SHIPPING_ADDRESS.extNumber}
+                {MOCK_SHIPPING_ADDRESS.intNumber && ` Int. ${MOCK_SHIPPING_ADDRESS.intNumber}`}
+              </p>
+              <p className="font-normal text-muted-foreground">
+                {MOCK_SHIPPING_ADDRESS.colonia}, {MOCK_SHIPPING_ADDRESS.municipio}
+              </p>
+              <p className="font-normal text-muted-foreground">
+                {MOCK_SHIPPING_ADDRESS.state} {MOCK_SHIPPING_ADDRESS.zip}
               </p>
               <p className="font-normal text-muted-foreground">{MOCK_SHIPPING_ADDRESS.phone}</p>
             </div>

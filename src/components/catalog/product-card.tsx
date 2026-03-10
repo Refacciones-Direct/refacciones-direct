@@ -13,7 +13,7 @@ export function ProductCard({ name, reference }: ProductCardProps) {
       className={cn('w-[220px] overflow-hidden rounded-lg border border-border bg-card')}
     >
       {/* Image placeholder */}
-      <div className="relative h-40 w-full bg-bg-light">
+      <div className="relative h-40 w-full bg-white">
         <button
           type="button"
           className="absolute right-2 top-2 rounded-full bg-white p-1 shadow-sm text-muted-foreground hover:bg-muted"

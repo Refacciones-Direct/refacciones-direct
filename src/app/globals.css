@@ -133,6 +133,32 @@
   body {
     @apply bg-background text-foreground;
   }
+  button,
+  [role='button'],
+  a[href],
+  input[type='button'],
+  input[type='submit'],
+  input[type='reset'],
+  select,
+  summary,
+  [tabindex]:not([tabindex='-1']) {
+    cursor: pointer;
+  }
+  button:disabled,
+  [role='button'][aria-disabled='true'],
+  input:disabled,
+  select:disabled {
+    cursor: not-allowed;
+  }
+}
+
+/* Hide scrollbar for carousel */
+@utility scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Swiper promo carousel pagination overrides */

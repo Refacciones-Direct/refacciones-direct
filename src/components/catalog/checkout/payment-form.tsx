@@ -19,7 +19,7 @@ export function PaymentForm() {
     <div data-slot="payment-form" className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold">{t('checkout.paymentTitle')}</h2>
-        <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+        <div className="flex items-center gap-1.5 rounded-md bg-emerald-50 px-2.5 py-1 text-sm font-medium text-emerald-700">
           <Lock className="size-4" />
           <span>{t('checkout.secureCheckout')}</span>
         </div>
@@ -30,7 +30,7 @@ export function PaymentForm() {
         <Label htmlFor="cardNumber">{t('checkout.cardNumber')}</Label>
         <div className="relative">
           <CreditCard className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-          <Input id="cardNumber" placeholder="1234 5678 9012 3456" className="pl-10" />
+          <Input id="cardNumber" defaultValue="4242 4242 4242 4242" className="pl-10" />
         </div>
       </div>
 
@@ -38,18 +38,18 @@ export function PaymentForm() {
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="cardExpiry">{t('checkout.cardExpiry')}</Label>
-          <Input id="cardExpiry" placeholder="MM/AA" />
+          <Input id="cardExpiry" defaultValue="12/28" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="cardCvc">{t('checkout.cardCvc')}</Label>
-          <Input id="cardCvc" placeholder="123" />
+          <Input id="cardCvc" defaultValue="123" />
         </div>
       </div>
 
       {/* Name on card */}
       <div className="space-y-2">
         <Label htmlFor="cardName">{t('checkout.cardName')}</Label>
-        <Input id="cardName" placeholder="Juan García López" />
+        <Input id="cardName" defaultValue="Juan García López" />
       </div>
 
       {/* Save card */}
@@ -79,10 +79,15 @@ export function PaymentForm() {
         {!sameAsShipping && (
           <div className="rounded-lg border border-border bg-muted/50 p-4 text-sm">
             <p className="font-medium">{MOCK_SHIPPING_ADDRESS.name}</p>
-            <p className="text-muted-foreground">{MOCK_SHIPPING_ADDRESS.street}</p>
             <p className="text-muted-foreground">
-              {MOCK_SHIPPING_ADDRESS.city}, {MOCK_SHIPPING_ADDRESS.state}{' '}
-              {MOCK_SHIPPING_ADDRESS.zip}
+              {MOCK_SHIPPING_ADDRESS.street} {MOCK_SHIPPING_ADDRESS.extNumber}
+              {MOCK_SHIPPING_ADDRESS.intNumber && ` Int. ${MOCK_SHIPPING_ADDRESS.intNumber}`}
+            </p>
+            <p className="text-muted-foreground">
+              {MOCK_SHIPPING_ADDRESS.colonia}, {MOCK_SHIPPING_ADDRESS.municipio}
+            </p>
+            <p className="text-muted-foreground">
+              {MOCK_SHIPPING_ADDRESS.state} {MOCK_SHIPPING_ADDRESS.zip}
             </p>
             <p className="text-muted-foreground">{MOCK_SHIPPING_ADDRESS.phone}</p>
           </div>
@@ -90,8 +95,8 @@ export function PaymentForm() {
       </div>
 
       {/* Review order button */}
-      <Link href="/orders/RD-20260305-001/confirmation">
-        <Button className="w-full bg-brand-navy text-white hover:bg-brand-navy-dark" size="lg">
+      <Link href="/checkout/review">
+        <Button className="w-full bg-brand-navy text-white hover:bg-brand-navy/90" size="lg">
           {t('checkout.reviewOrder')}
         </Button>
       </Link>
