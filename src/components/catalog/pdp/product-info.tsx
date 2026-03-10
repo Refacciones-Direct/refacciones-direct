@@ -24,9 +24,11 @@ export function ProductInfo({ product }: ProductInfoProps) {
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [addedQty, setAddedQty] = useState(1);
 
   async function handleAddToCart() {
     setIsAdding(true);
+    setAddedQty(quantity);
     addItem(product, quantity);
     // Simulate API latency (replace with real call when available)
     await new Promise((resolve) => setTimeout(resolve, 1200));
@@ -133,7 +135,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
         open={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
         addedProduct={product}
-        addedQuantity={quantity}
+        addedQuantity={addedQty}
       />
     </div>
   );

@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { SiteHeader } from '@/components/catalog/site-header';
 import { SiteFooter } from '@/components/catalog/site-footer';
 import { Container } from '@/components/shared/container';
@@ -14,7 +14,8 @@ export default async function CheckoutPaymentPage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  await params;
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations('catalog');
 
   return (

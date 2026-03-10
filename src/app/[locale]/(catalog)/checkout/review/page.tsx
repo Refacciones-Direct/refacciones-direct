@@ -1,5 +1,5 @@
 import { CreditCard, MapPin, Truck } from 'lucide-react';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { SiteHeader } from '@/components/catalog/site-header';
 import { SiteFooter } from '@/components/catalog/site-footer';
@@ -14,7 +14,8 @@ export default async function CheckoutReviewPage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  await params;
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations('catalog');
 
   return (
