@@ -58,7 +58,7 @@ export const MOCK_PRODUCTS: MockProduct[] = [
     inStock: true,
     category: 'Frenado',
     categorySlug: 'frenado',
-    imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop',
+    imageUrl: '/images/brakepads.jpg',
     description:
       'Kit de pastillas de freno cerámicas de alto rendimiento. Diseñadas para ofrecer frenado superior con mínimo polvo y ruido. Incluye hardware de instalación.',
     specifications: [
@@ -429,10 +429,14 @@ export const MOCK_CART: {
 
 export const MOCK_SHIPPING_ADDRESS = {
   name: 'Juan García López',
-  street: 'Av. Revolución 1425, Col. Mixcoac',
-  city: 'Ciudad de México',
+  street: 'Av. Revolución',
+  extNumber: '1425',
+  intNumber: '',
+  colonia: 'Mixcoac',
+  municipio: 'Benito Juárez',
   state: 'CDMX',
   zip: '03910',
+  references: '',
   phone: '+52 55 1234 5678',
 };
 

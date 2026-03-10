@@ -261,7 +261,20 @@
       "shippingFree": "GRATIS",
       "tax": "IVA (16%)",
       "total": "Total",
-      "emptyCart": "Tu carrito está vacío"
+      "emptyCart": "Tu carrito está vacío",
+      "print": "Imprimir carrito",
+      "authBannerTitle": "Inicia sesión para guardar tu carrito",
+      "authBannerSubtitle": "Guarda tus artículos y da seguimiento a tus pedidos.",
+      "signIn": "Iniciar Sesión"
+    },
+    "addedToCart": {
+      "title": "Agregado al Carrito",
+      "close": "Cerrar",
+      "qty": "Cant: {count}",
+      "cartSubtotal": "Subtotal del carrito:",
+      "itemCount": "{count} {count, plural, one {artículo} other {artículos}}",
+      "viewCartAndCheckout": "Ver Carrito y Pagar",
+      "continueShopping": "Seguir comprando"
     },
     "checkout": {
       "stepShipping": "Envío",
@@ -270,10 +283,17 @@
       "shippingTitle": "Dirección de Envío",
       "firstName": "Nombre",
       "lastName": "Apellidos",
-      "address": "Dirección",
-      "city": "Ciudad",
+      "street": "Calle",
+      "extNumber": "No. Exterior",
+      "intNumber": "No. Interior",
+      "intNumberPlaceholder": "Depto, oficina, local",
+      "optional": "opcional",
+      "colonia": "Colonia",
+      "municipio": "Municipio / Delegación",
       "state": "Estado",
       "zipCode": "Código Postal",
+      "references": "Referencias de entrega",
+      "referencesPlaceholder": "Ej: entre Calle A y Calle B, portón negro, frente a la tienda...",
       "phone": "Teléfono",
       "saveAddress": "Guardar esta dirección",
       "deliveryMethod": "Método de Envío",
@@ -296,6 +316,12 @@
       "secureCheckout": "Pago Seguro",
       "shippingAddress": "Dirección de envío",
       "edit": "Editar"
+    },
+    "review": {
+      "cardEnding": "Visa terminada en {last4}",
+      "items": "{count, plural, one {# artículo} other {# artículos}}",
+      "placeOrder": "Confirmar Pedido",
+      "termsNotice": "Al confirmar, aceptas nuestros términos y condiciones de venta."
     },
     "confirmation": {
       "title": "¡Pedido Confirmado!",

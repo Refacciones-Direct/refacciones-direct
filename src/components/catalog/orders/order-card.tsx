@@ -3,6 +3,7 @@ import { Link } from '@/i18n/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { ProductThumbnail } from '@/components/shared/product-thumbnail';
 import { cn } from '@/lib/utils';
 import { type MockOrder, formatPrice } from '@/data/mock-demo';
 
@@ -48,18 +49,12 @@ export async function OrderCard({ order }: OrderCardProps) {
         {/* Items row */}
         <div className="flex items-center gap-2">
           {order.items.map((item) => (
-            <div
+            <ProductThumbnail
               key={item.product.id}
-              className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md bg-bg-light"
-            >
-              {item.product.imageUrl ? (
-                <img
-                  src={item.product.imageUrl}
-                  alt={item.product.name}
-                  className="h-full w-full object-contain"
-                />
-              ) : null}
-            </div>
+              src={item.product.imageUrl}
+              alt={item.product.name}
+              className="size-12"
+            />
           ))}
           <span className="ml-1 text-sm text-muted-foreground">
             {t('orders.items', { count: itemCount })}

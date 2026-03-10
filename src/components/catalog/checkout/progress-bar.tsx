@@ -17,48 +17,49 @@ export async function CheckoutProgressBar({ currentStep }: CheckoutProgressBarPr
 
   return (
     <div data-slot="checkout-progress-bar" className="mx-auto max-w-md">
-      <div className="flex items-center justify-between">
-        {steps.map((step, index) => {
+      <div className="relative flex justify-between">
+        {/* Connecting lines — absolutely positioned at circle vertical center */}
+        <div className="absolute top-3.5 right-3.5 left-3.5 flex -translate-y-px">
+          {steps.slice(0, -1).map((step) => (
+            <div
+              key={step.number}
+              className={cn(
+                'h-0.5 flex-1',
+                step.number < currentStep ? 'bg-emerald-600' : 'bg-border',
+              )}
+            />
+          ))}
+        </div>
+
+        {/* Step columns (circle + label) */}
+        {steps.map((step) => {
           const isCompleted = step.number < currentStep;
           const isActive = step.number === currentStep;
 
           return (
-            <div key={step.number} className="flex flex-1 items-center">
-              {/* Step circle + label */}
-              <div className="flex flex-col items-center gap-1.5">
-                <div
-                  className={cn(
-                    'flex size-7 items-center justify-center rounded-full text-sm font-medium',
-                    isCompleted && 'bg-emerald-600 text-white',
-                    isActive && 'bg-brand-navy text-white',
-                    !isCompleted &&
-                      !isActive &&
-                      'border border-border bg-muted text-muted-foreground',
-                  )}
-                >
-                  {isCompleted ? <Check className="size-4" /> : step.number}
-                </div>
-                <span
-                  className={cn(
-                    'text-xs',
-                    isCompleted && 'text-emerald-600',
-                    isActive && 'font-semibold text-brand-navy',
-                    !isCompleted && !isActive && 'text-muted-foreground',
-                  )}
-                >
-                  {step.label}
-                </span>
+            <div key={step.number} className="relative flex flex-col items-center gap-1.5">
+              <div
+                className={cn(
+                  'flex size-7 items-center justify-center rounded-full text-sm font-medium',
+                  isCompleted && 'bg-emerald-600 text-white',
+                  isActive && 'bg-brand-navy text-white',
+                  !isCompleted &&
+                    !isActive &&
+                    'border border-border bg-muted text-muted-foreground',
+                )}
+              >
+                {isCompleted ? <Check className="size-4" /> : step.number}
               </div>
-
-              {/* Connecting line (not after last step) */}
-              {index < steps.length - 1 && (
-                <div
-                  className={cn(
-                    'mx-2 h-0.5 flex-1',
-                    step.number < currentStep ? 'bg-emerald-600' : 'bg-border',
-                  )}
-                />
-              )}
+              <span
+                className={cn(
+                  'text-xs',
+                  isCompleted && 'text-emerald-600',
+                  isActive && 'font-semibold text-brand-navy',
+                  !isCompleted && !isActive && 'text-muted-foreground',
+                )}
+              >
+                {step.label}
+              </span>
             </div>
           );
         })}
