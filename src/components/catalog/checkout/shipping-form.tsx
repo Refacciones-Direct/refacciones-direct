@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Textarea } from '@/components/ui/textarea';
 import {
   Select,
   SelectContent,
@@ -13,13 +14,38 @@ import {
 } from '@/components/ui/select';
 
 const MEXICAN_STATES = [
+  'Aguascalientes',
+  'Baja California',
+  'Baja California Sur',
+  'Campeche',
+  'Chiapas',
+  'Chihuahua',
   'CDMX',
+  'Coahuila',
+  'Colima',
+  'Durango',
   'Estado de México',
+  'Guanajuato',
+  'Guerrero',
+  'Hidalgo',
   'Jalisco',
+  'Michoacán',
+  'Morelos',
+  'Nayarit',
   'Nuevo León',
+  'Oaxaca',
   'Puebla',
   'Querétaro',
-  'Guanajuato',
+  'Quintana Roo',
+  'San Luis Potosí',
+  'Sinaloa',
+  'Sonora',
+  'Tabasco',
+  'Tamaulipas',
+  'Tlaxcala',
+  'Veracruz',
+  'Yucatán',
+  'Zacatecas',
 ];
 
 export function ShippingForm() {
@@ -41,17 +67,43 @@ export function ShippingForm() {
         </div>
       </div>
 
-      {/* Address */}
+      {/* Street + Numbers */}
       <div className="space-y-2">
-        <Label htmlFor="address">{t('checkout.address')}</Label>
-        <Input id="address" defaultValue="Av. Revolución 1425, Col. Mixcoac" />
+        <Label htmlFor="street">{t('checkout.street')}</Label>
+        <Input id="street" defaultValue="Av. Revolución" />
       </div>
 
-      {/* City / State / Zip */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="city">{t('checkout.city')}</Label>
-          <Input id="city" defaultValue="Ciudad de México" />
+          <Label htmlFor="extNumber">{t('checkout.extNumber')}</Label>
+          <Input id="extNumber" defaultValue="1425" />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="intNumber">
+            {t('checkout.intNumber')}{' '}
+            <span className="font-normal text-muted-foreground">({t('checkout.optional')})</span>
+          </Label>
+          <Input id="intNumber" placeholder={t('checkout.intNumberPlaceholder')} />
+        </div>
+      </div>
+
+      {/* Colonia + CP */}
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="colonia">{t('checkout.colonia')}</Label>
+          <Input id="colonia" defaultValue="Mixcoac" />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="zipCode">{t('checkout.zipCode')}</Label>
+          <Input id="zipCode" defaultValue="03910" inputMode="numeric" maxLength={5} />
+        </div>
+      </div>
+
+      {/* Municipio / State */}
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="municipio">{t('checkout.municipio')}</Label>
+          <Input id="municipio" defaultValue="Benito Juárez" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="state">{t('checkout.state')}</Label>
@@ -68,16 +120,21 @@ export function ShippingForm() {
             </SelectContent>
           </Select>
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="zipCode">{t('checkout.zipCode')}</Label>
-          <Input id="zipCode" defaultValue="03910" />
-        </div>
+      </div>
+
+      {/* Delivery references */}
+      <div className="space-y-2">
+        <Label htmlFor="references">
+          {t('checkout.references')}{' '}
+          <span className="font-normal text-muted-foreground">({t('checkout.optional')})</span>
+        </Label>
+        <Textarea id="references" rows={2} placeholder={t('checkout.referencesPlaceholder')} />
       </div>
 
       {/* Phone */}
       <div className="space-y-2">
         <Label htmlFor="phone">{t('checkout.phone')}</Label>
-        <Input id="phone" defaultValue="+52 55 1234 5678" />
+        <Input id="phone" type="tel" defaultValue="+52 55 1234 5678" />
       </div>
 
       {/* Save address */}

@@ -1,5 +1,6 @@
 import { Package } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+import { formatPrice } from '@/data/mock-demo';
 
 interface SearchProductCardProps {
   id: number | string;
@@ -24,12 +25,7 @@ export function SearchProductCard({
   imageUrls,
   category,
 }: SearchProductCardProps) {
-  const formattedPrice =
-    price !== null
-      ? new Intl.NumberFormat('es-MX', { style: 'currency', currency: currency || 'MXN' }).format(
-          price,
-        )
-      : null;
+  const formattedPrice = price !== null ? formatPrice(price, currency || 'MXN') : null;
 
   const src = imageUrl ?? (imageUrls && imageUrls.length > 0 ? imageUrls[0] : undefined);
 

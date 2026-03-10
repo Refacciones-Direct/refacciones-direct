@@ -24,7 +24,7 @@ export async function SiteFooter() {
   ];
 
   return (
-    <footer data-slot="site-footer" className={cn('w-full bg-brand-navy text-white')}>
+    <footer data-slot="site-footer" className={cn('mt-auto w-full bg-brand-navy text-white')}>
       <Container className="py-12">
         <div className="grid grid-cols-4 gap-12">
           {/* Column 1 - Help & payments */}

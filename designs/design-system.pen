@@ -3617,7 +3617,7 @@
                   "type": "ref",
                   "ref": "C3KOZ",
                   "x": 24,
-                  "y": 24.019943701668048,
+                  "y": 24.01994370166805,
                   "width": "fill_container",
                   "descendants": {
                     "NEMHS": {
@@ -9068,6 +9068,266 @@
               ]
             }
           ]
+        },
+        {
+          "type": "frame",
+          "id": "mBPcg",
+          "name": "Added to Cart Sidebar",
+          "reusable": true,
+          "clip": true,
+          "width": 460,
+          "height": 900,
+          "fill": "$--white",
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#00000026",
+            "offset": {
+              "x": -4,
+              "y": 0
+            },
+            "blur": 16
+          },
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "HGgxJ",
+              "name": "sidebarHeader",
+              "width": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "$--border"
+              },
+              "padding": [
+                16,
+                20
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "6F4Hn",
+                  "name": "headerLeft",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "LZoQY",
+                      "name": "checkIcon",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "circle-check",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--color-success"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ROQ4l",
+                      "name": "title",
+                      "fill": "$--foreground",
+                      "content": "Agregado al Carrito",
+                      "fontFamily": "Outfit",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_font",
+                  "id": "ZqeyR",
+                  "name": "closeX",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KaKJ3",
+              "name": "productSection",
+              "width": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "$--border"
+              },
+              "gap": 16,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "diAMZ",
+                  "name": "productImage",
+                  "metadata": {
+                    "type": "unsplash",
+                    "username": "themortz",
+                    "link": "https://unsplash.com/@themortz",
+                    "author": "Daniel Morton-Jones"
+                  },
+                  "width": 72,
+                  "height": 72,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "https://images.unsplash.com/photo-1768387666438-b3da75373846?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjA4Mzl8&ixlib=rb-4.1.0&q=80&w=1080",
+                    "mode": "fill"
+                  },
+                  "cornerRadius": 6
+                },
+                {
+                  "type": "frame",
+                  "id": "c3jDI",
+                  "name": "productInfo",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "zVEQQ",
+                      "name": "productName",
+                      "fill": "$--foreground",
+                      "content": "Sensor de Temperatura de Refrigerante",
+                      "fontFamily": "Outfit",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "4hWyi",
+                      "name": "productMeta",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "owULA",
+                          "name": "qty",
+                          "fill": "$--muted-foreground",
+                          "content": "Cant: 1",
+                          "fontFamily": "Outfit",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Zjs1z",
+                          "name": "price",
+                          "fill": "$--foreground",
+                          "content": "$869.00",
+                          "fontFamily": "Outfit",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "WO0Dm",
+              "name": "actionSection",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                24,
+                20
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "owgbu",
+                  "name": "subtotalRow",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "G1ZUb",
+                      "name": "subtotalLabel",
+                      "fill": "$--foreground",
+                      "content": "Subtotal del carrito:",
+                      "fontFamily": "Outfit",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "p9cMf",
+                      "name": "subtotalValue",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "um1aT",
+                          "name": "subtotalPrice",
+                          "fill": "$--foreground",
+                          "content": "$1,245.00",
+                          "fontFamily": "Outfit",
+                          "fontSize": 20,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "AWL59",
+                          "name": "itemCount",
+                          "fill": "$--muted-foreground",
+                          "content": "(2 artículos)",
+                          "fontFamily": "Outfit",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "JlWsO",
+                  "type": "ref",
+                  "ref": "J76IQ",
+                  "name": "viewCartBtn",
+                  "width": "fill_container",
+                  "descendants": {
+                    "dAXqI": {
+                      "enabled": false
+                    },
+                    "9CN1v": {
+                      "content": "VER CARRITO Y PAGAR",
+                      "fontSize": 13,
+                      "letterSpacing": 0.5
+                    }
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "9oVA0",
+                  "name": "continueShoppingLink",
+                  "fill": "$--primary",
+                  "content": "Seguir comprando",
+                  "fontFamily": "Outfit",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -11887,6 +12147,42 @@
             },
             {
               "type": "frame",
+              "id": "HEYjB",
+              "name": "continueShoppingRow",
+              "width": "fill_container",
+              "gap": 6,
+              "padding": [
+                16,
+                80,
+                0,
+                80
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "XFRqt",
+                  "name": "backIcon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--primary"
+                },
+                {
+                  "type": "text",
+                  "id": "gZRCd",
+                  "name": "backLabel",
+                  "fill": "$--primary",
+                  "content": "Seguir comprando",
+                  "fontFamily": "Outfit",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
               "id": "nxDwT",
               "name": "cartHeader",
               "width": "fill_container",
@@ -11896,6 +12192,8 @@
                 0,
                 80
               ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
               "children": [
                 {
                   "type": "text",
@@ -11905,6 +12203,104 @@
                   "fontFamily": "Outfit",
                   "fontSize": 24,
                   "fontWeight": "700"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "5ZC5a",
+                  "name": "printIcon",
+                  "width": 22,
+                  "height": 22,
+                  "iconFontName": "printer",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "eV6JG",
+              "name": "authBannerWrap",
+              "width": "fill_container",
+              "padding": [
+                0,
+                80
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "UWcy5",
+                  "name": "authBanner",
+                  "width": "fill_container",
+                  "fill": "$--accent",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$--border"
+                  },
+                  "gap": 16,
+                  "padding": [
+                    16,
+                    20
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "5setd",
+                      "name": "authIcon",
+                      "width": 24,
+                      "height": 24,
+                      "iconFontName": "log-in",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--primary"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "FZeLs",
+                      "name": "authTextGroup",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "McAOL",
+                          "name": "authTitle",
+                          "fill": "$--foreground",
+                          "content": "Inicia sesión para guardar tu carrito",
+                          "fontFamily": "Outfit",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "hOBtl",
+                          "name": "authSubtitle",
+                          "fill": "$--muted-foreground",
+                          "content": "Guarda tus artículos y da seguimiento a tus pedidos.",
+                          "fontFamily": "Outfit",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "cG0EL",
+                      "type": "ref",
+                      "ref": "C10zH",
+                      "name": "signInBtn",
+                      "descendants": {
+                        "l8v2I": {
+                          "enabled": false
+                        },
+                        "poRwU": {
+                          "content": "Iniciar Sesión",
+                          "fontSize": 13
+                        }
+                      }
+                    }
+                  ]
                 }
               ]
             },

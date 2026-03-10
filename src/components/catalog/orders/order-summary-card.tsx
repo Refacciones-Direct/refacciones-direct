@@ -2,6 +2,7 @@ import { CreditCard } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { ProductThumbnail } from '@/components/shared/product-thumbnail';
 import { MOCK_CART, formatPrice } from '@/data/mock-demo';
 
 export async function OrderSummaryCard() {
@@ -17,15 +18,11 @@ export async function OrderSummaryCard() {
         <div className="space-y-3">
           {MOCK_CART.items.map((item) => (
             <div key={item.product.id} className="flex items-center gap-4">
-              <div className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-md bg-bg-light">
-                {item.product.imageUrl ? (
-                  <img
-                    src={item.product.imageUrl}
-                    alt={item.product.name}
-                    className="h-full w-full object-contain"
-                  />
-                ) : null}
-              </div>
+              <ProductThumbnail
+                src={item.product.imageUrl}
+                alt={item.product.name}
+                className="size-14"
+              />
               <div className="flex-1 min-w-0">
                 <p className="truncate text-sm font-medium">{item.product.name}</p>
                 <p className="text-sm text-muted-foreground">
