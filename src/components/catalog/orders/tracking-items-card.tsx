@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ProductThumbnail } from '@/components/shared/product-thumbnail';
 import { MOCK_CART, formatPrice } from '@/data/mock-demo';
 
 export async function TrackingItemsCard() {
@@ -13,15 +14,11 @@ export async function TrackingItemsCard() {
       <CardContent className="space-y-3">
         {MOCK_CART.items.map((item) => (
           <div key={item.product.id} className="flex items-center gap-3">
-            <div className="flex size-15 shrink-0 items-center justify-center overflow-hidden rounded-md bg-bg-light">
-              {item.product.imageUrl ? (
-                <img
-                  src={item.product.imageUrl}
-                  alt={item.product.name}
-                  className="h-full w-full object-contain"
-                />
-              ) : null}
-            </div>
+            <ProductThumbnail
+              src={item.product.imageUrl}
+              alt={item.product.name}
+              className="size-15"
+            />
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium">{item.product.name}</p>
               <p className="text-xs text-muted-foreground">x{item.quantity}</p>

@@ -1,3 +1,4 @@
+import { withAuth } from '@workos-inc/authkit-nextjs';
 import { setRequestLocale } from 'next-intl/server';
 import { SiteHeader } from '@/components/catalog/site-header';
 import { CategoryNav } from '@/components/catalog/category-nav';
@@ -9,13 +10,15 @@ export default async function CartPage({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const { user } = await withAuth();
+
   return (
     <>
       <SiteHeader />
       <CategoryNav />
       <main>
         <Container className="py-8">
-          <CartPageContent />
+          <CartPageContent isAuthenticated={!!user} />
         </Container>
       </main>
       <SiteFooter />

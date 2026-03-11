@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import { RotateCcw, Shield, Truck } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useRouter } from '@/i18n/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { AddedToCartSidebar } from '@/components/catalog/cart/added-to-cart-sidebar';
 import { FitmentBadge } from '@/components/catalog/pdp/fitment-badge';
 import { QuantityStepper } from '@/components/catalog/pdp/quantity-stepper';
 import { StarRating } from '@/components/catalog/pdp/star-rating';
@@ -20,9 +20,21 @@ interface ProductInfoProps {
 
 export function ProductInfo({ product }: ProductInfoProps) {
   const t = useTranslations('catalog');
-  const router = useRouter();
   const { addItem } = useCartContext();
   const [quantity, setQuantity] = useState(1);
+  const [isAdding, setIsAdding] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [addedQty, setAddedQty] = useState(1);
+
+  async function handleAddToCart() {
+    setIsAdding(true);
+    setAddedQty(quantity);
+    addItem(product, quantity);
+    // Simulate API latency (replace with real call when available)
+    await new Promise((resolve) => setTimeout(resolve, 1200));
+    setIsAdding(false);
+    setSidebarOpen(true);
+  }
 
   return (
     <div data-slot="product-info" className="flex flex-col gap-4">
@@ -87,13 +99,11 @@ export function ProductInfo({ product }: ProductInfoProps) {
         <QuantityStepper value={quantity} onChange={setQuantity} />
         <Button
           size="lg"
-          className="flex-1 bg-brand-navy text-white hover:bg-brand-navy/90"
-          onClick={() => {
-            addItem(product, quantity);
-            router.push('/cart');
-          }}
+          className="flex-1 bg-brand-navy text-white hover:bg-brand-navy/90 disabled:opacity-100"
+          disabled={isAdding}
+          onClick={handleAddToCart}
         >
-          {t('pdp.addToCart')}
+          {isAdding ? <Spinner /> : t('pdp.addToCart')}
         </Button>
       </div>
 
@@ -120,6 +130,22 @@ export function ProductInfo({ product }: ProductInfoProps) {
           <span>{t('pdp.returns')}</span>
         </div>
       </div>
+
+      <AddedToCartSidebar
+        open={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        addedProduct={product}
+        addedQuantity={addedQty}
+      />
     </div>
+  );
+}
+
+function Spinner() {
+  return (
+    <svg className="size-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-label="Loading">
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" />
+      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v3a5 5 0 00-5 5H4z" />
+    </svg>
   );
 }

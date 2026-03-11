@@ -1,9 +1,10 @@
 'use client';
 
-import { CircleCheck, Package } from 'lucide-react';
+import { CircleCheck } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useVehicleContext } from '@/hooks/use-vehicle-context';
 import { QuantityStepper } from '@/components/catalog/pdp/quantity-stepper';
+import { ProductThumbnail } from '@/components/shared/product-thumbnail';
 import type { MockCartItem } from '@/data/mock-demo';
 import { formatPrice } from '@/data/mock-demo';
 
@@ -21,18 +22,7 @@ export function CartItemCard({ item, onQuantityChange, onRemove }: CartItemCardP
 
   return (
     <div data-slot="cart-item-card" className="flex gap-4 rounded-lg border border-border p-4">
-      {/* Product image */}
-      <div className="flex size-[100px] shrink-0 items-center justify-center overflow-hidden rounded-md bg-bg-light">
-        {item.product.imageUrl ? (
-          <img
-            src={item.product.imageUrl}
-            alt={item.product.name}
-            className="h-full w-full object-contain"
-          />
-        ) : (
-          <Package className="size-8 text-muted-foreground/30" />
-        )}
-      </div>
+      <ProductThumbnail src={item.product.imageUrl} alt={item.product.name} className="size-25" />
 
       {/* Info */}
       <div className="flex min-w-0 flex-1 flex-col gap-2">
