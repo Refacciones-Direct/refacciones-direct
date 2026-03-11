@@ -26,6 +26,56 @@ Rather than build the full shipping service on assumptions and rework constantly
 - UI/UX for checkout or tracking
 - Stripe payment integration
 
+### Business Rules Affecting This Suite
+
+These confirmed decisions directly shape what we test. See Data Architecture v5.1 and Technical Architecture v7.0 for full context.
+
+**Weight-based carrier routing (core shipping logic):**
+
+```
+Order weight from a manufacturer ≤ 5kg → Quote DHL, FedEx, Estafeta → auto-select cheapest
+Order weight from a manufacturer > 5kg → Quote Castores, Paquetexpress → auto-select cheapest
+```
+
+Customer does NOT choose carrier — we pick cheapest automatically and pass cost through.
+
+**Multi-item orders = separate packages:** Each product ships in its own box. Multiple items from one manufacturer become separate entries in the `packages` array. Manufacturers upload per-product shipping box dimensions: `peso_paquete_kg`, `largo_paquete_cm`, `ancho_paquete_cm`, `alto_paquete_cm`.
+
+**Multi-manufacturer split shipping:** Each manufacturer = separate shipment with separate origin address, tracking number, and label. Quote API called once per manufacturer per order.
+
+**Platform fee excluded from shipping:** 9-10% platform fee applies to item subtotals only. Shipping costs are pass-through to the customer.
+
+**Currency:** All prices MXN. No currency conversion for MVP (Mexico-only).
+
+**Carrier exclusions (post-MVP):** Some products can't ship with certain carriers (e.g., oxygen sensors can't go DHL). Future `excluded_carriers` field per product — not tested now but context for the weight-routing tests.
+
+### Already Validated (prior sandbox/production testing)
+
+These findings are confirmed. Tests may revalidate but these are not unknowns:
+
+- **Auth:** Bearer token works. Sandbox unreliable for some carriers (FedEx auth errors, Estafeta PHP crash, DHL fine). Production quotes are free — safe for testing.
+- **Rate quote response shape:** `carrier`, `carrierDescription`, `serviceId`, `service`, `serviceDescription`, `deliveryEstimate`, `deliveryDate` (`date`, `dateDifference`, `timeUnit`), `totalPrice`, `basePrice`, `currency`.
+- **Label response shape:** `carrier`, `service`, `shipmentId`, `trackingNumber`, `trackUrl`, `label` (S3 PDF URL), `totalPrice`, `currentBalance`, `currency`. Formats: PDF and ZPL; sizes: STOCK_4X6 and PAPER_8.5X11.
+- **Tracking response shape:** `status`, `statusColor`, `estimatedDelivery`, `pickupDate`, `shippedAt`, `deliveredAt`, `signedBy`, `trackUrl`, `trackUrlSite`, `eventHistory[]`, `podFile`, `podEvidences[]`.
+- **Cancellation response shape:** `carrier`, `service`, `trackingNumber`, `balanceReturned` (was 0 in sandbox), `balanceReturnDate` (was null in sandbox).
+- **Latency:** ~2.7s per quote call in sandbox.
+
+**Known issues to investigate:**
+
+- **Currency bug:** Label endpoint returned `currency: "USD"` even when `currency: "MXN"` sent. Needs confirmation.
+- **Phone code inconsistency:** Quote uses `phone_code: "MX"`, label uses `phone_code: "52"`.
+
+### High-Priority Unknowns
+
+These will most impact our architecture. **Prioritize during execution:**
+
+1. **Test 4.11 — Multi-carrier quoting in one call:** Can omitting `shipment.carrier` return ALL carriers in one call? If yes, checkout drops from N parallel calls to 1 per manufacturer.
+2. **Module 3 — Address validation (Geocodes API):** `GET geocodes(-test).envia.com/zip-code/{cp}?country_code=MX`. Colonias per CP → colonia dropdown at checkout.
+3. **Module 8 — Error handling:** Actual error JSON shape for `parseError()`. Field-level vs request-level, HTTP status codes, error code mapping.
+4. **Test 5.11 — Label URL expiry:** Expire → download + Supabase Storage. Permanent → store URL. Affects storage architecture.
+5. **Test 5.16 — Duplicate label = double charge:** Confirm idempotency requirement.
+6. **Tests 4.23/4.24 — Quote freshness / TTL:** Price drift between quote and label generation → re-quote strategy needed?
+
 ---
 
 ## Prerequisites
@@ -53,10 +103,11 @@ src/
     └── shipping-exploration/         # Exploration test module
         ├── README.md                 # Quick-start for developers
         ├── helpers/
-        │   ├── api-client.ts         # Thin HTTP wrapper for sandbox calls
+        │   ├── api-client.ts         # Thin HTTP wrapper (never throws on 4xx/5xx)
         │   ├── fixtures.ts           # Addresses, packages, auto parts data
         │   ├── snapshot.ts           # Utility to capture & save response shapes
-        │   └── assertions.ts         # Shared assertion helpers
+        │   ├── assertions.ts         # Shared assertion helpers
+        │   └── schemas.ts            # Zod schemas built from real responses (key deliverable)
         ├── __tests__/
         │   ├── 01-connectivity.test.ts
         │   ├── 02-reference-data.test.ts
@@ -67,7 +118,8 @@ src/
         │   ├── 07-cancellation.test.ts
         │   ├── 08-error-handling.test.ts
         │   ├── 09-edge-cases.test.ts
-        │   └── 10-webhook-discovery.test.ts
+        │   ├── 10-webhook-discovery.test.ts
+        │   └── 11-pickup-scheduling.test.ts
         └── __snapshots__/            # Captured response JSON (git-tracked)
             └── .gitkeep
 ```
@@ -147,6 +199,18 @@ Each address fixture must include all fields the provider requires: name, phone 
 | `headlightAssembly` | 2.5         | 50×35×30              | 4,500                | Fragile, high value       |
 
 Each package fixture includes: weight (kg), length/width/height (cm), declared value (MXN), contents description, and package type (box/envelope/pallet).
+
+**Real Launch Products** (from Humberto's 4 manufacturers — approximate shipping box dimensions):
+
+| Fixture Name       | Weight (kg) | Dimensions (L×W×H cm) | Declared Value (MXN) | Notes                                    |
+| ------------------ | ----------- | --------------------- | -------------------- | ---------------------------------------- |
+| `mazaDeRueda`      | 4.0         | 35×30×25              | 1,200                | Heavy for size, ≤5kg carrier group       |
+| `alternador12V`    | 6.5         | 30×25×25              | 2,800                | >5kg carrier group, medium-heavy         |
+| `soporteDeMotor`   | 3.0         | 25×20×20              | 900                  | Medium, ≤5kg carrier group               |
+| `chicoteElectrico` | 1.0         | 30×15×10              | 650                  | Light, long-ish box, ≤5kg group          |
+| `mazaPesada`       | 5.0         | 35×30×25              | 1,500                | Boundary: exactly 5kg (test both groups) |
+
+These real-product fixtures are critical for testing the weight-based carrier routing rules. Keep the generic fixtures above for edge case testing (oversized bumper, very light spark plugs, etc.).
 
 #### `snapshot.ts` — Response Capture Utility
 
@@ -336,6 +400,28 @@ Each test file below is a self-contained module. They are **numbered for recomme
 | 4.23 | `re-quoting same route returns consistent prices` | Quote same route twice immediately      | Whether prices are deterministic or fluctuate     |
 | 4.24 | `quote includes expiry or TTL information`        | Check response for any TTL/expiry field | How long we can display a quote before it's stale |
 
+**Tests — Weight-Based Carrier Routing (Business Rule):**
+
+| #    | Test Name                                                              | What It Does                                                              | What We Learn                                                 |
+| ---- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| 4.27 | `quotes light package (3kg soporte) with DHL, FedEx, Estafeta`         | Quote ≤5kg fixture with each light-group carrier specified                | Do all 3 carriers return valid quotes for light packages?     |
+| 4.28 | `quotes heavy package (6.5kg alternador) with Castores, Paquetexpress` | Quote >5kg fixture with each heavy-group carrier specified                | Do both carriers return valid quotes for heavy packages?      |
+| 4.29 | `≤5kg carriers handle boundary (5kg maza) well`                        | Quote exactly-5kg fixture with DHL, FedEx, Estafeta                       | Does 5kg work with the light carrier group?                   |
+| 4.30 | `>5kg carriers handle boundary (5kg maza) well`                        | Quote exactly-5kg fixture with Castores, Paquetexpress                    | Does 5kg work with the heavy carrier group? Which is cheaper? |
+| 4.31 | `auto-select cheapest from light carrier group`                        | Quote ≤5kg fixture without specifying carrier, compare all light carriers | Price comparison — which carrier wins for light auto parts?   |
+| 4.32 | `auto-select cheapest from heavy carrier group`                        | Quote >5kg fixture without specifying carrier, compare heavy carriers     | Price comparison — which carrier wins for heavy auto parts?   |
+| 4.33 | `light carriers reject or surcharge >5kg package`                      | Quote 6.5kg alternador with DHL/FedEx/Estafeta                            | Do light carriers accept heavy packages? At what premium?     |
+| 4.34 | `heavy carriers handle ≤5kg package`                                   | Quote 3kg soporte with Castores/Paquetexpress                             | Do heavy carriers accept light packages? Is pricing worse?    |
+
+**Tests — Multi-Item Separate Packages (Business Rule):**
+
+| #    | Test Name                                                                    | What It Does                                                        | What We Learn                                                             |
+| ---- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| 4.35 | `quotes 2 separate packages in one request (2 items from same manufacturer)` | 1× maza (4kg) + 1× chicote (1kg) as 2 entries in packages array     | Multi-package pricing for real product combo                              |
+| 4.36 | `quotes 3 separate packages with different weights/dimensions`               | 1× maza + 1× soporte + 1× chicote as 3 packages                     | Scaling behavior, total price for mixed auto parts order                  |
+| 4.37 | `multi-package total vs sum of individual quotes`                            | Quote same items as multi-package AND as 3 separate single requests | **Critical:** Is multi-package priced differently than individual quotes? |
+| 4.38 | `multi-package with mixed weight groups (one ≤5kg, one >5kg)`                | 1× chicote (1kg) + 1× alternador (6.5kg) in same request            | Can a single request contain items for different carrier groups?          |
+
 **Tests — Declared Value & Insurance:**
 
 | #    | Test Name                                         | What It Does                                         | What We Learn                                         |
@@ -350,6 +436,11 @@ Each test file below is a self-contained module. They are **numbered for recomme
 - `04-rate-multi-package.json` — Multi-package response
 - `04-rate-oversized.json` — Oversized item response
 - `04-rate-rural.json` — Rural destination response
+- `04-rate-light-carriers.json` — DHL/FedEx/Estafeta quotes for ≤5kg package
+- `04-rate-heavy-carriers.json` — Castores/Paquetexpress quotes for >5kg package
+- `04-rate-boundary-5kg.json` — Both carrier groups quoting exactly 5kg
+- `04-rate-multi-item-order.json` — Multiple packages in single request (real products)
+- `04-rate-multi-vs-individual.json` — Price comparison: multi-package vs individual quotes
 
 **Key findings to document:**
 
@@ -364,6 +455,9 @@ Each test file below is a self-contained module. They are **numbered for recomme
 - Geographic coverage gaps or surcharges
 - Quote TTL / freshness
 - Insurance/declared value behavior
+- **Weight-based routing validation:** Do DHL/FedEx/Estafeta handle ≤5kg reliably? Do Castores/Paquetexpress handle >5kg? Boundary behavior at exactly 5kg? Cross-group pricing (light carrier with heavy package and vice versa)?
+- **Multi-item pricing model:** Is a multi-package request priced differently than the sum of individual quotes? This determines whether we batch items or quote individually at checkout.
+- **Carrier availability:** Are Castores and Paquetexpress available in the provider's carrier list? What are their service identifiers?
 
 ---
 
@@ -706,7 +800,22 @@ After all modules are complete, the combined findings must confirm we can suppor
 - [ ] Quotes work for different auto parts (light, heavy, oversized)
 - [ ] Quotes work for different routes (metro, rural, border, cross-region)
 - [ ] We understand quote freshness (TTL or need to re-quote before purchase)
-- [ ] We can display meaningful options to the customer (name, price, speed)
+- [ ] Quote prices are in MXN (investigate known currency bug from prior testing)
+
+### Weight-Based Carrier Routing
+
+- [ ] DHL, FedEx, Estafeta all return valid quotes for ≤5kg packages
+- [ ] Castores, Paquetexpress return valid quotes for >5kg packages
+- [ ] Boundary behavior at exactly 5kg is understood (which group wins?)
+- [ ] Auto-select cheapest works: we can programmatically compare prices across carrier group
+- [ ] Cross-group behavior known: what happens if ≤5kg carrier gets >5kg package (reject or surcharge?)
+
+### Multi-Item / Multi-Package Orders
+
+- [ ] Multiple packages in a single quote request works (2-3 items from same manufacturer)
+- [ ] Multi-package pricing model understood (combined vs sum-of-individual — same or different?)
+- [ ] Mixed-weight items in one request handled correctly
+- [ ] Each item-as-separate-package approach validated with the API
 
 ### Multi-Manufacturer Split Shipping
 
@@ -720,7 +829,8 @@ After all modules are complete, the combined findings must confirm we can suppor
 - [ ] Label includes tracking number and downloadable document
 - [ ] Label format is suitable for printing (PDF at minimum)
 - [ ] We understand the charge model (when money is deducted)
-- [ ] We have a strategy for idempotency (avoid double charges)
+- [ ] We have a strategy for idempotency (avoid double charges — Test 5.16)
+- [ ] Label URL expiry behavior understood (permanent vs temporary — Test 5.11)
 
 ### Shipment Tracking
 
@@ -728,6 +838,12 @@ After all modules are complete, the combined findings must confirm we can suppor
 - [ ] We have a mapping from provider statuses → our domain statuses
 - [ ] We know whether to use webhooks or polling for updates
 - [ ] Event history is available for building a customer-facing timeline
+
+### Address Validation
+
+- [ ] Geocodes API returns colonias per postal code (colonia dropdown UX)
+- [ ] City/state auto-fill from postal code works
+- [ ] Rural and remote postal codes handled correctly
 
 ### Cancellation & Returns
 
@@ -740,25 +856,57 @@ After all modules are complete, the combined findings must confirm we can suppor
 - [ ] Heavy items (12kg+ rotors) get valid quotes
 - [ ] Oversized items (bumpers) get valid quotes or clear rejection
 - [ ] High-value items get insurance coverage
-- [ ] Multi-package shipments work (customer orders multiple large parts)
+- [ ] Real launch products (mazas, alternadores, soportes, chicotes) all quote successfully
+- [ ] Very light items (0.5kg) have no minimum-weight issues
+
+### Error Handling
+
+- [ ] Error JSON shape documented for `parseError()` implementation
+- [ ] Field-level vs request-level validation errors understood
+- [ ] HTTP status code patterns mapped (400 vs 422 vs specific codes)
+- [ ] Error codes mapped to `ShippingErrorCode` enum
+- [ ] Rate limit threshold and retry guidance documented
 
 ### Operational
 
 - [ ] We can monitor wallet/account balance (avoid label failures)
 - [ ] We understand rate limits and have timeout values
-- [ ] We have complete error → error code mappings
-- [ ] Address validation can power checkout UX (colonia dropdown, auto-fill)
+- [ ] Phone code format confirmed (MX vs 52 inconsistency resolved)
 
 ---
 
-## Implementation Guide for Developers
+## Implementation Guide
+
+### Purpose & Long-Term Value
+
+This exploration suite serves three purposes at different stages:
+
+1. **Discovery (now):** Answer every open question about the shipping provider's API before writing production code. The test suite runs against the real sandbox/production API and captures actual behavior — not documentation claims, not assumptions.
+
+2. **Production implementation (next):** The exploration outputs (snapshots, Zod schemas, findings) become the spec for building the production provider adapter (`src/lib/<provider>/`). The adapter that connects our business rules to the shipping provider should work correctly on day one because every input/output combination has already been exercised and recorded.
+
+3. **Regression & debugging (ongoing):** When something breaks in production — a carrier stops returning quotes, a response shape changes, a new edge case appears — the exploration suite is the first debugging tool. Run the relevant module against the live API to isolate whether the issue is on our side or the provider's. When we eventually switch providers (this plan is provider-agnostic), the same test modules run against the new provider to map its behavior before writing a single line of adapter code.
+
+### Execution Model
+
+Each module will be built and executed by an AI agent session. The agent:
+
+1. **Implements the tests** from the plan's module spec (test names, inputs, assertions)
+2. **Runs them against the real API** and captures responses
+3. **Expands coverage** — the plan specifies the minimum test set, but agents should explore additional input combinations when findings warrant it. For example, if Test 4.11 reveals that multi-carrier quoting works, the agent should try it with different package weights, routes, and carrier filters to map the full behavior space. Test suites will grow beyond the numbered tests in this plan — that's expected and encouraged.
+4. **Records all findings** in snapshots, tightened assertions, and `// FINDING:` comments
+5. **Builds Zod schemas** from real responses that become the foundation for production types
+
+The plan defines the _minimum_ test coverage. The actual test files will be larger — potentially much larger — as agents explore combinations of fixtures × routes × carriers × package configurations. Every combination that reveals different behavior gets its own test case.
 
 ### Getting Started
 
-1. Pull the `feature/envia-api-testing` branch
-2. Ensure `.env.local` has `SHIPPING_API_KEY` and `SHIPPING_API_URL`
-3. Run `npm.cmd run test:explore` to execute the full suite (initially all tests will be pending/skipped)
-4. Work through modules in order — each module builds on previous findings
+1. **Read `RefaccionesDirect_EnviaIntegration_v2.md`** (project knowledge) — contains validated response shapes, Zod schema starting points, and known issues from prior sandbox testing
+2. Pull the `feature/envia-api-testing` branch
+3. Ensure `.env.local` has `SHIPPING_API_KEY` and `SHIPPING_API_URL`
+4. Run `npm.cmd run test:explore` to execute the full suite (initially all tests will be pending/skipped)
+5. Work through modules in order — each module builds on previous findings
+6. **Cross-reference PR #51** (Shipping API Spec) — update "DISCOVER DURING DEVELOPMENT" placeholders with confirmed values as you go
 
 ### How to Write Each Test
 
@@ -767,6 +915,7 @@ After all modules are complete, the combined findings must confirm we can suppor
 3. **Tighten assertions iteratively** — As you learn the shape, add specific field checks, type checks, value range checks.
 4. **Document surprises in test comments** — If behavior differs from what the spec assumed, add a `// FINDING:` comment explaining what's different and why it matters.
 5. **Build Zod schemas from snapshots** — After capturing real responses, create Zod schemas in the helpers that validate the actual shape. These schemas become the foundation for the production client.
+6. **Expand input combinations** — When a test reveals interesting behavior, add parameterized variants to map the full behavior space (see "Expected Test File Structure" below for `it.each` patterns).
 
 ### Conventions
 
@@ -775,6 +924,100 @@ After all modules are complete, the combined findings must confirm we can suppor
 - Use `test.todo('...')` for tests you haven't implemented yet — this provides a clear progress tracker
 - Mark tests that create billable resources (labels) with a `// BILLABLE` comment
 - Store cross-test state (tracking numbers, shipment IDs) in module-level variables within the test file, not in shared mutable state across files
+- The api-client helper must **never throw on 4xx/5xx** — it returns `{ status, headers, data }` for every response so tests can inspect and snapshot error responses
+
+### Expected Test File Structure
+
+Every module test file should follow this structure. This is the contract that agents must produce:
+
+```typescript
+/**
+ * Module N: <Module Name>
+ *
+ * Purpose: <one-line purpose from the plan>
+ * Dependencies: <which modules must pass first>
+ * Provider: <provider name> (implementation is provider-specific; plan is not)
+ *
+ * ┌─────────────────────────────────────────────────────────────┐
+ * │ KEY FINDINGS (filled in after tests run)                    │
+ * ├─────────────────────────────────────────────────────────────┤
+ * │ - [ ] Finding 1 from plan's "Key findings to document"     │
+ * │ - [ ] Finding 2 ...                                        │
+ * │ - [ ] Finding N ...                                        │
+ * │                                                            │
+ * │ SURPRISES / DEVIATIONS FROM SPEC:                          │
+ * │ - (filled in during execution)                             │
+ * └─────────────────────────────────────────────────────────────┘
+ */
+
+import { describe, it, expect, beforeAll } from 'vitest';
+import { createApiClient, type ApiClient } from '../helpers/api-client';
+import { saveSnapshot } from '../helpers/snapshot';
+// import fixtures as needed from '../helpers/fixtures'
+// import Zod schemas as they are built from '../helpers/schemas'
+
+let client: ApiClient;
+
+beforeAll(() => {
+  client = createApiClient();
+});
+
+describe('Module N: <Module Name>', () => {
+  // -------------------------------------------------------------------------
+  // N.1 — <Test name from plan>
+  // -------------------------------------------------------------------------
+
+  it('<test name from plan>', async () => {
+    const res = await client.get('/some-endpoint');
+
+    // 1. Snapshot first — this is the primary deliverable
+    saveSnapshot('NN-descriptive-name', {
+      status: res.status,
+      headers: res.headers,
+      body: res.data,
+    });
+
+    // 2. Loose assertions that tighten over time
+    expect(res.status).toBe(200);
+    expect(res.data).toBeDefined();
+
+    // 3. FINDING: <describe what was learned>
+    // <explain deviation from spec if any>
+  });
+
+  // -------------------------------------------------------------------------
+  // N.2 — Parameterized expansion (agent-generated)
+  // -------------------------------------------------------------------------
+  // When a test reveals behavior that varies by input, expand with it.each:
+
+  it.each([
+    { name: 'light maza (4kg)', fixture: 'mazaDeRueda', expectedGroup: 'light' },
+    { name: 'heavy alternador (6.5kg)', fixture: 'alternador12V', expectedGroup: 'heavy' },
+    { name: 'boundary maza (5kg)', fixture: 'mazaPesada', expectedGroup: 'TBD' },
+  ])('quotes $name with appropriate carriers', async ({ fixture, expectedGroup }) => {
+    // ... test implementation
+    // FINDING: <what varied across the parameterized inputs>
+  });
+
+  // -------------------------------------------------------------------------
+  // N.X — Agent-discovered tests (beyond the plan)
+  // -------------------------------------------------------------------------
+  // Agents should add tests here when they discover behavior not
+  // anticipated by the plan. Prefix with the module number and use
+  // the next available sequence number.
+});
+```
+
+**What this structure guarantees:**
+
+| Output                   | Where it lives                       | What it feeds into                                |
+| ------------------------ | ------------------------------------ | ------------------------------------------------- |
+| Raw API responses        | `__snapshots__/*.json` (git-tracked) | Production Zod schemas, field mapping reference   |
+| Zod schemas              | `helpers/schemas.ts`                 | Copied/adapted into `src/lib/<provider>/types.ts` |
+| Key findings checklist   | Test file header comment             | Shipping API Spec placeholder updates             |
+| `// FINDING:` comments   | Inline in test code                  | Provider adapter implementation decisions         |
+| Surprise/deviation notes | Test file header comment             | Architecture decisions, risk register             |
+| Parameterized test data  | `it.each` tables in test files       | Input validation rules for production             |
 
 ### Output Expectations
 
@@ -783,14 +1026,16 @@ When the exploration is complete, each module should produce:
 1. **Passing tests** with specific assertions (not just "doesn't throw")
 2. **Snapshot files** with real API responses in `__snapshots__/`
 3. **Zod schemas** in `helpers/` that validate the discovered shapes
-4. **A summary comment** at the top of each test file listing key findings
+4. **A summary comment** at the top of each test file with the key findings checklist filled in
+5. **Expanded test cases** beyond the plan's minimum — every input combination that revealed different behavior should have its own test
 
-The combined findings should be sufficient to:
+The combined output across all modules should be sufficient to:
 
 - Fill in every "DISCOVER DURING DEVELOPMENT" placeholder in the Shipping API Spec
 - Build the production Zod schemas in `src/lib/<provider>/types.ts`
-- Build the provider adapter with correct field mappings
+- Build the provider adapter with correct field mappings — **it should work on day one**
 - Configure timeouts, retries, and error handling with real data
+- Swap providers in the future: run the same test plan against the new provider's sandbox, compare findings, and build a new adapter with the same confidence
 
 ---
 
@@ -827,5 +1072,7 @@ Module 1: Connectivity
 - [ ] All snapshot files are committed to the repo
 - [ ] Workflow validation checklist is complete (all boxes checked or items flagged as limitations)
 - [ ] Summary of findings is written (can be a doc or the test file header comments)
-- [ ] Shipping API Spec v1.0 placeholders can be filled from the findings
+- [ ] Shipping API Spec v1.0 (PR #51) placeholders updated with confirmed values
+- [ ] Weight-based carrier routing validated — confirmed which carriers support each weight group
+- [ ] Multi-package pricing model documented — combined vs individual quotes answered
 - [ ] PR merged into `dev`
