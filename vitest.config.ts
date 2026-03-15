@@ -8,7 +8,27 @@ export default defineConfig({
     environment: 'happy-dom',
     globals: true,
     setupFiles: ['./vitest.setup.ts'],
-    include: ['**/*.test.{ts,tsx}'],
+    // Separate projects: unit (default) and exploration (shipping API sandbox tests).
+    // Run exploration with: npm run test:explore
+    // Unit tests exclude exploration so they never hit real APIs.
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: 'unit',
+          include: ['**/*.test.{ts,tsx}'],
+          exclude: ['**/node_modules/**', '**/src/lib/shipping-exploration/**'],
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: 'exploration',
+          environment: 'node',
+          include: ['src/lib/shipping-exploration/**/*.test.{ts,tsx}'],
+        },
+      },
+    ],
   },
   resolve: {
     alias: {

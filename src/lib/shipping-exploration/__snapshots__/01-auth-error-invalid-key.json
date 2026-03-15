@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "testName": "01-auth-error-invalid-key",
+    "timestamp": "2026-03-15T14:54:20.052Z"
+  },
+  "status": 401,
+  "headers": {
+    "access-control-expose-headers": "WWW-Authenticate,Server-Authorization",
+    "alt-svc": "h3=\":443\"; ma=86400",
+    "cache-control": "no-cache",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "9dcc5a4f7b5a89b1-IAD",
+    "connection": "keep-alive",
+    "content-length": "76",
+    "content-type": "application/json; charset=utf-8",
+    "date": "Sun, 15 Mar 2026 14:54:20 GMT",
+    "nel": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}",
+    "report-to": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=wUq%2FtuVeSFuLb5IphSNJ7Hx0NVLJCeTI78c7CetUo%2B0%3D\\u0026sid=af571f24-03ee-46d1-9f90-ab9030c2c74c\\u0026ts=1773586460\"}],\"max_age\":3600}",
+    "reporting-endpoints": "heroku-nel=\"https://nel.heroku.com/reports?s=wUq%2FtuVeSFuLb5IphSNJ7Hx0NVLJCeTI78c7CetUo%2B0%3D&sid=af571f24-03ee-46d1-9f90-ab9030c2c74c&ts=1773586460\"",
+    "server": "cloudflare",
+    "set-cookie": "__cf_bm=LueRMA.eLRyitFgk9LDHYBei37KV2oSqvoGI7Hfs18k-1773586460.0722673-1.0.1.1-7o3C0PbeNz.MU_E904CYoDc.TI06BZ6MKg80lZcVq1HVNNiKbeoQiJp6QnH6.0_ITS7ox6saA5EvuMbHDKQ1ZvnAYktRfjHsQEgZZRhvm11GC7hOxxyrp_jeQbQGhx.E; HttpOnly; Secure; Path=/; Domain=envia.com; Expires=Sun, 15 Mar 2026 15:24:20 GMT",
+    "strict-transport-security": "max-age=0; includeSubDomains",
+    "vary": "origin",
+    "via": "1.1 heroku-router",
+    "x-content-type-options": "nosniff",
+    "x-rate-limit-limit": "300",
+    "x-rate-limit-remaining": "298",
+    "x-rate-limit-reset": "1773586461"
+  },
+  "body": {
+    "statusCode": 401,
+    "error": "Unauthorized",
+    "message": "User token is invalid."
+  },
+  "responseTimeMs": 32
+}

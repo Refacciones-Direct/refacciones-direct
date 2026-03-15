@@ -12,9 +12,11 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest",
-    "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage",
+    "test": "vitest --project unit",
+    "test:run": "vitest run --project unit",
+    "test:explore": "vitest run --project exploration",
+    "test:explore:watch": "vitest --project exploration",
+    "test:coverage": "vitest run --project unit --coverage",
     "test:e2e": "playwright test",
     "prepare": "husky",
     "db:start": "supabase start",
@@ -22,7 +24,8 @@
     "db:reset": "supabase db reset && node --env-file=.env.local --import=tsx scripts/seed-catalog.ts && node --env-file=.env.local --import=tsx scripts/seed-images.ts",
     "db:seed-catalog": "node --env-file=.env.local --import=tsx scripts/seed-catalog.ts",
     "db:seed-images": "node --env-file=.env.local --import=tsx scripts/seed-images.ts",
-    "db:types": "supabase gen types typescript --local > src/types/database.ts"
+    "db:types": "supabase gen types typescript --local > src/types/database.ts",
+    "shipping:verify-sandbox": "npx tsx scripts/verify-shipping-sandbox.ts"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
