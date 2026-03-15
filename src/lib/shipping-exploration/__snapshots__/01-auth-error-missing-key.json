@@ -1,0 +1,37 @@
+{
+  "_meta": {
+    "testName": "01-auth-error-missing-key",
+    "timestamp": "2026-03-15T14:54:20.146Z"
+  },
+  "status": 401,
+  "headers": {
+    "access-control-expose-headers": "WWW-Authenticate,Server-Authorization",
+    "alt-svc": "h3=\":443\"; ma=86400",
+    "cache-control": "no-cache",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "9dcc5a4fdf75c953-IAD",
+    "connection": "keep-alive",
+    "content-length": "76",
+    "content-type": "application/json; charset=utf-8",
+    "date": "Sun, 15 Mar 2026 14:54:20 GMT",
+    "nel": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}",
+    "report-to": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=wUq%2FtuVeSFuLb5IphSNJ7Hx0NVLJCeTI78c7CetUo%2B0%3D\\u0026sid=af571f24-03ee-46d1-9f90-ab9030c2c74c\\u0026ts=1773586460\"}],\"max_age\":3600}",
+    "reporting-endpoints": "heroku-nel=\"https://nel.heroku.com/reports?s=wUq%2FtuVeSFuLb5IphSNJ7Hx0NVLJCeTI78c7CetUo%2B0%3D&sid=af571f24-03ee-46d1-9f90-ab9030c2c74c&ts=1773586460\"",
+    "server": "cloudflare",
+    "set-cookie": "__cf_bm=DA5DQ42YMUJwBqhg5cl2e9n6d6rDvVkjsFLCnl6o.qQ-1773586460.1311908-1.0.1.1-Kw.OiYr1gpjlIPhLoPKDA5u0XY51WpnTr9TK.KkHvvmi3Ph2Q4F1HntwFELBTP5ANxQLuGXTp8ezvN0Fuz5yTblBLs1xOgzZJlwtUkAS5.7iBkqtI6Gq0_1ZOig3oPaW; HttpOnly; Secure; Path=/; Domain=envia.com; Expires=Sun, 15 Mar 2026 15:24:20 GMT",
+    "strict-transport-security": "max-age=0; includeSubDomains",
+    "vary": "origin",
+    "via": "1.1 heroku-router",
+    "www-authenticate": "Bearer",
+    "x-content-type-options": "nosniff",
+    "x-rate-limit-limit": "300",
+    "x-rate-limit-remaining": "297",
+    "x-rate-limit-reset": "1773586461"
+  },
+  "body": {
+    "statusCode": 401,
+    "error": "Unauthorized",
+    "message": "Missing authentication"
+  },
+  "responseTimeMs": 92
+}

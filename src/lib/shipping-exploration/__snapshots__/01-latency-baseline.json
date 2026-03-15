@@ -1,0 +1,13 @@
+{
+  "_meta": {
+    "testName": "01-latency-baseline",
+    "timestamp": "2026-03-15T14:54:20.529Z"
+  },
+  "sampleCount": 5,
+  "samplesMs": [35, 36, 33, 29, 33],
+  "sortedMs": [29, 33, 33, 35, 36],
+  "p50Ms": 33,
+  "p95Ms": 36,
+  "minMs": 29,
+  "maxMs": 36
+}

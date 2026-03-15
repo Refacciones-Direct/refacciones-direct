@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "testName": "01-wallet-endpoint-availability",
+    "timestamp": "2026-03-15T14:54:20.348Z"
+  },
+  "baseUrl": "https://queries-test.envia.com",
+  "probeResults": [
+    {
+      "endpoint": "/balance",
+      "status": 404,
+      "responseTimeMs": 27,
+      "body": {
+        "statusCode": 404,
+        "error": "Not Found",
+        "message": "Not Found"
+      }
+    },
+    {
+      "endpoint": "/wallet",
+      "status": 404,
+      "responseTimeMs": 21,
+      "body": {
+        "statusCode": 404,
+        "error": "Not Found",
+        "message": "Not Found"
+      }
+    },
+    {
+      "endpoint": "/wallet/balance",
+      "status": 404,
+      "responseTimeMs": 24,
+      "body": {
+        "statusCode": 404,
+        "error": "Not Found",
+        "message": "Not Found"
+      }
+    },
+    {
+      "endpoint": "/account/balance",
+      "status": 404,
+      "responseTimeMs": 26,
+      "body": {
+        "statusCode": 404,
+        "error": "Not Found",
+        "message": "Not Found"
+      }
+    },
+    {
+      "endpoint": "/user/balance",
+      "status": 404,
+      "responseTimeMs": 28,
+      "body": {
+        "statusCode": 404,
+        "error": "Not Found",
+        "message": "Not Found"
+      }
+    },
+    {
+      "endpoint": "/me",
+      "status": 404,
+      "responseTimeMs": 25,
+      "body": {
+        "statusCode": 404,
+        "error": "Not Found",
+        "message": "Not Found"
+      }
+    }
+  ],
+  "availableEndpoints": [],
+  "finding": "No obvious wallet/balance endpoint discovered in sandbox"
+}
